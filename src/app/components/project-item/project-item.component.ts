@@ -6,6 +6,7 @@ import { Technology } from 'src/app/models/technology.model';
   selector: 'app-project-item',
   templateUrl: './project-item.component.html',
   styleUrls: ['./project-item.component.scss'],
+  standalone: false
 })
 export class ProjectItemComponent implements OnInit {
   @Input('project') project: Project;

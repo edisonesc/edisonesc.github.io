@@ -7,7 +7,7 @@ p {
   flex-direction: row;
   width: 100%;
   margin-bottom: 50px;
-  padding: 24px;
+  padding: 0 100px;
   justify-content: space-evenly;
 }
 
@@ -68,4 +68,23 @@ p {
 .timeline-container .row .timeline-column .list-block .description p {
   margin-top: 5px;
   margin-bottom: 5px;
+}
+
+#location {
+}
+
+
+.projects {
+  margin-left: 8px;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 512px) {
+  .timeline-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 50px;
+    padding: 0 32px;
+    justify-content: space-evenly;
+  }
 }

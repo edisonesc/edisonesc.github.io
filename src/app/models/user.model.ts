@@ -6,4 +6,7 @@ export class User {
   email: string;
   profile_picture: string;
   description?: string;
+  github_repo_url: string
+
+  [key: string]: string | any
 }

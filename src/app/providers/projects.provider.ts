@@ -32,6 +32,9 @@ import {
   annyang,
   puppeteer,
   cheerio,
+  nextjs,
+  n8n,
+  cloudFlare,
 } from './technologies.provider';
 import { PROJECT_TYPE } from '../enums/project-type.enum';
 
@@ -45,6 +48,24 @@ export const projects: Project[] = [
   //   icon_url: 'assets/images/projects/sb.jpg',
   //   type: PROJECT_TYPE.OTHERS,
   // },
+  {
+    name: 'Expense Tracker Integration',
+    started_at: 'Aug 2025',
+    finished_at: 'Aug 2025',
+    description: 'Deployed n8n server full on-prem with KNUC and Cloudflare tunnels. Integrated Expense Google Sheet and Telegram API for easy updates and tracking of expenses.',
+    technologies: [n8n, typescript, cloudFlare],
+    type: PROJECT_TYPE.OTHERS,
+    excludeInCVExport: false
+  },
+  {
+    name: 'Reflex Trainer for boxing',
+    started_at: 'Dec 2023',
+    finished_at: 'Dec 2023',
+    description: 'Simple web app to learn defense and counter in boxing by simulating offensive strikes with adjustable pace.',
+    technologies: [angular, typescript],
+    type: PROJECT_TYPE.OTHERS,
+    excludeInCVExport: true
+  },
   {
     name: 'Speech Command File Downloader',
     started_at: 'Apr 2021',
@@ -132,7 +153,7 @@ export const projects: Project[] = [
       'Mobile application that tracks hours based on time in and out.',
     technologies: [java, android, firebase],
     icon_url: '',
-    type: PROJECT_TYPE.MOBILE,
+    type: PROJECT_TYPE.MOBILE,    
   },
   {
     name: 'CVARST Medical System',
@@ -142,7 +163,7 @@ export const projects: Project[] = [
       'System project for a track using Java and MySQL. It has a two-way login, dynamic test for Colorblind and Auditory. CRUD is also implemented.',
     technologies: [java, derby, mysql],
     icon_url: '',
-    type: PROJECT_TYPE.SYSTEM,
+    type: PROJECT_TYPE.SYSTEM,    
   },
   {
     name: 'Mp4 to Mp3-Converter',
@@ -162,6 +183,7 @@ export const projects: Project[] = [
     technologies: [java, derby, mysql],
     icon_url: '',
     type: PROJECT_TYPE.SYSTEM,
+    excludeInCVExport: true
   },
   {
     name: 'Reflex',
@@ -172,6 +194,7 @@ export const projects: Project[] = [
     technologies: [java, android],
     icon_url: '',
     type: PROJECT_TYPE.MOBILE,
+    excludeInCVExport: true
   },
   {
     name: 'Workout Generator & Nutrition Calculator',
@@ -182,6 +205,7 @@ export const projects: Project[] = [
     technologies: [java, android],
     icon_url: '',
     type: PROJECT_TYPE.MOBILE,
+    excludeInCVExport: true
   },
   {
     name: 'Workout Program Generator',
@@ -192,5 +216,6 @@ export const projects: Project[] = [
     technologies: [java],
     icon_url: '',
     type: PROJECT_TYPE.SYSTEM,
+    excludeInCVExport: true
   },
 ];

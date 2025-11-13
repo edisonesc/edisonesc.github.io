@@ -23,8 +23,11 @@
   </div>
 
   <div class="project-technologies">
-    <h6 class="text-black-50">Technologies Used:</h6>
-    <div class="list">
+    <h6 class="text-black-50">Technologies</h6>
+    <div
+      class="list"
+      [ngClass]="{ marquee: project?.technologies?.length > 3 }"
+    >
       <ng-container *ngFor="let technology of project?.technologies">
         <a [href]="technology?.url">
           <img

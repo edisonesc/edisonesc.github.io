@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: '<router-outlet></router-outlet>',
   styleUrls: ['./app.component.scss'],
+  standalone: false
 })
 export class AppComponent {
   title = 'portfolio-v2';

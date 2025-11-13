@@ -5,19 +5,43 @@
         class="col-xs-12 col-sm-12 col-md-6 timeline-column"
         *ngIf="item?.length > 0"
       >
-        <h3 id="header">{{ item[0]?.type }}</h3>
+        <h3 id="header">
+          {{ item[0]?.type !== "EDUCATION" ? "WORK" : item[0]?.type }}
+        </h3>
         <div class="list-block" *ngFor="let experience of item">
           <p id="timeline-title">
-            {{ experience?.position }} - {{ experience?.company_name }}
+            {{ experience?.position }} - {{ experience?.title }}
           </p>
-          <p id="duration">
-            {{ experience?.started_at }} -
-            {{ experience?.finished_at ? experience?.finished_at : "Present" }}
-          </p>
-          <div class="description">
-            <p *ngFor="let responsibility of experience?.responsibilities">
-              {{ responsibility }}
-            </p>
+          <p id="location">{{ experience?.location }}</p>
+
+          <app-timeline-range
+            [started_at]="experience?.started_at"
+            [finished_at]="experience?.finished_at"
+          ></app-timeline-range>
+
+          <div>
+            <div [ngSwitch]="experience.type">
+              <div *ngSwitchCase="'OUTSOURCING'">
+                <div
+                  *ngFor="let project of experience?.projects"
+                  class="description projects"
+                >
+                  <p id="timeline-title">{{ project.name }}</p>
+                  <app-timeline-range
+                    [started_at]="project?.started_at"
+                    [finished_at]="project?.finished_at"
+                  ></app-timeline-range>
+                  <p *ngFor="let responsibility of project?.responsibilities">
+                    - {{ responsibility }}
+                  </p>
+                </div>
+              </div>
+              <div *ngSwitchDefault class="description">
+                <p *ngFor="let responsibility of experience?.responsibilities">
+                  {{ responsibility }}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
         <div class="list-block-start"></div>
