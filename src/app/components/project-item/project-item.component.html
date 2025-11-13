@@ -1,42 +1,41 @@
-<div class="card project-item">
-  <div class="card-header header">
-    <img
-      *ngIf="project?.icon_url"
-      [src]="project?.icon_url"
-      id="project-icon"
-    />
-    <div *ngIf="!project?.icon_url" id="project-icon-alt">
-      <p>{{ getProjectAvatar() }}</p>
+<div class="project-card">
+  <div class="project-header">
+    <div class="project-icon-wrapper">
+      <img
+        *ngIf="project?.icon_url"
+        [src]="project?.icon_url"
+        class="project-icon"
+      />
+      <div *ngIf="!project?.icon_url" class="project-icon-alt">
+        <span>{{ getProjectAvatar() }}</span>
+      </div>
     </div>
-    <p id="project-duration" class="text-black-50">
+    <p class="project-duration">
       {{ project?.started_at }} -
       {{ project?.finished_at ? project?.finished_at : "Present" }}
     </p>
   </div>
-  <div class="card-body body">
-    <h6 id="project-name">
-      <a class="text-black-50" [href]="project?.project_url" target="_blank">{{
-        project?.name
-      }}</a>
-    </h6>
-    <p id="project-description">{{ project?.description }}</p>
+
+  <div class="project-content">
+    <h3 class="project-name">
+      <a [href]="project?.project_url" target="_blank">{{ project?.name }}</a>
+    </h3>
+    <p class="project-description">{{ project?.description }}</p>
   </div>
 
-  <div class="project-technologies">
-    <h6 class="text-black-50">Technologies</h6>
-    <div
-      class="list"
-      [ngClass]="{ marquee: project?.technologies?.length > 3 }"
-    >
+  <div class="project-tech-section">
+    <h4 class="project-tech-label">Technologies</h4>
+    <div class="project-tech-list">
       <ng-container *ngFor="let technology of project?.technologies">
-        <a [href]="technology?.url">
+        <a [href]="technology?.url" class="tech-link" target="_blank">
           <img
             *ngIf="technology?.icon_url"
             [src]="technology?.icon_url"
-            target="_self"
+            class="tech-icon"
+            [alt]="technology?.name"
           />
-          <div *ngIf="!technology?.icon_url" id="technology-icon-alt">
-            <p>{{ getTechnologyAvatar(technology) }}</p>
+          <div *ngIf="!technology?.icon_url" class="tech-icon-alt">
+            <span>{{ getTechnologyAvatar(technology) }}</span>
           </div>
         </a>
       </ng-container>
