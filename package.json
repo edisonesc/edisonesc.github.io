@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "ghpages:release": "git checkout gh-pages || : && ng build --configuration production --base-href https://edisonesc.github.io && ngh --dir=dist/portfolio-v2",
-    "git:push": "git push origin gh-pages:master",
+    "git:push": "git push origin gh-pages:master-v2",
     "pnr": "npm run git:push && npm run ghpages:release"
   },
   "private": true,
