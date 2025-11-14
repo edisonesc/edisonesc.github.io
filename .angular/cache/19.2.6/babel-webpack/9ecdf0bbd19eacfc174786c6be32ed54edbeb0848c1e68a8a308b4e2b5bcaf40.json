@@ -1,0 +1,1 @@
+{"ast":null,"code":"export var PROJECT_TYPE = /*#__PURE__*/function (PROJECT_TYPE) {\n  PROJECT_TYPE[\"MOBILE\"] = \"MOBILE\";\n  PROJECT_TYPE[\"SYSTEM\"] = \"SYSTEM\";\n  PROJECT_TYPE[\"WEB\"] = \"WEB\";\n  PROJECT_TYPE[\"OTHERS\"] = \"OTHERS\";\n  return PROJECT_TYPE;\n}(PROJECT_TYPE || {});","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}

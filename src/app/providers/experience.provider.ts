@@ -60,7 +60,14 @@ export const experiences: Experience[] = [
         responsibilities: [
           "Spearheaded development of core modules and shared components using Angular and React/Next.js, ensuring robustness, reusability, and seamless integration across the application.",
           "Engineered modular, dynamic, and highly cohesive components with scalability at their core—cutting development time for similar or repeat feature requests by an estimated 75–85%, based on actual delivery metrics.",          
-          "Led the complete architectural redesign and frontend migration of a legacy application from Vanilla JS to Next.js, transforming it into a modern, dynamic, and highly modular system. Engineered reusable components using dynamic approach and best practices to streamline repetitive structures like management modules. Implemented a configuration system strategy for dynamic filters, tables, and forms—delivering a surgically crafted, state-of-the-art upgrade built entirely from the ground up.",
+
+          "Collaborated directly with HQ counterparts during a 2-month deployment in Suwon, South Korea. Worked alongside HQ counterparts. This direct collaboration was instrumental in defining requirements, identifying potential blockers, and ensuring the final product was perfectly aligned with business goals.",
+          "Led the end-to-end design, architecture, and implementation of a critical service's frontend. Utilized engineered highly scalable and dynamic components, which enabled to achieve the output of a three-person team.",
+          "Pioneered a parallel development strategy by creating a mock API server and using constant-based stubs. This allowed backend counterparts to get a tangible sense of the application's behavior, facilitating early change requests and alignment on UI/UX flow before backend APIs were finalized.",
+          
+
+
+          "Led the complete architectural redesign and frontend migration of a legacy application from Vanilla JS to Next.js, transforming it into a modern, dynamic, and highly modular system. Engineered reusable components using dynamic approach and best practices to streamline repetitive structures like management modules. Implemented a configuration system strategy for dynamic filters, tables, and forms—delivering a surgically crafted, state-of-the-art upgrade built entirely from the ground up. Demonstrated the application to the HQ counterparts and the Managing Director of SRPH",
           "Conducts in-depth investigations of issues, failure points, and bugs within existing components, ensuring timely root-cause analysis and effective resolution.",
           "Performs peer code reviews and verifications to ensure it is WAI.",
           "Implements comprehensive unit testing to ensure application functionality and reliability, consistently maintaining test coverage between 85–90%+.",
