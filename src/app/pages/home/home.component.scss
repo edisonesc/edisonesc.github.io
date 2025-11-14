@@ -794,9 +794,14 @@ $arrow-size: 18px;
 }
 
 .experiences-section-content {
-  max-width: 900px;
+  max-width: 1200px;
   width: 100%;
 }
+
+.experiences-section-content .experiences-timeline{
+    // width: 900px;
+    padding: 0 30px;
+  }
 
 .experiences-timeline {
   margin-top: 0;
@@ -844,6 +849,10 @@ $arrow-size: 18px;
   max-width: 600px;
   width: 100%;
 }
+
+.contact-section-content .section-title {
+  text-align: center;
+ }
 
 .contact-form {
   display: flex;
@@ -904,7 +913,7 @@ $arrow-size: 18px;
   cursor: pointer;
   transition: all 0.3s ease;
   align-self: flex-start;
-
+  margin: auto;
   &:hover {
     background: #000;
   }
@@ -973,6 +982,8 @@ $arrow-size: 18px;
   .info-item {
     font-size: 0.9375rem;
   }
+
+  
 }
 
 .contact-me-section {
