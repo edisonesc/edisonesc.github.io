@@ -1,0 +1,71 @@
+name: Deploy Develop
+
+on: 
+  push:
+    branches: [ master-v2 ]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:    
+      # Checkout repo
+      - name: Checkout
+        uses: actions/checkout@v6-beta
+  
+      # Node
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v6.0.0
+        with:
+          node-version: 20.x
+  
+      # Build
+      - name: Build App
+        run: npm run build
+  
+      # Upload build artifacts      
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v4.0.0
+        with:
+          # Artifact name
+          name: angular-dist
+          # Path of the directory containing the static assets.
+          path: dist/
+
+  deploy:
+    name: Deploy to ECS
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checkout repo
+    - name: Checkout
+      uses: actions/checkout@v6-beta
+
+    # Download build artifact
+    - name: Download a Build Artifact
+      uses: actions/download-artifact@v6.0.0  
+      with: 
+        name: angular-dist
+        path: dist/
+
+    - name: Login to AWS
+      # You may pin to the exact commit or the version.
+      # uses: aws-actions/configure-aws-credentials@00943011d9042930efac3dcd3a170e4273319bc8
+      uses: aws-actions/configure-aws-credentials@v5.1.0
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+        
+    - name: Build Docker image
+      run: |
+        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <aws_accound_id>.dkr.ecr.us-east-1.amazonaws.com
+        docker push <aws_account_id>.dkr.ecr.us-east-1.amazonaws.com/portfolio:${{ needs.build.output.image-tag }}
+
+        
+    - name: Deploy to ECS
+      run: |
+        aws ecs update-service --cluster my-cluster --service my-service --force-new-deployment
+      
