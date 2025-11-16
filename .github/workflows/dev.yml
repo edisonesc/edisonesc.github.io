@@ -109,9 +109,9 @@ jobs:
           echo "CONTAINER_NAME=$CONTAINER_NAME" >> $GITHUB_ENV
           
 
-      - name: Download task definition
-        run: |
-          aws ecs describe-task-definition --task-definition ${{ env.TASK_DEFINITION }} --query taskDefinition > task-definition.json
+      # - name: Download task definition
+      #   run: |
+      #     aws ecs describe-task-definition --task-definition ${{ env.TASK_DEFINITION }} --query taskDefinition > task-definition.json
           
       # - name: Amazon ECS "Render Task Definition" Action for GitHub Actions
       #   # You may pin to the exact commit or the version.
