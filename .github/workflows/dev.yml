@@ -136,6 +136,9 @@ jobs:
           # cat ${{ steps.task-definition-id.outputs.task-definition }}
           # 
 
+
+      - name: Debug task definition
+        run: cat taskdef.json
  
       - name: Amazon ECS "Deploy Task Definition" Action for GitHub Actions
         # You may pin to the exact commit or the version.
