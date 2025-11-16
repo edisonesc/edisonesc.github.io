@@ -49,7 +49,7 @@ jobs:
 
     env:
       ECR_REPOSITORY: my-angular-app
-      # CONTAINER_NAME: angular-task
+      CONTAINER_NAME: Container1
       ECS_SERVICE: my-service
       ECS_CLUSTER: beloved-frog-95prko
       TASK_DEFINITION: angular-task
@@ -178,7 +178,7 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v2
         with: 
           task-definition: taskdef.json # ${{ steps.task-definition-id.outputs.task-definition }}
-          container-name: ${{ steps.get-container.outputs.container_name }}
+          container-name: ${{env.CONTAINER_NAME}} # ${{ steps.get-container.outputs.container_name }}
           image: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:${{ needs.build.outputs.docker-tag }}
           service: ${{ env.ECS_SERVICE }}
           cluster: ${{ env.ECS_CLUSTER }}
