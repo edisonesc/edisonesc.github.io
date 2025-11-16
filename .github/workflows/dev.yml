@@ -91,19 +91,49 @@ jobs:
         run: |
           aws ecs describe-task-definition --task-definition ${{ env.TASK_DEFINITION }} --query taskDefinition > task-definition.json
           
-      - name: Amazon ECS "Render Task Definition" Action for GitHub Actions
-        # You may pin to the exact commit or the version.
-        # uses: aws-actions/amazon-ecs-render-task-definition@cbed19f1b86bbb18f59cfffde7107b93cc9b75da
-        id: task-definition-id
-        uses: aws-actions/amazon-ecs-render-task-definition@v1
-        with: 
-          task-definition: task-definition.json
-          container-name: ${{ env.CONTAINER_NAME }}
-          image: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:${{ needs.build.outputs.docker-tag }}
+      # - name: Amazon ECS "Render Task Definition" Action for GitHub Actions
+      #   # You may pin to the exact commit or the version.
+      #   # uses: aws-actions/amazon-ecs-render-task-definition@cbed19f1b86bbb18f59cfffde7107b93cc9b75da
+      #   id: task-definition-id
+      #   uses: aws-actions/amazon-ecs-render-task-definition@v1
+      #   with: 
+      #     task-definition: task-definition.json
+      #     container-name: ${{ env.CONTAINER_NAME }}
+      #     image: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:${{ needs.build.outputs.docker-tag }}
+
+      - name: Render task definition dynamically
+        id: taskdef
+        run: |
+          cat <<EOF > taskdef.json
+          {
+            "family": "${{ env.TASK_DEFINITION }}",
+            "networkMode": "awsvpc",
+            "requiresCompatibilities": ["FARGATE"],
+            "cpu": "256",
+            "memory": "512",
+            "containerDefinitions": [
+              {
+                "name": "${{ env.CONTAINER_NAME }}",
+                "image": "${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:${{ needs.build.outputs.docker-tag }}",
+                "essential": true,
+                "portMappings": [
+                  {
+                    "containerPort": 80,
+                    "hostPort": 80,
+                    "protocol": "tcp"
+                  }
+                ]
+              }
+            ]
+          }
+          EOF
 
       - name: Print task definition
         run: |
-          cat ${{ steps.task-definition-id.outputs.task-definition }}
+          aws ecs describe-task-definition --task-definition angular-task --query "taskDefinition.containerDefinitions[].name" --output text
+          # cat ${{ steps.task-definition-id.outputs.task-definition }}
+          # 
+
  
       - name: Amazon ECS "Deploy Task Definition" Action for GitHub Actions
         # You may pin to the exact commit or the version.
