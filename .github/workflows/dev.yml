@@ -107,6 +107,8 @@ jobs:
           cat <<EOF > taskdef.json
           {
             "family": "${{ env.TASK_DEFINITION }}",
+            "executionRoleArn": "arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/ecsTaskExecutionRole",
+
             "networkMode": "awsvpc",
             "requiresCompatibilities": ["FARGATE"],
             "cpu": "256",
