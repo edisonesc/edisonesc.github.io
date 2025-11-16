@@ -52,6 +52,7 @@ jobs:
       CONTAINER_NAME: my-container
       ECS_SERVICE: my-service
       ECS_CLUSTER: beloved-frog-95prko
+      TASK_DEFINITION: angular-task
       
       
 
@@ -88,7 +89,7 @@ jobs:
 
       - name: Download task definition
         run: |
-          aws ecs describe-task-definition --task-definition ${TASK_NAME} --query taskDefinition > task-definition.json
+          aws ecs describe-task-definition --task-definition ${{ env.TASK_DEFINITION }} --query taskDefinition > task-definition.json
           
       - name: Amazon ECS "Render Task Definition" Action for GitHub Actions
         # You may pin to the exact commit or the version.
