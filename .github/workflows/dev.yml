@@ -106,7 +106,7 @@ jobs:
             --query "taskDefinition.containerDefinitions[0].name" \
             --output text)
           echo "DEBUG: Fetched container name: $CONTAINER_NAME"
-          echo "CONTAINER_NAME=$CONTAINER_NAME" >> $GITHUB_ENV
+          echo "CONTAINER_NAME=$CONTAINER_NAME" >> $GITHUB_OUTPUT
 
           
 
