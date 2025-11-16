@@ -94,7 +94,7 @@ jobs:
         # You may pin to the exact commit or the version.
         # uses: aws-actions/amazon-ecs-render-task-definition@cbed19f1b86bbb18f59cfffde7107b93cc9b75da
         id: task-definition-id
-        uses: aws-actions/amazon-ecs-render-task-def$inition@v1
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
         with: 
           task-definition: task-definition.json
           container-name: ${{ env.CONTAINER_NAME }}
