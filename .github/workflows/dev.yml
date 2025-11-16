@@ -89,14 +89,24 @@ jobs:
 
       
       
-      - name: Get existing task definition
-        id: get-taskdef
+      # - name: Get existing task definition
+      #   id: get-taskdef
+      #   run: |
+      #     aws ecs describe-task-definition \
+      #       --task-definition ${{ env.TASK_DEFINITION }} \
+      #       --query "taskDefinition.containerDefinitions[0].name" \
+      #       --output text > container-name.txt
+      #     echo "CONTAINER_NAME=$(cat container-name.txt)" >> $GITHUB_ENV
+
+
+      - name: Get container name
+        id: get-container
         run: |
-          aws ecs describe-task-definition \
+          CONTAINER_NAME=$(aws ecs describe-task-definition \
             --task-definition ${{ env.TASK_DEFINITION }} \
             --query "taskDefinition.containerDefinitions[0].name" \
-            --output text > container-name.txt
-          echo "CONTAINER_NAME=$(cat container-name.txt)" >> $GITHUB_ENV
+            --output text)
+          echo "CONTAINER_NAME=$CONTAINER_NAME" >> $GITHUB_ENV
           
 
       - name: Download task definition
