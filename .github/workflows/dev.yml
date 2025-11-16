@@ -102,7 +102,7 @@ jobs:
       #     image: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:${{ needs.build.outputs.docker-tag }}
 
       - name: Render task definition dynamically
-        id: taskdef
+        id: task-definition-id
         run: |
           cat <<EOF > taskdef.json
           {
@@ -130,7 +130,7 @@ jobs:
 
       - name: Print task definition
         run: |
-          aws ecs describe-task-definition --task-definition angular-task --query "taskDefinition.containerDefinitions[].name" --output text
+          aws ecs describe-task-definition --task-definition ${{ env.TASK_DEFINITION }} --query "taskDefinition.containerDefinitions[].name" --output text
           # cat ${{ steps.task-definition-id.outputs.task-definition }}
           # 
 
