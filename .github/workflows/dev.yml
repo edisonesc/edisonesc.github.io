@@ -138,7 +138,7 @@ jobs:
             "memory": "512",
             "containerDefinitions": [
               {
-                "name": "${{ env.CONTAINER_NAME }}",
+                "name": "${{ steps.get-container.outputs.container_name }}",
                 "image": "${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:${{ needs.build.outputs.docker-tag }}",
                 "essential": true,
                 "portMappings": [
@@ -169,7 +169,7 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v2
         with: 
           task-definition: taskdef.json # ${{ steps.task-definition-id.outputs.task-definition }}
-          container-name: ${{ env.CONTAINER_NAME }}
+          container-name: ${{ steps.get-container.outputs.container_name }}
           image: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:${{ needs.build.outputs.docker-tag }}
           service: ${{ env.ECS_SERVICE }}
           cluster: ${{ env.ECS_CLUSTER }}
