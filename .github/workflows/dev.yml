@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      docker-tag: ${{ steps.set-tag.outputs.tag }}
 
     steps:    
       # Checkout repo
@@ -32,6 +34,11 @@ jobs:
           name: angular-dist
           # Path of the directory containing the static assets.
           path: dist/
+
+      - name: Set Docker tag
+        id: set-tag
+        run: |
+          echo "tag=${GITHUB_SHA::7}" >> $GITHUB_OUTPUT  # first 7 chars of commit SHA
 
   deploy:
     name: Deploy to ECS
@@ -61,11 +68,19 @@ jobs:
         
     - name: Build Docker image
       run: |
-        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <aws_accound_id>.dkr.ecr.us-east-1.amazonaws.com
-        docker push 631509483329.dkr.ecr.us-east-1.amazonaws.com/portfolio:${{ needs.build.output.image-tag }}
+         docker build -t my-angular-app:${{ needs.build.outputs.docker-tag }} .
+         docker tag my-angular-app:${{ needs.build.outputs.docker-tag }} 6315-0948-3329.dkr.ecr.us-east-1.amazonaws.com/my-angular-app:${{ needs.build.outputs.docker-tag }}
+
+    - name: Push Docker image to ECR
+      run: |
+        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 6315-0948-3329.dkr.ecr.us-east-1.amazonaws.com 
+        docker push 6315-0948-3329.dkr.ecr.us-east-1.amazonaws.com/my-angular-app:${{ needs.build.outputs.docker-tag }}
 
         
     - name: Deploy to ECS
       run: |
-        aws ecs update-service --cluster my-cluster --service my-service --force-new-deployment
+        aws ecs update-service \
+          --cluster my-cluster \
+          --service my-service \
+          --force-new-deployment
       
