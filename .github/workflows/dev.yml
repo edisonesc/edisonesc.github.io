@@ -77,10 +77,21 @@ jobs:
         run: |
           aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 631509483329.dkr.ecr.us-east-1.amazonaws.com 
           docker push 631509483329.dkr.ecr.us-east-1.amazonaws.com/my-angular-app:${{ needs.build.outputs.docker-tag }}
-
-      - name: Deploy to ECS
-        run: |
-          aws ecs update-service \
-            --cluster beloved-frog-95prko \
-            --service my-service \
-            --force-new-deployment
+ 
+      - name: Amazon ECS "Deploy Task Definition" Action for GitHub Actions
+        # You may pin to the exact commit or the version.
+        # uses: aws-actions/amazon-ecs-deploy-task-definition@1beffbdddb3eb5f83c7a746c3e9bafeccdccbbaa
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v2
+        with: 
+          task-definition: taskdef.json
+          container-name: my-container
+          image: 631509483329.dkr.ecr.us-east-1.amazonaws.com/my-angular-app:${{ needs.build.outputs.docker-tag }}
+          service: my-service
+          cluster: my-cluster
+          
+      # - name: Deploy to ECS        
+      #   run: |
+      #     aws ecs update-service \
+      #       --cluster beloved-frog-95prko \
+      #       --service my-service \
+      #       --force-new-deployment
