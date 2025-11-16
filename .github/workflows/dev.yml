@@ -162,6 +162,15 @@ jobs:
 
       - name: Debug task definition
         run: cat taskdef.json
+
+
+      - name: Debug ECS Deploy Inputs
+        run: |
+          echo "task-definition: taskdef.json"
+          echo "container-name: ${{ steps.get-container.outputs.container_name }}"
+          echo "image: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:${{ needs.build.outputs.docker-tag }}"
+          echo "service: ${{ env.ECS_SERVICE }}"
+          echo "cluster: ${{ env.ECS_CLUSTER }}"
  
       - name: Amazon ECS "Deploy Task Definition" Action for GitHub Actions
         # You may pin to the exact commit or the version.
