@@ -140,7 +140,7 @@ jobs:
         # uses: aws-actions/amazon-ecs-deploy-task-definition@1beffbdddb3eb5f83c7a746c3e9bafeccdccbbaa
         uses: aws-actions/amazon-ecs-deploy-task-definition@v2
         with: 
-          task-definition: ${{ steps.task-definition-id.outputs.task-definition }}
+          task-definition: taskdef.json # ${{ steps.task-definition-id.outputs.task-definition }}
           container-name: ${{ env.CONTAINER_NAME }}
           image: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:${{ needs.build.outputs.docker-tag }}
           service: ${{ env.ECS_SERVICE }}
