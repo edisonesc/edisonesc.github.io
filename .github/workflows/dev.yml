@@ -47,6 +47,14 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
 
+    env:
+      ECR_REPOSITORY: my-angular-app
+      CONTAINER_NAME: my-container
+      ECS_SERVICE: my-service
+      ECS_CLUSTER: beloved-frog-95prko
+      
+      
+
     steps:
       # Checkout repo
       - name: Checkout
@@ -66,28 +74,46 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+          aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Build Docker image
         run: |
-          docker build -t my-angular-app:${{ needs.build.outputs.docker-tag }} .
-          docker tag my-angular-app:${{ needs.build.outputs.docker-tag }} 631509483329.dkr.ecr.us-east-1.amazonaws.com/my-angular-app:${{ needs.build.outputs.docker-tag }}
+          docker build -t ${{ env.ECR_REPOSITORY }}:${{ needs.build.outputs.docker-tag }} .
+          docker tag ${{ env.ECR_REPOSITORY }}:${{ needs.build.outputs.docker-tag }} ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:${{ needs.build.outputs.docker-tag }}
 
       - name: Push Docker image to ECR
         run: |
-          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 631509483329.dkr.ecr.us-east-1.amazonaws.com 
-          docker push 631509483329.dkr.ecr.us-east-1.amazonaws.com/my-angular-app:${{ needs.build.outputs.docker-tag }}
+          aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com 
+          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:${{ needs.build.outputs.docker-tag }}
+
+      - name: Download task definition
+        run: |
+          aws ecs describe-task-definition --task-definition ${TASK_NAME} --query taskDefinition > task-definition.json
+          
+      - name: Amazon ECS "Render Task Definition" Action for GitHub Actions
+        # You may pin to the exact commit or the version.
+        # uses: aws-actions/amazon-ecs-render-task-definition@cbed19f1b86bbb18f59cfffde7107b93cc9b75da
+        id: task-definition-id
+        uses: aws-actions/amazon-ecs-render-task-def$inition@v1
+        with: 
+          task-definition: task-definition.json
+          container-name: ${{ env.CONTAINER_NAME }}
+          image: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:${{ needs.build.outputs.docker-tag }}
+
+      - name: Print task definition
+        run: |
+          cat ${{ steps.task-definition-id.outputs.task-definition }}
  
       - name: Amazon ECS "Deploy Task Definition" Action for GitHub Actions
         # You may pin to the exact commit or the version.
         # uses: aws-actions/amazon-ecs-deploy-task-definition@1beffbdddb3eb5f83c7a746c3e9bafeccdccbbaa
         uses: aws-actions/amazon-ecs-deploy-task-definition@v2
         with: 
-          task-definition: taskdef.json
-          container-name: my-container
-          image: 631509483329.dkr.ecr.us-east-1.amazonaws.com/my-angular-app:${{ needs.build.outputs.docker-tag }}
-          service: my-service
-          cluster: my-cluster
+          task-definition: ${{ steps.task-definition-id.outputs.task-definition }}
+          container-name: ${{ env.CONTAINER_NAME }}
+          image: ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:${{ needs.build.outputs.docker-tag }}
+          service: ${{ env.ECS_SERVICE }}
+          cluster: ${{ env.ECS_CLUSTER }}
           
       # - name: Deploy to ECS        
       #   run: |
