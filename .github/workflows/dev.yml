@@ -1,9 +1,8 @@
 name: Deploy Develop
 
-on: 
+on:
   push:
-    branches: [ master-v2 ]
-
+    branches: [master-v2]
 
 jobs:
   build:
@@ -11,11 +10,11 @@ jobs:
     outputs:
       docker-tag: ${{ steps.set-tag.outputs.tag }}
 
-    steps:    
+    steps:
       # Checkout repo
       - name: Checkout
         uses: actions/checkout@v6-beta
-  
+
       # Node
       - name: Setup Node.js environment
         uses: actions/setup-node@v6.0.0
@@ -24,12 +23,12 @@ jobs:
 
       - name: Install dependencies
         run: npm install --legacy-peer-deps
-  
+
       # Build
       - name: Build App
         run: npm run build
-  
-      # Upload build artifacts      
+
+      # Upload build artifacts
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v4.0.0
         with:
@@ -49,41 +48,39 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # Checkout repo
-    - name: Checkout
-      uses: actions/checkout@v6-beta
+      # Checkout repo
+      - name: Checkout
+        uses: actions/checkout@v6-beta
 
-    # Download build artifact
-    - name: Download a Build Artifact
-      uses: actions/download-artifact@v6.0.0  
-      with: 
-        name: angular-dist
-        path: dist/
+      # Download build artifact
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v6.0.0
+        with:
+          name: angular-dist
+          path: dist/
 
-    - name: Login to AWS
-      # You may pin to the exact commit or the version.
-      # uses: aws-actions/configure-aws-credentials@00943011d9042930efac3dcd3a170e4273319bc8
-      uses: aws-actions/configure-aws-credentials@v5.1.0
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1
-        
-    - name: Build Docker image
-      run: |
-         docker build -t my-angular-app:${{ needs.build.outputs.docker-tag }} .
-         docker tag my-angular-app:${{ needs.build.outputs.docker-tag }} 6315-0948-3329.dkr.ecr.us-east-1.amazonaws.com/my-angular-app:${{ needs.build.outputs.docker-tag }}
+      - name: Login to AWS
+        # You may pin to the exact commit or the version.
+        # uses: aws-actions/configure-aws-credentials@00943011d9042930efac3dcd3a170e4273319bc8
+        uses: aws-actions/configure-aws-credentials@v5.1.0
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
 
-    - name: Push Docker image to ECR
-      run: |
-        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 6315-0948-3329.dkr.ecr.us-east-1.amazonaws.com 
-        docker push 6315-0948-3329.dkr.ecr.us-east-1.amazonaws.com/my-angular-app:${{ needs.build.outputs.docker-tag }}
+      - name: Build Docker image
+        run: |
+          docker build -t my-angular-app:${{ needs.build.outputs.docker-tag }} .
+          docker tag my-angular-app:${{ needs.build.outputs.docker-tag }} 631509483329.dkr.ecr.us-east-1.amazonaws.com/my-angular-app:${{ needs.build.outputs.docker-tag }}
 
-        
-    - name: Deploy to ECS
-      run: |
-        aws ecs update-service \
-          --cluster my-cluster \
-          --service my-service \
-          --force-new-deployment
-      
+      - name: Push Docker image to ECR
+        run: |
+          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 631509483329.dkr.ecr.us-east-1.amazonaws.com 
+          docker push 631509483329.dkr.ecr.us-east-1.amazonaws.com/my-angular-app:${{ needs.build.outputs.docker-tag }}
+
+      - name: Deploy to ECS
+        run: |
+          aws ecs update-service \
+            --cluster my-cluster \
+            --service my-service \
+            --force-new-deployment
