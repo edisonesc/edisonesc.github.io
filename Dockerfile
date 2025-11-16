@@ -12,7 +12,7 @@ COPY . .
 RUN npm run build
 
 # Install Express to serve Angular
-RUN npm install express
+RUN npm install express --legacy-peer-deps
 
 # Create a minimal server.js to serve dist/
 RUN echo "const express = require('express'); \
