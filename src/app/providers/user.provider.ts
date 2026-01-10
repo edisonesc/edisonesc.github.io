@@ -25,7 +25,7 @@ export const user: User = {
   // </p>`,
 
   description: `<p class="category-description-main">
-Frontend Engineer with 5+ years of experience building scalable enterprise applications using React, Next.js, and Angular. Strong focus on architecture, reusability, and developer productivity, with proven impact in large-scale products at Samsung Research.
+Software Engineer with 6+ years of experience specializing in frontend engineering, building scalable enterprise applications using React, Next.js, and Angular. Strong focus on architecture, reusability, and developer productivity, with proven impact on large-scale products at Samsung Research.
 </p>
 `,
   github_repo_url: 'https://github.com/edisonesc',
