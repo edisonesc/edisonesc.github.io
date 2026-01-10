@@ -35,6 +35,7 @@ import {
   nextjs,
   n8n,
   cloudFlare,
+  githubActions,
 } from './technologies.provider';
 import { PROJECT_TYPE } from '../enums/project-type.enum';
 
@@ -52,27 +53,41 @@ export const projects: Project[] = [
     name: 'Expense Tracker Integration',
     started_at: 'Aug 2025',
     finished_at: 'Aug 2025',
-    description: 'Deployed n8n server full on-prem with KNUC and Cloudflare tunnels. Integrated Expense Google Sheet and Telegram API for easy updates and tracking of expenses.',
+    description:
+      'Deployed n8n server full on-prem with KNUC and Cloudflare tunnels. Integrated Expense Google Sheet and Telegram API for easy updates and tracking of expenses.',
     technologies: [n8n, typescript, cloudFlare],
     type: PROJECT_TYPE.OTHERS,
-    excludeInCVExport: false
+    exclude_in_cv: false,
   },
   {
     name: 'Reflex Trainer for boxing',
     started_at: 'Dec 2023',
     finished_at: 'Dec 2023',
-    description: 'Simple web app to learn defense and counter in boxing by simulating offensive strikes with adjustable pace.',
+    description:
+      'Simple web app to learn defense and counter in boxing by simulating offensive strikes with adjustable pace.',
     technologies: [angular, typescript],
     type: PROJECT_TYPE.OTHERS,
-    excludeInCVExport: true
+    exclude_in_cv: true,
+  },
+  {
+    name: 'Content-Driven Portfolio Platform',
+    started_at: 'Apr 2023',
+    finished_at: 'Present',
+    description:
+      'Designed and built a configuration-driven frontend platform that generates dynamic portfolio content from structured data, with support for multiple output renderers, including a CV-style document.',
+    technologies: [angular, typescript, githubActions],
+    type: PROJECT_TYPE.OTHERS,
+    // exclude_in_cv: true,
   },
   {
     name: 'Speech Command File Downloader',
     started_at: 'Apr 2021',
     finished_at: 'Apr 2021',
-    description: 'STT and TTS web application that takes audio inputs, scrapes data from a specific website using the translated audio information and download files via magnet link to a local transmission server.',
+    description:
+      'STT and TTS web application that takes audio inputs, scrapes data from a specific website using the translated audio information and download files via magnet link to a local transmission server.',
     technologies: [angular, typescript, nestjs, annyang, puppeteer, cheerio],
-    type: PROJECT_TYPE.OTHERS
+    type: PROJECT_TYPE.OTHERS,
+    exclude_in_cv: true,
   },
   {
     name: 'Years Tracker',
@@ -84,6 +99,7 @@ export const projects: Project[] = [
     icon_url: '',
     project_url: 'https://edisonesc.github.io/years-tracker/home/',
     type: PROJECT_TYPE.OTHERS,
+    exclude_in_cv: true,
   },
   {
     name: 'Sammy API',
@@ -94,6 +110,7 @@ export const projects: Project[] = [
     technologies: [nestjs, redis, jwt, typeorm, mysql, typescript, momentjs],
     icon_url: '',
     type: PROJECT_TYPE.SYSTEM,
+    exclude_in_cv: true,
   },
   {
     name: 'Sammy',
@@ -104,6 +121,7 @@ export const projects: Project[] = [
     technologies: [typescript, ionic, angular, html, scss, ngrx, sqlite],
     icon_url: '',
     type: PROJECT_TYPE.MOBILE,
+    exclude_in_cv: true,
   },
   {
     name: 'Icons and Splash Genarator',
@@ -114,6 +132,7 @@ export const projects: Project[] = [
     technologies: [python, pyupload],
     icon_url: '',
     type: PROJECT_TYPE.OTHERS,
+    exclude_in_cv: true,
   },
   {
     name: 'Saves',
@@ -134,6 +153,7 @@ export const projects: Project[] = [
     ],
     icon_url: '',
     type: PROJECT_TYPE.MOBILE,
+    exclude_in_cv: true,
   },
   {
     name: 'Pantera',
@@ -153,7 +173,8 @@ export const projects: Project[] = [
       'Mobile application that tracks hours based on time in and out.',
     technologies: [java, android, firebase],
     icon_url: '',
-    type: PROJECT_TYPE.MOBILE,    
+    type: PROJECT_TYPE.MOBILE,
+    exclude_in_cv: true,
   },
   {
     name: 'CVARST Medical System',
@@ -163,7 +184,8 @@ export const projects: Project[] = [
       'System project for a track using Java and MySQL. It has a two-way login, dynamic test for Colorblind and Auditory. CRUD is also implemented.',
     technologies: [java, derby, mysql],
     icon_url: '',
-    type: PROJECT_TYPE.SYSTEM,    
+    type: PROJECT_TYPE.SYSTEM,
+    exclude_in_cv: true,
   },
   {
     name: 'Mp4 to Mp3-Converter',
@@ -173,6 +195,7 @@ export const projects: Project[] = [
     technologies: [python, pyqt5, ffmpeg],
     icon_url: '',
     type: PROJECT_TYPE.OTHERS,
+    exclude_in_cv: true,
   },
   {
     name: 'Vehicle Renting and Billing System',
@@ -183,7 +206,7 @@ export const projects: Project[] = [
     technologies: [java, derby, mysql],
     icon_url: '',
     type: PROJECT_TYPE.SYSTEM,
-    excludeInCVExport: true
+    exclude_in_cv: true,
   },
   {
     name: 'Reflex',
@@ -194,7 +217,7 @@ export const projects: Project[] = [
     technologies: [java, android],
     icon_url: '',
     type: PROJECT_TYPE.MOBILE,
-    excludeInCVExport: true
+    exclude_in_cv: true,
   },
   {
     name: 'Workout Generator & Nutrition Calculator',
@@ -205,7 +228,7 @@ export const projects: Project[] = [
     technologies: [java, android],
     icon_url: '',
     type: PROJECT_TYPE.MOBILE,
-    excludeInCVExport: true
+    exclude_in_cv: true,
   },
   {
     name: 'Workout Program Generator',
@@ -216,6 +239,6 @@ export const projects: Project[] = [
     technologies: [java],
     icon_url: '',
     type: PROJECT_TYPE.SYSTEM,
-    excludeInCVExport: true
+    exclude_in_cv: true,
   },
 ];

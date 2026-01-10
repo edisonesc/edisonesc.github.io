@@ -1,7 +1,8 @@
 <p id="duration">
   {{ started_at }} -
   {{ finished_at ? finished_at : "Present" }}
-  <span id="tenure" *ngIf="started_at && finished_at != 'Present'">
+  <span id="tenure" *ngIf="started_at">
+    <!-- && finished_at != 'Present' -->
     ({{ getTenureDuration() }})
   </span>
 </p>

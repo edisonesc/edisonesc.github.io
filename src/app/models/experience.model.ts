@@ -9,6 +9,7 @@ export class Experience extends BaseModel {
   location?: string;
   description?: string;
   responsibilities?: string[];
+  cv_responsibilities?: string[];
   projects?: WorkProject[];
-  type?: WORK_TYPE;  
+  type?: WORK_TYPE;
 }

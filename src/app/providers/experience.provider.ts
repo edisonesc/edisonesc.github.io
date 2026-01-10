@@ -1,29 +1,28 @@
 import { WORK_TYPE } from '../enums/work-type.enum';
 import { Experience } from '../models/experience.model';
 
-
-
-export const training_experiences: Experience[] =  [
+export const training_experiences: Experience[] = [
   {
     title: 'Modern React with Redux [2023 Update]',
     started_at: 'March 2023',
     finished_at: 'March 2023',
     responsibilities: ['Udemy'],
-    type: WORK_TYPE.TRAINING
+    type: WORK_TYPE.TRAINING,
   },
   {
     title: 'Angular - The Complete Guide',
     started_at: 'Sep 2021',
     finished_at: 'Sep 2021',
     responsibilities: ['Udemy'],
-    type: WORK_TYPE.TRAINING
+    type: WORK_TYPE.TRAINING,
   },
   {
     title: 'CCNA Routing and Switching: Introduction to Networks',
     started_at: 'Apr 2018',
     finished_at: 'Apr 2018',
     responsibilities: ['Cisco Networking Academy'],
-    type: WORK_TYPE.TRAINING
+    type: WORK_TYPE.TRAINING,
+    exclude_in_cv: true,
   },
   {
     title: 'Personality Development Seminar',
@@ -31,7 +30,7 @@ export const training_experiences: Experience[] =  [
     finished_at: 'Mar 2017',
     responsibilities: ['AMA Computer University'],
     type: WORK_TYPE.TRAINING,
-    excludeInCVExport: true
+    exclude_in_cv: true,
   },
   {
     title: 'Pre-employment Seminar',
@@ -39,9 +38,9 @@ export const training_experiences: Experience[] =  [
     finished_at: 'Mar 2017',
     responsibilities: ['AMA Computer University'],
     type: WORK_TYPE.TRAINING,
-    excludeInCVExport: true
-  }
-]
+    exclude_in_cv: true,
+  },
+];
 
 export const experiences: Experience[] = [
   {
@@ -49,39 +48,50 @@ export const experiences: Experience[] = [
     started_at: 'Jun 2023',
     finished_at: 'Present',
     position: 'Engineer',
-    type:  WORK_TYPE.OUTSOURCING,
-    location: "Manila, PH",
+    type: WORK_TYPE.OUTSOURCING,
+    location: 'Manila, PH',
 
     projects: [
       {
-        started_at: "Jun 2023",
-        finished_at: "Present",
-        name: "Bixby",
-        responsibilities: [
-          "Spearheaded development of core modules and shared components using Angular and React/Next.js, ensuring robustness, reusability, and seamless integration across the application.",
-          "Engineered modular, dynamic, and highly cohesive components with scalability at their core—cutting development time for similar or repeat feature requests by an estimated 75–85%, based on actual delivery metrics.",          
-
-          "Collaborated directly with HQ counterparts during a 2-month deployment in Suwon, South Korea. Worked alongside HQ counterparts. This direct collaboration was instrumental in defining requirements, identifying potential blockers, and ensuring the final product was perfectly aligned with business goals.",
-          "Led the end-to-end design, architecture, and implementation of a critical service's frontend. Utilized engineered highly scalable and dynamic components, which enabled to achieve the output of a three-person team.",
-          "Pioneered a parallel development strategy by creating a mock API server and using constant-based stubs. This allowed backend counterparts to get a tangible sense of the application's behavior, facilitating early change requests and alignment on UI/UX flow before backend APIs were finalized.",
-          
-
-
-          "Led the complete architectural redesign and frontend migration of a legacy application from Vanilla JS to Next.js, transforming it into a modern, dynamic, and highly modular system. Engineered reusable components using dynamic approach and best practices to streamline repetitive structures like management modules. Implemented a configuration system strategy for dynamic filters, tables, and forms—delivering a surgically crafted, state-of-the-art upgrade built entirely from the ground up. Demonstrated the application to the HQ counterparts and the Managing Director of SRPH",
-          "Conducts in-depth investigations of issues, failure points, and bugs within existing components, ensuring timely root-cause analysis and effective resolution.",
-          "Performs peer code reviews and verifications to ensure it is WAI.",
-          "Implements comprehensive unit testing to ensure application functionality and reliability, consistently maintaining test coverage between 85–90%+.",
-          "Provided cross-functional support in planning, triage, design, and debugging—enabling faster issue resolution and stronger team alignment.",
-          "Optimized codebase by applying best practices in memory management, reusability, readability, and maintainability—ensuring long-term performance and scalability.",
-          "Actively participated in internal project initiatives, delivering high-quality, reusable components that contributed to overall system robustness and development efficiency.",
-          "Authored clear, well-structured documentation on processes and development guidelines by consolidating critical information for easy reference and team alignment.",
-          "Facilitated Scrum ceremonies such as Daily Stand-ups and Retrospectives to ensure task progress, identify blockers, and maintain alignment across the team."
+        started_at: 'Jun 2023',
+        finished_at: 'Present',
+        name: 'Bixby',
+        cv_responsibilities: [
+          'Spearheaded development of core modules and shared components using Angular and React/Next.js, delivering robust, reusable, and seamlessly integrated frontend systems.',
+          'Designed and engineered modular, highly cohesive, and scalable components, reducing development time for repeat or similar feature requests by approximately 75–85% based on delivery metrics.',
+          'Led the end-to-end frontend architecture redesign and migration of a legacy Vanilla JS application to Next.js, building a modern, highly modular system with reusable, configuration-driven components for dynamic filters, tables, and forms; successfully presented the solution to HQ counterparts and the Managing Director of SRPH.',
+          'Collaborated directly with HQ teams during a 2-month on-site deployment in Suwon, South Korea, leading the design, architecture, and implementation of a critical service frontend and achieving the effective output of a three-person team through highly scalable component design.',
+          'Pioneered a parallel development strategy by implementing a mock API server and constant-based stubs, enabling early backend alignment, faster iteration, and UI/UX validation before API finalization.',
+          'Managed deployment of frontend feature releases to Kubernetes using Argo CD, ensuring reliable and consistent delivery across environments.',
+          'Performed in-depth root-cause analysis on complex frontend issues, resolving defects efficiently and ensuring components functioned as intended.',
+          'Implemented comprehensive unit testing strategies, consistently maintaining 85–90%+ test coverage to ensure application reliability and stability.',
+          'Optimized frontend codebases by applying best practices in memory management, readability, reusability, and maintainability, supporting long-term performance and scalability.',
         ],
-      }
-    ]   
+
+        responsibilities: [
+          'Spearheaded development of core modules and shared components using Angular and React/Next.js, ensuring robustness, reusability, and seamless integration across the application.',
+          'Engineered modular, dynamic, and highly cohesive components with scalability at their core—cutting development time for similar or repeat feature requests by an estimated 75–85%, based on actual delivery metrics.',
+
+          'Led the complete architectural redesign and frontend migration of a legacy application from Vanilla JS to Next.js, transforming it into a modern, dynamic, and highly modular system. Engineered reusable components using dynamic approach and best practices to streamline repetitive structures like management modules. Implemented a configuration system strategy for dynamic filters, tables, and forms—delivering a surgically crafted, state-of-the-art upgrade built entirely from the ground up. Demonstrated the application to the HQ counterparts and the Managing Director of SRPH',
+
+          "Collaborated directly with HQ counterparts during a 2-month deployment in Suwon, South Korea — Led the end-to-end design, architecture, and implementation of a critical service's frontend. Utilized engineered highly scalable and dynamic components, which enabled to achieve the output of a three-person team. Worked alongside HQ counterparts. This direct collaboration was instrumental in defining requirements, identifying potential blockers, and ensuring the final product was perfectly aligned with business goals.",
+          "Pioneered a parallel development strategy by creating a mock API server and using constant-based stubs. This allowed backend counterparts to get a tangible sense of the application's behavior, facilitating early change requests and alignment on UI/UX flow before backend APIs were finalized.",
+          'Managed deployment of frontend feature requests to Kubernetes via Argo CD.',
+
+          'Conducted in-depth investigations of issues, failure points, and bugs within existing components, ensuring timely root-cause analysis and effective resolution.',
+          'Performs peer code reviews and verifications to ensure it is WAI.',
+          'Implemented comprehensive unit testing to ensure application functionality and reliability, consistently maintaining test coverage between 85–90%+.',
+          'Provided cross-functional support in planning, triage, design, and debugging—enabling faster issue resolution and stronger team alignment.',
+          'Optimized codebase by applying best practices in memory management, reusability, readability, and maintainability—ensuring long-term performance and scalability.',
+          'Actively participated in internal project initiatives, delivering high-quality, reusable components that contributed to overall system robustness and development efficiency.',
+          'Authored clear, well-structured documentation on processes and development guidelines by consolidating critical information for easy reference and team alignment.',
+          'Facilitated Scrum ceremonies such as Daily Stand-ups and Retrospectives to ensure task progress, identify blockers, and maintain alignment across the team.',
+        ],
+      },
+    ],
   },
   {
-    title: "Accenture Inc.",
+    title: 'Accenture Inc.',
     started_at: 'Jul 2021',
     finished_at: 'Jun 2023',
     position: 'Software Engineer',
@@ -89,39 +99,61 @@ export const experiences: Experience[] = [
     location: 'Manila, PH',
     projects: [
       {
-        started_at: "August 2021",
-        finished_at: "Present",
-        name: "Nimbus Project",
-        responsibilities: [            
-          "Primarily performs development/authoring using a high level approach (Technologies used includes GoogleSQL and Javascript) that is used by one of the largest search engine company for their helpcenters to support customers and agents.",
-          "Performed QA reviews for 10 projects. Helped identify and flag criteria issues to the authors before it goes to the Lead Review stage. Reduce found issues by approx. 42% in all projects combined. ", 
-          "Performs authoring and design review. Implementing features/widgets such as tables, search filters etc. Manipulating API response to be compatible with output required or depends on logic required.",
-          "Performs investigation/RCA on issues found in exisiting workflows and resolve if necessary to make sure they are working as intended (WAI)",
-          "Collaborate with designers and and proposing solutions to TAs, PgM/PsM and Leads to solve and prevent deceleration/blockage when moving to (and with continuing) the authoring phase.",
-          "Uploaded 16 Lead Review changelog results in a quality assurance tool. This was done for the platform to be able to derive the author's score based on the inputs provided in the log file.", 
-          "Performs authoring and design review. Implementing features/widgets such as tables, search filters etc. Manipulating API response to be compatible with table view or depends on logic required.  Gathering questions/clarifications and discussing with designers, TAs, PgM/PsM and Leads to prevent deceleration/blockage when moving to the authoring phase.", 
-          "Authored 17 API testing workflows to check if the API is deprecated, validate results/response, and provide sample inputs and document its requirements/findings.", 
-          "Shared knowledge to other authors with regards to projects/exercises/solutions that have been worked on. Includes newly onboarded author/s, allowing them to progress, and get a better understanding of the process.",
-          "Increased efficiency in data verifications/validation tasks with uniform patterns by creating scripts that generate reports and identifies multiple errors/mismatches to mitigate time spent (approx. 78% time saved based on delivery time) with improved accuracy and precision to avoid human errors."
-        ]
-      }
-    ]
+        started_at: 'August 2021',
+        finished_at: 'Present',
+        name: 'Nimbus Project',
+        cv_responsibilities: [
+          'Developed and authored high-level solutions using GoogleSQL and JavaScript for help center platforms used by one of the world’s largest search engine companies, supporting both customers and agents.',
+          'Conducted QA reviews across 10 projects, identifying and flagging criteria issues prior to Lead Review, reducing overall issues by approximately 42%.',
+          'Designed and implemented UI features and widgets such as tables and search filters, including API response manipulation to meet dynamic business logic and output requirements.',
+          'Performed root-cause analysis (RCA) on workflow issues, ensuring existing systems functioned as intended (WAI) and resolving defects efficiently.',
+          'Collaborated closely with designers, TAs, PgM/PsM, and team leads to propose solutions, clarify requirements, and prevent blockers during the authoring phase.',
+          'Uploaded and maintained 16 Lead Review changelog entries in a quality assurance tool, enabling accurate derivation of author performance scores.',
+          'Authored 17 API testing workflows to validate responses, detect deprecated endpoints, provide sample inputs, and document API requirements and findings.',
+          'Shared knowledge and best practices with team members, including newly onboarded authors, accelerating ramp-up time and improving overall process understanding.',
+          'Automated data verification and validation tasks by developing scripts that generated reports and detected multiple errors or mismatches, reducing manual effort by approximately 78% while improving accuracy.',
+        ],
+
+        responsibilities: [
+          'Primarily performs development/authoring using a high level approach (Technologies used includes GoogleSQL and Javascript) that is used by one of the largest search engine company for their helpcenters to support customers and agents.',
+          'Performed QA reviews for 10 projects. Helped identify and flag criteria issues to the authors before it goes to the Lead Review stage. Reduce found issues by approx. 42% in all projects combined. ',
+          'Performed authoring and design review. Implementing features/widgets such as tables, search filters etc. Manipulating API response to be compatible with output required or depends on logic required.',
+          'Performed investigation/RCA on issues found in exisiting workflows and resolve if necessary to make sure they are working as intended (WAI)',
+          'Collaborated with designers and and proposing solutions to TAs, PgM/PsM and Leads to solve and prevent deceleration/blockage when moving to (and with continuing) the authoring phase.',
+          "Uploaded 16 Lead Review changelog results in a quality assurance tool. This was done for the platform to be able to derive the author's score based on the inputs provided in the log file.",
+          'Performed authoring and design review. Implementing features/widgets such as tables, search filters etc. Manipulating API response to be compatible with table view or depends on logic required.  Gathering questions/clarifications and discussing with designers, TAs, PgM/PsM and Leads to prevent deceleration/blockage when moving to the authoring phase.',
+          'Authored 17 API testing workflows to check if the API is deprecated, validate results/response, and provide sample inputs and document its requirements/findings.',
+          'Shared knowledge to other authors with regards to projects/exercises/solutions that have been worked on. Includes newly onboarded author/s, allowing them to progress, and get a better understanding of the process.',
+          'Increased efficiency in data verifications/validation tasks with uniform patterns by creating scripts that generate reports and identifies multiple errors/mismatches to mitigate time spent (approx. 78% time saved based on delivery time) with improved accuracy and precision to avoid human errors.',
+        ],
+      },
+    ],
   },
   {
     title: '8Layer Technologies Inc.',
     started_at: 'Jul 2019',
     finished_at: 'Jun 2021',
     position: 'Junior Mobile Application Developer',
-    type:  WORK_TYPE.DIRECT,
-    location: "Manila, PH",
+    type: WORK_TYPE.DIRECT,
+    location: 'Manila, PH',
+    cv_responsibilities: [
+      'Integrated REST APIs into web and mobile applications, supporting end-to-end feature delivery.',
+      'Refactored and developed reusable components, significantly reducing development time and improving maintainability.',
+      'Built, signed, and deployed mobile applications across Android and iOS platforms.',
+      'Converted UI/UX mockups into production-ready interfaces for mobile applications.',
+      'Supported application modernization initiatives and contributed to backend development using NestJS.',
+    ],
     responsibilities: [
-      'Performs API integration to front-end and mobile applications',
-      'Performs component refactorization/development for reusability and significantly reduce time cost',
-      'Performs deployment on mobile applications',
-      'Designs User Interface for mobile',
-      'Converts mockup designs to actual code',
-      'Supports re-development of current projects to use updated technologies and apply standard practices',
-      'Supports on the development of back-end applications',
+      'Developed web front-end applications for Incidents Management and Wallet Application dashboards using Angular (TypeScript).',
+      'Developed mobile applications for Entertainment/Video Streaming and Wallet platforms using Ionic with Angular (TypeScript).',
+      'Built an Augmented Reality mobile application that renders 3D objects, text, and videos upon image scanning using Unity and Vuforia (C#).',
+      'Refactored and developed reusable components to reduce development time and improve code maintainability.',
+      'Signed, built, and generated mobile application releases using Android Studio and Xcode.',
+      'Provisioned and deployed mobile application builds to Google Play Store, TestFlight, and Apple App Store.',
+      'Designed user interfaces for Entertainment/Video Streaming, Wallet applications, and supporting screens.',
+      'Collaborated closely with UI/UX designers to convert mockups and content into functional application code.',
+      'Contributed to application upgrades and adoption of best practices and coding standards.',
+      'Supported backend feature development using NestJS.',
     ],
   },
   {
@@ -130,12 +162,12 @@ export const experiences: Experience[] = [
     finished_at: 'Nov 2018',
     position: 'Intern',
     type: WORK_TYPE.INTERN,
-    location: "Manila, PH",
+    location: 'Manila, PH',
     responsibilities: [
       'Developed web application modules',
       'Developed interactive reports',
     ],
-    excludeInCVExport: true
+    exclude_in_cv: true,
   },
   {
     title: 'AMA Computer University - Quezon City Philippines',
@@ -155,6 +187,7 @@ export const experiences: Experience[] = [
     position: 'Student',
     type: WORK_TYPE.EDUCATION,
     responsibilities: ['Secondary'],
+    exclude_in_cv: true,
   },
-  ...training_experiences
+  ...training_experiences,
 ];

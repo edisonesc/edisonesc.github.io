@@ -1,5 +1,5 @@
-import { TimeRange } from "./range.model";
+import { TimeRange } from './range.model';
 
 export class BaseModel extends TimeRange {
-    excludeInCVExport?: boolean
+  exclude_in_cv?: boolean;
 }
