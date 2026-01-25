@@ -6,7 +6,7 @@ export const user: User = {
   address: 'Manila, Philippines',
   email: 'edi.escx@gmail.com',
   mobile_number: '+63 962 207 5750',
-  toIncludeMobileNumber: true,
+  toIncludeMobileNumber: false,
   profile_picture: 'assets/images/2023_profile.jpeg',
   //   description:
   //     `<p>
@@ -24,10 +24,11 @@ export const user: User = {
   //   and modular architectures by identifying and abstracting repetitive patterns across the application.
   // </p>`,
 
-  description: `<p class="category-description-main">
-Software Engineer with 6+ years of experience specializing in frontend engineering, building scalable enterprise applications using React, Next.js, and Angular. Strong focus on architecture, reusability, and developer productivity, with proven impact on large-scale products at Samsung Research.
-</p>
-`,
+  //   description: `<p class="category-description-main">
+  // Software Engineer with 6+ years of experience specializing in frontend engineering, building scalable enterprise applications using React, Next.js, and Angular. Strong focus on architecture, reusability, and developer productivity, with proven impact on large-scale products at Samsung Research.
+  // </p>
+  // `,
+  description: `<p class="category-description-main">Software Engineer with 6+ years of experience designing and delivering scalable, maintainable applications. Known for strong architectural ownership, reusable system design, and productivity-driven engineering practices, with measurable impact on enterprise-scale products at Samsung Research.</p>`,
   github_repo_url: 'https://github.com/edisonesc',
   linkedin_url: 'https://www.linkedin.com/in/edisonesc/',
   portfolio_url: 'https://edisonesc.github.io/',

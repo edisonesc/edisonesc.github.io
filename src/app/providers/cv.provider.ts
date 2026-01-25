@@ -14,7 +14,7 @@ export function getCVTemplate(
   user: User,
   experiences: Experience[],
   technologies: Technology[],
-  projects: Project[]
+  projects: Project[],
 ) {
   const getRange = (start, end) =>
     start == end ? start : `${start} &ndash; ${end}`;
@@ -35,7 +35,7 @@ export function getCVTemplate(
           case WORK_TYPE.EDUCATION:
           case WORK_TYPE.TRAINING:
             descriptionContent = listResponsibilies(
-              exp?.cv_responsibilities || exp.responsibilities
+              exp?.cv_responsibilities || exp.responsibilities,
             );
             break;
           case WORK_TYPE.OUTSOURCING:
@@ -46,7 +46,7 @@ export function getCVTemplate(
                             }</p>
                             ${listResponsibilies(
                               project.cv_responsibilities ||
-                                project.responsibilities
+                                project.responsibilities,
                             )}
                         `;
             })}`;
@@ -58,7 +58,7 @@ export function getCVTemplate(
         }${exp.title} </p>
             <p class="category-details">${getRange(
               exp.started_at,
-              exp.finished_at
+              exp.finished_at,
             )}</p>
             
             ${descriptionContent}`;
@@ -88,8 +88,8 @@ export function getCVTemplate(
             <article class="contact-information">
             <p class="contact-deets">
                 <a class="links" href="mailto:${user.email}">${
-    user.email
-  }</a></br>
+                  user.email
+                }</a></br>
 
                 ${
                   user?.toIncludeMobileNumber
@@ -114,14 +114,16 @@ export function getCVTemplate(
             <li class="category-description-main">${technologies
               .filter(
                 (e) =>
-                  e.group == 'FRONTEND' && e.is_user_core && !e.exclude_in_cv
+                  e.group == 'FRONTEND' && e.is_user_core && !e.exclude_in_cv,
               )
               .map((e) => e.name)
               .join(', ')}</li>  
               <li class="category-description-main">${technologies
                 .filter(
                   (e) =>
-                    e.group == 'FRONTEND' && !e.is_user_core && !e.exclude_in_cv
+                    e.group == 'FRONTEND' &&
+                    !e.is_user_core &&
+                    !e.exclude_in_cv,
                 )
                 .map((e) => e.name)
                 .join(', ')}</li>                                
@@ -134,14 +136,14 @@ export function getCVTemplate(
             <li class="category-description-main">${technologies
               .filter(
                 (e) =>
-                  e.group == 'BACKEND' && e.is_user_core && !e.exclude_in_cv
+                  e.group == 'BACKEND' && e.is_user_core && !e.exclude_in_cv,
               )
               .map((e) => e.name)
               .join(', ')}</li>      
               <li class="category-description-main">${technologies
                 .filter(
                   (e) =>
-                    e.group == 'BACKEND' && !e.is_user_core && !e.exclude_in_cv
+                    e.group == 'BACKEND' && !e.is_user_core && !e.exclude_in_cv,
                 )
                 .map((e) => e.name)
                 .join(', ')}</li>      
@@ -163,10 +165,10 @@ export function getCVTemplate(
                     WORK_TYPE.DIRECT,
                     WORK_TYPE.OUTSOURCING,
                     WORK_TYPE.INTERN,
-                  ].includes(e.type) && !e.exclude_in_cv
-              )
+                  ].includes(e.type) && !e.exclude_in_cv,
+              ),
             )}
-            <h2 class="category-headers">Selected Projects</h2>
+            <h2 class="category-headers">Projects</h2>
 
             ${projects
               .filter((e) => !e.exclude_in_cv)
@@ -175,32 +177,46 @@ export function getCVTemplate(
                     <p class="primary-titles">${project.name}</p>        
                     <p class="category-details">${getRange(
                       project.started_at,
-                      project.finished_at
+                      project.finished_at,
                     )}</p>
                     <p class="category-description-main"> ${
                       project.description
-                    } Visit
+                    } 
+                    
+                    ${
+                      project.project_url
+                        ? `Visit
             <a class="links" href="${
               project.project_url
             }" target="_blank">here</a> for further details.</p>`
+                        : ``
+                    }`,
               )
               .join('')}
 
-            <h2 class="category-headers">Seminars & Certification</h2>
-            <hr>    
+
+            
+            ${
+              experiences.filter(
+                (e) => e.type == WORK_TYPE.TRAINING && !e.exclude_in_cv,
+              ).length > 0
+                ? `<h2 class="category-headers">Seminars & Certification</h2>
+            <hr>`
+                : null
+            }
 
             ${getExperienceContent(
               experiences.filter(
-                (e) => e.type == WORK_TYPE.TRAINING && !e.exclude_in_cv
-              )
+                (e) => e.type == WORK_TYPE.TRAINING && !e.exclude_in_cv,
+              ),
             )}
 
             <h2 class="category-headers">Education</h2>
             <hr>
             ${getExperienceContent(
               experiences.filter(
-                (e) => e.type == WORK_TYPE.EDUCATION && !e.exclude_in_cv
-              )
+                (e) => e.type == WORK_TYPE.EDUCATION && !e.exclude_in_cv,
+              ),
             )}            
             </div>
         </section>

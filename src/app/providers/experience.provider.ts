@@ -8,6 +8,7 @@ export const training_experiences: Experience[] = [
     finished_at: 'March 2023',
     responsibilities: ['Udemy'],
     type: WORK_TYPE.TRAINING,
+    exclude_in_cv: true,
   },
   {
     title: 'Angular - The Complete Guide',
@@ -15,6 +16,7 @@ export const training_experiences: Experience[] = [
     finished_at: 'Sep 2021',
     responsibilities: ['Udemy'],
     type: WORK_TYPE.TRAINING,
+    exclude_in_cv: true,
   },
   {
     title: 'CCNA Routing and Switching: Introduction to Networks',
