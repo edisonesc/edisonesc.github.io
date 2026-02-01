@@ -143,7 +143,7 @@ export const experiences: Experience[] = [
       'Refactored and developed reusable components, significantly reducing development time and improving maintainability.',
       'Built, signed, and deployed mobile applications across Android and iOS platforms.',
       'Converted UI/UX mockups into production-ready interfaces for mobile applications.',
-      'Supported application modernization initiatives and contributed to backend development using NestJS.',
+      'Developed backend features using NestJS.',
     ],
     responsibilities: [
       'Developed web front-end applications for Incidents Management and Wallet Application dashboards using Angular (TypeScript).',
