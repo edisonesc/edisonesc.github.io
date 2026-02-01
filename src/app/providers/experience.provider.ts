@@ -155,7 +155,7 @@ export const experiences: Experience[] = [
       'Designed user interfaces for Entertainment/Video Streaming, Wallet applications, and supporting screens.',
       'Collaborated closely with UI/UX designers to convert mockups and content into functional application code.',
       'Contributed to application upgrades and adoption of best practices and coding standards.',
-      'Supported backend feature development using NestJS.',
+      'Developed backend features using NestJS.',
     ],
   },
   {

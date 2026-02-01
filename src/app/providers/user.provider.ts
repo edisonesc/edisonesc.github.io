@@ -2,7 +2,7 @@ import { User } from '../models/user.model';
 
 export const user: User = {
   name: 'Justin Edison B. Escabarte',
-  position: 'Software Engineer',
+  position: 'Software Engineer | Fullstack',
   address: 'Manila, Philippines',
   email: 'edi.escx@gmail.com',
   mobile_number: '+63 962 207 5750',
