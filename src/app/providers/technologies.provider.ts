@@ -387,6 +387,24 @@ export const githubActions: Technology = {
   group: 'OTHERS',
 };
 
+export const vite: Technology = {
+  name: 'Vite',
+  url: 'https://vitejs.dev/',
+  icon_url: 'https://vitejs.dev/logo.svg',
+  type: 'TOOL',
+  group: 'FRONTEND',
+};
+
+export const githubPages: Technology = {
+  name: 'GitHub Pages',
+  url: 'https://pages.github.com/',
+  icon_url:
+    'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
+  type: 'TOOL',
+  group: 'BACKEND',
+  sub_group: TECHNOLOGY_SUBTYPE.DEV_OPS,
+};
+
 export const template: Technology = {
   name: '',
   url: '',

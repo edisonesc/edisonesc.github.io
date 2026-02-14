@@ -4,4 +4,5 @@ export enum TECHNOLOGY_SUBTYPE {
   'TESTING' = 'Testing',
   'STYLING' = 'Styling',
   'DATABASE' = 'Database',
+  'DEV_OPS' = 'DevOps',
 }

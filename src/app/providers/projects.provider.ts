@@ -36,6 +36,9 @@ import {
   n8n,
   cloudFlare,
   githubActions,
+  react,
+  vite,
+  githubPages,
 } from './technologies.provider';
 import { PROJECT_TYPE } from '../enums/project-type.enum';
 
@@ -49,6 +52,19 @@ export const projects: Project[] = [
   //   icon_url: 'assets/images/projects/sb.jpg',
   //   type: PROJECT_TYPE.OTHERS,
   // },
+
+  {
+    name: 'Years Tracker V2',
+    started_at: 'Feb 2026',
+    finished_at: 'Feb 2026',
+    description:
+      'Revamp Version of Years Tracker: A personal tracker that tracks my existence and reflects time/years left before target year is met.',
+    technologies: [typescript, react, vite, githubPages],
+    icon_url: '',
+    project_url: 'https://edisonesc.github.io/years-tracker-v2',
+    type: PROJECT_TYPE.OTHERS,
+    exclude_in_cv: true,
+  },
   {
     name: 'Expense Tracker Integration',
     started_at: 'Aug 2025',
@@ -75,7 +91,7 @@ export const projects: Project[] = [
     finished_at: 'Present',
     description:
       'Designed and built a configuration-driven frontend platform that generates dynamic portfolio content from structured data, with support for multiple output renderers, including a CV-style document.',
-    technologies: [angular, typescript, githubActions],
+    technologies: [angular, typescript, githubActions, githubPages],
     type: PROJECT_TYPE.OTHERS,
     // exclude_in_cv: true,
   },
@@ -95,7 +111,7 @@ export const projects: Project[] = [
     finished_at: 'Feb 2021',
     description:
       'A personal tracker that tracks my existence and reflects time/years left before target year is met (default is 90 years).',
-    technologies: [angular, typescript, momentjs],
+    technologies: [angular, typescript, momentjs, githubPages],
     icon_url: '',
     project_url: 'https://edisonesc.github.io/years-tracker/home/',
     type: PROJECT_TYPE.OTHERS,
