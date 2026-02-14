@@ -401,7 +401,7 @@ export const githubPages: Technology = {
   icon_url:
     'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
   type: 'TOOL',
-  group: 'BACKEND',
+  group: 'OTHERS',
   sub_group: TECHNOLOGY_SUBTYPE.DEV_OPS,
 };
 
