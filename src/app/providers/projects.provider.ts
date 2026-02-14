@@ -93,6 +93,7 @@ export const projects: Project[] = [
       'Designed and built a configuration-driven frontend platform that generates dynamic portfolio content from structured data, with support for multiple output renderers, including a CV-style document.',
     technologies: [angular, typescript, githubActions, githubPages],
     type: PROJECT_TYPE.OTHERS,
+    project_url: 'https://edisonesc.github.io/pages/home',
     // exclude_in_cv: true,
   },
   {

@@ -10,10 +10,23 @@
         <span>{{ getProjectAvatar() }}</span>
       </div>
     </div>
-    <p class="project-duration">
-      {{ project?.started_at }} -
-      {{ project?.finished_at ? project?.finished_at : "Present" }}
-    </p>
+    <div class="project-header-right">
+      <p class="project-duration">
+        {{ project?.started_at }} -
+        {{ project?.finished_at ? project?.finished_at : "Present" }}
+      </p>
+      <span
+        *ngIf="project?.project_url"
+        class="live-badge"
+        [ngClass]="{
+          checking: isLive === null,
+          live: isLive === true,
+          down: isLive === false,
+        }"
+        [attr.data-tooltip]="isLive === null ? 'Verifying if the project URL is accessible...' : isLive ? 'This project is live and publicly accessible' : 'This project URL appears to be unreachable'"
+        ><span class="live-dot"></span>{{ isLive === null ? "Checking" : isLive ? "Live" : "Down" }}</span
+      >
+    </div>
   </div>
 
   <div class="project-content">
