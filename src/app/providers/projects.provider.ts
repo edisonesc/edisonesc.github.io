@@ -59,7 +59,7 @@ export const projects: Project[] = [
     finished_at: 'Feb 2026',
     description:
       'Revamp Version of Years Tracker: A personal tracker that tracks my existence and reflects time/years left before target year is met.',
-    technologies: [typescript, react, vite, githubPages],
+    technologies: [typescript, react, vite, githubPages, githubActions],
     icon_url: '',
     project_url: 'https://edisonesc.github.io/years-tracker-v2',
     type: PROJECT_TYPE.OTHERS,
