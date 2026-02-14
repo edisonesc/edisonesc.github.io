@@ -33,7 +33,7 @@ jobs:
         run: npm run build:github
 
       - name: SPA fallback
-        run: cp -r dist/*/index.html dist/*/404.html
+        run: cp -r dist/portfolio-v2/index.html dist/portfolio-v2/404.html
 
       - uses: actions/upload-pages-artifact@v3
         with:
