@@ -1,22 +1,19 @@
 name: Deploy to Github Pages
 
-on: 
-  push
+on:
+  push:
     branches:
       - main
   workflow_dispatch:
-  
 
 permissions:
   contents: read
   pages: write
   id-token: write
 
-
 concurrency:
   group: "pages"
   cancel-in-progress: true
-
 
 jobs:
   build:
@@ -24,7 +21,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -32,7 +29,7 @@ jobs:
 
       - run: npm ci
 
-      - name: Build 
+      - name: Build
         run: npm run build:github
 
       - name: SPA fallback
