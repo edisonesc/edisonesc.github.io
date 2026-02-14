@@ -1,8 +1,8 @@
-name: Deploy Develop V2
+name: Deploy Develop
 
 on:
   push:
-    branches: [master-v2]
+    branches: []
 
 jobs:
   build-and-deploy:
