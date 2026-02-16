@@ -7,7 +7,7 @@
     "build": "ng build",
     "build:github": "ng build --configuration production --base-href https://edisonesc.github.io",
     "test": "ng test",
-    "lint": "ng lint",
+    "test:ci": "ng test --watch=false --browsers=ChromeHeadless",
     "e2e": "ng e2e",
     "ghpages:release": "git checkout gh-pages || : && ng build --configuration production --base-href https://edisonesc.github.io && npx angular-cli-ghpages --dir=dist/portfolio-v2",
     "git:push": "git push origin gh-pages:main",
@@ -43,7 +43,6 @@
     "@types/jasmine": "~5.1.7",
     "@types/jasminewd2": "~2.0.13",
     "@types/node": "^22.14.0",
-    "codelyzer": "^0.0.28",
     "jasmine-core": "~5.6.0",
     "jasmine-spec-reporter": "~7.0.0",
     "karma": "~6.4.4",
@@ -53,7 +52,6 @@
     "karma-jasmine-html-reporter": "^2.1.0",
     "protractor": "^7.0.0",
     "ts-node": "~10.9.2",
-    "tslint": "~6.1.3",
     "typescript": "~5.8.3"
   }
 }
