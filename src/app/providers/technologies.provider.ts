@@ -379,7 +379,7 @@ export const n8n: Technology = {
   icon_url:
     'https://meta-q.cdn.bubble.io/cdn-cgi/image/w=64,h=64,f=auto,dpr=2,fit=contain/f1740327389123x713161792968389100/n8n%20plugin.png',
   type: 'TOOL',
-  group: 'DEVOPS',
+  group: 'EXPLORATORY',
 };
 
 export const cloudFlare: Technology = {
@@ -387,7 +387,7 @@ export const cloudFlare: Technology = {
   url: 'https://www.cloudflare.com/',
   icon_url: 'https://favicons.statusgator.com/FiM8Ile0FV3wLjxF.jpg',
   type: 'TOOL',
-  group: 'DEVOPS',
+  group: 'EXPLORATORY',
 };
 
 export const githubActions: Technology = {
@@ -452,6 +452,14 @@ export const unity: Technology = {
   group: 'FRONTEND',
 };
 
+export const webSocket: Technology = {
+  name: 'WebSockets',
+  url: 'https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API',
+  icon_url: 'https://cdn.worldvectorlogo.com/logos/websocket.svg',
+  type: 'TOOL',
+  group: 'BACKEND',
+};
+
 export const template: Technology = {
   name: '',
   url: '',
@@ -477,6 +485,7 @@ export const FRONTEND_TECHNOLOGIES: Technology[] = [
   jasmine,
   momentjs,
   unity,
+  csharp,
 ];
 
 export const BACKEND_TECHNOLOGIES: Technology[] = [
@@ -487,7 +496,8 @@ export const BACKEND_TECHNOLOGIES: Technology[] = [
   redis,
   jwt,
   sqlite,
-  derby,
+  webSocket,
+  // derby,
   firebase,
 ];
 
@@ -496,10 +506,11 @@ export const DEVOPS_TECHNOLOGIES: Technology[] = [
   aws,
   githubActions,
   githubPages,
-  n8n,
 ];
 
 export const EXPLORATORY_TECHNOLOGIES: Technology[] = [
+  n8n,
+  cloudFlare,
   arduino,
   rpi,
   tensorflow,
@@ -507,17 +518,17 @@ export const EXPLORATORY_TECHNOLOGIES: Technology[] = [
   puppeteer,
   annyang,
   // obsidian,
-  ffmpeg,
-  android,
-  pyupload,
-  pyqt5,
-  python,
-  c,
-  csharp,
 
   java,
-  // md,
-  mermaid,
+  android,
 
-  cloudFlare,
+  python,
+  pyupload,
+  pyqt5,
+  c,
+
+  // md,
+  ffmpeg,
+
+  mermaid,
 ];

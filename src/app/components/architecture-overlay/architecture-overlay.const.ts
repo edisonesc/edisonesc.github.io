@@ -38,24 +38,20 @@ user: User = user;
     label: 'Technologies',
     cssSelector: '.tech-section',
     dataSource: {
-      providerFile: 'providers/technologies.provider.ts + projects.provider.ts',
-      exportName: 'FRONTEND/BACKEND/DEVOPS/EXPLORATORY_TECHNOLOGIES + project.technologies',
-      modelType: '{ technology: Technology, usage: number }[]',
+      providerFile: 'technologies.provider.ts',
+      exportName: 'FRONTEND/BACKEND/DEVOPS/EXPLORATORY_TECHNOLOGIES',
+      modelType: 'Technology[]',
       sampleJson: {
         groupKeys: ['Frontend', 'Backend', 'DevOps', 'Exploratory'],
         technologies_provider: technologiesSample,
 
-        note: 'Computed from projects.technologies + group technology arrays',
+        note: 'Directly populated from group technology arrays',
       },
     },
     pipeline: [
       {
         label: 'Data',
-        detail: 'projects[].technologies + group technology arrays',
-      },
-      {
-        label: 'Aggregate',
-        detail: 'initAnalytics() counts usage per tech',
+        detail: 'Group arrays from technologies.provider.ts',
       },
       {
         label: 'Group',
@@ -65,16 +61,12 @@ user: User = user;
       { label: 'UI', detail: '.tech-section with dot pattern' },
     ],
     sourceSnippet: `// home.component.ts
-initAnalytics() {
-  let projectTechnologies = [];
-  this.projects.forEach(project =>
-    project.technologies.forEach(technology => {
-      // count usage per technology
-    })
-  );
-  // merge with group technology arrays
-  // group by Frontend / Backend / DevOps / Exploratory
-}
+groupTechnologies = {
+  Frontend: FRONTEND_TECHNOLOGIES,
+  Backend: BACKEND_TECHNOLOGIES,
+  DevOps: DEVOPS_TECHNOLOGIES,
+  Exploratory: EXPLORATORY_TECHNOLOGIES,
+};
 
 // home.component.html
 *ngFor="let groupKey of getTechnologyGroupKeys()"
@@ -235,9 +227,9 @@ user: User = user;
     cssSelector: '.tech-section',
 
     dataSource: {
-      providerFile: 'projects.provider.ts + technologies.provider.ts',
-      exportName: 'projects + group technology arrays',
-      modelType: '{ technology: Technology, usage: number }[]',
+      providerFile: 'technologies.provider.ts',
+      exportName: 'FRONTEND/BACKEND/DEVOPS/EXPLORATORY_TECHNOLOGIES',
+      modelType: 'Technology[]',
       sampleJson: {
         groupKeys: ['Frontend', 'Backend', 'DevOps', 'Exploratory'],
       },
@@ -246,15 +238,11 @@ user: User = user;
     pipeline: [
       {
         label: 'CONFIG SOURCES',
-        detail: 'Project technologies + group technology arrays',
-      },
-      {
-        label: 'DOMAIN AGGREGATION',
-        detail: 'Compute usage frequency per technology',
+        detail: 'Group arrays from technologies.provider.ts',
       },
       {
         label: 'STRUCTURAL GROUPING',
-        detail: 'Categorize into Frontend / Backend / DevOps / Exploratory',
+        detail: 'Direct assignment: Frontend / Backend / DevOps / Exploratory',
       },
       {
         label: 'ITERATION STRATEGY',
@@ -267,11 +255,12 @@ user: User = user;
     ],
 
     sourceSnippet: `// home.component.ts
-initAnalytics() {
-  // aggregate usage count
-  // merge with group technology arrays
-  // group into Frontend / Backend / DevOps / Exploratory
-}
+groupTechnologies = {
+  Frontend: FRONTEND_TECHNOLOGIES,
+  Backend: BACKEND_TECHNOLOGIES,
+  DevOps: DEVOPS_TECHNOLOGIES,
+  Exploratory: EXPLORATORY_TECHNOLOGIES,
+};
 
 // home.component.html
 *ngFor="let groupKey of getTechnologyGroupKeys()"
