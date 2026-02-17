@@ -50,7 +50,7 @@ export const experiences: Experience[] = [
     started_at: 'Jun 2023',
     finished_at: 'Present',
     position: 'Engineer',
-    type: WORK_TYPE.OUTSOURCING,
+    type: WORK_TYPE.DIRECT_MULTI,
     location: 'Manila, PH',
 
     projects: [

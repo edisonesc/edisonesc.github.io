@@ -20,24 +20,16 @@
             <div class="timeline-details">
               <div [ngSwitch]="experience.type">
                 <div *ngSwitchCase="'OUTSOURCING'">
-                  <div
-                    *ngFor="let project of experience?.projects"
-                    class="timeline-project"
-                  >
-                    <h5 class="project-name">{{ project.name }}</h5>
-                    <app-timeline-range
-                      [started_at]="project?.started_at"
-                      [finished_at]="project?.finished_at"
-                    ></app-timeline-range>
-                    <ul class="responsibility-list">
-                      <li
-                        *ngFor="let responsibility of project?.responsibilities"
-                      >
-                        {{ responsibility }}
-                      </li>
-                    </ul>
-                  </div>
+                  <ng-container
+                    *ngTemplateOutlet="multiProjects"
+                  ></ng-container>
                 </div>
+                <div *ngSwitchCase="'DIRECT_MULTI'">
+                  <ng-container
+                    *ngTemplateOutlet="multiProjects"
+                  ></ng-container>
+                </div>
+
                 <div *ngSwitchDefault class="timeline-description">
                   <ul class="responsibility-list">
                     <li
@@ -51,6 +43,23 @@
                 </div>
               </div>
             </div>
+            <ng-template #multiProjects>
+              <div
+                *ngFor="let project of experience?.projects"
+                class="timeline-project"
+              >
+                <h5 class="project-name">{{ project.name }}</h5>
+                <app-timeline-range
+                  [started_at]="project?.started_at"
+                  [finished_at]="project?.finished_at"
+                ></app-timeline-range>
+                <ul class="responsibility-list">
+                  <li *ngFor="let responsibility of project?.responsibilities">
+                    {{ responsibility }}
+                  </li>
+                </ul>
+              </div>
+            </ng-template>
           </div>
         </div>
         <div class="timeline-end"></div>

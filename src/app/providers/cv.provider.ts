@@ -39,6 +39,7 @@ export function getCVTemplate(
             );
             break;
           case WORK_TYPE.OUTSOURCING:
+          case WORK_TYPE.DIRECT_MULTI:
             descriptionContent = `${exp.projects.map((project) => {
               return `
                             <p class="category-details-header">${
@@ -164,6 +165,7 @@ export function getCVTemplate(
                   [
                     WORK_TYPE.DIRECT,
                     WORK_TYPE.OUTSOURCING,
+                    WORK_TYPE.DIRECT_MULTI,
                     WORK_TYPE.INTERN,
                   ].includes(e.type) && !e.exclude_in_cv,
               ),
