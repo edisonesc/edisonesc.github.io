@@ -36,6 +36,10 @@
     "videojs-flash": "^2.2.1",
     "zone.js": "~0.15.0"
   },
+  "overrides": {
+    "jspdf": "^4.1.0",
+    "form-data": "^2.5.4"
+  },
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.2.0",
     "@angular/cli": "~19.2.6",
