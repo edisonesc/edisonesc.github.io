@@ -59,7 +59,7 @@ export const projects: Project[] = [
     started_at: 'Feb 2026',
     finished_at: 'Feb 2026',
     description:
-      'Revamp Version of Years Tracker: A personal tracker that tracks my existence and reflects time/years left before target year is met.',
+      'Revamp Version of Years Tracker: Years/Life Tracker is a web-based life visualization tool that maps progress from birthdate to a target lifespan. It displays years completed and remaining, offering a clear timeline perspective to support long-term planning and intentional decision-making.',
     technologies: [typescript, react, vite, githubPages, githubActions],
     icon_url: 'assets/images/projects/years-tracker.png',
     project_url: 'https://edisonesc.github.io/years-tracker-v2',
