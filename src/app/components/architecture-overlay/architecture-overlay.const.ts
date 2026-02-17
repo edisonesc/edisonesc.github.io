@@ -39,19 +39,19 @@ user: User = user;
     cssSelector: '.tech-section',
     dataSource: {
       providerFile: 'providers/technologies.provider.ts + projects.provider.ts',
-      exportName: 'OTHER_TECHNOLOGIES + project.technologies',
+      exportName: 'FRONTEND/BACKEND/DEVOPS/EXPLORATORY_TECHNOLOGIES + project.technologies',
       modelType: '{ technology: Technology, usage: number }[]',
       sampleJson: {
-        groupKeys: ['Frontend', 'Backend', 'Others'],
+        groupKeys: ['Frontend', 'Backend', 'DevOps', 'Exploratory'],
         technologies_provider: technologiesSample,
 
-        note: 'Computed from projects.technologies + OTHER_TECHNOLOGIES',
+        note: 'Computed from projects.technologies + group technology arrays',
       },
     },
     pipeline: [
       {
         label: 'Data',
-        detail: 'projects[].technologies + OTHER_TECHNOLOGIES',
+        detail: 'projects[].technologies + group technology arrays',
       },
       {
         label: 'Aggregate',
@@ -59,7 +59,7 @@ user: User = user;
       },
       {
         label: 'Group',
-        detail: 'groupTechnologies { Frontend, Backend, Others }',
+        detail: 'groupTechnologies { Frontend, Backend, DevOps, Exploratory }',
       },
       { label: 'Render', detail: '*ngFor groupKeys → *ngFor tech items' },
       { label: 'UI', detail: '.tech-section with dot pattern' },
@@ -72,8 +72,8 @@ initAnalytics() {
       // count usage per technology
     })
   );
-  // merge with OTHER_TECHNOLOGIES
-  // group by Frontend / Backend / Others
+  // merge with group technology arrays
+  // group by Frontend / Backend / DevOps / Exploratory
 }
 
 // home.component.html
@@ -236,17 +236,17 @@ user: User = user;
 
     dataSource: {
       providerFile: 'projects.provider.ts + technologies.provider.ts',
-      exportName: 'projects + OTHER_TECHNOLOGIES',
+      exportName: 'projects + group technology arrays',
       modelType: '{ technology: Technology, usage: number }[]',
       sampleJson: {
-        groupKeys: ['Frontend', 'Backend', 'Others'],
+        groupKeys: ['Frontend', 'Backend', 'DevOps', 'Exploratory'],
       },
     },
 
     pipeline: [
       {
         label: 'CONFIG SOURCES',
-        detail: 'Project technologies + static OTHER_TECHNOLOGIES',
+        detail: 'Project technologies + group technology arrays',
       },
       {
         label: 'DOMAIN AGGREGATION',
@@ -254,7 +254,7 @@ user: User = user;
       },
       {
         label: 'STRUCTURAL GROUPING',
-        detail: 'Categorize into Frontend / Backend / Others',
+        detail: 'Categorize into Frontend / Backend / DevOps / Exploratory',
       },
       {
         label: 'ITERATION STRATEGY',
@@ -269,8 +269,8 @@ user: User = user;
     sourceSnippet: `// home.component.ts
 initAnalytics() {
   // aggregate usage count
-  // merge with OTHER_TECHNOLOGIES
-  // group into Frontend / Backend / Others
+  // merge with group technology arrays
+  // group into Frontend / Backend / DevOps / Exploratory
 }
 
 // home.component.html

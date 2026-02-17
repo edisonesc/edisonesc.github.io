@@ -149,13 +149,21 @@ export function getCVTemplate(
                 .map((e) => e.name)
                 .join(', ')}</li>      
             </ul>
-            <p class="category-details">Others</p>      
+            <p class="category-details">DevOps</p>
             <ul>
             <li class="category-description-main">${technologies
-              .filter((e) => e.group == 'OTHERS')
+              .filter((e) => e.group == 'DEVOPS' && !e.exclude_in_cv)
               .map((e) => e.name)
               .join(', ')}
-            </li>      
+            </li>
+            </ul>
+            <p class="category-details">Exploratory</p>
+            <ul>
+            <li class="category-description-main">${technologies
+              .filter((e) => e.group == 'EXPLORATORY' && !e.exclude_in_cv)
+              .map((e) => e.name)
+              .join(', ')}
+            </li>
             </ul>
             <h2 class="category-headers">Experience</h2>
             <hr>

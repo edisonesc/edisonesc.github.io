@@ -14,8 +14,10 @@ import { experiences } from 'src/app/providers/experience.provider';
 import { user } from 'src/app/providers/user.provider';
 import { User } from 'src/app/models/user.model';
 import {
-  OTHER_TECHNOLOGIES,
-  react,
+  FRONTEND_TECHNOLOGIES,
+  BACKEND_TECHNOLOGIES,
+  DEVOPS_TECHNOLOGIES,
+  EXPLORATORY_TECHNOLOGIES,
 } from 'src/app/providers/technologies.provider';
 import { PageService } from '../page.service';
 import { getCVTemplate } from 'src/app/providers/cv.provider';
@@ -58,7 +60,8 @@ export class HomeComponent implements OnInit {
   groupTechnologies = {
     Frontend: [],
     Backend: [],
-    Others: [],
+    DevOps: [],
+    Exploratory: [],
   };
 
   config = {};
@@ -138,10 +141,20 @@ export class HomeComponent implements OnInit {
       }),
     );
 
+    const allTechnologies = [
+      ...FRONTEND_TECHNOLOGIES,
+      ...BACKEND_TECHNOLOGIES,
+      ...DEVOPS_TECHNOLOGIES,
+      ...EXPLORATORY_TECHNOLOGIES,
+    ];
+
     this.analytics.mostUsedTechnologies.data = [
-      ...OTHER_TECHNOLOGIES.map((item) => {
-        return { technology: item, usage: 0 };
-      }),
+      ...allTechnologies
+        .filter(
+          (tech) =>
+            !projectTechnologies.some((pt) => pt.technology === tech),
+        )
+        .map((item) => ({ technology: item, usage: 0 })),
       ...this.sortMostUsedProjects(projectTechnologies),
     ];
     console.log(this.analytics.mostUsedTechnologies.data);
