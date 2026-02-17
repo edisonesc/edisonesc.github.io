@@ -39,6 +39,7 @@ import {
   react,
   vite,
   githubPages,
+  aws,
 } from './technologies.provider';
 import { PROJECT_TYPE } from '../enums/project-type.enum';
 
@@ -91,7 +92,7 @@ export const projects: Project[] = [
     finished_at: 'Present',
     description:
       'Designed and built a configuration-driven frontend platform that generates dynamic portfolio content from structured data, with support for multiple output renderers, including a CV-style document.',
-    technologies: [angular, typescript, githubActions, githubPages],
+    technologies: [angular, typescript, githubActions, githubPages, aws],
     type: PROJECT_TYPE.OTHERS,
     project_url: 'https://edisonesc.github.io/pages/home',
     // exclude_in_cv: true,

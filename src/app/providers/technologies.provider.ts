@@ -405,6 +405,16 @@ export const githubPages: Technology = {
   sub_group: TECHNOLOGY_SUBTYPE.DEV_OPS,
 };
 
+export const aws: Technology = {
+  name: 'AWS',
+  url: 'https://aws.amazon.com/',
+  icon_url:
+    'https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg',
+  type: 'TOOL',
+  group: 'OTHERS',
+  sub_group: TECHNOLOGY_SUBTYPE.DEV_OPS,
+};
+
 export const template: Technology = {
   name: '',
   url: '',
