@@ -178,7 +178,7 @@ export const projects: Project[] = [
     started_at: 'Feb 2018',
     finished_at: 'April 2019',
     description:
-      'Semi-autonomous Book Shelving Robot with Collision Detection, QR Code Matching, Line Tracing, Book and Space detection. It uses computer vision to detect and return book from its respective shelf using QR Code and uses line tracing as the way of transporting the book to the shelf and collision detection to detect obstacles.',
+      'Semi-Autonomous Book Shelving Robot (CS thesis) integrating collision avoidance, QR matching, and line tracing. Trained a computer vision model for book spine detection and real-time gap estimation, enabling autonomous placement decisions based on available shelf space.',
     technologies: [python, c, rpi, arduino, tensorflow],
     icon_url: 'assets/images/projects/pantera.jpg',
     type: PROJECT_TYPE.SYSTEM,
