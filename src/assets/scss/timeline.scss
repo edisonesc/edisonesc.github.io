@@ -140,6 +140,52 @@
     }
   }
 }
+// Collapsible responsibility list
+.responsibility-collapse-wrapper {
+  overflow: hidden;
+  max-height: 2000px;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &.collapsed {
+    max-height: 10em;
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  }
+}
+
+.responsibilities-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 14px;
+  padding: 6px 14px;
+  border: 1px solid #d0d0d0;
+  border-radius: 4px;
+  background: none;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #666;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+
+  &::after {
+    content: '+';
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 300;
+  }
+
+  &.expanded::after {
+    content: '−';
+  }
+
+  &:hover {
+    color: #333;
+    border-color: #aaa;
+    background-color: #fafafa;
+  }
+}
 
 // Timeline range (duration) styling
 #duration {

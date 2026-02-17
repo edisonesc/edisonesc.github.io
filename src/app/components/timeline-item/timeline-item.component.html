@@ -31,15 +31,36 @@
                 </div>
 
                 <div *ngSwitchDefault class="timeline-description">
-                  <ul class="responsibility-list">
-                    <li
-                      *ngFor="
-                        let responsibility of experience?.responsibilities
-                      "
-                    >
-                      {{ responsibility }}
-                    </li>
-                  </ul>
+                  <div
+                    class="responsibility-collapse-wrapper"
+                    [ngClass]="{
+                      collapsed:
+                        !isExpanded(experience.title) &&
+                        shouldShowToggle(experience.responsibilities),
+                    }"
+                  >
+                    <ul class="responsibility-list">
+                      <li
+                        *ngFor="
+                          let responsibility of experience?.responsibilities
+                        "
+                      >
+                        {{ responsibility }}
+                      </li>
+                    </ul>
+                  </div>
+                  <button
+                    *ngIf="shouldShowToggle(experience.responsibilities)"
+                    class="responsibilities-toggle"
+                    [ngClass]="{ expanded: isExpanded(experience.title) }"
+                    (click)="toggleExpanded(experience.title)"
+                  >
+                    {{
+                      isExpanded(experience.title)
+                        ? "Hide Key Contributions"
+                        : "View Key Contributions"
+                    }}
+                  </button>
                 </div>
               </div>
             </div>
@@ -53,11 +74,34 @@
                   [started_at]="project?.started_at"
                   [finished_at]="project?.finished_at"
                 ></app-timeline-range>
-                <ul class="responsibility-list">
-                  <li *ngFor="let responsibility of project?.responsibilities">
-                    {{ responsibility }}
-                  </li>
-                </ul>
+                <div
+                  class="responsibility-collapse-wrapper"
+                  [ngClass]="{
+                    collapsed:
+                      !isExpanded(project.name) &&
+                      shouldShowToggle(project.responsibilities),
+                  }"
+                >
+                  <ul class="responsibility-list">
+                    <li
+                      *ngFor="let responsibility of project?.responsibilities"
+                    >
+                      {{ responsibility }}
+                    </li>
+                  </ul>
+                </div>
+                <button
+                  *ngIf="shouldShowToggle(project.responsibilities)"
+                  class="responsibilities-toggle"
+                  [ngClass]="{ expanded: isExpanded(project.name) }"
+                  (click)="toggleExpanded(project.name)"
+                >
+                  {{
+                    isExpanded(project.name)
+                      ? "Hide Key Contributions"
+                      : "View Key Contributions"
+                  }}
+                </button>
               </div>
             </ng-template>
           </div>

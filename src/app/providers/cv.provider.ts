@@ -186,10 +186,10 @@ export function getCVTemplate(
                     } 
                     
                     ${
-                      project.project_url
+                      project?.project_url
                         ? `Visit
             <a class="links" href="${
-              project.project_url
+              project?.project_url
             }" target="_blank">here</a> for further details.</p>`
                         : ``
                     }`,
@@ -204,7 +204,7 @@ export function getCVTemplate(
               ).length > 0
                 ? `<h2 class="category-headers">Seminars & Certification</h2>
             <hr>`
-                : null
+                : ``
             }
 
             ${getExperienceContent(

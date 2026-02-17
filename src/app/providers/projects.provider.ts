@@ -195,6 +195,7 @@ export const projects: Project[] = [
     technologies: [python, c, rpi, arduino, tensorflow],
     icon_url: 'assets/images/projects/pantera.jpg',
     type: PROJECT_TYPE.SYSTEM,
+    // project_url: '',
   },
   {
     name: 'OJT Hours Tracker App',
