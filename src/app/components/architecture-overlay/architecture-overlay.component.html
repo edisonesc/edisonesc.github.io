@@ -1,0 +1,81 @@
+<!-- Toggle Button — always visible -->
+<button
+  class="arch-toggle-btn"
+  [ngClass]="{ active: isActive$ | async }"
+  (click)="toggleOverlay()"
+  title="Toggle Architecture Mode (Ctrl+Shift+A)"
+>
+  <span class="arch-toggle-icon">&lt;/&gt;</span>
+  <span class="arch-toggle-label">Architecture</span>
+</button>
+
+<!-- Side Panel -->
+<div class="arch-panel" *ngIf="isActive$ | async">
+  <div class="arch-panel-header">
+    <div class="arch-panel-header-left">
+      <span class="arch-panel-badge">ARCH</span>
+      <h3
+        class="arch-panel-title"
+        (click)="activeMeta && scrollToSection(activeMeta.id)"
+        [class.clickable]="activeMeta"
+      >
+        {{ activeMeta?.label || "Scroll to a section" }}
+      </h3>
+    </div>
+    <button class="arch-panel-close" (click)="toggleOverlay()">&times;</button>
+  </div>
+
+  <div class="arch-panel-body" *ngIf="activeMeta">
+    <!-- Source Snippet -->
+    <div class="arch-section" *ngIf="activeMeta.sourceSnippet">
+      <h4 class="arch-section-title">Source Reference</h4>
+      <pre class="arch-source-snippet">{{ activeMeta.sourceSnippet }}</pre>
+    </div>
+    <!-- Configuration Source -->
+    <div class="arch-section">
+      <h4 class="arch-section-title">Configuration Source</h4>
+      <!-- <div class="arch-data-source">
+        <p class="arch-file-ref">{{ activeMeta.dataSource.providerFile }}</p>
+        <p class="arch-export-ref">
+          export {{ activeMeta.dataSource.exportName }}:
+          {{ activeMeta.dataSource.modelType }}
+        </p>
+      </div> -->
+
+      <!-- <button class="arch-json-toggle" (click)="toggleSourceView()">
+        {{ (showSourceView$ | async) ? 'Hide' : 'Show' }} Config Data
+      </button> -->
+      <pre class="arch-json" *ngIf="showSourceView$ | async">{{
+        activeMeta.dataSource.sampleJson | json
+      }}</pre>
+    </div>
+
+    <!-- Rendering Pipeline -->
+    <div class="arch-section">
+      <h4 class="arch-section-title">Rendering Pipeline</h4>
+      <div class="arch-pipeline">
+        <div
+          *ngFor="
+            let step of activeMeta.pipeline;
+            let last = last;
+            let i = index
+          "
+          class="arch-pipeline-step"
+        >
+          <div class="arch-step-box">
+            <div class="arch-step-header">
+              <span class="arch-step-index">{{ i + 1 }}</span>
+              <span class="arch-step-label">{{ step.label }}</span>
+            </div>
+            <span class="arch-step-detail">{{ step.detail }}</span>
+          </div>
+          <div class="arch-step-arrow" *ngIf="!last"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="arch-panel-empty" *ngIf="!activeMeta">
+    <p>Scroll to a section to inspect its architecture.</p>
+  </div>
+</div>

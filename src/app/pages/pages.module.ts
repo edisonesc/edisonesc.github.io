@@ -10,15 +10,19 @@ import { TimelineItemComponent } from '../components/timeline-item/timeline-item
 import { HttpClientModule } from '@angular/common/http';
 import { PageService } from './page.service';
 import { FileService } from './file-service.service';
+import { ArchitectureOverlayComponent } from '../components/architecture-overlay/architecture-overlay.component';
+import { ArchitectureOverlayService } from '../components/architecture-overlay/architecture-overlay.service';
 
-const components = [ProjectItemComponent, TimelineItemComponent, TimelineRangeComponent];
+const components = [
+  ProjectItemComponent,
+  TimelineItemComponent,
+  TimelineRangeComponent,
+  ArchitectureOverlayComponent,
+];
 
 @NgModule({
   declarations: [HomeComponent, ...components],
   imports: [CommonModule, PagesRoutingModule, HttpClientModule],
-  providers: [
-    PageService,
-    FileService
-  ]
+  providers: [PageService, FileService, ArchitectureOverlayService],
 })
 export class PagesModule {}
