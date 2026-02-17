@@ -109,7 +109,7 @@ export const experiences: Experience[] = [
 
           'Designed parallel frontend-backend workflow using mock API server and constant-based stubs, accelerating iteration and enabling early UI/UX validation prior to API completion.',
 
-          'Streamlined frontend release cycles by maintaining Kubernetes deployment configurations and utilizing Argo CD for automated, GitOps-driven delivery',
+          'Streamlined frontend release cycles by maintaining Kubernetes deployment configurations and utilizing Argo CD for automated, GitOps-driven delivery.',
 
           'Maintained 85–90%+ unit test coverage and implemented structured testing strategies to ensure reliability during large-scale refactors.',
 
