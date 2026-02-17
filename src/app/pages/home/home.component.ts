@@ -95,8 +95,10 @@ export class HomeComponent implements OnInit {
   }
 
   toggleProjectSection() {
-    this.isProjectSectionOnFull = !this.isProjectSectionOnFull
-    if(!this.isProjectSectionOnFull) this.scrollInto('projects-section"');
+    this.isProjectSectionOnFull = !this.isProjectSectionOnFull;
+    if (!this.isProjectSectionOnFull) {
+      setTimeout(() => this.scrollInto('projects-section'), 50);
+    }
   }
 
   initAnalytics() {
