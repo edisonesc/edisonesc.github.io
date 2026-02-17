@@ -140,33 +140,22 @@
         >
           <h3 class="tech-group-title">{{ groupKey }}</h3>
           <div class="tech-items">
-            <ng-container
-              *ngFor="let item of groupTechnologies[groupKey]; let i = index"
+            <div
+              *ngFor="let item of groupTechnologies[groupKey]"
+              class="tech-item"
+              (click)="open(item?.url)"
             >
-              <div
-                class="tech-item"
-                *ngIf="
-                  !analytics?.mostUsedTechnologies?.limit ||
-                  i <= analytics?.mostUsedTechnologies.limit
-                "
-                (click)="open(item?.technology?.url)"
-              >
-                <img
-                  *ngIf="item?.technology?.icon_url"
-                  [src]="
-                    item?.technology?.icon_url
-                      ? item?.technology?.icon_url
-                      : null
-                  "
-                  [alt]="item?.technology?.name"
-                  class="tech-icon"
-                />
-                <div *ngIf="!item?.technology?.icon_url" class="tech-icon-alt">
-                  <span>{{ getTechnologyAvatar(item?.technology) }}</span>
-                </div>
-                <p class="tech-name">{{ item?.technology?.name }}</p>
+              <img
+                *ngIf="item?.icon_url"
+                [src]="item?.icon_url"
+                [alt]="item?.name"
+                class="tech-icon"
+              />
+              <div *ngIf="!item?.icon_url" class="tech-icon-alt">
+                <span>{{ getTechnologyAvatar(item) }}</span>
               </div>
-            </ng-container>
+              <p class="tech-name">{{ item?.name }}</p>
+            </div>
           </div>
         </div>
       </div>

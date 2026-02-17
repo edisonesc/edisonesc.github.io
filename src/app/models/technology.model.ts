@@ -6,7 +6,7 @@ export class Technology extends BaseModel {
   url?: string;
   icon_url?: string;
   type?: 'FRAMEWORK' | 'LANGUAGE' | 'TOOL';
-  group?: 'FRONTEND' | 'BACKEND' | 'OTHERS';
+  group?: 'FRONTEND' | 'BACKEND' | 'DEVOPS' | 'EXPLORATORY';
 
   sub_group?: TECHNOLOGY_SUBTYPE;
   is_user_core?: boolean;

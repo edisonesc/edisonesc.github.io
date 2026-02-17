@@ -23,7 +23,7 @@ export const redis: Technology = {
 export const jwt: Technology = {
   name: 'JWT',
   url: 'https://jwt.io/',
-  icon_url: null,
+  icon_url: 'https://cdn.worldvectorlogo.com/logos/jwt-3.svg',
   type: 'TOOL',
   group: 'BACKEND',
   sub_group: TECHNOLOGY_SUBTYPE.FORMS_AND_VALIDATIONS,
@@ -72,14 +72,16 @@ export const python: Technology = {
   icon_url:
     'https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg',
   type: 'LANGUAGE',
-  group: 'OTHERS',
+  group: 'EXPLORATORY',
 };
 
 export const c: Technology = {
   name: 'C',
-  icon_url: 'https://hackr.io/tutorials/c/logo-c.svg',
+  url: 'https://www.iso-cpp.org/wiki/faq/c',
+  icon_url:
+    'https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg',
   type: 'LANGUAGE',
-  group: 'OTHERS',
+  group: 'EXPLORATORY',
 };
 
 export const rpi: Technology = {
@@ -88,7 +90,7 @@ export const rpi: Technology = {
   icon_url:
     'https://www.logo.wine/a/logo/Raspberry_Pi/Raspberry_Pi-Logo.wine.svg',
   type: 'TOOL',
-  group: 'OTHERS',
+  group: 'EXPLORATORY',
 };
 
 export const arduino: Technology = {
@@ -96,7 +98,7 @@ export const arduino: Technology = {
   url: 'https://www.arduino.cc/',
   icon_url: 'https://brandeps.com/logo-download/A/Arduino-logo-vector-01.svg',
   type: 'TOOL',
-  group: 'OTHERS',
+  group: 'EXPLORATORY',
 };
 
 export const tensorflow: Technology = {
@@ -105,7 +107,7 @@ export const tensorflow: Technology = {
   icon_url:
     'https://upload.wikimedia.org/wikipedia/commons/2/2d/Tensorflow_logo.svg',
   type: 'TOOL',
-  group: 'OTHERS',
+  group: 'EXPLORATORY',
 };
 
 export const java: Technology = {
@@ -114,7 +116,7 @@ export const java: Technology = {
   icon_url:
     'https://blogs.ashrithgn.com/content/images/size/w2000/2018/08/58480979cef1014c0b5e4901.png',
   type: 'LANGUAGE',
-  group: 'OTHERS',
+  group: 'EXPLORATORY',
 };
 
 export const derby: Technology = {
@@ -129,15 +131,17 @@ export const derby: Technology = {
 export const android: Technology = {
   name: 'Android',
   url: 'https://www.android.com/',
-  icon_url: null,
+  icon_url:
+    'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/android/android-original.svg',
   type: 'TOOL',
-  group: 'OTHERS',
+  group: 'EXPLORATORY',
 };
 
 export const ionic: Technology = {
   name: 'Ionic',
   url: 'https://ionicframework.com/',
-  icon_url: null,
+  icon_url:
+    'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ionic/ionic-original.svg',
   type: 'FRAMEWORK',
   group: 'FRONTEND',
   is_user_core: true,
@@ -145,8 +149,9 @@ export const ionic: Technology = {
 
 export const angular: Technology = {
   name: 'Angular',
-  url: 'https://angular.io/',
-  icon_url: null,
+  url: 'https://angular.dev/',
+  icon_url:
+    'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg',
   type: 'FRAMEWORK',
   group: 'FRONTEND',
   is_user_core: true,
@@ -161,9 +166,10 @@ export const html: Technology = {
 };
 
 export const scss: Technology = {
-  name: 'Scss',
+  name: 'SCSS',
   url: 'https://sass-lang.com/',
-  icon_url: null,
+  icon_url:
+    'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sass/sass-original.svg',
   type: 'LANGUAGE',
   group: 'FRONTEND',
   sub_group: TECHNOLOGY_SUBTYPE.STYLING,
@@ -172,7 +178,8 @@ export const scss: Technology = {
 export const ngrx: Technology = {
   name: 'NgRx',
   url: 'https://ngrx.io/',
-  icon_url: null,
+  icon_url:
+    'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ngrx/ngrx-original.svg',
   type: 'FRAMEWORK',
   group: 'FRONTEND',
   sub_group: TECHNOLOGY_SUBTYPE.STATE_MANAGEMENT,
@@ -213,7 +220,7 @@ export const pyupload: Technology = {
   icon_url:
     'https://pbs.twimg.com/profile_images/1048820661173534720/NHarogNu_400x400.jpg',
   type: 'TOOL',
-  group: 'FRONTEND',
+  group: 'EXPLORATORY',
   exclude_in_cv: true,
 };
 
@@ -223,7 +230,7 @@ export const ffmpeg: Technology = {
   icon_url:
     'https://pbs.twimg.com/profile_images/961052733510893568/wbWiekmv_400x400.jpg',
   type: 'TOOL',
-  group: 'OTHERS',
+  group: 'EXPLORATORY',
 };
 
 export const pyqt5: Technology = {
@@ -232,7 +239,7 @@ export const pyqt5: Technology = {
   icon_url:
     'https://upload.wikimedia.org/wikipedia/commons/0/0b/Qt_logo_2016.svg',
   type: 'FRAMEWORK',
-  group: 'FRONTEND',
+  group: 'EXPLORATORY',
   exclude_in_cv: true,
 };
 
@@ -242,7 +249,7 @@ export const obsidian: Technology = {
   icon_url:
     'https://pbs.twimg.com/profile_images/1269490744609341442/MaweGLMN_400x400.png',
   type: 'TOOL',
-  group: 'OTHERS',
+  group: 'EXPLORATORY',
 };
 
 export const md: Technology = {
@@ -250,15 +257,15 @@ export const md: Technology = {
   url: 'https://daringfireball.net/projects/markdown/',
   icon_url: 'https://miro.medium.com/max/1400/0*V9tvdEAZmSjBG3Ny.gif',
   type: 'LANGUAGE',
-  group: 'OTHERS',
+  group: 'EXPLORATORY',
 };
 
 export const mermaid: Technology = {
   name: 'Mermaid',
-  url: 'https://mermaid-js.github.io/mermaid/#/',
-  icon_url: '',
+  url: 'https://mermaid.js.org/',
+  icon_url: 'https://mermaid.js.org/favicon.svg',
   type: 'TOOL',
-  group: 'OTHERS',
+  group: 'EXPLORATORY',
 };
 
 export const annyang: Technology = {
@@ -266,7 +273,7 @@ export const annyang: Technology = {
   url: 'https://www.talater.com/annyang/',
   icon_url: 'https://www.talater.com/annyang/images/icon_user.png',
   type: 'TOOL',
-  group: 'OTHERS',
+  group: 'EXPLORATORY',
 };
 
 export const puppeteer: Technology = {
@@ -274,15 +281,15 @@ export const puppeteer: Technology = {
   url: 'https://pptr.dev/',
   icon_url: 'https://www.vectorlogo.zone/logos/pptrdev/pptrdev-icon.svg',
   type: 'TOOL',
-  group: 'OTHERS',
+  group: 'EXPLORATORY',
 };
 
 export const cheerio: Technology = {
   name: 'Cheerio',
   url: 'https://cheerio.js.org/',
-  icon_url: null,
+  icon_url: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cheerio.svg',
   type: 'TOOL',
-  group: 'OTHERS',
+  group: 'EXPLORATORY',
 };
 
 export const react: Technology = {
@@ -298,7 +305,8 @@ export const react: Technology = {
 export const nextjs: Technology = {
   name: 'Next.js',
   url: 'https://nextjs.org/',
-  icon_url: null,
+  icon_url:
+    'https://raw.githubusercontent.com/devicons/devicon/master/icons/nextjs/nextjs-original.svg',
   type: 'FRAMEWORK',
   group: 'FRONTEND',
   is_user_core: true,
@@ -306,8 +314,9 @@ export const nextjs: Technology = {
 
 export const tailwindcss: Technology = {
   name: 'Tailwind CSS',
-  url: 'https://tailwindcss.com/docs/installation',
-  icon_url: null,
+  url: 'https://tailwindcss.com/',
+  icon_url:
+    'https://raw.githubusercontent.com/devicons/devicon/master/icons/tailwindcss/tailwindcss-original.svg',
   type: 'FRAMEWORK',
   group: 'FRONTEND',
   sub_group: TECHNOLOGY_SUBTYPE.STYLING,
@@ -316,7 +325,8 @@ export const tailwindcss: Technology = {
 export const jasmine: Technology = {
   name: 'Jasmine',
   url: 'https://jasmine.github.io/',
-  icon_url: null,
+  icon_url:
+    'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jasmine/jasmine-original.svg',
   type: 'FRAMEWORK',
   group: 'FRONTEND',
   sub_group: TECHNOLOGY_SUBTYPE.TESTING,
@@ -347,7 +357,7 @@ export const shadCN: Technology = {
 export const zod: Technology = {
   name: 'Zod',
   url: 'https://zod.dev/',
-  icon_url: null,
+  icon_url: 'https://cdn.jsdelivr.net/gh/colinhacks/zod@master/logo.svg',
   type: 'TOOL',
   group: 'FRONTEND',
   sub_group: TECHNOLOGY_SUBTYPE.FORMS_AND_VALIDATIONS,
@@ -356,7 +366,8 @@ export const zod: Technology = {
 export const reactHookForm: Technology = {
   name: 'React Hook Form',
   url: 'https://www.react-hook-form.com/',
-  icon_url: null,
+  icon_url:
+    'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/reacthookform.svg',
   type: 'TOOL',
   group: 'FRONTEND',
   sub_group: TECHNOLOGY_SUBTYPE.FORMS_AND_VALIDATIONS,
@@ -368,7 +379,7 @@ export const n8n: Technology = {
   icon_url:
     'https://meta-q.cdn.bubble.io/cdn-cgi/image/w=64,h=64,f=auto,dpr=2,fit=contain/f1740327389123x713161792968389100/n8n%20plugin.png',
   type: 'TOOL',
-  group: 'OTHERS',
+  group: 'EXPLORATORY',
 };
 
 export const cloudFlare: Technology = {
@@ -376,15 +387,16 @@ export const cloudFlare: Technology = {
   url: 'https://www.cloudflare.com/',
   icon_url: 'https://favicons.statusgator.com/FiM8Ile0FV3wLjxF.jpg',
   type: 'TOOL',
-  group: 'OTHERS',
+  group: 'EXPLORATORY',
 };
 
 export const githubActions: Technology = {
-  name: 'Github Actions',
+  name: 'GitHub Actions',
   url: 'https://github.com/features/actions',
-  icon_url: null,
+  icon_url:
+    'https://raw.githubusercontent.com/devicons/devicon/master/icons/githubactions/githubactions-original.svg',
   type: 'TOOL',
-  group: 'OTHERS',
+  group: 'DEVOPS',
 };
 
 export const vite: Technology = {
@@ -401,8 +413,7 @@ export const githubPages: Technology = {
   icon_url:
     'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
   type: 'TOOL',
-  group: 'OTHERS',
-  sub_group: TECHNOLOGY_SUBTYPE.DEV_OPS,
+  group: 'DEVOPS',
 };
 
 export const aws: Technology = {
@@ -411,8 +422,7 @@ export const aws: Technology = {
   icon_url:
     'https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg',
   type: 'TOOL',
-  group: 'OTHERS',
-  sub_group: TECHNOLOGY_SUBTYPE.DEV_OPS,
+  group: 'DEVOPS',
 };
 
 export const docker: Technology = {
@@ -421,8 +431,33 @@ export const docker: Technology = {
   icon_url:
     'https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg',
   type: 'TOOL',
-  group: 'OTHERS',
-  sub_group: TECHNOLOGY_SUBTYPE.DEV_OPS,
+  group: 'DEVOPS',
+};
+
+export const csharp: Technology = {
+  name: 'C#',
+  url: 'https://learn.microsoft.com/en-us/dotnet/csharp/',
+  icon_url:
+    'https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg',
+  type: 'LANGUAGE',
+  group: 'FRONTEND',
+};
+
+export const unity: Technology = {
+  name: 'Unity',
+  url: 'https://unity.com/',
+  icon_url:
+    'https://raw.githubusercontent.com/devicons/devicon/master/icons/unity/unity-original.svg',
+  type: 'TOOL',
+  group: 'FRONTEND',
+};
+
+export const webSocket: Technology = {
+  name: 'WebSockets',
+  url: 'https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API',
+  icon_url: 'https://cdn.worldvectorlogo.com/logos/websocket.svg',
+  type: 'TOOL',
+  group: 'BACKEND',
 };
 
 export const template: Technology = {
@@ -432,12 +467,68 @@ export const template: Technology = {
   type: 'TOOL',
 };
 
-export const OTHER_TECHNOLOGIES = [
+export const FRONTEND_TECHNOLOGIES: Technology[] = [
+  angular,
   react,
   nextjs,
-  jasmine,
-  zustand,
+  ionic,
+  typescript,
+  html,
+  scss,
+  vite,
+  tailwindcss,
   shadCN,
-  zod,
+  ngrx,
+  zustand,
   reactHookForm,
+  zod,
+  jasmine,
+  momentjs,
+  unity,
+  csharp,
+];
+
+export const BACKEND_TECHNOLOGIES: Technology[] = [
+  nestjs,
+  typeorm,
+  mysql,
+  mongodb,
+  redis,
+  jwt,
+  sqlite,
+  webSocket,
+  // derby,
+  firebase,
+];
+
+export const DEVOPS_TECHNOLOGIES: Technology[] = [
+  docker,
+  aws,
+  githubActions,
+  githubPages,
+];
+
+export const EXPLORATORY_TECHNOLOGIES: Technology[] = [
+  n8n,
+  cloudFlare,
+  arduino,
+  rpi,
+  tensorflow,
+  cheerio,
+  puppeteer,
+  annyang,
+  // obsidian,
+
+  java,
+  android,
+
+  python,
+  pyupload,
+  pyqt5,
+  c,
+
+  // md,
+  ffmpeg,
+
+  mermaid,
 ];
