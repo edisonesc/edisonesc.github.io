@@ -130,8 +130,8 @@ export const experiences: Experience[] = [
     projects: [
       {
         started_at: 'August 2021',
-        finished_at: 'Present',
-        name: 'Nimbus Project',
+        finished_at: 'Jun 2023',
+        name: 'Nimbus (Google)',
         // cv_responsibilities: [
         //   'Developed and authored high-level solutions using GoogleSQL and JavaScript for help center platforms used by one of the world’s largest search engine companies, supporting both customers and agents.',
         //   'Conducted QA reviews across 10 projects, identifying and flagging criteria issues prior to Lead Review, reducing overall issues by approximately 42%.',
