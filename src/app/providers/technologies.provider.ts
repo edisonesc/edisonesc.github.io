@@ -415,6 +415,16 @@ export const aws: Technology = {
   sub_group: TECHNOLOGY_SUBTYPE.DEV_OPS,
 };
 
+export const docker: Technology = {
+  name: 'Docker',
+  url: 'https://www.docker.com/',
+  icon_url:
+    'https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg',
+  type: 'TOOL',
+  group: 'OTHERS',
+  sub_group: TECHNOLOGY_SUBTYPE.DEV_OPS,
+};
+
 export const template: Technology = {
   name: '',
   url: '',

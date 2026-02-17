@@ -40,6 +40,7 @@ import {
   vite,
   githubPages,
   aws,
+  docker,
 } from './technologies.provider';
 import { PROJECT_TYPE } from '../enums/project-type.enum';
 
@@ -63,7 +64,19 @@ export const projects: Project[] = [
     technologies: [typescript, react, vite, githubPages, githubActions],
     icon_url: 'assets/images/projects/years-tracker.png',
     project_url: 'https://edisonesc.github.io/years-tracker-v2',
-    type: PROJECT_TYPE.OTHERS,
+    type: PROJECT_TYPE.WEB,
+    exclude_in_cv: true,
+  },
+  {
+    name: 'NestJS Boilerplate',
+    started_at: 'Feb 2026',
+    finished_at: 'Feb 2026',
+    description:
+      'A scalable and production-ready NestJS boilerplate designed for clean architecture and rapid backend development. Includes structured domain modules, JWT authentication (access + refresh), TypeORM integration, environment-based configuration, and migration support.',
+    technologies: [nestjs, typeorm, mysql, jwt, docker],
+    icon_url: 'assets/images/projects/NestJS.jpg',
+    project_url: '',
+    type: PROJECT_TYPE.SYSTEM,
     exclude_in_cv: true,
   },
   {
@@ -76,22 +89,22 @@ export const projects: Project[] = [
     type: PROJECT_TYPE.OTHERS,
     exclude_in_cv: false,
   },
-  {
-    name: 'Reflex Trainer for boxing',
-    started_at: 'Dec 2023',
-    finished_at: 'Dec 2023',
-    description:
-      'Simple web app to learn defense and counter in boxing by simulating offensive strikes with adjustable pace.',
-    technologies: [angular, typescript],
-    type: PROJECT_TYPE.OTHERS,
-    exclude_in_cv: true,
-  },
+  // {
+  //   name: 'Reflex Trainer for boxing',
+  //   started_at: 'Dec 2023',
+  //   finished_at: 'Dec 2023',
+  //   description:
+  //     'Simple web app to learn defense and counter in boxing by simulating offensive strikes with adjustable pace.',
+  //   technologies: [angular, typescript],
+  //   type: PROJECT_TYPE.OTHERS,
+  //   exclude_in_cv: true,
+  // },
   {
     name: 'Content-Driven Portfolio Platform',
     started_at: 'Apr 2023',
     finished_at: 'Present',
     description:
-      'Designed and built a configuration-driven frontend platform that generates dynamic portfolio content from structured data, with support for multiple output renderers, including a CV-style document.',
+      'Designed and built a configuration-driven frontend platform that generates dynamic portfolio content from structured data, with support for multiple output renderers, including a CV-style document. Includes CI for Unit Tests and CD setup support for AWS and Github Pages.',
     technologies: [angular, typescript, githubActions, githubPages, aws],
     type: PROJECT_TYPE.OTHERS,
     project_url: 'https://edisonesc.github.io/pages/home',
@@ -104,7 +117,7 @@ export const projects: Project[] = [
     description:
       'STT and TTS web application that takes audio inputs, scrapes data from a specific website using the translated audio information and download files via magnet link to a local transmission server.',
     technologies: [angular, typescript, nestjs, annyang, puppeteer, cheerio],
-    type: PROJECT_TYPE.OTHERS,
+    type: PROJECT_TYPE.WEB,
     exclude_in_cv: true,
   },
   {
@@ -116,7 +129,7 @@ export const projects: Project[] = [
     technologies: [angular, typescript, momentjs, githubPages],
     icon_url: '',
     project_url: 'https://edisonesc.github.io/years-tracker/home/',
-    type: PROJECT_TYPE.OTHERS,
+    type: PROJECT_TYPE.WEB,
     exclude_in_cv: true,
   },
   {
@@ -188,7 +201,7 @@ export const projects: Project[] = [
     started_at: 'Sep 2018',
     finished_at: 'Oct 2019',
     description:
-      'Mobile application that tracks hours based on time in and out.',
+      'Android mobile application built with Java and Firebase that logs time-in and time-out entries, automatically calculates total OJT hours, and stores records in real time. Designed to provide accurate attendance tracking, centralized cloud data storage, and easy monitoring of training hour compliance.',
     technologies: [java, android, firebase],
     icon_url: '',
     type: PROJECT_TYPE.MOBILE,
@@ -199,7 +212,7 @@ export const projects: Project[] = [
     started_at: 'Aug 2018',
     finished_at: 'Sep 2018',
     description:
-      'System project for a track using Java and MySQL. It has a two-way login, dynamic test for Colorblind and Auditory. CRUD is also implemented.',
+      'CVARST-Act-Project is a Java-based (netbeans) application developed as part of an undergraduate academic requirement, implementing a modular CRUD system with login, registration, and management modules (e.g., doctor information and maintenance for tests).',
     technologies: [java, derby, mysql],
     icon_url: '',
     type: PROJECT_TYPE.SYSTEM,
@@ -209,7 +222,8 @@ export const projects: Project[] = [
     name: 'Mp4 to Mp3-Converter',
     started_at: 'Aug 2018',
     finished_at: 'Sep 2018',
-    description: 'Batch mp4 file to mp3 converter.',
+    description:
+      'Python-based MP4 to MP3 converter with a simple PyQt5 GUI. Uses FFmpeg to batch-convert video files to MP3, supports source/destination selection, automatic file listing, and basic filename handling for special characters. Designed for quick local audio extraction from MP4 files.',
     technologies: [python, pyqt5, ffmpeg],
     icon_url: '',
     type: PROJECT_TYPE.OTHERS,
@@ -226,17 +240,17 @@ export const projects: Project[] = [
     type: PROJECT_TYPE.SYSTEM,
     exclude_in_cv: true,
   },
-  {
-    name: 'Reflex',
-    started_at: 'Oct 2017',
-    finished_at: 'Nov 2017',
-    description:
-      'A simple yet challenging mobile game that gets harder as you level up.',
-    technologies: [java, android],
-    icon_url: '',
-    type: PROJECT_TYPE.MOBILE,
-    exclude_in_cv: true,
-  },
+  // {
+  //   name: 'Reflex',
+  //   started_at: 'Oct 2017',
+  //   finished_at: 'Nov 2017',
+  //   description:
+  //     'A simple yet challenging mobile game that gets harder as you level up.',
+  //   technologies: [java, android],
+  //   icon_url: '',
+  //   type: PROJECT_TYPE.MOBILE,
+  //   exclude_in_cv: true,
+  // },
   {
     name: 'Workout Generator & Nutrition Calculator',
     started_at: 'Jun 2017',
@@ -248,15 +262,15 @@ export const projects: Project[] = [
     type: PROJECT_TYPE.MOBILE,
     exclude_in_cv: true,
   },
-  {
-    name: 'Workout Program Generator',
-    started_at: 'Apr 2017',
-    finished_at: 'Apr 2017',
-    description:
-      'Simple project developed for a course using Java. It generates workouts for users whether the user is a beginner, intermediate, and advanced. Users can choose whether they want to only use bodyweight, weights, or mixed.',
-    technologies: [java],
-    icon_url: '',
-    type: PROJECT_TYPE.SYSTEM,
-    exclude_in_cv: true,
-  },
+  // {
+  //   name: 'Workout Program Generator',
+  //   started_at: 'Apr 2017',
+  //   finished_at: 'Apr 2017',
+  //   description:
+  //     'Simple project developed for a course using Java. It generates workouts for users whether the user is a beginner, intermediate, and advanced. Users can choose whether they want to only use bodyweight, weights, or mixed.',
+  //   technologies: [java],
+  //   icon_url: '',
+  //   type: PROJECT_TYPE.SYSTEM,
+  //   exclude_in_cv: true,
+  // },
 ];

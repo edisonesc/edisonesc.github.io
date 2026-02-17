@@ -96,6 +96,39 @@
       applications and UI design, eager to learn and increase my knowledge.
     </p>
   </div> -->
+  <div class="section hidden experiences-section section-scrollable">
+    <div class="experiences-section-content">
+      <h2 class="section-title">Experiences</h2>
+      <div class="experiences-timeline">
+        <app-timeline-item [experiences]="experiences"></app-timeline-item>
+      </div>
+    </div>
+  </div>
+
+  <div class="section hidden projects-section">
+    <div class="projects-section-content">
+      <h2 class="section-title">Projects</h2>
+      <div class="projects-grid">
+        <div
+          class="projects-container"
+          [ngClass]="{
+            fullView: isProjectSectionOnFull,
+            collapsed: !isProjectSectionOnFull,
+          }"
+        >
+          <app-project-item
+            *ngFor="let project of getDisplayedProject()"
+            [project]="project"
+          ></app-project-item>
+        </div>
+      </div>
+      <div class="projects-actions">
+        <button (click)="toggleProjectSection()" class="projects-toggle-btn">
+          {{ isProjectSectionOnFull ? "Show Less" : "View All Projects" }}
+        </button>
+      </div>
+    </div>
+  </div>
 
   <div class="section hidden tech-section section-scrollable">
     <div class="tech-section-content">
@@ -136,40 +169,6 @@
             </ng-container>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section hidden projects-section">
-    <div class="projects-section-content">
-      <h2 class="section-title">Projects</h2>
-      <div class="projects-grid">
-        <div
-          class="projects-container"
-          [ngClass]="{
-            fullView: isProjectSectionOnFull,
-            collapsed: !isProjectSectionOnFull
-          }"
-        >
-          <app-project-item
-            *ngFor="let project of getDisplayedProject()"
-            [project]="project"
-          ></app-project-item>
-        </div>
-      </div>
-      <div class="projects-actions">
-        <button (click)="toggleProjectSection()" class="projects-toggle-btn">
-          {{ isProjectSectionOnFull ? "Show Less" : "View All Projects" }}
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="section hidden experiences-section section-scrollable">
-    <div class="experiences-section-content">
-      <h2 class="section-title">Experiences</h2>
-      <div class="experiences-timeline">
-        <app-timeline-item [experiences]="experiences"></app-timeline-item>
       </div>
     </div>
   </div>
