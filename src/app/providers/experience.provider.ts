@@ -213,7 +213,7 @@ export const experiences: Experience[] = [
       'Designed and implemented an Augmented Reality mobile application using Unity and Vuforia (C#), rendering 3D objects, text, and video content triggered by image recognition.',
       'Engineered reusable frontend components and refactored legacy code to improve maintainability and reduce feature implementation time.',
       'Managed full mobile release lifecycle — application signing, build generation, and deployment to Google Play, TestFlight, and Apple App Store.',
-      'Developed backend features using NestJS, supporting REST API integrations and enabling end-to-end feature delivery.',
+      'Developed backend features using NestJS and NodeJS, supporting REST API integrations and enabling end-to-end feature delivery.',
     ],
   },
   {
