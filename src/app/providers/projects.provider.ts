@@ -41,6 +41,7 @@ import {
   githubPages,
   aws,
   docker,
+  nodejs,
 } from './technologies.provider';
 import { PROJECT_TYPE } from '../enums/project-type.enum';
 
@@ -73,11 +74,11 @@ export const projects: Project[] = [
     finished_at: 'Feb 2026',
     description:
       'A scalable and production-ready NestJS boilerplate designed for clean architecture and rapid backend development. Includes structured domain modules, JWT authentication (access + refresh), TypeORM integration, environment-based configuration, and migration support.',
-    technologies: [nestjs, typeorm, mysql, jwt, docker],
+    technologies: [nestjs, nodejs, typeorm, mysql, jwt, docker],
     icon_url: 'assets/images/projects/NestJS.jpg',
     project_url: '',
     type: PROJECT_TYPE.SYSTEM,
-    exclude_in_cv: true,
+    // exclude_in_cv: false,
   },
   {
     name: 'Expense Tracker Integration',
@@ -137,11 +138,20 @@ export const projects: Project[] = [
     started_at: 'Jan 2021',
     finished_at: 'Feb 2021',
     description:
-      "Implemented all Sammy's offline features to an API. Also served as playground for backend development.",
-    technologies: [nestjs, redis, jwt, typeorm, mysql, typescript, momentjs],
+      'Designed and developed a NestJS-based API that encapsulated all of Sammy’s offline features and handling synchronization flows',
+    technologies: [
+      nestjs,
+      nodejs,
+      redis,
+      jwt,
+      typeorm,
+      mysql,
+      typescript,
+      momentjs,
+    ],
     icon_url: '',
     type: PROJECT_TYPE.SYSTEM,
-    exclude_in_cv: true,
+    // exclude_in_cv: true,
   },
   {
     name: 'Sammy',

@@ -36,6 +36,7 @@ export const typeorm: Technology = {
   type: 'FRAMEWORK',
   group: 'BACKEND',
   sub_group: TECHNOLOGY_SUBTYPE.DATABASE,
+  is_user_core: true,
 };
 
 export const mysql: Technology = {
@@ -460,6 +461,15 @@ export const webSocket: Technology = {
   group: 'BACKEND',
 };
 
+export const nodejs: Technology = {
+  name: 'Node.js',
+  url: 'https://nodejs.org/',
+  icon_url: 'https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg',
+  type: 'TOOL',
+  group: 'BACKEND',
+  is_user_core: true,
+};
+
 export const template: Technology = {
   name: '',
   url: '',
@@ -489,6 +499,7 @@ export const FRONTEND_TECHNOLOGIES: Technology[] = [
 ];
 
 export const BACKEND_TECHNOLOGIES: Technology[] = [
+  nodejs,
   nestjs,
   typeorm,
   mysql,
