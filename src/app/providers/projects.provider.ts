@@ -73,7 +73,7 @@ export const projects: Project[] = [
     started_at: 'Feb 2026',
     finished_at: 'Feb 2026',
     description:
-      'A scalable and production-ready NestJS boilerplate designed for clean architecture and rapid backend development. Includes structured domain modules, JWT authentication (access + refresh), TypeORM integration, environment-based configuration, and migration support.',
+      'A scalable and production-ready NodeJS and NestJS boilerplate designed for clean architecture and rapid backend development. Includes structured domain modules, JWT authentication (access + refresh), TypeORM integration, environment-based configuration, and migration support.',
     technologies: [nestjs, nodejs, typeorm, mysql, jwt, docker],
     icon_url: 'assets/images/projects/NestJS.jpg',
     project_url: '',
@@ -138,7 +138,7 @@ export const projects: Project[] = [
     started_at: 'Jan 2021',
     finished_at: 'Feb 2021',
     description:
-      'Designed and developed a NestJS-based API that encapsulated all of Sammy’s offline features and handling synchronization flows',
+      'Designed and developed a NodeJS and NestJS-based API that encapsulated all of Sammy’s offline features and handling synchronization flows',
     technologies: [
       nestjs,
       nodejs,
