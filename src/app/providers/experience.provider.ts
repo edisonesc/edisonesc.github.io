@@ -204,7 +204,7 @@ export const experiences: Experience[] = [
       'Developed web and mobile applications using Angular and Ionic, delivering incident management and wallet platforms across Android and iOS.',
       'Built and deployed cross-platform mobile applications to Google Play and Apple App Store, managing signing, release generation, and store provisioning.',
       'Engineered reusable frontend components to improve maintainability and accelerate feature delivery.',
-      'Developed backend features using NestJS to support end-to-end application functionality.',
+      'Developed backend features using NestJS and NodeJS to support end-to-end application functionality.',
       'Built an Augmented Reality mobile application using Unity and Vuforia, rendering 3D objects and media triggered by image recognition.',
     ],
     responsibilities: [
