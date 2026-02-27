@@ -69,11 +69,11 @@ export const projects: Project[] = [
     exclude_in_cv: true,
   },
   {
-    name: 'NestJS Boilerplate',
+    name: 'Modular Service Architecture (NestJS + TypeORM)',
     started_at: 'Feb 2026',
     finished_at: 'Feb 2026',
     description:
-      'A scalable and production-ready NodeJS and NestJS boilerplate designed for clean architecture and rapid backend development. Includes structured domain modules, JWT authentication (access + refresh), TypeORM integration, environment-based configuration, and migration support.',
+      'Designed a modular NestJS backend reference architecture to standardize service development with role-based access control, JWT access/refresh token strategy, migration-driven schema management, and environment-aware configuration. Structured around domain modules to support scalable feature expansion and maintainable service boundaries.',
     technologies: [nestjs, nodejs, typeorm, mysql, jwt, docker],
     icon_url: 'assets/images/projects/NestJS.jpg',
     project_url: '',
