@@ -145,9 +145,6 @@ ul {
   flex-direction: column;
 }
 
-.introduction {
-  // Removed filter since we're using light background now
-}
 
 .introduction-container {
   display: flex;
@@ -545,25 +542,6 @@ ul {
   }
 }
 
-.projects {
-  padding: 0 24px;
-  app-project-item {
-    margin: 15px 0;
-  }
-}
-
-.projects-row {
-  padding: 0 5vw;
-}
-
-.other-informations {
-  padding: 0 24px;
-  margin-bottom: 24px;
-  min-height: 300px;
-  p {
-    margin: 0;
-  }
-}
 
 .tech-section {
   min-height: auto;
@@ -718,118 +696,11 @@ ul {
   }
 }
 
-.most-used-projects-container {
-  display: flex;
-  flex-direction: row;
-  padding: 16px 60px;
-  width: fit-content;
-  margin: 0;
-  flex-wrap: wrap;
-  .item {
-    border: 0;
-    box-shadow: 0 0 8px #ececec59;
-
-    margin: 12px;
-    min-width: 100px;
-    min-height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 0;
-    img {
-      height: 50px;
-      width: 50px;
-      margin-top: 16px;
-      object-fit: cover;
-      border-radius: 25%;
-    }
-    p {
-      padding: 8px;
-      padding-bottom: 0;
-      font-weight: 200;
-      font-size: 0.875rem;
-    }
-  }
-
-  .item {
-    transition: transform 0.2s;
-  }
-
-  .item:hover {
-    cursor: pointer;
-    transform: scale(1.05);
-    border: 0;
-    box-shadow: 0 0 16px #80808059;
-  }
-}
-
-@media only screen and (max-width: 1024px) {
-  .projects-row {
-    padding: 0 !important;
-  }
-  .contact-me-container {
-    width: 100% !important;
-    border: 0;
-    button {
-      width: 100% !important;
-    }
-  }
-}
 
 hr {
   background: var(--color-bg-secondary);
 }
 
-$animation-delay: 0.1s;
-$arrow-size: 18px;
-
-.scroll-down {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-
-  bottom: 5%;
-  .scroll-arrow {
-    width: $arrow-size;
-    height: $arrow-size;
-    transform: rotate(45deg);
-    border-right: 2px solid white;
-    border-bottom: 2px solid white;
-    animation: arrow-wave 1s infinite;
-    animation-direction: alternate;
-    @for $i from 1 through 3 {
-      &:nth-child(#{$i}) {
-        animation-delay: $animation-delay * $i;
-      }
-    }
-  }
-
-  @keyframes arrow-wave {
-    0% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 0.5;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-}
-
-// iphone se
-
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-  .most-used-projects-container {
-    .item {
-      margin: 8px;
-      img {
-        height: 30px;
-        width: 30px;
-      }
-    }
-  }
-}
 
 .experiences-section {
   min-height: auto;
@@ -864,7 +735,7 @@ $arrow-size: 18px;
   }
 }
 
-.other-informations-section, .projects-section, .mut {
+.projects-section {
   min-height: 200px !important;
 }
 
@@ -1011,84 +882,6 @@ $arrow-size: 18px;
   }
 }
 
-.contact-me-section {
-  min-height: unset;
-  .contact-me-container {
-    display: flex;
-    flex-direction: column;
-    padding: 16px;
-    width: 70%;
-    margin: auto;
-    border-radius: 0;
-
-    button {
-      margin-top: 16px;
-      width: fit-content;
-      margin-left: auto;
-      padding: 8px 30px;
-    }
-
-    input,
-    textarea {
-      margin-bottom: 16px;
-    }
-  }
-}
-
-.button-container {
-  box-shadow: 0 3px 10px rgb(0 0 0 / 4%);
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-
-.button {
-  padding: 6px 12px;
-  float: right;
-  border: 0;
-  color: #2196f3;
-  background: transparent;
-  font-weight: 500;
-}
-
-.projects-section {
-  position: relative
-}
-
-#technology-icon-alt {
-  background: transparent;
-
-  width: 42px;
-  height: 42px;
-  margin: 8px;
-  border-radius: 50%;
-  border: 1px solid #1c1c1c;
-  display: flex;
-  justify-content: center;
-  p {
-    margin: auto;
-    font-weight: bold;
-    font-size: 1rem;
-    color: #1c1c1c;
-    padding: 0;
-  }
-}
-
-.dl-button {
-  margin-top: 24px;
-  margin-left: 5px;
-  margin-right: 5px;
-  img, svg {
-    height: 26px;
-    width: 26px;
-  }
-  span {
-    color: #dddddd;
-    margin-right: 6px;
-   }
-
-   border: 1px solid #dddddd;
-}
 
 
 .spinner {
@@ -1136,12 +929,6 @@ $arrow-size: 18px;
   filter: blur(50px) opacity(0.5);
 }
 
-.hidden {
-  // opacity: 0;
-  // transition: all 1s cubic-bezier(0.215, 0.610, 0.355, 1);
-  // filter: blur(3px);
-  // transform: translateX(-100%);
-}
 
 .show {
   opacity: 1;
