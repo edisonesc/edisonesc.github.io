@@ -29,6 +29,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   isLoading: boolean = false;
+  isDark: boolean = false;
 
   user: User = user;
   projects: Project[] = projects;
@@ -71,8 +72,34 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.initScrollAnimation();
+    this.initTheme();
     // localStorage approach
     this.initSaveContent();
+  }
+
+  initTheme() {
+    const saved = localStorage.getItem('theme');
+    if (saved) {
+      this.isDark = saved === 'dark';
+    } else {
+      this.isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+    this.applyTheme();
+  }
+
+  toggleTheme() {
+    this.isDark = !this.isDark;
+    document.body.classList.add('theme-transition');
+    this.applyTheme();
+    localStorage.setItem('theme', this.isDark ? 'dark' : 'light');
+    setTimeout(() => document.body.classList.remove('theme-transition'), 300);
+  }
+
+  private applyTheme() {
+    document.documentElement.setAttribute(
+      'data-theme',
+      this.isDark ? 'dark' : 'light',
+    );
   }
 
   initSaveContent() {

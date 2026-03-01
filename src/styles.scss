@@ -4,3 +4,219 @@
 // @import '~bootstrap/scss/bootstrap';
 @import '../node_modules/bootstrap/scss/bootstrap';
 
+// ===========================
+// CSS Custom Properties (Theming)
+// ===========================
+
+:root {
+  // --- Backgrounds ---
+  --color-bg-primary: #fafafa;
+  --color-bg-secondary: #ffffff;
+  --color-bg-elevated: #f5f5f5;
+  --color-section-alt-bg: rgba(0, 0, 0, 0.031);
+
+  // --- Text ---
+  --color-text-primary: #222222;
+  --color-text-secondary: #333333;
+  --color-text-tertiary: #666666;
+  --color-text-muted: #888888;
+  --color-text-subtle: #999999;
+  --color-text-faint: #bbbbbb;
+  --color-text-placeholder: #cccccc;
+
+  // --- Borders ---
+  --color-border-strong: #cccccc;
+  --color-border-medium: #e0e0e0;
+  --color-border-subtle: #f0f0f0;
+  --color-border-interactive: rgba(0, 0, 0, 0.15);
+  --color-border-interactive-hover: rgba(0, 0, 0, 0.3);
+
+  // --- Buttons ---
+  --color-btn-bg: #333333;
+  --color-btn-hover: #000000;
+  --color-btn-text: #ffffff;
+
+  // --- Interactions ---
+  --color-hover-subtle: rgba(0, 0, 0, 0.02);
+  --color-social-filter: invert(1);
+  --color-social-hover-bg: rgba(0, 0, 0, 0.04);
+
+  // --- Patterns ---
+  --color-accent-dot: rgba(0, 0, 0, 0.108);
+  --color-grid-line: rgba(0, 0, 0, 0.025);
+  --color-scatter-dot: rgba(0, 0, 0, 0.0015);
+  --color-footer-dot: rgba(0, 0, 0, 0.03);
+
+  // --- Tooltips ---
+  --color-tooltip-bg: #222222;
+  --color-tooltip-text: #ffffff;
+
+  // --- Spinner ---
+  --color-spinner: hsl(0, 0%, 13%);
+
+  // --- Project cards ---
+  --color-project-card-bg: #ffffff;
+  --color-project-icon-alt-bg: #f5f5f5;
+  --color-project-name: #333333;
+  --color-project-name-hover: #000000;
+  --color-project-tech-link-bg: #fafafa;
+  --color-project-tech-link-border: #f0f0f0;
+  --color-project-tech-link-hover-bg: #ffffff;
+  --color-project-tech-link-hover-border: #e0e0e0;
+
+  // --- Architecture highlight (injected at runtime) ---
+  --arch-highlight-bg: rgba(243, 244, 246, 1);
+  --arch-highlight-outline: rgba(75, 85, 99, 0.17);
+  --arch-highlight-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  // --- Architecture panel ---
+  --color-arch-bg: #ffffff;
+  --color-arch-surface: #f8fafc;
+  --color-arch-border: #e5e7eb;
+  --color-arch-border-subtle: #f1f5f9;
+  --color-arch-text-primary: #1e293b;
+  --color-arch-text-secondary: #334155;
+  --color-arch-text-tertiary: #64748b;
+  --color-arch-text-muted: #94a3b8;
+  --color-arch-scrollbar: #d1d5db;
+  --color-arch-scrollbar-hover: #9ca3af;
+  --color-arch-toggle-bg: #ffffff;
+  --color-arch-toggle-text: #64748b;
+  --color-arch-toggle-border: #e2e8f0;
+  --color-arch-toggle-hover-border: #cbd5e1;
+  --color-arch-toggle-hover-text: #475569;
+  --color-arch-toggle-active-bg: #222222;
+  --color-arch-toggle-active-text: #ffffff;
+  --color-arch-toggle-icon: #222222;
+  --color-arch-close-hover-bg: #f1f5f9;
+  --color-arch-close-hover-text: #475569;
+  --color-arch-badge-bg: #eef2ff;
+  --color-arch-badge-text: #222222;
+  --color-arch-step-bg: #ffffff;
+  --color-arch-step-hover: #f8fafc;
+  --color-arch-step-border: #f1f5f9;
+  --color-arch-step-index-bg: #eef2ff;
+  --color-arch-step-index-text: #222222;
+  --color-arch-step-label: #222222;
+  --color-arch-step-arrow: #e2e8f0;
+  --color-arch-data-border-left: #222222;
+  --color-arch-json-toggle-color: #222222;
+  --color-arch-json-toggle-border: #e0e7ff;
+  --color-arch-json-toggle-hover-bg: #eef2ff;
+  --color-arch-json-toggle-hover-border: #c7d2fe;
+}
+
+[data-theme="dark"] {
+  // --- Backgrounds ---
+  --color-bg-primary: #000000;
+  --color-bg-secondary: #050505;
+  --color-bg-elevated: #0f0f0f;
+  --color-section-alt-bg: #080808;
+
+  // --- Text ---
+  --color-text-primary: #f2f2f2;
+  --color-text-secondary: #e0e0e0;
+  --color-text-tertiary: #a8a8a8;
+  --color-text-muted: #808080;
+  --color-text-subtle: #606060;
+  --color-text-faint: #404040;
+  --color-text-placeholder: #383838;
+
+  // --- Borders ---
+  --color-border-strong: #505050;
+  --color-border-medium: #2e2e2e;
+  --color-border-subtle: #1e1e1e;
+  --color-border-interactive: rgba(255, 255, 255, 0.18);
+  --color-border-interactive-hover: rgba(255, 255, 255, 0.38);
+
+  // --- Buttons ---
+  --color-btn-bg: #f0f0f0;
+  --color-btn-hover: #ffffff;
+  --color-btn-text: #0d0d0d;
+
+  // --- Interactions ---
+  --color-hover-subtle: rgba(255, 255, 255, 0.07);
+  --color-social-filter: invert(0);
+  --color-social-hover-bg: rgba(255, 255, 255, 0.1);
+
+  // --- Patterns ---
+  --color-accent-dot: rgba(255, 255, 255, 0.09);
+  --color-grid-line: rgba(255, 255, 255, 0.04);
+  --color-scatter-dot: rgba(255, 255, 255, 0.015);
+  --color-footer-dot: rgba(255, 255, 255, 0.04);
+
+  // --- Tooltips ---
+  --color-tooltip-bg: #f0f0f0;
+  --color-tooltip-text: #0d0d0d;
+
+  // --- Spinner ---
+  --color-spinner: hsl(0, 0%, 90%);
+
+  // --- Project cards ---
+  --color-project-card-bg: #0d0d0d;
+  --color-project-icon-alt-bg: #181818;
+  --color-project-name: #e8e8e8;
+  --color-project-name-hover: #ffffff;
+  --color-project-tech-link-bg: #141414;
+  --color-project-tech-link-border: #262626;
+  --color-project-tech-link-hover-bg: #1c1c1c;
+  --color-project-tech-link-hover-border: #363636;
+
+  // --- Architecture highlight (injected at runtime) ---
+  --arch-highlight-bg: rgba(255, 255, 255, 0.07);
+  --arch-highlight-outline: rgba(255, 255, 255, 0.14);
+  --arch-highlight-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+
+  // --- Architecture panel ---
+  --color-arch-bg: #050505;
+  --color-arch-surface: #0f0f0f;
+  --color-arch-border: #2c2c2c;
+  --color-arch-border-subtle: #181818;
+  --color-arch-text-primary: #f0f0f0;
+  --color-arch-text-secondary: #d4dce8;
+  --color-arch-text-tertiary: #94a3b8;
+  --color-arch-text-muted: #64748b;
+  --color-arch-scrollbar: #333333;
+  --color-arch-scrollbar-hover: #505050;
+  --color-arch-toggle-bg: #0f0f0f;
+  --color-arch-toggle-text: #888888;
+  --color-arch-toggle-border: #222222;
+  --color-arch-toggle-hover-border: #383838;
+  --color-arch-toggle-hover-text: #aaaaaa;
+  --color-arch-toggle-active-bg: #f0f0f0;
+  --color-arch-toggle-active-text: #0d0d0d;
+  --color-arch-toggle-icon: #bbbbbb;
+  --color-arch-close-hover-bg: #1e1e1e;
+  --color-arch-close-hover-text: #aaaaaa;
+  --color-arch-badge-bg: #182030;
+  --color-arch-badge-text: #8fa8c8;
+  --color-arch-step-bg: #0f0f0f;
+  --color-arch-step-hover: #151515;
+  --color-arch-step-border: #1c1c1c;
+  --color-arch-step-index-bg: #182030;
+  --color-arch-step-index-text: #8fa8c8;
+  --color-arch-step-label: #d0d0d0;
+  --color-arch-step-arrow: #252525;
+  --color-arch-data-border-left: #c0c0c0;
+  --color-arch-json-toggle-color: #b0b0b0;
+  --color-arch-json-toggle-border: #252535;
+  --color-arch-json-toggle-hover-bg: #182030;
+  --color-arch-json-toggle-hover-border: #253050;
+}
+
+// ===========================
+// Global base
+// ===========================
+
+body {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-secondary);
+}
+
+// Smooth color transitions during theme switch
+body.theme-transition,
+body.theme-transition * {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease, box-shadow 0.3s ease, fill 0.3s ease,
+    stroke 0.3s ease !important;
+}

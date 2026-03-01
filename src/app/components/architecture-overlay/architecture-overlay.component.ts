@@ -195,23 +195,20 @@ export class ArchitectureOverlayComponent implements OnInit, OnDestroy {
         position: relative !important;
         z-index: 10 !important;
 
-        /* Neutral Deep Gray Outline */
-        outline: 2px solid rgb(75 85 99 / 17%) !important; 
+        /* Outline and shadow respect current theme via CSS variables */
+        outline: 2px solid var(--arch-highlight-outline) !important;
         outline-offset: -2px !important;
-
-        /* Subtle Lift Shadow - Neutral Gray */
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
-
-        /* Light Gray Background (Off-white but distinct) */
-        background-color: rgba(243, 244, 246, 1) !important;
+        box-shadow: var(--arch-highlight-shadow) !important;
+        background-color: var(--arch-highlight-bg) !important;
 
         /* Minimal Zoom */
         transform: scale(1.01) !important;
         will-change: transform;
 
-        transition: 
-          outline-color 0.2s ease, 
-          background-color 0.2s ease, 
+        transition:
+          outline-color 0.2s ease,
+          box-shadow 0.2s ease,
+          background-color 0.2s ease,
           transform 0.15s ease-out !important;
       }
 

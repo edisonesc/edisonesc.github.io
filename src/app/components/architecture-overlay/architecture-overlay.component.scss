@@ -10,9 +10,9 @@
   align-items: center;
   gap: 7px;
   padding: 8px 16px;
-  background: #fff;
-  color: #64748b;
-  border: 1px solid #e2e8f0;
+  background: var(--color-arch-toggle-bg);
+  color: var(--color-arch-toggle-text);
+  border: 1px solid var(--color-arch-toggle-border);
   border-radius: 8px;
   font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
   font-size: 0.7rem;
@@ -22,16 +22,16 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
 
   &:hover {
-    border-color: #cbd5e1;
-    color: #475569;
+    border-color: var(--color-arch-toggle-hover-border);
+    color: var(--color-arch-toggle-hover-text);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     transform: translateY(-1px);
   }
 
   &.active {
-    background: #222;
-    border-color: #222;
-    color: #fff;
+    background: var(--color-arch-toggle-active-bg);
+    border-color: var(--color-arch-toggle-active-bg);
+    color: var(--color-arch-toggle-active-text);
     box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
   }
 }
@@ -40,11 +40,12 @@
   font-size: 0.8rem;
   font-weight: 600;
   font-family: 'SF Mono', 'Fira Code', Consolas, monospace;
-  color: #222;
+  color: var(--color-arch-toggle-icon);
   transition: color 0.2s;
 
   .arch-toggle-btn.active & {
-    color: #e0e7ff;
+    color: var(--color-arch-toggle-active-text);
+    opacity: 0.8;
   }
 }
 
@@ -64,9 +65,9 @@
   width: 380px;
   height: 100vh;
   z-index: 9999;
-  background: #ffffff;
-  color: #334155;
-  border-left: 1px solid #e5e7eb;
+  background: var(--color-arch-bg);
+  color: var(--color-arch-text-secondary);
+  border-left: 1px solid var(--color-arch-border);
   font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
   font-size: 0.8125rem;
   overflow-y: auto;
@@ -84,11 +85,11 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #d1d5db;
+    background: var(--color-arch-scrollbar);
     border-radius: 4px;
 
     &:hover {
-      background: #9ca3af;
+      background: var(--color-arch-scrollbar-hover);
     }
   }
 }
@@ -109,8 +110,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 14px 20px;
-  border-bottom: 1px solid #f1f5f9;
-  background: #fff;
+  border-bottom: 1px solid var(--color-arch-border-subtle);
+  background: var(--color-arch-bg);
   position: sticky;
   top: 0;
   z-index: 1;
@@ -127,8 +128,8 @@
   font-size: 0.5rem;
   font-weight: 700;
   letter-spacing: 0.12em;
-  color: #222;
-  background: #eef2ff;
+  color: var(--color-arch-badge-text);
+  background: var(--color-arch-badge-bg);
   padding: 2px 6px;
   border-radius: 4px;
   flex-shrink: 0;
@@ -138,7 +139,7 @@
   margin: 0;
   font-size: 0.8rem;
   font-weight: 600;
-  color: #1e293b;
+  color: var(--color-arch-text-primary);
   letter-spacing: -0.01em;
   white-space: nowrap;
   overflow: hidden;
@@ -149,7 +150,7 @@
     transition: color 0.2s;
 
     &:hover {
-      color: #222;
+      color: var(--color-arch-step-label);
     }
   }
 }
@@ -157,7 +158,7 @@
 .arch-panel-close {
   background: transparent;
   border: none;
-  color: #94a3b8;
+  color: var(--color-arch-text-muted);
   width: 28px;
   height: 28px;
   display: flex;
@@ -169,8 +170,8 @@
   transition: all 0.15s ease;
 
   &:hover {
-    color: #475569;
-    background: #f1f5f9;
+    color: var(--color-arch-close-hover-text);
+    background: var(--color-arch-close-hover-bg);
   }
 }
 
@@ -182,7 +183,7 @@
 .arch-panel-empty {
   padding: 60px 20px;
   text-align: center;
-  color: #94a3b8;
+  color: var(--color-arch-text-muted);
   font-size: 0.8125rem;
 }
 
@@ -192,7 +193,7 @@
 .arch-section {
   margin-bottom: 24px;
   padding-bottom: 24px;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--color-arch-border-subtle);
 
   &:last-child {
     border-bottom: none;
@@ -204,7 +205,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #94a3b8;
+  color: var(--color-arch-text-muted);
   margin: 0 0 14px 0;
 }
 
@@ -214,14 +215,14 @@
 .arch-data-source {
   margin-bottom: 12px;
   padding: 12px 14px;
-  background: #f8fafc;
-  border: 1px solid #f1f5f9;
+  background: var(--color-arch-surface);
+  border: 1px solid var(--color-arch-border-subtle);
   border-radius: 8px;
-  border-left: 3px solid #222;
+  border-left: 3px solid var(--color-arch-data-border-left);
 }
 
 .arch-file-ref {
-  color: #222;
+  color: var(--color-arch-step-label);
   margin: 0 0 4px 0;
   font-size: 0.75rem;
   font-weight: 500;
@@ -229,7 +230,7 @@
 }
 
 .arch-export-ref {
-  color: #64748b;
+  color: var(--color-arch-text-tertiary);
   margin: 0;
   font-size: 0.7rem;
   font-family: 'SF Mono', 'Fira Code', Consolas, monospace;
@@ -239,8 +240,8 @@
   margin-top: 10px;
   padding: 5px 12px;
   background: transparent;
-  color: #222;
-  border: 1px solid #e0e7ff;
+  color: var(--color-arch-json-toggle-color);
+  border: 1px solid var(--color-arch-json-toggle-border);
   border-radius: 6px;
   cursor: pointer;
   font-family: inherit;
@@ -249,18 +250,18 @@
   transition: all 0.15s;
 
   &:hover {
-    background: #eef2ff;
-    border-color: #c7d2fe;
+    background: var(--color-arch-json-toggle-hover-bg);
+    border-color: var(--color-arch-json-toggle-hover-border);
   }
 }
 
 .arch-json {
   margin-top: 10px;
   padding: 14px;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background: var(--color-arch-surface);
+  border: 1px solid var(--color-arch-border);
   border-radius: 8px;
-  color: #334155;
+  color: var(--color-arch-text-secondary);
   font-family: 'SF Mono', 'Fira Code', Consolas, monospace;
   font-size: 0.6875rem;
   line-height: 1.6;
@@ -289,16 +290,16 @@
   display: flex;
   flex-direction: column;
   padding: 10px 14px;
-  background: #fff;
-  border: 1px solid #f1f5f9;
+  background: var(--color-arch-step-bg);
+  border: 1px solid var(--color-arch-step-border);
   border-radius: 8px;
   width: 100%;
   text-align: left;
   transition: all 0.15s ease;
 
   &:hover {
-    background: #f8fafc;
-    border-color: #e2e8f0;
+    background: var(--color-arch-step-hover);
+    border-color: var(--color-arch-border);
   }
 }
 
@@ -312,13 +313,13 @@
 .arch-step-index {
   font-size: 0.5rem;
   font-weight: 600;
-  color: #222;
+  color: var(--color-arch-step-index-text);
   width: 16px;
   height: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #eef2ff;
+  background: var(--color-arch-step-index-bg);
   border-radius: 50%;
   flex-shrink: 0;
 }
@@ -328,12 +329,12 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #222;
+  color: var(--color-arch-step-label);
 }
 
 .arch-step-detail {
   font-size: 0.6875rem;
-  color: #64748b;
+  color: var(--color-arch-text-tertiary);
   line-height: 1.4;
   padding-left: 24px;
 }
@@ -350,7 +351,7 @@
     display: block;
     width: 1px;
     height: 10px;
-    background: #e2e8f0;
+    background: var(--color-arch-step-arrow);
   }
 }
 
@@ -359,10 +360,10 @@
 // ============================
 .arch-source-snippet {
   padding: 14px;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background: var(--color-arch-surface);
+  border: 1px solid var(--color-arch-border);
   border-radius: 8px;
-  color: #334155;
+  color: var(--color-arch-text-secondary);
   font-family: 'SF Mono', 'Fira Code', Consolas, monospace;
   font-size: 0.6875rem;
   line-height: 1.7;
@@ -382,7 +383,7 @@
     top: auto;
     bottom: 0;
     border-left: none;
-    border-top: 1px solid #e5e7eb;
+    border-top: 1px solid var(--color-arch-border);
     animation: arch-slide-up 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
