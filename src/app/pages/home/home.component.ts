@@ -30,6 +30,7 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   isLoading: boolean = false;
   isDark: boolean = false;
+  currentYear = new Date().getFullYear();
 
   user: User = user;
   projects: Project[] = projects;
@@ -174,6 +175,10 @@ export class HomeComponent implements OnInit {
         this.isLoading = false;
       },
     );
+  }
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   viewCV() {
