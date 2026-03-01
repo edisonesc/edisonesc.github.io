@@ -2,111 +2,112 @@
   <div class="timeline-grid">
     <ng-container *ngFor="let item of experiences">
       <div class="timeline-col" *ngIf="item?.length > 0">
-        <h3 class="timeline-header">
-          {{ item[0]?.type !== "EDUCATION" ? "WORK" : item[0]?.type }}
+        <h3 class="timeline-col-label">
+          {{ item[0]?.type !== "EDUCATION" ? "Work" : "Education" }}
         </h3>
-        <div class="timeline-item" *ngFor="let experience of item">
-          <div class="timeline-content">
-            <h4 class="timeline-position">
-              {{ experience?.position }} - {{ experience?.title }}
-            </h4>
-            <p class="timeline-location">{{ experience?.location }}</p>
+        <div class="timeline-track">
+          <div class="timeline-entry" *ngFor="let experience of item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-entry-body">
 
-            <app-timeline-range
-              [started_at]="experience?.started_at"
-              [finished_at]="experience?.finished_at"
-            ></app-timeline-range>
-
-            <div class="timeline-details">
-              <div [ngSwitch]="experience.type">
-                <div *ngSwitchCase="'OUTSOURCING'">
-                  <ng-container
-                    *ngTemplateOutlet="multiProjects"
-                  ></ng-container>
+              <div class="timeline-entry-header">
+                <div class="timeline-title-row">
+                  <h4 class="timeline-company">{{ experience?.title }}</h4>
+                  <span class="timeline-badge type-{{ experience.type?.toLowerCase() }}">
+                    {{ getTypeLabel(experience.type) }}
+                  </span>
                 </div>
-                <div *ngSwitchCase="'DIRECT_MULTI'">
-                  <ng-container
-                    *ngTemplateOutlet="multiProjects"
-                  ></ng-container>
-                </div>
+                <p class="timeline-role">{{ experience?.position }}</p>
+                <p class="timeline-location" *ngIf="experience?.location">
+                  {{ experience?.location }}
+                </p>
+                <app-timeline-range
+                  [started_at]="experience?.started_at"
+                  [finished_at]="experience?.finished_at"
+                ></app-timeline-range>
+              </div>
 
-                <div *ngSwitchDefault class="timeline-description">
+              <div class="timeline-entry-content">
+                <div [ngSwitch]="experience.type">
+                  <div *ngSwitchCase="'OUTSOURCING'">
+                    <ng-container *ngTemplateOutlet="multiProjects"></ng-container>
+                  </div>
+                  <div *ngSwitchCase="'DIRECT_MULTI'">
+                    <ng-container *ngTemplateOutlet="multiProjects"></ng-container>
+                  </div>
+                  <div *ngSwitchDefault class="timeline-description">
+                    <div
+                      class="responsibility-collapse-wrapper"
+                      [ngClass]="{
+                        collapsed:
+                          !isExpanded(experience.title) &&
+                          shouldShowToggle(experience.responsibilities)
+                      }"
+                    >
+                      <ul class="responsibility-list">
+                        <li *ngFor="let responsibility of experience?.responsibilities">
+                          {{ responsibility }}
+                        </li>
+                      </ul>
+                    </div>
+                    <button
+                      *ngIf="shouldShowToggle(experience.responsibilities)"
+                      class="responsibilities-toggle"
+                      [ngClass]="{ expanded: isExpanded(experience.title) }"
+                      (click)="toggleExpanded(experience.title)"
+                    >
+                      {{
+                        isExpanded(experience.title)
+                          ? "Show less"
+                          : "View all contributions"
+                      }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <ng-template #multiProjects>
+                <div
+                  *ngFor="let project of experience?.projects"
+                  class="timeline-project"
+                >
+                  <div class="timeline-project-header">
+                    <h5 class="project-name">{{ project.name }}</h5>
+                    <app-timeline-range
+                      [started_at]="project?.started_at"
+                      [finished_at]="project?.finished_at"
+                    ></app-timeline-range>
+                  </div>
                   <div
                     class="responsibility-collapse-wrapper"
                     [ngClass]="{
                       collapsed:
-                        !isExpanded(experience.title) &&
-                        shouldShowToggle(experience.responsibilities),
+                        !isExpanded(project.name) &&
+                        shouldShowToggle(project.responsibilities)
                     }"
                   >
                     <ul class="responsibility-list">
-                      <li
-                        *ngFor="
-                          let responsibility of experience?.responsibilities
-                        "
-                      >
+                      <li *ngFor="let responsibility of project?.responsibilities">
                         {{ responsibility }}
                       </li>
                     </ul>
                   </div>
                   <button
-                    *ngIf="shouldShowToggle(experience.responsibilities)"
+                    *ngIf="shouldShowToggle(project.responsibilities)"
                     class="responsibilities-toggle"
-                    [ngClass]="{ expanded: isExpanded(experience.title) }"
-                    (click)="toggleExpanded(experience.title)"
+                    [ngClass]="{ expanded: isExpanded(project.name) }"
+                    (click)="toggleExpanded(project.name)"
                   >
                     {{
-                      isExpanded(experience.title)
-                        ? "Hide Key Contributions"
-                        : "View Key Contributions"
+                      isExpanded(project.name) ? "Show less" : "View all contributions"
                     }}
                   </button>
                 </div>
-              </div>
+              </ng-template>
+
             </div>
-            <ng-template #multiProjects>
-              <div
-                *ngFor="let project of experience?.projects"
-                class="timeline-project"
-              >
-                <h5 class="project-name">{{ project.name }}</h5>
-                <app-timeline-range
-                  [started_at]="project?.started_at"
-                  [finished_at]="project?.finished_at"
-                ></app-timeline-range>
-                <div
-                  class="responsibility-collapse-wrapper"
-                  [ngClass]="{
-                    collapsed:
-                      !isExpanded(project.name) &&
-                      shouldShowToggle(project.responsibilities),
-                  }"
-                >
-                  <ul class="responsibility-list">
-                    <li
-                      *ngFor="let responsibility of project?.responsibilities"
-                    >
-                      {{ responsibility }}
-                    </li>
-                  </ul>
-                </div>
-                <button
-                  *ngIf="shouldShowToggle(project.responsibilities)"
-                  class="responsibilities-toggle"
-                  [ngClass]="{ expanded: isExpanded(project.name) }"
-                  (click)="toggleExpanded(project.name)"
-                >
-                  {{
-                    isExpanded(project.name)
-                      ? "Hide Key Contributions"
-                      : "View Key Contributions"
-                  }}
-                </button>
-              </div>
-            </ng-template>
           </div>
         </div>
-        <div class="timeline-end"></div>
       </div>
     </ng-container>
   </div>

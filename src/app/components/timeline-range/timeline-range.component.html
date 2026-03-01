@@ -1,8 +1,8 @@
-<p id="duration">
-  {{ started_at }} -
-  {{ finished_at ? finished_at : "Present" }}
-  <span id="tenure" *ngIf="started_at">
-    <!-- && finished_at != 'Present' -->
-    ({{ getTenureDuration() }})
+<div class="timeline-range">
+  <span class="timeline-range-dates">
+    {{ started_at }} — {{ finished_at ? finished_at : "Present" }}
   </span>
-</p>
+  <span class="timeline-range-duration" *ngIf="started_at && getTenureDuration()">
+    {{ getTenureDuration() }}
+  </span>
+</div>

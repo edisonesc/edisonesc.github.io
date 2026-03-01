@@ -32,4 +32,15 @@ export class TimelineItemComponent implements OnInit {
   shouldShowToggle(responsibilities: string[]): boolean {
     return responsibilities?.length > this.collapsedLimit;
   }
+
+  getTypeLabel(type: string): string {
+    const labels: Record<string, string> = {
+      DIRECT: 'Full-time',
+      INTERN: 'Internship',
+      OUTSOURCING: 'Outsourcing',
+      DIRECT_MULTI: 'Full-time',
+      EDUCATION: 'Education',
+    };
+    return labels[type] || type;
+  }
 }
