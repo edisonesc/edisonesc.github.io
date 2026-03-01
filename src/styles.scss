@@ -51,6 +51,9 @@
   --color-tooltip-bg: #222222;
   --color-tooltip-text: #ffffff;
 
+  // --- Header glow ---
+  --color-header-glow: rgba(0, 0, 0, 0.025);
+
   // --- Spinner ---
   --color-spinner: hsl(0, 0%, 13%);
 
@@ -148,6 +151,9 @@
   // --- Tooltips ---
   --color-tooltip-bg: #f0f0f0;
   --color-tooltip-text: #0d0d0d;
+
+  // --- Header glow ---
+  --color-header-glow: rgba(255, 255, 255, 0.022);
 
   // --- Spinner ---
   --color-spinner: hsl(0, 0%, 90%);
