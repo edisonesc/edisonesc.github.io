@@ -90,13 +90,12 @@ export function getCVTemplate(
 
   const contactParts = [
     user.email ? `<a href="mailto:${user.email}">${user.email}</a>` : '',
-    user.toIncludeMobileNumber && user.mobile_number ? user.mobile_number : '',
-    user.linkedin_url
-      ? `<a href="${user.linkedin_url}">${(user.linkedin_url as string).replace('https://', '')}</a>`
+    user.toIncludeMobileNumber && user.mobile_number
+      ? `<a href="tel:${user.mobile_number}">${user.mobile_number}</a>`
       : '',
-    user.github_repo_url
-      ? `<a href="${user.github_repo_url}">${(user.github_repo_url as string).replace('https://', '')}</a>`
-      : '',
+    user.linkedin_url ? `<a href="${user.linkedin_url}">LinkedIn</a>` : '',
+    user.github_repo_url ? `<a href="${user.github_repo_url}">GitHub</a>` : '',
+    user.portfolio_url ? `<a href="${user.portfolio_url}">Portfolio</a>` : '',
     user.address || '',
   ].filter(Boolean);
 
@@ -209,16 +208,6 @@ export function getCVTemplate(
       : ''
   }
 
-  <section class="cv-section">
-    <h2 class="cv-section-title">Skills</h2>
-    <div class="cv-skills">
-      ${techRow('FRONTEND', 'Frontend')}
-      ${techRow('BACKEND', 'Backend')}
-      ${techRow('DEVOPS', 'DevOps')}
-      ${techRow('EXPLORATORY', 'Exploratory')}
-    </div>
-  </section>
-
   ${
     workExps.length > 0
       ? `<section class="cv-section">
@@ -248,6 +237,16 @@ export function getCVTemplate(
   </section>`
       : ''
   }
+
+  <section class="cv-section">
+    <h2 class="cv-section-title">Skills</h2>
+    <div class="cv-skills">
+      ${techRow('FRONTEND', 'Frontend')}
+      ${techRow('BACKEND', 'Backend')}
+      ${techRow('DEVOPS', 'DevOps')}
+      ${techRow('EXPLORATORY', 'Exploratory')}
+    </div>
+  </section>
 
   ${
     trainingExps.length > 0
@@ -280,11 +279,11 @@ export function getCVPdfDefinition(
   technologies: Technology[],
   projects: Project[],
 ): any {
-  const BLUE       = '#1a4f9e';
-  const DARK       = '#0d0d0d';
-  const GREY       = '#555555';
+  const BLUE = '#1a4f9e';
+  const DARK = '#0d0d0d';
+  const GREY = '#555555';
   const BODY_COLOR = '#2a2a2a';
-  const LINE_BLUE  = '#c4d4ef';
+  const LINE_BLUE = '#c4d4ef';
 
   const getRange = (start: string, end: string) =>
     start === end ? start : `${start} – ${end}`;
@@ -296,25 +295,55 @@ export function getCVPdfDefinition(
       if (node.nodeType === Node.TEXT_NODE) return node.textContent || '';
       const el = node as Element;
       const tag = el.tagName?.toLowerCase();
-      const kids = () => Array.from(el.childNodes).map(parseNode).filter(n => n !== '');
+      const kids = () =>
+        Array.from(el.childNodes)
+          .map(parseNode)
+          .filter((n) => n !== '');
       switch (tag) {
-        case 'p':  return { text: kids(), margin: [0, 0, 0, 2] };
-        case 'br': return '\n';
-        case 'strong': case 'b': return { text: kids(), bold: true };
-        case 'em':     case 'i': return { text: kids(), italics: true };
-        case 'a':  return { text: kids(), link: el.getAttribute('href') || '', color: BLUE };
-        case 'ul': return { ul: kids() };
-        case 'li': return { text: kids() };
-        default:   return kids();
+        case 'p':
+          return { text: kids(), margin: [0, 0, 0, 2] };
+        case 'br':
+          return '\n';
+        case 'strong':
+        case 'b':
+          return { text: kids(), bold: true };
+        case 'em':
+        case 'i':
+          return { text: kids(), italics: true };
+        case 'a':
+          return {
+            text: kids(),
+            link: el.getAttribute('href') || '',
+            color: BLUE,
+          };
+        case 'ul':
+          return { ul: kids() };
+        case 'li':
+          return { text: kids() };
+        default:
+          return kids();
       }
     };
     const div = document.createElement('div');
     div.innerHTML = html;
-    return Array.from(div.childNodes).map(parseNode).flat().filter(n => n !== '');
+    return Array.from(div.childNodes)
+      .map(parseNode)
+      .flat()
+      .filter((n) => n !== '');
   };
 
   const hLine = (color: string, width: number): any => ({
-    canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: width, lineColor: color }],
+    canvas: [
+      {
+        type: 'line',
+        x1: 0,
+        y1: 0,
+        x2: 515,
+        y2: 0,
+        lineWidth: width,
+        lineColor: color,
+      },
+    ],
   });
 
   const sectionBlock = (title: string): any[] => [
@@ -322,16 +351,20 @@ export function getCVPdfDefinition(
     { ...hLine(LINE_BLUE, 0.5), margin: [0, 2, 0, 4] },
   ];
 
-  const entryRow = (left: string, right: string, leftStyle = 'company'): any => ({
+  const entryRow = (
+    left: string,
+    right: string,
+    leftStyle = 'company',
+  ): any => ({
     columns: [
-      { text: left,  style: leftStyle, width: '*' },
-      { text: right, style: 'date',    width: 'auto', alignment: 'right' },
+      { text: left, style: leftStyle, width: '*' },
+      { text: right, style: 'date', width: 'auto', alignment: 'right' },
     ],
     margin: [0, 0, 0, 0],
   });
 
   const bulletList = (items: string[]): any => ({
-    ul: items.map(item => ({ text: item, style: 'bullet' })),
+    ul: items.map((item) => ({ text: item, style: 'bullet' })),
     margin: [2, 1, 0, 0],
   });
 
@@ -342,7 +375,9 @@ export function getCVPdfDefinition(
       ];
 
       if (exp.position) {
-        const roleText = exp.location ? `${exp.position} · ${exp.location}` : exp.position;
+        const roleText = exp.location
+          ? `${exp.position} · ${exp.location}`
+          : exp.position;
         body.push({ text: roleText, style: 'role' });
       }
 
@@ -357,10 +392,19 @@ export function getCVPdfDefinition(
         }
         case WORK_TYPE.OUTSOURCING:
         case WORK_TYPE.DIRECT_MULTI:
-          (exp.projects || []).forEach(proj => {
-            const pItems = proj.cv_responsibilities || proj.responsibilities || [];
-            body.push({ ...entryRow(proj.name, getRange(proj.started_at, proj.finished_at), 'subProject'), margin: [4, 2, 0, 0] });
-            if (pItems.length > 0) body.push({ ...bulletList(pItems), margin: [6, 0, 0, 0] });
+          (exp.projects || []).forEach((proj) => {
+            const pItems =
+              proj.cv_responsibilities || proj.responsibilities || [];
+            body.push({
+              ...entryRow(
+                proj.name,
+                getRange(proj.started_at, proj.finished_at),
+                'subProject',
+              ),
+              margin: [4, 2, 0, 0],
+            });
+            if (pItems.length > 0)
+              body.push({ ...bulletList(pItems), margin: [6, 0, 0, 0] });
           });
           break;
       }
@@ -369,21 +413,35 @@ export function getCVPdfDefinition(
     });
 
   const techRow = (group: string, label: string): any | null => {
-    const names = technologies.filter(t => t.group === group && !t.exclude_in_cv).map(t => t.name);
+    const names = technologies
+      .filter((t) => t.group === group && !t.exclude_in_cv)
+      .map((t) => t.name);
     if (!names.length) return null;
     return {
       columns: [
-        { text: label,          style: 'skillLabel', width: 72 },
+        { text: label, style: 'skillLabel', width: 72 },
         { text: names.join(', '), style: 'skillValue', width: '*' },
       ],
       margin: [0, 0, 0, 2],
     };
   };
 
-  const workExps      = experiences.filter(e => [WORK_TYPE.DIRECT, WORK_TYPE.OUTSOURCING, WORK_TYPE.DIRECT_MULTI, WORK_TYPE.INTERN].includes(e.type) && !e.exclude_in_cv);
-  const trainingExps  = experiences.filter(e => e.type === WORK_TYPE.TRAINING  && !e.exclude_in_cv);
-  const educationExps = experiences.filter(e => e.type === WORK_TYPE.EDUCATION && !e.exclude_in_cv);
-  const cvProjects    = projects.filter(p => !p.exclude_in_cv);
+  const workExps = experiences.filter(
+    (e) =>
+      [
+        WORK_TYPE.DIRECT,
+        WORK_TYPE.OUTSOURCING,
+        WORK_TYPE.DIRECT_MULTI,
+        WORK_TYPE.INTERN,
+      ].includes(e.type) && !e.exclude_in_cv,
+  );
+  const trainingExps = experiences.filter(
+    (e) => e.type === WORK_TYPE.TRAINING && !e.exclude_in_cv,
+  );
+  const educationExps = experiences.filter(
+    (e) => e.type === WORK_TYPE.EDUCATION && !e.exclude_in_cv,
+  );
+  const cvProjects = projects.filter((p) => !p.exclude_in_cv);
 
   const SEP: any = { text: '  ·  ', style: 'contact' };
   const contactInline: any[] = [];
@@ -392,26 +450,47 @@ export function getCVPdfDefinition(
     contactInline.push(node);
   };
   if (user.email)
-    addContact({ text: user.email, style: 'contact', color: BLUE, link: `mailto:${user.email}` });
+    addContact({
+      text: user.email,
+      style: 'contact',
+      color: BLUE,
+      link: `mailto:${user.email}`,
+    });
   if (user.toIncludeMobileNumber && user.mobile_number)
     addContact({ text: user.mobile_number, style: 'contact' });
   if (user.linkedin_url)
-    addContact({ text: (user.linkedin_url as string).replace('https://', ''), style: 'contact', color: BLUE, link: user.linkedin_url as string });
+    addContact({
+      text: 'LinkedIn',
+      style: 'contact',
+      color: BLUE,
+      link: user.linkedin_url as string,
+    });
   if (user.github_repo_url)
-    addContact({ text: (user.github_repo_url as string).replace('https://', ''), style: 'contact', color: BLUE, link: user.github_repo_url as string });
-  if (user.address)
-    addContact({ text: user.address, style: 'contact' });
+    addContact({
+      text: 'GitHub',
+      style: 'contact',
+      color: BLUE,
+      link: user.github_repo_url as string,
+    });
+  if (user.portfolio_url)
+    addContact({
+      text: 'Portfolio',
+      style: 'contact',
+      color: BLUE,
+      link: user.portfolio_url as string,
+    });
+  if (user.address) addContact({ text: user.address, style: 'contact' });
 
   const skillRows = [
-    techRow('FRONTEND',    'Frontend'),
-    techRow('BACKEND',     'Backend'),
-    techRow('DEVOPS',      'DevOps'),
+    techRow('FRONTEND', 'Frontend'),
+    techRow('BACKEND', 'Backend'),
+    techRow('DEVOPS', 'DevOps'),
     techRow('EXPLORATORY', 'Exploratory'),
   ].filter(Boolean);
 
   const content: any[] = [
     // ── Header ──────────────────────────────────
-    { text: user.name,     style: 'name' },
+    { text: user.name, style: 'name' },
     { text: user.position, style: 'headline', margin: [0, 2, 0, 2] },
     { text: contactInline },
     { ...hLine(BLUE, 2), margin: [0, 5, 0, 0] },
@@ -420,12 +499,11 @@ export function getCVPdfDefinition(
   if (user.description) {
     content.push(...sectionBlock('Summary'));
     const descNodes = htmlToNodes(user.description);
-    content.push({ stack: descNodes.length ? descNodes : [{ text: user.description, style: 'body' }] });
-  }
-
-  if (skillRows.length) {
-    content.push(...sectionBlock('Skills'));
-    content.push(...skillRows);
+    content.push({
+      stack: descNodes.length
+        ? descNodes
+        : [{ text: user.description, style: 'body' }],
+    });
   }
 
   if (workExps.length) {
@@ -437,12 +515,30 @@ export function getCVPdfDefinition(
     content.push(...sectionBlock('Projects'));
     cvProjects.forEach((proj, i) => {
       const projBottom = i < cvProjects.length - 1 ? 5 : 0;
-      content.push(entryRow(proj.name, getRange(proj.started_at, proj.finished_at)));
-      content.push({ text: proj.description, style: 'body', margin: [0, 1, 0, proj.project_url ? 1 : projBottom] });
+      content.push(
+        entryRow(proj.name, getRange(proj.started_at, proj.finished_at)),
+      );
+      content.push({
+        text: proj.description,
+        style: 'body',
+        margin: [0, 1, 0, proj.project_url ? 1 : projBottom],
+      });
       if (proj.project_url) {
-        content.push({ text: proj.project_url, style: 'body', color: BLUE, link: proj.project_url, fontSize: 8.5, margin: [0, 0, 0, projBottom] });
+        content.push({
+          text: proj.project_url,
+          style: 'body',
+          color: BLUE,
+          link: proj.project_url,
+          fontSize: 8.5,
+          margin: [0, 0, 0, projBottom],
+        });
       }
     });
+  }
+
+  if (skillRows.length) {
+    content.push(...sectionBlock('Skills'));
+    content.push(...skillRows);
   }
 
   if (trainingExps.length) {
@@ -459,20 +555,35 @@ export function getCVPdfDefinition(
     content,
     pageSize: 'LETTER',
     pageMargins: [40, 36, 40, 36],
-    defaultStyle: { font: 'Roboto', fontSize: 9.5, color: BODY_COLOR, lineHeight: 1.3 },
+    defaultStyle: {
+      font: 'Roboto',
+      fontSize: 9.5,
+      color: BODY_COLOR,
+      lineHeight: 1.3,
+    },
     styles: {
-      name:         { fontSize: 18, bold: true, color: DARK },
-      headline:     { fontSize: 9.5, color: '#444444' },
-      contact:      { fontSize: 8.5, color: GREY },
-      sectionTitle: { fontSize: 8.5, bold: true, color: BLUE, characterSpacing: 1.2 },
-      company:      { fontSize: 9.5, bold: true, color: DARK },
-      subProject:   { fontSize: 9,   bold: true, color: '#1a1a1a' },
-      date:         { fontSize: 8.5, color: GREY },
-      role:         { fontSize: 9,   italics: true, color: '#444444', margin: [0, 1, 0, 2] },
-      bullet:       { fontSize: 9,   color: BODY_COLOR, lineHeight: 1.3 },
-      skillLabel:   { fontSize: 9,   bold: true, color: DARK },
-      skillValue:   { fontSize: 9,   color: BODY_COLOR },
-      body:         { fontSize: 9,   color: BODY_COLOR },
+      name: { fontSize: 18, bold: true, color: DARK },
+      headline: { fontSize: 9.5, color: '#444444' },
+      contact: { fontSize: 8.5, color: GREY },
+      sectionTitle: {
+        fontSize: 8.5,
+        bold: true,
+        color: BLUE,
+        characterSpacing: 1.2,
+      },
+      company: { fontSize: 9.5, bold: true, color: DARK },
+      subProject: { fontSize: 9, bold: true, color: '#1a1a1a' },
+      date: { fontSize: 8.5, color: GREY },
+      role: {
+        fontSize: 9,
+        italics: true,
+        color: '#444444',
+        margin: [0, 1, 0, 2],
+      },
+      bullet: { fontSize: 9, color: BODY_COLOR, lineHeight: 1.3 },
+      skillLabel: { fontSize: 9, bold: true, color: DARK },
+      skillValue: { fontSize: 9, color: BODY_COLOR },
+      body: { fontSize: 9, color: BODY_COLOR },
     },
   };
 }
@@ -659,9 +770,7 @@ export function getCVTemplateV1(
                       project.started_at,
                       project.finished_at,
                     )}</p>
-                    <p class="category-description-main"> ${
-                      project.description
-                    }
+                    <p class="category-description-main"> ${project.description}
 
                     ${
                       project?.project_url

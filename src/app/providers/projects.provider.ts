@@ -69,11 +69,11 @@ export const projects: Project[] = [
     exclude_in_cv: true,
   },
   {
-    name: 'Modular Service Architecture (NestJS + TypeORM)',
+    name: 'Modular Service Architecture (Node.js + NestJS + TypeORM)',
     started_at: 'Feb 2026',
     finished_at: 'Feb 2026',
     description:
-      'Designed a modular NestJS backend reference architecture to standardize service development with role-based access control, JWT access/refresh token strategy, migration-driven schema management, and environment-aware configuration. Structured around domain modules to support scalable feature expansion and maintainable service boundaries.',
+      'Designed a modular Node.js and NestJS backend reference architecture with role-based access control, JWT access/refresh token strategy, migration-driven schema management, and environment-aware configuration. Structured around domain modules to enforce clear service boundaries, reduce boilerplate setup time for new services, and standardize authentication and database migration patterns for scalable feature expansion.',
     technologies: [nestjs, nodejs, typeorm, mysql, jwt, docker],
     icon_url: 'assets/images/projects/NestJS.jpg',
     project_url: '',
@@ -85,7 +85,7 @@ export const projects: Project[] = [
     started_at: 'Aug 2025',
     finished_at: 'Aug 2025',
     description:
-      'Deployed n8n server full on-prem with KNUC and Cloudflare tunnels. Integrated Expense Google Sheet and Telegram API for easy updates and tracking of expenses.',
+      'Deployed an on-premise n8n automation server secured via Cloudflare tunnels and integrated Google Sheets with Telegram API for chat-based expense logging. Automated real-time data synchronization and eliminated manual spreadsheet updates, enabling immediate expense tracking through structured Telegram commands.',
     technologies: [n8n, typescript, cloudFlare],
     type: PROJECT_TYPE.OTHERS,
     exclude_in_cv: false,
@@ -105,7 +105,7 @@ export const projects: Project[] = [
     started_at: 'Apr 2023',
     finished_at: 'Present',
     description:
-      'Designed and built a configuration-driven frontend platform that generates dynamic portfolio content from structured data, with support for multiple output renderers, including a CV-style document. Includes CI for Unit Tests and CD setup support for AWS and Github Pages.',
+      'Architected and built a configuration-driven frontend platform that dynamically generates portfolio and CV outputs from structured data, eliminating repetitive manual resume updates and enabling multi-format rendering from a single content source. Implemented CI for unit testing and automated deployment workflows to AWS and GitHub Pages for consistent release reliability.',
     technologies: [angular, typescript, githubActions, githubPages, aws],
     type: PROJECT_TYPE.OTHERS,
     project_url: 'https://edisonesc.github.io/pages/home',
@@ -138,7 +138,7 @@ export const projects: Project[] = [
     started_at: 'Jan 2021',
     finished_at: 'Feb 2021',
     description:
-      'Designed and developed a NodeJS and NestJS-based API that encapsulated all of Sammy’s offline features and handling synchronization flows',
+      'Designed and implemented a Node.js and NestJS REST API that transitioned Sammy from offline SQLite-based storage to a centralized TypeORM/MySQL-backed architecture. Replaced local persistence with structured server-side CRUD operations, enabling multi-device data consistency and scalable synchronization beyond single-device limitations.',
     technologies: [
       nestjs,
       nodejs,
@@ -201,7 +201,7 @@ export const projects: Project[] = [
     started_at: 'Feb 2018',
     finished_at: 'April 2019',
     description:
-      'Semi-Autonomous Book Shelving Robot (CS thesis) integrating collision avoidance, QR matching, and line tracing. Trained a computer vision model for book spine detection and real-time gap estimation, enabling autonomous placement decisions based on available shelf space.',
+      'Developed a semi-autonomous book shelving robot integrating collision avoidance, QR matching, and line tracing. Trained a computer vision model for book spine detection and real-time gap estimation, enabling autonomous placement decisions and reducing manual shelf organization during prototype testing.',
     technologies: [python, c, rpi, arduino, tensorflow],
     icon_url: 'assets/images/projects/pantera.jpg',
     type: PROJECT_TYPE.SYSTEM,

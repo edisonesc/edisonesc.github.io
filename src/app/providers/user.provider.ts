@@ -5,8 +5,8 @@ export const user: User = {
   position: 'Software Engineer | Fullstack',
   address: 'Manila, Philippines',
   email: 'edi.escx@gmail.com',
-  mobile_number: '+63 962 207 5750',
-  toIncludeMobileNumber: false,
+  mobile_number: '(+63) 962-207-5750',
+  toIncludeMobileNumber: true,
   profile_picture: 'assets/images/2023_profile.jpeg',
   //   description:
   //     `<p>
