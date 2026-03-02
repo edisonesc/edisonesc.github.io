@@ -129,21 +129,22 @@ getDisplayedProject() {
     pipeline: [
       {
         label: 'Data',
-        detail: 'experiences: Experience[] (static import)',
+        detail: 'experience.provider.ts → experiences: Experience[]',
       },
-      { label: 'Filter', detail: '.filter() → work + education' },
+      { label: 'Filter', detail: 'Separate into work_experiences + education_experiences' },
       {
         label: 'Group',
-        detail: '[work_experiences, education_experiences]',
+        detail: 'experiences = [work_experiences, education_experiences]',
       },
       { label: 'Delegate', detail: '<app-timeline-item [experiences]>' },
-      { label: 'Switch', detail: 'ngSwitch on experience.type' },
-      { label: 'UI', detail: 'Timeline layout with nested ranges' },
+      { label: 'Layout', detail: 'Two-column grid: Work | Education (.timeline-grid, .timeline-col)' },
+      { label: 'Entry', detail: 'Type badge via getTypeLabel(), collapsible responsibilities' },
+      { label: 'Range', detail: 'app-timeline-range: native Date arithmetic for tenure' },
     ],
     sourceSnippet: `// home.component.ts
 work_experiences = experiences.filter(e =>
-  [WORK_TYPE.DIRECT, WORK_TYPE.DIRECT_MULTI WORK_TYPE.INTERN,
-   WORK_TYPE.OUTSOURCING].includes(e.type)
+  [WORK_TYPE.DIRECT, WORK_TYPE.DIRECT_MULTI,
+   WORK_TYPE.INTERN, WORK_TYPE.OUTSOURCING].includes(e.type)
 );
 education_experiences = experiences.filter(e =>
   e.type == WORK_TYPE.EDUCATION
@@ -152,10 +153,21 @@ experiences = [this.work_experiences, this.education_experiences];
 
 // home.component.html
 <app-timeline-item [experiences]="experiences">
-</app-timeline-item>
 
-// timeline-item uses ngSwitch on experience.type
-// timeline-range calculates tenure via MomentJS`,
+// timeline-item.component.html
+<div class="timeline-grid">
+  <div class="timeline-col" *ngFor>
+    <h3 class="timeline-col-label">Work / Education</h3>
+    <div class="timeline-entry" *ngFor="let experience of item">
+      <span class="timeline-badge">
+        {{ getTypeLabel(experience.type) }}
+      </span>
+      <app-timeline-range [started_at] [finished_at]>
+    </div>
+  </div>
+</div>
+
+// timeline-range: native Date arithmetic (no moment.js)`,
   },
   {
     id: 'info-section',
@@ -335,27 +347,31 @@ getDisplayedProject() {
     pipeline: [
       {
         label: 'CONFIG SOURCE',
-        detail: 'Static experience provider import',
+        detail: 'Static experience provider import (Experience[])',
       },
       {
         label: 'DOMAIN CLASSIFICATION',
-        detail: 'Filter into work and education categories',
+        detail: 'Filter into work_experiences + education_experiences',
       },
       {
         label: 'STRUCTURAL COMPOSITION',
-        detail: 'Compose groupedExperiences = [work[], education[]]',
+        detail: 'experiences = [work_experiences, education_experiences]',
       },
       {
         label: 'COMPONENT CONTRACT',
-        detail: '<app-timeline-item [experiences]="groupedExperiences">',
+        detail: '<app-timeline-item [experiences]="experiences">',
       },
       {
-        label: 'INTERNAL RENDER STRATEGY',
-        detail: 'ngSwitch on experience.type inside timeline-item',
+        label: 'LAYOUT STRATEGY',
+        detail: 'Two-column grid (.timeline-grid): Work col | Education col',
+      },
+      {
+        label: 'ENTRY RENDERING',
+        detail: 'Type badge via getTypeLabel(), collapsible responsibilities list',
       },
       {
         label: 'PRESENTATION LAYER',
-        detail: 'Timeline layout + nested range rendering + tenure calculation',
+        detail: 'app-timeline-range: native Date arithmetic for tenure (no moment.js)',
       },
     ],
 
@@ -364,23 +380,28 @@ work_experiences = experiences.filter(e =>
   [WORK_TYPE.DIRECT, WORK_TYPE.DIRECT_MULTI,
    WORK_TYPE.INTERN, WORK_TYPE.OUTSOURCING].includes(e.type)
 );
-
 education_experiences = experiences.filter(e =>
-  e.type === WORK_TYPE.EDUCATION
+  e.type == WORK_TYPE.EDUCATION
 );
-
-groupedExperiences = [
-  this.work_experiences,
-  this.education_experiences
-];
+experiences = [this.work_experiences, this.education_experiences];
 
 // home.component.html
-<app-timeline-item
-  [experiences]="groupedExperiences">
-</app-timeline-item>
+<app-timeline-item [experiences]="experiences">
 
-// timeline-item handles ngSwitch
-// timeline-range calculates tenure`,
+// timeline-item.component.html
+<div class="timeline-grid">
+  <div class="timeline-col" *ngFor>
+    <h3 class="timeline-col-label">Work / Education</h3>
+    <div class="timeline-entry" *ngFor="let experience of item">
+      <span class="timeline-badge">
+        {{ getTypeLabel(experience.type) }}
+      </span>
+      <app-timeline-range [started_at] [finished_at]>
+    </div>
+  </div>
+</div>
+
+// timeline-range: native Date arithmetic (no moment.js)`,
   },
 
   {
