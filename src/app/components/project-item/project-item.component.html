@@ -4,6 +4,7 @@
       <img
         *ngIf="project?.icon_url"
         [src]="project?.icon_url"
+        [alt]="project?.name + ' icon'"
         class="project-icon"
         loading="lazy"
       />
