@@ -42,7 +42,7 @@ export class PageService {
         format: 'letter',
         putOnlyUsedFonts: true,
       },
-      pagebreak: {mode: 'avoid-all'}
+      pagebreak: { mode: ['css', 'legacy'] }
       // enableLinks: true
 
     };
