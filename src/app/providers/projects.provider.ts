@@ -42,6 +42,7 @@ import {
   aws,
   docker,
   nodejs,
+  ga4,
 } from './technologies.provider';
 import { PROJECT_TYPE } from '../enums/project-type.enum';
 
@@ -105,8 +106,8 @@ export const projects: Project[] = [
     started_at: 'Apr 2023',
     finished_at: 'Present',
     description:
-      'Architected and built a configuration-driven frontend platform that dynamically generates portfolio and CV outputs from structured data, eliminating repetitive manual resume updates and enabling multi-format rendering from a single content source. Implemented CI for unit testing and automated deployment workflows to AWS and GitHub Pages for consistent release reliability.',
-    technologies: [angular, typescript, githubActions, githubPages, aws],
+      'Architected and built a configuration-driven frontend platform that dynamically generates portfolio and CV outputs from structured data, eliminating repetitive manual resume updates and enabling multi-format rendering from a single content source. Integrated GA4 analytics to track recruiter engagement metrics, including CV downloads and project interaction events, enabling data-driven iteration of portfolio content. Implemented CI for unit testing and automated deployment workflows to AWS/GitHub Pages for consistent release reliability.',
+    technologies: [angular, typescript, githubActions, githubPages, aws, ga4],
     type: PROJECT_TYPE.OTHERS,
     project_url: 'https://edisonesc.github.io/pages/home',
     // exclude_in_cv: true,

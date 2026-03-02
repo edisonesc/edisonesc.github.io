@@ -470,6 +470,16 @@ export const nodejs: Technology = {
   is_user_core: true,
 };
 
+export const ga4: Technology = {
+  name: 'Google Analytics 4',
+  url: 'https://analytics.google.com/',
+  icon_url:
+    'https://www.gstatic.com/analytics-suite/header/suite/v2/ic_analytics.svg',
+  type: 'TOOL',
+  group: 'EXPLORATORY',
+  is_user_core: false,
+};
+
 export const template: Technology = {
   name: '',
   url: '',
