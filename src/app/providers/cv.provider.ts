@@ -272,6 +272,212 @@ export function getCVTemplate(
 }
 
 // ─────────────────────────────────────────────
+//  PDF Definition — native pdfmake document
+// ─────────────────────────────────────────────
+export function getCVPdfDefinition(
+  user: User,
+  experiences: Experience[],
+  technologies: Technology[],
+  projects: Project[],
+): any {
+  const BLUE       = '#1a4f9e';
+  const DARK       = '#0d0d0d';
+  const GREY       = '#555555';
+  const BODY_COLOR = '#2a2a2a';
+  const LINE_BLUE  = '#c4d4ef';
+
+  const getRange = (start: string, end: string) =>
+    start === end ? start : `${start} – ${end}`;
+
+  // Parse HTML into pdfmake inline nodes (handles p, br, strong, em, a, ul, li)
+  const htmlToNodes = (html: string): any[] => {
+    if (!html) return [];
+    const parseNode = (node: ChildNode): any => {
+      if (node.nodeType === Node.TEXT_NODE) return node.textContent || '';
+      const el = node as Element;
+      const tag = el.tagName?.toLowerCase();
+      const kids = () => Array.from(el.childNodes).map(parseNode).filter(n => n !== '');
+      switch (tag) {
+        case 'p':  return { text: kids(), margin: [0, 0, 0, 2] };
+        case 'br': return '\n';
+        case 'strong': case 'b': return { text: kids(), bold: true };
+        case 'em':     case 'i': return { text: kids(), italics: true };
+        case 'a':  return { text: kids(), link: el.getAttribute('href') || '', color: BLUE };
+        case 'ul': return { ul: kids() };
+        case 'li': return { text: kids() };
+        default:   return kids();
+      }
+    };
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    return Array.from(div.childNodes).map(parseNode).flat().filter(n => n !== '');
+  };
+
+  const hLine = (color: string, width: number): any => ({
+    canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: width, lineColor: color }],
+  });
+
+  const sectionBlock = (title: string): any[] => [
+    { text: title.toUpperCase(), style: 'sectionTitle', margin: [0, 9, 0, 0] },
+    { ...hLine(LINE_BLUE, 0.5), margin: [0, 2, 0, 4] },
+  ];
+
+  const entryRow = (left: string, right: string, leftStyle = 'company'): any => ({
+    columns: [
+      { text: left,  style: leftStyle, width: '*' },
+      { text: right, style: 'date',    width: 'auto', alignment: 'right' },
+    ],
+    margin: [0, 0, 0, 0],
+  });
+
+  const bulletList = (items: string[]): any => ({
+    ul: items.map(item => ({ text: item, style: 'bullet' })),
+    margin: [2, 1, 0, 0],
+  });
+
+  const renderExperiences = (exps: Experience[]): any[] =>
+    exps.map((exp, i) => {
+      const body: any[] = [
+        entryRow(exp.title, getRange(exp.started_at, exp.finished_at)),
+      ];
+
+      if (exp.position) {
+        const roleText = exp.location ? `${exp.position} · ${exp.location}` : exp.position;
+        body.push({ text: roleText, style: 'role' });
+      }
+
+      switch (exp.type) {
+        case WORK_TYPE.DIRECT:
+        case WORK_TYPE.INTERN:
+        case WORK_TYPE.EDUCATION:
+        case WORK_TYPE.TRAINING: {
+          const items = exp.cv_responsibilities || exp.responsibilities || [];
+          if (items.length > 0) body.push(bulletList(items));
+          break;
+        }
+        case WORK_TYPE.OUTSOURCING:
+        case WORK_TYPE.DIRECT_MULTI:
+          (exp.projects || []).forEach(proj => {
+            const pItems = proj.cv_responsibilities || proj.responsibilities || [];
+            body.push({ ...entryRow(proj.name, getRange(proj.started_at, proj.finished_at), 'subProject'), margin: [4, 2, 0, 0] });
+            if (pItems.length > 0) body.push({ ...bulletList(pItems), margin: [6, 0, 0, 0] });
+          });
+          break;
+      }
+
+      return { stack: body, margin: [0, 0, 0, i < exps.length - 1 ? 6 : 0] };
+    });
+
+  const techRow = (group: string, label: string): any | null => {
+    const names = technologies.filter(t => t.group === group && !t.exclude_in_cv).map(t => t.name);
+    if (!names.length) return null;
+    return {
+      columns: [
+        { text: label,          style: 'skillLabel', width: 72 },
+        { text: names.join(', '), style: 'skillValue', width: '*' },
+      ],
+      margin: [0, 0, 0, 2],
+    };
+  };
+
+  const workExps      = experiences.filter(e => [WORK_TYPE.DIRECT, WORK_TYPE.OUTSOURCING, WORK_TYPE.DIRECT_MULTI, WORK_TYPE.INTERN].includes(e.type) && !e.exclude_in_cv);
+  const trainingExps  = experiences.filter(e => e.type === WORK_TYPE.TRAINING  && !e.exclude_in_cv);
+  const educationExps = experiences.filter(e => e.type === WORK_TYPE.EDUCATION && !e.exclude_in_cv);
+  const cvProjects    = projects.filter(p => !p.exclude_in_cv);
+
+  const SEP: any = { text: '  ·  ', style: 'contact' };
+  const contactInline: any[] = [];
+  const addContact = (node: any) => {
+    if (contactInline.length) contactInline.push(SEP);
+    contactInline.push(node);
+  };
+  if (user.email)
+    addContact({ text: user.email, style: 'contact', color: BLUE, link: `mailto:${user.email}` });
+  if (user.toIncludeMobileNumber && user.mobile_number)
+    addContact({ text: user.mobile_number, style: 'contact' });
+  if (user.linkedin_url)
+    addContact({ text: (user.linkedin_url as string).replace('https://', ''), style: 'contact', color: BLUE, link: user.linkedin_url as string });
+  if (user.github_repo_url)
+    addContact({ text: (user.github_repo_url as string).replace('https://', ''), style: 'contact', color: BLUE, link: user.github_repo_url as string });
+  if (user.address)
+    addContact({ text: user.address, style: 'contact' });
+
+  const skillRows = [
+    techRow('FRONTEND',    'Frontend'),
+    techRow('BACKEND',     'Backend'),
+    techRow('DEVOPS',      'DevOps'),
+    techRow('EXPLORATORY', 'Exploratory'),
+  ].filter(Boolean);
+
+  const content: any[] = [
+    // ── Header ──────────────────────────────────
+    { text: user.name,     style: 'name' },
+    { text: user.position, style: 'headline', margin: [0, 2, 0, 2] },
+    { text: contactInline },
+    { ...hLine(BLUE, 2), margin: [0, 5, 0, 0] },
+  ];
+
+  if (user.description) {
+    content.push(...sectionBlock('Summary'));
+    const descNodes = htmlToNodes(user.description);
+    content.push({ stack: descNodes.length ? descNodes : [{ text: user.description, style: 'body' }] });
+  }
+
+  if (skillRows.length) {
+    content.push(...sectionBlock('Skills'));
+    content.push(...skillRows);
+  }
+
+  if (workExps.length) {
+    content.push(...sectionBlock('Experience'));
+    content.push(...renderExperiences(workExps));
+  }
+
+  if (cvProjects.length) {
+    content.push(...sectionBlock('Projects'));
+    cvProjects.forEach((proj, i) => {
+      const projBottom = i < cvProjects.length - 1 ? 5 : 0;
+      content.push(entryRow(proj.name, getRange(proj.started_at, proj.finished_at)));
+      content.push({ text: proj.description, style: 'body', margin: [0, 1, 0, proj.project_url ? 1 : projBottom] });
+      if (proj.project_url) {
+        content.push({ text: proj.project_url, style: 'body', color: BLUE, link: proj.project_url, fontSize: 8.5, margin: [0, 0, 0, projBottom] });
+      }
+    });
+  }
+
+  if (trainingExps.length) {
+    content.push(...sectionBlock('Certifications & Training'));
+    content.push(...renderExperiences(trainingExps));
+  }
+
+  if (educationExps.length) {
+    content.push(...sectionBlock('Education'));
+    content.push(...renderExperiences(educationExps));
+  }
+
+  return {
+    content,
+    pageSize: 'LETTER',
+    pageMargins: [40, 36, 40, 36],
+    defaultStyle: { font: 'Roboto', fontSize: 9.5, color: BODY_COLOR, lineHeight: 1.3 },
+    styles: {
+      name:         { fontSize: 18, bold: true, color: DARK },
+      headline:     { fontSize: 9.5, color: '#444444' },
+      contact:      { fontSize: 8.5, color: GREY },
+      sectionTitle: { fontSize: 8.5, bold: true, color: BLUE, characterSpacing: 1.2 },
+      company:      { fontSize: 9.5, bold: true, color: DARK },
+      subProject:   { fontSize: 9,   bold: true, color: '#1a1a1a' },
+      date:         { fontSize: 8.5, color: GREY },
+      role:         { fontSize: 9,   italics: true, color: '#444444', margin: [0, 1, 0, 2] },
+      bullet:       { fontSize: 9,   color: BODY_COLOR, lineHeight: 1.3 },
+      skillLabel:   { fontSize: 9,   bold: true, color: DARK },
+      skillValue:   { fontSize: 9,   color: BODY_COLOR },
+      body:         { fontSize: 9,   color: BODY_COLOR },
+    },
+  };
+}
+
+// ─────────────────────────────────────────────
 //  V1 — Original implementation (preserved)
 // ─────────────────────────────────────────────
 export function getCVTemplateV1(

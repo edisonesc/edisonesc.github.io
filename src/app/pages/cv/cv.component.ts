@@ -1,7 +1,6 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { getCVTemplate } from 'src/app/providers/cv.provider';
+import { Component } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { getCVTemplate, getCVName, getCVPdfDefinition } from 'src/app/providers/cv.provider';
 
 @Component({
   selector: 'app-cv',
@@ -10,61 +9,47 @@ import { getCVTemplate } from 'src/app/providers/cv.provider';
   styleUrl: './cv.component.scss',
 })
 export class CvComponent {
-  cvContent;
+  cvContent: any;
+  isDownloading = false;
 
-  constructor(
-    private router: Router,
-    private sanitizer: DomSanitizer,
-    private activeRoute: ActivatedRoute
-  ) {
-    
-  }
+  private cvData: any = null;
 
-  ngAfterContentChecked(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
+  constructor(private sanitizer: DomSanitizer) {}
 
-  }
   ngOnInit(): void {
-    //params approach
-    // this.activeRoute.queryParams.subscribe(params => {
-
-    // const content = params['data'] ? JSON.parse(params['data']) : null;
-    // if(content) {
-    //   const {
-    //   user,
-    //   experiences,
-    //   technologies,
-    //   projects
-    //   } = content;
-    //   this.cvContent = getCVTemplate(user, experiences, technologies, projects)
-    // }
-    // });
-
-    // localStorage approach
     const content = JSON.parse(localStorage.getItem('cvData') || '{}');
-    
-    if(content) {
-      const {
-      user,
-      experiences,
-      technologies,
-      projects
-      } = content;
 
-      
-      let _cvContent = getCVTemplate(user, experiences, technologies, projects)
-      // let _cvContent = this.router.getCurrentNavigation().extras.state?.['content'];
+    if (content) {
+      this.cvData = content;
+      const { user, experiences, technologies, projects } = content;
+      const _cvContent = getCVTemplate(user, experiences, technologies, projects);
       this.cvContent = this.sanitizer.bypassSecurityTrustHtml(_cvContent);
     }
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
   }
 
-  ngAfterViewInit(): void {
-    //Called after every check of the component's view. Applies to components only.
-    //Add 'implements AfterViewChecked' to the class.
-    // window.print()
+  async download(): Promise<void> {
+    if (!this.cvData || this.isDownloading) return;
+    this.isDownloading = true;
 
+    try {
+      const [pdfMakeModule, pdfFontsModule] = await Promise.all([
+        import('pdfmake/build/pdfmake'),
+        import('pdfmake/build/vfs_fonts'),
+      ]);
+
+      const pdfMake = (pdfMakeModule as any).default ?? pdfMakeModule;
+      const pdfFonts = (pdfFontsModule as any).default ?? pdfFontsModule;
+
+      for (const [name, data] of Object.entries(pdfFonts)) {
+        pdfMake.virtualfs.writeFileSync(name, data as string, 'base64');
+      }
+
+      const { user, experiences, technologies, projects } = this.cvData;
+      const docDefinition = getCVPdfDefinition(user, experiences, technologies, projects);
+
+      pdfMake.createPdf(docDefinition).download(`${getCVName}.pdf`);
+    } finally {
+      this.isDownloading = false;
+    }
   }
 }
