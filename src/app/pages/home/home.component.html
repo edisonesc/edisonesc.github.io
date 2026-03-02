@@ -28,7 +28,9 @@
     <button
       class="theme-toggle"
       (click)="toggleTheme()"
-      [attr.aria-label]="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+      [attr.aria-label]="
+        isDark ? 'Switch to light mode' : 'Switch to dark mode'
+      "
     >
       <!-- Moon: shown in light mode, click to go dark -->
       <svg
@@ -68,7 +70,7 @@
 
     <div class="introduction-container">
       <div class="intro-content">
-        <div class="intro-location">
+        <!-- <div class="intro-location">
           <svg
             class="intro-location-icon"
             xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +85,7 @@
             <circle cx="12" cy="10" r="3"></circle>
           </svg>
           <span>{{ user?.address }}</span>
-        </div>
+        </div> -->
 
         <h1 class="intro-name">{{ user?.name }}</h1>
         <p class="intro-position">{{ user?.position }}</p>

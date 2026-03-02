@@ -148,7 +148,7 @@ export class HomeComponent implements OnInit {
   }
 
   open(url) {
-    url && window.open(url, '_black');
+    url && window.open(url, '_blank');
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -161,7 +161,7 @@ export class HomeComponent implements OnInit {
   }
 
   getTechnologyAvatar(technology: Technology) {
-    return technology?.name.split('')[0].toUpperCase();
+    return technology?.name.charAt(0).toUpperCase();
   }
 
   saveCV() {

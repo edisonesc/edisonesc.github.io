@@ -23,12 +23,14 @@ export class ProjectItemComponent implements OnInit {
   }
 
   getProjectAvatar() {
-    return this.project?.name.split('')[0].toUpperCase();
+    return this.project?.name.charAt(0).toUpperCase();
   }
 
   getTechnologyAvatar(technology: Technology) {
-    return technology?.name.split('')[0].toUpperCase();
+    return technology?.name.charAt(0).toUpperCase();
   }
 
-  open(url) {}
+  open(url: string) {
+    url && window.open(url, '_blank');
+  }
 }
