@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Project } from 'src/app/models/project.model';
 import { Technology } from 'src/app/models/technology.model';
+import { AnalyticsService } from 'src/app/services/analytics.service';
 
 @Component({
   selector: 'app-project-item',
@@ -12,7 +13,7 @@ export class ProjectItemComponent implements OnInit {
   @Input('project') project: Project;
   isLive: boolean | null = null;
 
-  constructor() {}
+  constructor(private analytics: AnalyticsService) {}
 
   ngOnInit(): void {
     if (this.project?.project_url) {
@@ -31,6 +32,11 @@ export class ProjectItemComponent implements OnInit {
   }
 
   open(url: string) {
-    url && window.open(url, '_blank');
+    if (!url) return;
+    this.analytics.track('project_link_click', {
+      project_name: this.project?.name,
+      project_url: url,
+    });
+    window.open(url, '_blank');
   }
 }

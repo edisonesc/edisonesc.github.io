@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { getCVTemplate, getCVName, getCVPdfDefinition } from 'src/app/providers/cv.provider';
+import { AnalyticsService } from 'src/app/services/analytics.service';
 
 @Component({
   selector: 'app-cv',
@@ -14,7 +15,7 @@ export class CvComponent {
 
   private cvData: any = null;
 
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(private sanitizer: DomSanitizer, private analytics: AnalyticsService) {}
 
   ngOnInit(): void {
     const content = JSON.parse(localStorage.getItem('cvData') || '{}');
@@ -29,6 +30,7 @@ export class CvComponent {
 
   async download(): Promise<void> {
     if (!this.cvData || this.isDownloading) return;
+    this.analytics.track('cv_download');
     this.isDownloading = true;
 
     try {
