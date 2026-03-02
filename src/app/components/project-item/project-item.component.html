@@ -5,6 +5,7 @@
         *ngIf="project?.icon_url"
         [src]="project?.icon_url"
         class="project-icon"
+        loading="lazy"
       />
       <div *ngIf="!project?.icon_url" class="project-icon-alt">
         <span>{{ getProjectAvatar() }}</span>
@@ -46,6 +47,7 @@
             [src]="technology?.icon_url"
             class="tech-icon"
             [alt]="technology?.name"
+            loading="lazy"
           />
           <div *ngIf="!technology?.icon_url" class="tech-icon-alt">
             <span>{{ getTechnologyAvatar(technology) }}</span>

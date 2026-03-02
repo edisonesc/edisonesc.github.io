@@ -113,7 +113,7 @@
               class="social-link"
               aria-label="LinkedIn"
             >
-              <img src="assets/images/linkedin.png" alt="LinkedIn" />
+              <img src="assets/images/linkedin.png" alt="LinkedIn" loading="lazy" />
             </a>
             <a
               href="https://github.com/edisonesc"
@@ -121,7 +121,7 @@
               class="social-link"
               aria-label="GitHub"
             >
-              <img src="assets/images/github.png" alt="GitHub" />
+              <img src="assets/images/github.png" alt="GitHub" loading="lazy" />
             </a>
             <a
               href="https://gitlab.com/escx"
@@ -129,7 +129,7 @@
               class="social-link"
               aria-label="GitLab"
             >
-              <img src="assets/images/gitlab.png" alt="GitLab" />
+              <img src="assets/images/gitlab.png" alt="GitLab" loading="lazy" />
             </a>
           </div>
         </div>
@@ -212,6 +212,7 @@
                 [src]="item?.icon_url"
                 [alt]="item?.name"
                 class="tech-icon"
+                loading="lazy"
               />
               <div *ngIf="!item?.icon_url" class="tech-icon-alt">
                 <span>{{ getTechnologyAvatar(item) }}</span>

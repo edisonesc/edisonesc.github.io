@@ -7,7 +7,6 @@ import { Experience } from '../models/experience.model';
 import { Technology } from '../models/technology.model';
 import { Project } from '../models/project.model';
 import * as html2pdf from 'html2pdf.js';
-import * as moment from 'moment';
 import * as FileSaver from 'file-saver';
 
 @Injectable({
@@ -30,7 +29,7 @@ export class PageService {
 
     const options = {
       margin: [10, 20],
-      filename: moment('L').toString(),
+      filename: getCVName,
       html2canvas: {
         // width: 1080,
         scale: 2, // Increase this value for higher resolution

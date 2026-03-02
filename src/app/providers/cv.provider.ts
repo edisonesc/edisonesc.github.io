@@ -5,10 +5,9 @@ import { Project } from '../models/project.model';
 import { Technology } from '../models/technology.model';
 import { User } from '../models/user.model';
 import { B64GHIMG, CV_CSS_STYLE } from './cv-style.provider';
-import * as moment from 'moment';
 import { user } from './user.provider';
 
-export const getCVName = `CV${moment().format('yyyymmDD').toString()}`;
+export const getCVName = `CV${new Date().toISOString().slice(0, 10).replace(/-/g, '')}`;
 
 export function getCVTemplate(
   user: User,

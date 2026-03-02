@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { saveAs } from 'file-saver';
-import * as moment from 'moment';
 import { getCVName } from '../providers/cv.provider';
 
 @Injectable({

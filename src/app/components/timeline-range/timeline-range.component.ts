@@ -1,7 +1,4 @@
-import { Experience } from 'src/app/models/experience.model';
 import { Component, Input, OnInit } from '@angular/core';
-import { title } from 'process';
-import * as moment from 'moment';
 
 @Component({
   selector: 'app-timeline-range',
@@ -17,41 +14,30 @@ export class TimelineRangeComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  getTenureDuration() {
-    const startedAt = moment(this.started_at, 'MMMM YYYY');
-    const finishedAt = moment(
-      this.finished_at != 'Present' ? this.finished_at : moment(),
-      'MMMM YYYY'
-    );
+  getTenureDuration(): string | null {
+    const parseDate = (str: string): Date | null => {
+      const d = new Date(str);
+      return isNaN(d.getTime()) ? null : d;
+    };
 
-    if (startedAt.isValid() && finishedAt.isValid()) {
-      const duration = moment.duration(finishedAt.diff(startedAt)).asYears();
-      const tenure = this.getTenure(duration);
+    const start = parseDate(this.started_at);
+    const end =
+      this.finished_at && this.finished_at !== 'Present'
+        ? parseDate(this.finished_at)
+        : new Date();
 
-      return `${tenure}`;
-    }
-    return null;
-  }
+    if (!start || !end) return null;
 
-  getTenure(years: number) {
-    // if(years > 1) {
-    //   return {duration: years.toFixed(1), unit: "Years"}
-    // } else {
-    //   return {duration: (years * 10).toFixed(), unit: "Months"}
-    // }
-    let dateResult = [];
-    let units = ['month', 'year'];
+    const totalMonths =
+      (end.getFullYear() - start.getFullYear()) * 12 +
+      (end.getMonth() - start.getMonth());
+    const years = Math.floor(totalMonths / 12);
+    const months = totalMonths % 12;
 
-    let yearSplit = years.toFixed(1).split('.').reverse();
-    yearSplit.forEach((param) => {
-      const paramToNumber = Number(param);
-      if (paramToNumber != 0) {
-        const index = yearSplit.indexOf(param);
-        dateResult.push(
-          `${param} ${paramToNumber == 1 ? units[index] : `${units[index]}s`}`
-        );
-      }
-    });
-    return dateResult.reverse().join(' ');
+    const parts: string[] = [];
+    if (years > 0) parts.push(`${years} ${years === 1 ? 'year' : 'years'}`);
+    if (months > 0) parts.push(`${months} ${months === 1 ? 'month' : 'months'}`);
+
+    return parts.length > 0 ? parts.join(' ') : null;
   }
 }
