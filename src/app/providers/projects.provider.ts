@@ -73,6 +73,7 @@ export const projects: Project[] = [
       redis,
       drizzle,
       nextjs,
+      jwt,
       tailwindcss,
       zustand,
       tanstackQuery,
