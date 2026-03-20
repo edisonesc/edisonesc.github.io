@@ -42,7 +42,7 @@
     <h4 class="project-tech-label">Technologies</h4>
     <div class="project-tech-list">
       <ng-container *ngFor="let technology of project?.technologies">
-        <a [href]="technology?.url" class="tech-link" target="_blank">
+        <a [href]="technology?.url" class="tech-link" target="_blank" [attr.data-tooltip]="technology?.name">
           <img
             *ngIf="technology?.icon_url"
             [src]="technology?.icon_url"

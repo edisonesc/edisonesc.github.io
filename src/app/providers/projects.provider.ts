@@ -43,6 +43,11 @@ import {
   docker,
   nodejs,
   ga4,
+  tailwindcss,
+  zustand,
+  tanstackQuery,
+  echarts,
+  drizzle,
 } from './technologies.provider';
 import { PROJECT_TYPE } from '../enums/project-type.enum';
 
@@ -56,7 +61,25 @@ export const projects: Project[] = [
   //   icon_url: 'assets/images/projects/sb.jpg',
   //   type: PROJECT_TYPE.OTHERS,
   // },
-
+  {
+    name: 'Superset DIY — Self-hosted Business Intelligence Platform',
+    started_at: 'Mar 2026',
+    finished_at: 'Present',
+    description:
+      "Architected and built a production-grade BI tool from the ground up using Next.js 19 App Router, React 19, TypeScript, and MySQL. Features include a multi-tab SQL editor with schema browsing, a chart builder supporting 10 visualization types, drag-and-drop dashboard composition, real-time cross-chart filtering, role-based access control, and embeddable public dashboards. Designed for teams who want Superset's power on their own infrastructure.",
+    technologies: [
+      aws,
+      docker,
+      redis,
+      drizzle,
+      nextjs,
+      tailwindcss,
+      zustand,
+      tanstackQuery,
+      echarts,
+      githubActions,
+    ],
+  },
   {
     name: 'Years Tracker V2',
     started_at: 'Feb 2026',

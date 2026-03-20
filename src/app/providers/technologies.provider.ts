@@ -418,7 +418,7 @@ export const githubPages: Technology = {
 };
 
 export const aws: Technology = {
-  name: 'AWS',
+  name: 'AWS (ECR, EC2, ECS, RDS, CloudWatch)',
   url: 'https://aws.amazon.com/',
   icon_url:
     'https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg',
@@ -480,6 +480,30 @@ export const ga4: Technology = {
   is_user_core: false,
 };
 
+export const tanstackQuery: Technology = {
+  name: 'TanStack Query',
+  url: 'https://tanstack.com/query',
+  icon_url: 'https://avatars.githubusercontent.com/u/72518640',
+  type: 'TOOL',
+  group: 'FRONTEND',
+};
+
+export const drizzle: Technology = {
+  name: 'Drizzle',
+  url: 'https://orm.drizzle.team/',
+  icon_url: 'https://avatars.githubusercontent.com/u/108468352',
+  type: 'TOOL',
+  group: 'BACKEND',
+};
+
+export const echarts: Technology = {
+  name: 'Apache ECharts',
+  url: 'https://echarts.apache.org/',
+  icon_url: 'https://echarts.apache.org/en/images/favicon.png',
+  type: 'TOOL',
+  group: 'FRONTEND',
+};
+
 export const template: Technology = {
   name: '',
   url: '',
@@ -502,6 +526,8 @@ export const FRONTEND_TECHNOLOGIES: Technology[] = [
   zustand,
   reactHookForm,
   zod,
+  tanstackQuery,
+  echarts,
   jasmine,
   momentjs,
   unity,
@@ -517,6 +543,7 @@ export const BACKEND_TECHNOLOGIES: Technology[] = [
   redis,
   jwt,
   sqlite,
+  drizzle,
   webSocket,
   // derby,
   firebase,

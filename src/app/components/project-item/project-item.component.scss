@@ -209,11 +209,54 @@
   transition: all 0.3s ease;
   background: var(--color-project-tech-link-bg);
   border: 1px solid var(--color-project-tech-link-border);
+  position: relative;
 
   &:hover {
     background: var(--color-project-tech-link-hover-bg);
     border-color: var(--color-project-tech-link-hover-border);
     transform: scale(1.1);
+  }
+
+  &[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    white-space: nowrap;
+    background: var(--color-tooltip-bg);
+    color: var(--color-tooltip-text);
+    font-size: 0.6875rem;
+    font-weight: 400;
+    padding: 5px 10px;
+    border-radius: 4px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    z-index: 10;
+  }
+
+  &[data-tooltip]::before {
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 2px);
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: var(--color-tooltip-bg);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    z-index: 10;
+  }
+
+  &[data-tooltip]:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  &[data-tooltip]:hover::before {
+    opacity: 1;
   }
 }
 
