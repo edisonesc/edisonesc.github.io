@@ -80,7 +80,8 @@ export const projects: Project[] = [
       echarts,
       githubActions,
     ],
-    project_url: 'http://temp-alb-1780111893.ap-southeast-2.elb.amazonaws.com/',
+    project_url:
+      'http://temp-alb-1780111893.ap-southeast-2.elb.amazonaws.com/login',
   },
   {
     name: 'Years Tracker V2',
