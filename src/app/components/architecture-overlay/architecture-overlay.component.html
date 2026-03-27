@@ -1,3 +1,10 @@
+<!--
+  Architecture Overlay
+  A dev-facing panel that surfaces how each section of the portfolio is built —
+  what data drives it, how it renders, and where the config lives. Toggle it on
+  to peek under the hood as you scroll through the page.
+-->
+
 <!-- Toggle Button — always visible -->
 <button
   class="arch-toggle-btn"
@@ -26,6 +33,12 @@
   </div>
 
   <div class="arch-panel-body" *ngIf="activeMeta">
+    <!-- Description -->
+    <div class="arch-section" *ngIf="activeMeta.description">
+      <h4 class="arch-section-title">Description</h4>
+      <p class="arch-description">{{ activeMeta.description }}</p>
+    </div>
+
     <!-- Source Snippet -->
     <div class="arch-section" *ngIf="activeMeta.sourceSnippet">
       <h4 class="arch-section-title">Source Reference</h4>

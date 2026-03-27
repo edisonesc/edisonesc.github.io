@@ -11,4 +11,5 @@ export class Technology extends BaseModel {
   sub_group?: TECHNOLOGY_SUBTYPE;
   is_user_core?: boolean;
   exclude_in_cv?: boolean;
+  description?: string;
 }

@@ -8,6 +8,7 @@ export const AOEntries = (
   {
     id: 'introduction',
     label: 'Header / Introduction',
+    description: 'The landing hero — renders name, position, social links, and CV download from the static user provider.',
     cssSelector: '.introduction',
     dataSource: {
       providerFile: 'providers/user.provider.ts',
@@ -36,6 +37,7 @@ user: User = user;
   {
     id: 'tech-section',
     label: 'Technologies',
+    description: 'Displays tools and skills grouped by domain — Frontend, Backend, DevOps, and Exploratory — each sourced from its own static array.',
     cssSelector: '.tech-section',
     dataSource: {
       providerFile: 'technologies.provider.ts',
@@ -75,6 +77,7 @@ groupTechnologies = {
   {
     id: 'projects-section',
     label: 'Projects',
+    description: 'A grid of personal and professional projects — each card delegates to a child component that also checks whether the live URL is still up.',
     cssSelector: '.projects-section',
     dataSource: {
       providerFile: 'providers/projects.provider.ts',
@@ -119,6 +122,7 @@ getDisplayedProject() {
   {
     id: 'experiences-section',
     label: 'Experiences',
+    description: 'Work and education history rendered in a two-column timeline. Entries are filtered by type and tenure is calculated with native Date arithmetic — no date libraries.',
     cssSelector: '.experiences-section',
     dataSource: {
       providerFile: 'providers/experience.provider.ts',
@@ -172,6 +176,7 @@ experiences = [this.work_experiences, this.education_experiences];
   {
     id: 'info-section',
     label: 'Contact Information',
+    description: 'A simple contact footer — pulls email and address straight from the user provider and renders them in a centered layout.',
     cssSelector: '.info-section',
     dataSource: {
       providerFile: 'providers/user.provider.ts',

@@ -9,6 +9,8 @@ export const nestjs: Technology = {
   type: 'FRAMEWORK',
   group: 'BACKEND',
   is_user_core: true,
+  description:
+    'A progressive Node.js framework for building efficient, reliable, and scalable server-side applications using TypeScript.',
 };
 
 export const redis: Technology = {
@@ -18,6 +20,8 @@ export const redis: Technology = {
   type: 'TOOL',
   group: 'BACKEND',
   sub_group: TECHNOLOGY_SUBTYPE.DATABASE,
+  description:
+    'An in-memory data structure store used as a database, cache, and message broker, known for its blazing-fast performance.',
 };
 
 export const jwt: Technology = {
@@ -27,6 +31,8 @@ export const jwt: Technology = {
   type: 'TOOL',
   group: 'BACKEND',
   sub_group: TECHNOLOGY_SUBTYPE.FORMS_AND_VALIDATIONS,
+  description:
+    'JSON Web Tokens — a compact, URL-safe standard for securely transmitting information between parties as a signed JSON object.',
 };
 
 export const typeorm: Technology = {
@@ -37,6 +43,8 @@ export const typeorm: Technology = {
   group: 'BACKEND',
   sub_group: TECHNOLOGY_SUBTYPE.DATABASE,
   is_user_core: true,
+  description:
+    'An ORM for TypeScript and JavaScript that supports Active Record and Data Mapper patterns, making database interactions type-safe and expressive.',
 };
 
 export const mysql: Technology = {
@@ -47,6 +55,8 @@ export const mysql: Technology = {
   group: 'BACKEND',
   sub_group: TECHNOLOGY_SUBTYPE.DATABASE,
   is_user_core: true,
+  description:
+    "The world's most popular open-source relational database management system, widely used for web applications and transactional workloads.",
 };
 
 export const typescript: Technology = {
@@ -56,6 +66,8 @@ export const typescript: Technology = {
     'https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg',
   type: 'LANGUAGE',
   group: 'FRONTEND',
+  description:
+    'A strongly typed superset of JavaScript that adds static types, enabling better tooling, refactoring, and catching errors at compile time.',
 };
 
 export const momentjs: Technology = {
@@ -65,6 +77,8 @@ export const momentjs: Technology = {
     'https://cdn.freebiesupply.com/logos/large/2x/momentjs-logo-png-transparent.png',
   type: 'TOOL',
   group: 'FRONTEND',
+  description:
+    'A JavaScript library for parsing, validating, manipulating, and formatting dates and times with a fluent API.',
 };
 
 export const python: Technology = {
@@ -74,6 +88,8 @@ export const python: Technology = {
     'https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg',
   type: 'LANGUAGE',
   group: 'EXPLORATORY',
+  description:
+    'A versatile, beginner-friendly language known for its clean syntax, widely used in scripting, data science, and automation.',
 };
 
 export const c: Technology = {
@@ -83,6 +99,8 @@ export const c: Technology = {
     'https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg',
   type: 'LANGUAGE',
   group: 'EXPLORATORY',
+  description:
+    'A low-level, general-purpose programming language that provides direct memory management and close-to-hardware control, foundational to modern computing.',
 };
 
 export const rpi: Technology = {
@@ -92,6 +110,8 @@ export const rpi: Technology = {
     'https://www.logo.wine/a/logo/Raspberry_Pi/Raspberry_Pi-Logo.wine.svg',
   type: 'TOOL',
   group: 'EXPLORATORY',
+  description:
+    'Raspberry Pi — a credit-card-sized single-board computer used for learning, prototyping, IoT projects, and embedded system development.',
 };
 
 export const arduino: Technology = {
@@ -100,6 +120,8 @@ export const arduino: Technology = {
   icon_url: 'https://brandeps.com/logo-download/A/Arduino-logo-vector-01.svg',
   type: 'TOOL',
   group: 'EXPLORATORY',
+  description:
+    'An open-source electronics platform with easy-to-use hardware and software, ideal for building interactive projects and learning embedded programming.',
 };
 
 export const tensorflow: Technology = {
@@ -109,6 +131,8 @@ export const tensorflow: Technology = {
     'https://upload.wikimedia.org/wikipedia/commons/2/2d/Tensorflow_logo.svg',
   type: 'TOOL',
   group: 'EXPLORATORY',
+  description:
+    'An open-source machine learning framework by Google for building and training neural networks across a range of platforms.',
 };
 
 export const java: Technology = {
@@ -118,6 +142,8 @@ export const java: Technology = {
     'https://blogs.ashrithgn.com/content/images/size/w2000/2018/08/58480979cef1014c0b5e4901.png',
   type: 'LANGUAGE',
   group: 'EXPLORATORY',
+  description:
+    'A class-based, object-oriented language designed for platform independence — write once, run anywhere via the JVM.',
 };
 
 export const derby: Technology = {
@@ -127,6 +153,8 @@ export const derby: Technology = {
   type: 'FRAMEWORK',
   group: 'BACKEND',
   sub_group: TECHNOLOGY_SUBTYPE.DATABASE,
+  description:
+    'Apache Derby — a lightweight, pure-Java relational database that can be embedded directly into Java applications.',
 };
 
 export const android: Technology = {
@@ -136,6 +164,8 @@ export const android: Technology = {
     'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/android/android-original.svg',
   type: 'TOOL',
   group: 'EXPLORATORY',
+  description:
+    "Google's mobile operating system — the platform for building and deploying Android apps that run on billions of devices worldwide.",
 };
 
 export const ionic: Technology = {
@@ -146,6 +176,8 @@ export const ionic: Technology = {
   type: 'FRAMEWORK',
   group: 'FRONTEND',
   is_user_core: true,
+  description:
+    'A cross-platform mobile UI toolkit for building native-quality iOS and Android apps using web technologies like Angular, React, or Vue.',
 };
 
 export const angular: Technology = {
@@ -156,6 +188,8 @@ export const angular: Technology = {
   type: 'FRAMEWORK',
   group: 'FRONTEND',
   is_user_core: true,
+  description:
+    'A platform and framework by Google for building single-page web applications using TypeScript with a component-based architecture and powerful CLI.',
 };
 
 export const html: Technology = {
@@ -164,6 +198,8 @@ export const html: Technology = {
     'https://upload.wikimedia.org/wikipedia/commons/3/38/HTML5_Badge.svg',
   type: 'LANGUAGE',
   group: 'FRONTEND',
+  description:
+    'The standard markup language for creating web pages, defining the structure and meaning of web content through semantic elements.',
 };
 
 export const scss: Technology = {
@@ -174,6 +210,8 @@ export const scss: Technology = {
   type: 'LANGUAGE',
   group: 'FRONTEND',
   sub_group: TECHNOLOGY_SUBTYPE.STYLING,
+  description:
+    'A CSS preprocessor that extends CSS with variables, nesting, mixins, and more — making stylesheets more maintainable and expressive.',
 };
 
 export const ngrx: Technology = {
@@ -184,6 +222,8 @@ export const ngrx: Technology = {
   type: 'FRAMEWORK',
   group: 'FRONTEND',
   sub_group: TECHNOLOGY_SUBTYPE.STATE_MANAGEMENT,
+  description:
+    'Reactive state management for Angular applications inspired by Redux, using RxJS for managing global application state predictably.',
 };
 
 export const sqlite: Technology = {
@@ -194,6 +234,8 @@ export const sqlite: Technology = {
   type: 'TOOL',
   group: 'BACKEND',
   sub_group: TECHNOLOGY_SUBTYPE.DATABASE,
+  description:
+    'A lightweight, serverless, self-contained SQL database engine that stores data in a single file — perfect for embedded and local-first applications.',
 };
 
 export const mongodb: Technology = {
@@ -203,6 +245,8 @@ export const mongodb: Technology = {
   type: 'TOOL',
   group: 'BACKEND',
   sub_group: TECHNOLOGY_SUBTYPE.DATABASE,
+  description:
+    'A document-oriented NoSQL database that stores data in flexible, JSON-like BSON documents, ideal for scalable and schema-less data models.',
 };
 
 export const firebase: Technology = {
@@ -213,6 +257,8 @@ export const firebase: Technology = {
   type: 'TOOL',
   group: 'BACKEND',
   sub_group: TECHNOLOGY_SUBTYPE.DATABASE,
+  description:
+    "Google's Backend-as-a-Service platform providing real-time database, authentication, hosting, and cloud functions for rapid app development.",
 };
 
 export const pyupload: Technology = {
@@ -223,6 +269,8 @@ export const pyupload: Technology = {
   type: 'TOOL',
   group: 'EXPLORATORY',
   exclude_in_cv: true,
+  description:
+    'A Python library for uploading files programmatically to various storage services and endpoints.',
 };
 
 export const ffmpeg: Technology = {
@@ -232,6 +280,8 @@ export const ffmpeg: Technology = {
     'https://pbs.twimg.com/profile_images/961052733510893568/wbWiekmv_400x400.jpg',
   type: 'TOOL',
   group: 'EXPLORATORY',
+  description:
+    'A powerful multimedia framework for decoding, encoding, transcoding, muxing, demuxing, streaming, filtering, and playing audio and video.',
 };
 
 export const pyqt5: Technology = {
@@ -242,6 +292,8 @@ export const pyqt5: Technology = {
   type: 'FRAMEWORK',
   group: 'EXPLORATORY',
   exclude_in_cv: true,
+  description:
+    'Python bindings for the Qt application framework, enabling the creation of cross-platform desktop GUI applications in Python.',
 };
 
 export const obsidian: Technology = {
@@ -251,6 +303,8 @@ export const obsidian: Technology = {
     'https://pbs.twimg.com/profile_images/1269490744609341442/MaweGLMN_400x400.png',
   type: 'TOOL',
   group: 'EXPLORATORY',
+  description:
+    'A powerful knowledge base and note-taking app that works on local Markdown files, supporting bidirectional linking and graph visualization.',
 };
 
 export const md: Technology = {
@@ -259,6 +313,8 @@ export const md: Technology = {
   icon_url: 'https://miro.medium.com/max/1400/0*V9tvdEAZmSjBG3Ny.gif',
   type: 'LANGUAGE',
   group: 'EXPLORATORY',
+  description:
+    'A lightweight markup language with plain text formatting syntax, widely used for documentation, README files, and content authoring.',
 };
 
 export const mermaid: Technology = {
@@ -267,6 +323,8 @@ export const mermaid: Technology = {
   icon_url: 'https://mermaid.js.org/favicon.svg',
   type: 'TOOL',
   group: 'EXPLORATORY',
+  description:
+    'A JavaScript-based diagramming tool that renders Markdown-inspired text definitions into dynamic diagrams like flowcharts, sequence diagrams, and more.',
 };
 
 export const annyang: Technology = {
@@ -275,6 +333,8 @@ export const annyang: Technology = {
   icon_url: 'https://www.talater.com/annyang/images/icon_user.png',
   type: 'TOOL',
   group: 'EXPLORATORY',
+  description:
+    'A tiny JavaScript library that enables speech recognition in the browser, allowing you to add voice commands to your web apps.',
 };
 
 export const puppeteer: Technology = {
@@ -283,6 +343,8 @@ export const puppeteer: Technology = {
   icon_url: 'https://www.vectorlogo.zone/logos/pptrdev/pptrdev-icon.svg',
   type: 'TOOL',
   group: 'EXPLORATORY',
+  description:
+    'A Node.js library for controlling Chrome/Chromium via the DevTools Protocol — used for web scraping, automation, and headless browser testing.',
 };
 
 export const cheerio: Technology = {
@@ -291,6 +353,8 @@ export const cheerio: Technology = {
   icon_url: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cheerio.svg',
   type: 'TOOL',
   group: 'EXPLORATORY',
+  description:
+    'A fast, flexible, and lean implementation of jQuery for server-side HTML parsing and manipulation in Node.js.',
 };
 
 export const react: Technology = {
@@ -301,6 +365,8 @@ export const react: Technology = {
   type: 'FRAMEWORK',
   group: 'FRONTEND',
   is_user_core: true,
+  description:
+    'A JavaScript library by Meta for building user interfaces through reusable, declarative components with a virtual DOM for efficient updates.',
 };
 
 export const nextjs: Technology = {
@@ -311,6 +377,8 @@ export const nextjs: Technology = {
   type: 'FRAMEWORK',
   group: 'FRONTEND',
   is_user_core: true,
+  description:
+    'A React framework that enables server-side rendering, static site generation, and full-stack capabilities with file-based routing and API routes.',
 };
 
 export const tailwindcss: Technology = {
@@ -321,6 +389,8 @@ export const tailwindcss: Technology = {
   type: 'FRAMEWORK',
   group: 'FRONTEND',
   sub_group: TECHNOLOGY_SUBTYPE.STYLING,
+  description:
+    'A utility-first CSS framework that lets you build custom designs directly in HTML using composable, low-level utility classes.',
 };
 
 export const jasmine: Technology = {
@@ -331,6 +401,8 @@ export const jasmine: Technology = {
   type: 'FRAMEWORK',
   group: 'FRONTEND',
   sub_group: TECHNOLOGY_SUBTYPE.TESTING,
+  description:
+    'A behavior-driven development framework for testing JavaScript code with a clean, readable syntax and no external dependencies.',
 };
 
 export const zustand: Technology = {
@@ -342,6 +414,8 @@ export const zustand: Technology = {
   group: 'FRONTEND',
   sub_group: TECHNOLOGY_SUBTYPE.STATE_MANAGEMENT,
   // is_user_core: true,
+  description:
+    'A small, fast, and scalable state management solution for React using a simple hook-based API with minimal boilerplate.',
 };
 
 export const shadCN: Technology = {
@@ -353,6 +427,8 @@ export const shadCN: Technology = {
   group: 'FRONTEND',
   sub_group: TECHNOLOGY_SUBTYPE.STYLING,
   // is_user_core: true,
+  description:
+    'A collection of re-usable UI components built with Radix UI and Tailwind CSS that you copy into your project and own completely.',
 };
 
 export const zod: Technology = {
@@ -362,6 +438,8 @@ export const zod: Technology = {
   type: 'TOOL',
   group: 'FRONTEND',
   sub_group: TECHNOLOGY_SUBTYPE.FORMS_AND_VALIDATIONS,
+  description:
+    'A TypeScript-first schema declaration and validation library that infers static types from your schema definitions.',
 };
 
 export const reactHookForm: Technology = {
@@ -372,6 +450,8 @@ export const reactHookForm: Technology = {
   type: 'TOOL',
   group: 'FRONTEND',
   sub_group: TECHNOLOGY_SUBTYPE.FORMS_AND_VALIDATIONS,
+  description:
+    'Performant, flexible, and extensible forms with easy-to-use validation for React, minimizing re-renders and reducing boilerplate.',
 };
 
 export const n8n: Technology = {
@@ -381,6 +461,8 @@ export const n8n: Technology = {
     'https://meta-q.cdn.bubble.io/cdn-cgi/image/w=64,h=64,f=auto,dpr=2,fit=contain/f1740327389123x713161792968389100/n8n%20plugin.png',
   type: 'TOOL',
   group: 'EXPLORATORY',
+  description:
+    'A fair-code workflow automation platform that lets you connect anything to everything with a visual editor and 400+ integrations.',
 };
 
 export const cloudFlare: Technology = {
@@ -389,6 +471,8 @@ export const cloudFlare: Technology = {
   icon_url: 'https://favicons.statusgator.com/FiM8Ile0FV3wLjxF.jpg',
   type: 'TOOL',
   group: 'EXPLORATORY',
+  description:
+    'A global cloud platform providing CDN, DNS, DDoS protection, security, and edge computing services to improve performance and security.',
 };
 
 export const githubActions: Technology = {
@@ -398,6 +482,8 @@ export const githubActions: Technology = {
     'https://raw.githubusercontent.com/devicons/devicon/master/icons/githubactions/githubactions-original.svg',
   type: 'TOOL',
   group: 'DEVOPS',
+  description:
+    'A CI/CD platform built into GitHub that automates build, test, and deployment workflows triggered by repository events.',
 };
 
 export const vite: Technology = {
@@ -406,6 +492,8 @@ export const vite: Technology = {
   icon_url: 'https://vitejs.dev/logo.svg',
   type: 'TOOL',
   group: 'FRONTEND',
+  description:
+    'A next-generation frontend build tool that leverages native ES modules for instant server start and lightning-fast hot module replacement.',
 };
 
 export const githubPages: Technology = {
@@ -415,6 +503,8 @@ export const githubPages: Technology = {
     'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
   type: 'TOOL',
   group: 'DEVOPS',
+  description:
+    'A free static site hosting service by GitHub that publishes HTML, CSS, and JavaScript files directly from a repository.',
 };
 
 export const aws: Technology = {
@@ -424,6 +514,8 @@ export const aws: Technology = {
     'https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg',
   type: 'TOOL',
   group: 'DEVOPS',
+  description:
+    'Amazon Web Services — a comprehensive cloud platform offering compute (EC2/ECS), storage (S3), databases (RDS), CDN (CloudFront), and observability (CloudWatch).',
 };
 
 export const docker: Technology = {
@@ -433,6 +525,8 @@ export const docker: Technology = {
     'https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg',
   type: 'TOOL',
   group: 'DEVOPS',
+  description:
+    'A containerization platform that packages applications and their dependencies into portable containers, ensuring consistent environments from dev to production.',
 };
 
 export const csharp: Technology = {
@@ -442,6 +536,8 @@ export const csharp: Technology = {
     'https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg',
   type: 'LANGUAGE',
   group: 'FRONTEND',
+  description:
+    'A modern, object-oriented language by Microsoft, primary language for Unity game development and .NET applications.',
 };
 
 export const unity: Technology = {
@@ -451,6 +547,8 @@ export const unity: Technology = {
     'https://raw.githubusercontent.com/devicons/devicon/master/icons/unity/unity-original.svg',
   type: 'TOOL',
   group: 'FRONTEND',
+  description:
+    'A cross-platform game engine for creating 2D and 3D games, simulations, and interactive experiences, using C# as its scripting language.',
 };
 
 export const webSocket: Technology = {
@@ -459,6 +557,8 @@ export const webSocket: Technology = {
   icon_url: 'https://cdn.worldvectorlogo.com/logos/websocket.svg',
   type: 'TOOL',
   group: 'BACKEND',
+  description:
+    'A protocol providing full-duplex communication channels over a single TCP connection, enabling real-time, bidirectional data exchange between client and server.',
 };
 
 export const nodejs: Technology = {
@@ -468,6 +568,8 @@ export const nodejs: Technology = {
   type: 'TOOL',
   group: 'BACKEND',
   is_user_core: true,
+  description:
+    "A JavaScript runtime built on Chrome's V8 engine that enables server-side JavaScript execution, powering scalable network applications.",
 };
 
 export const ga4: Technology = {
@@ -478,6 +580,8 @@ export const ga4: Technology = {
   type: 'TOOL',
   group: 'EXPLORATORY',
   is_user_core: false,
+  description:
+    "Google's event-based analytics platform for tracking user behavior, traffic, and conversions across websites and apps.",
 };
 
 export const tanstackQuery: Technology = {
@@ -486,6 +590,8 @@ export const tanstackQuery: Technology = {
   icon_url: 'https://avatars.githubusercontent.com/u/72518640',
   type: 'TOOL',
   group: 'FRONTEND',
+  description:
+    'A powerful asynchronous state management library for React that handles data fetching, caching, synchronization, and server state updates.',
 };
 
 export const drizzle: Technology = {
@@ -494,6 +600,8 @@ export const drizzle: Technology = {
   icon_url: 'https://avatars.githubusercontent.com/u/108468352',
   type: 'TOOL',
   group: 'BACKEND',
+  description:
+    'A lightweight TypeScript ORM with a SQL-like query API, offering zero overhead, type safety, and excellent developer experience.',
 };
 
 export const echarts: Technology = {
@@ -502,6 +610,8 @@ export const echarts: Technology = {
   icon_url: 'https://echarts.apache.org/en/images/favicon.png',
   type: 'TOOL',
   group: 'FRONTEND',
+  description:
+    'A powerful, interactive charting and data visualization library built on Canvas, supporting a wide range of chart types and large datasets.',
 };
 
 export const dddPractice: Technology = {
@@ -510,6 +620,8 @@ export const dddPractice: Technology = {
   icon_url: null,
   type: 'TOOL',
   group: 'ENGINEERING_APPROACH',
+  description:
+    'An approach to software design that centers the codebase around the core business domain, using ubiquitous language and bounded contexts.',
 };
 
 export const stateManagementPractice: Technology = {
@@ -518,6 +630,8 @@ export const stateManagementPractice: Technology = {
   icon_url: null,
   type: 'TOOL',
   group: 'ENGINEERING_APPROACH',
+  description:
+    'A discipline for managing application data flow in a predictable, maintainable way — choosing the right store strategy for the complexity at hand.',
 };
 
 export const contextEngineeringPractice: Technology = {
@@ -526,6 +640,8 @@ export const contextEngineeringPractice: Technology = {
   icon_url: null,
   type: 'TOOL',
   group: 'ENGINEERING_APPROACH',
+  description:
+    'The practice of designing and structuring the context window for AI agents — crafting prompts, memory, and tool access to maximize model effectiveness.',
 };
 
 export const componentDrivenArchitecturePractice: Technology = {
@@ -534,6 +650,8 @@ export const componentDrivenArchitecturePractice: Technology = {
   icon_url: null,
   type: 'TOOL',
   group: 'ENGINEERING_APPROACH',
+  description:
+    'A development methodology where UIs are built from isolated, reusable components, enabling independent development, testing, and composition.',
 };
 
 export const configurationDrivenSystemsPractice: Technology = {
@@ -542,6 +660,8 @@ export const configurationDrivenSystemsPractice: Technology = {
   icon_url: null,
   type: 'TOOL',
   group: 'ENGINEERING_APPROACH',
+  description:
+    'An architectural approach where UI behavior and layouts are controlled by data/config objects rather than hardcoded logic, enabling flexibility without code changes.',
 };
 
 export const mockFirstDevelopmentPractice: Technology = {
@@ -550,6 +670,8 @@ export const mockFirstDevelopmentPractice: Technology = {
   icon_url: null,
   type: 'TOOL',
   group: 'ENGINEERING_APPROACH',
+  description:
+    'A development strategy where API contracts are defined and mocked first, allowing frontend and backend teams to work in parallel without blocking each other.',
 };
 
 export const promptEngineeringPractice: Technology = {
@@ -558,6 +680,18 @@ export const promptEngineeringPractice: Technology = {
   icon_url: null,
   type: 'TOOL',
   group: 'ENGINEERING_APPROACH',
+  description:
+    'The craft of designing and refining input prompts to guide AI language models toward producing accurate, relevant, and well-structured outputs.',
+};
+
+export const mobileFirstStrategyPractice: Technology = {
+  name: 'Mobile First Strategy',
+  url: 'https://www.investopedia.com/terms/m/mobile-first-strategy.asp',
+  icon_url: null,
+  type: 'TOOL',
+  group: 'ENGINEERING_APPROACH',
+  description:
+    'A design and development philosophy that prioritizes the mobile experience before scaling up to larger screens, ensuring core functionality and UX are optimized for smaller viewports first.',
 };
 
 export const template: Technology = {
@@ -613,13 +747,17 @@ export const DEVOPS_TECHNOLOGIES: Technology[] = [
 ];
 
 export const ENGINEERING_APPROACH_TECHNOLOGIES: Technology[] = [
-  dddPractice,
-  stateManagementPractice,
-  contextEngineeringPractice,
   componentDrivenArchitecturePractice,
   configurationDrivenSystemsPractice,
+  stateManagementPractice,
+
   mockFirstDevelopmentPractice,
+  mobileFirstStrategyPractice,
+
+  dddPractice,
+
   promptEngineeringPractice,
+  contextEngineeringPractice,
 ];
 
 export const EXPLORATORY_TECHNOLOGIES: Technology[] = [

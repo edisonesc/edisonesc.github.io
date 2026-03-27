@@ -26,6 +26,7 @@ export interface PipelineStep {
 export interface SectionMeta {
   id: string;
   label: string;
+  description?: string;
   cssSelector: string;
   dataSource: DataSourceInfo;
   pipeline: PipelineStep[];

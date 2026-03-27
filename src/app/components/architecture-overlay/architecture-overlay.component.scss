@@ -356,6 +356,16 @@
 }
 
 // ============================
+// Description
+// ============================
+.arch-description {
+  color: var(--color-arch-text-secondary);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+// ============================
 // Source Snippet
 // ============================
 .arch-source-snippet {

@@ -80,6 +80,8 @@ export const projects: Project[] = [
       echarts,
       githubActions,
     ],
+    icon_url: 'assets/images/projects/SupersetDIY.png',
+
     // project_url:
     //   'http://temp-alb-1780111893.ap-southeast-2.elb.amazonaws.com/login',
   },
