@@ -245,6 +245,7 @@ export function getCVTemplate(
       ${techRow('BACKEND', 'Backend')}
       ${techRow('DEVOPS', 'DevOps')}
       ${techRow('EXPLORATORY', 'Exploratory')}
+      ${techRow('ENGINEERING_APPROACH', 'Engineering Approach')}
     </div>
   </section>
 
@@ -486,6 +487,7 @@ export function getCVPdfDefinition(
     techRow('BACKEND', 'Backend'),
     techRow('DEVOPS', 'DevOps'),
     techRow('EXPLORATORY', 'Exploratory'),
+    techRow('ENGINEERING_APPROACH', 'Engineering Approach'),
   ].filter(Boolean);
 
   const content: any[] = [

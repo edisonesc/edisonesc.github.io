@@ -418,7 +418,7 @@ export const githubPages: Technology = {
 };
 
 export const aws: Technology = {
-  name: 'AWS (ECR, EC2, ECS, RDS, CloudWatch)',
+  name: 'AWS (ECR, EC2, ECS, RDS, CloudWatch, S3, CloudFront)',
   url: 'https://aws.amazon.com/',
   icon_url:
     'https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg',
@@ -504,6 +504,62 @@ export const echarts: Technology = {
   group: 'FRONTEND',
 };
 
+export const dddPractice: Technology = {
+  name: 'DDD (Domain Driven Design)',
+  url: 'https://www.designgurus.io/answers/detail/how-to-understand-domain-driven-design-for-system-design-interviews',
+  icon_url: null,
+  type: 'TOOL',
+  group: 'ENGINEERING_APPROACH',
+};
+
+export const stateManagementPractice: Technology = {
+  name: 'State Management',
+  url: 'https://dev.to/chintanonweb/angular-state-management-a-comparison-of-the-different-options-available-100e',
+  icon_url: null,
+  type: 'TOOL',
+  group: 'ENGINEERING_APPROACH',
+};
+
+export const contextEngineeringPractice: Technology = {
+  name: 'Context Engineering',
+  url: 'https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents',
+  icon_url: null,
+  type: 'TOOL',
+  group: 'ENGINEERING_APPROACH',
+};
+
+export const componentDrivenArchitecturePractice: Technology = {
+  name: 'Component-Driven Architecture',
+  url: 'https://www.mendix.com/blog/what-is-component-based-architecture/',
+  icon_url: null,
+  type: 'TOOL',
+  group: 'ENGINEERING_APPROACH',
+};
+
+export const configurationDrivenSystemsPractice: Technology = {
+  name: 'Configuration-Driven Systems',
+  url: 'https://medium.com/@this.mithlesh/how-im-building-a-config-driven-ui-and-why-you-should-try-it-too-0cf3e680627e',
+  icon_url: null,
+  type: 'TOOL',
+  group: 'ENGINEERING_APPROACH',
+};
+
+export const mockFirstDevelopmentPractice: Technology = {
+  name: 'Mock-First / Contract Development',
+  url: 'https://developers.redhat.com/blog/2020/04/28/contract-first-development-create-a-mock-back-end-for-realistic-data-interactions-with-react',
+  icon_url: null,
+  type: 'TOOL',
+  group: 'ENGINEERING_APPROACH',
+};
+
+export const promptEngineeringPractice: Technology = {
+  name: 'Prompt Engineering',
+  url: 'https://zapier.com/blog/prompt-engineering',
+  icon_url: null,
+  type: 'TOOL',
+  group: 'ENGINEERING_APPROACH',
+};
+
 export const template: Technology = {
   name: '',
   url: '',
@@ -554,6 +610,16 @@ export const DEVOPS_TECHNOLOGIES: Technology[] = [
   aws,
   githubActions,
   githubPages,
+];
+
+export const ENGINEERING_APPROACH_TECHNOLOGIES: Technology[] = [
+  dddPractice,
+  stateManagementPractice,
+  contextEngineeringPractice,
+  componentDrivenArchitecturePractice,
+  configurationDrivenSystemsPractice,
+  mockFirstDevelopmentPractice,
+  promptEngineeringPractice,
 ];
 
 export const EXPLORATORY_TECHNOLOGIES: Technology[] = [

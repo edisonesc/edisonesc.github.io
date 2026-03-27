@@ -16,6 +16,7 @@ import {
   BACKEND_TECHNOLOGIES,
   DEVOPS_TECHNOLOGIES,
   EXPLORATORY_TECHNOLOGIES,
+  ENGINEERING_APPROACH_TECHNOLOGIES,
 } from 'src/app/providers/technologies.provider';
 import { PageService } from '../page.service';
 import { getCVTemplate } from 'src/app/providers/cv.provider';
@@ -55,6 +56,7 @@ export class HomeComponent implements OnInit {
     ...BACKEND_TECHNOLOGIES,
     ...DEVOPS_TECHNOLOGIES,
     ...EXPLORATORY_TECHNOLOGIES,
+    ...ENGINEERING_APPROACH_TECHNOLOGIES,
   ];
 
   groupTechnologies = {
@@ -62,6 +64,7 @@ export class HomeComponent implements OnInit {
     Backend: BACKEND_TECHNOLOGIES,
     DevOps: DEVOPS_TECHNOLOGIES,
     Exploratory: EXPLORATORY_TECHNOLOGIES,
+    'Engineering Approach': ENGINEERING_APPROACH_TECHNOLOGIES,
   };
 
   config = {};

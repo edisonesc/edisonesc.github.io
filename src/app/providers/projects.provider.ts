@@ -66,7 +66,7 @@ export const projects: Project[] = [
     started_at: 'Mar 2026',
     finished_at: 'Present',
     description:
-      "Architected and built a production-grade BI tool from the ground up using Next.js 19 App Router, React 19, TypeScript, and MySQL. Features include a multi-tab SQL editor with schema browsing, a chart builder supporting 10 visualization types, drag-and-drop dashboard composition, real-time cross-chart filtering, role-based access control, and embeddable public dashboards. Designed for teams who want Superset's power on their own infrastructure.",
+      'Architected and built a production-grade BI tool from the ground up using Next.js 19 App Router, React 19, TypeScript, and MySQL. Features include a multi-tab SQL editor with schema browsing, a chart builder supporting 10 visualization types, drag-and-drop dashboard composition, real-time cross-chart filtering, role-based access control, and embeddable public dashboards. Leveraged AI tools (Claude, ChatGPT, Gemini, NotebookLM) as an acceleration layer for implementation and exploration, with all outputs critically evaluated, adapted, and integrated—retaining full ownership of design decisions, correctness, and debugging. Designed for teams who want Superset-level capability on their own infrastructure.',
     technologies: [
       aws,
       docker,
@@ -80,8 +80,8 @@ export const projects: Project[] = [
       echarts,
       githubActions,
     ],
-    project_url:
-      'http://temp-alb-1780111893.ap-southeast-2.elb.amazonaws.com/login',
+    // project_url:
+    //   'http://temp-alb-1780111893.ap-southeast-2.elb.amazonaws.com/login',
   },
   {
     name: 'Years Tracker V2',
