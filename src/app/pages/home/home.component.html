@@ -143,12 +143,36 @@
   </div>
   <div class="section hidden intro-section">
     <div class="intro-section-content">
-      <h2 class="section-title">Introduction</h2>
-      <div
-        class="section-description"
-        #descriptionElement
-        [innerHtml]="user?.description"
-      ></div>
+      <div class="intro-section-eyebrow">
+        <span class="intro-section-label">Introduction</span>
+        <span class="intro-section-line"></span>
+      </div>
+
+      <div class="intro-section-body">
+        <span class="intro-section-quote" aria-hidden="true">&ldquo;</span>
+        <div
+          class="section-description"
+          #descriptionElement
+          [innerHtml]="user?.description"
+        ></div>
+      </div>
+
+      <div class="intro-highlights">
+        <div class="intro-highlight">
+          <span class="intro-highlight-value">6+</span>
+          <span class="intro-highlight-label">Years Experience</span>
+        </div>
+        <div class="intro-highlight-sep"></div>
+        <div class="intro-highlight">
+          <span class="intro-highlight-value">Enterprise</span>
+          <span class="intro-highlight-label">Scale Products</span>
+        </div>
+        <div class="intro-highlight-sep"></div>
+        <div class="intro-highlight">
+          <span class="intro-highlight-value">Samsung</span>
+          <span class="intro-highlight-label">Research · PH</span>
+        </div>
+      </div>
     </div>
   </div>
 
