@@ -9,7 +9,7 @@ ul {
 }
 
 .header {
-  min-height: 400px;
+  min-height: unset;
   display: flex;
   background: var(--color-bg-primary);
   border-radius: 0;
@@ -24,7 +24,13 @@ ul {
     background: radial-gradient(ellipse 55% 75% at 50% 35%, var(--color-header-glow) 0%, transparent 100%);
     pointer-events: none;
     z-index: 0;
+    animation: glow-pulse 6s ease-in-out infinite;
   }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.55; }
 }
 
 // ===========================
@@ -197,8 +203,8 @@ ul {
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 110px 24px 90px;
-  min-height: 400px;
+  padding: 48px 24px;
+  min-height: unset;
   position: relative;
   z-index: 1;
 }
@@ -210,41 +216,34 @@ ul {
   position: relative;
 }
 
-.intro-location {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 0.6875rem;
-  font-weight: 400;
-  color: var(--color-text-subtle);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin: 0 0 28px 0;
-}
-
-.intro-location-icon {
-  width: 11px;
-  height: 11px;
-  flex-shrink: 0;
-  opacity: 0.7;
-}
-
 .intro-name {
-  font-size: 3.5rem;
+  font-size: 2.75rem;
   font-weight: 200;
   color: var(--color-text-primary);
-  margin: 0 0 14px 0;
+  margin: 0 0 12px 0;
   letter-spacing: -0.03em;
   line-height: 1.1;
 }
 
 .intro-position {
-  font-size: 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.8125rem;
   color: var(--color-text-muted);
-  font-weight: 300;
-  margin: 0 0 44px 0;
-  letter-spacing: 0.06em;
+  font-weight: 400;
+  margin: 0 0 32px 0;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+.intro-position-sep {
+  display: inline-block;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--color-border-medium);
+  flex-shrink: 0;
 }
 
 .intro-actions {
@@ -263,6 +262,7 @@ ul {
   margin: 0 20px;
   flex-shrink: 0;
 }
+
 
 .cv-button {
   display: inline-flex;
@@ -333,21 +333,17 @@ ul {
 
 @media only screen and (max-width: 768px) {
   .introduction-container {
-    padding: 90px 24px 70px;
-  }
-
-  .intro-location {
-    font-size: 0.625rem;
-    margin-bottom: 22px;
+    padding: 36px 24px;
   }
 
   .intro-name {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
 
   .intro-position {
-    font-size: 0.9375rem;
-    margin-bottom: 36px;
+    font-size: 0.75rem;
+    margin-bottom: 28px;
+    gap: 10px;
   }
 
   .intro-actions {
@@ -378,6 +374,7 @@ ul {
       height: 20px;
     }
   }
+
 }
 
 .section {
@@ -428,42 +425,20 @@ ul {
 }
 
 .intro-section-content {
-  max-width: 760px;
+  max-width: 800px;
   width: 100%;
-  text-align: left;
-  position: relative;
-  z-index: 1;
+  // text-align: center;
 }
 
-// Eyebrow row: label + extending line
-.intro-section-eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 40px;
-}
-
-.intro-section-label {
-  font-size: 0.6875rem;
+.section-title {
+  font-size: 1rem;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.15em;
   color: var(--color-text-subtle);
-  white-space: nowrap;
-  flex-shrink: 0;
+  margin: 0 0 32px 0;
 }
 
-.intro-section-line {
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    var(--color-border-medium),
-    transparent
-  );
-}
-
-// Body: quote glyph + description
 .intro-section-body {
   position: relative;
   padding-left: 28px;
@@ -472,9 +447,7 @@ ul {
 }
 
 .intro-section-quote {
-  position: absolute;
-  top: -28px;
-  left: -14px;
+  display: none;
   font-size: 5rem;
   line-height: 1;
   color: var(--color-border-medium);
@@ -482,6 +455,7 @@ ul {
   pointer-events: none;
   user-select: none;
   opacity: 0.6;
+  margin-bottom: 20px;
 }
 
 .section-description {
@@ -500,11 +474,9 @@ ul {
   }
 }
 
-// Highlights row
 .intro-highlights {
   display: flex;
   align-items: center;
-  gap: 0;
   flex-wrap: wrap;
 }
 
@@ -541,7 +513,12 @@ ul {
 
 @media only screen and (max-width: 768px) {
   .intro-section {
-    padding: 64px 24px;
+    padding: 60px 24px;
+  }
+
+  .section-title {
+    font-size: 0.875rem;
+    margin-bottom: 24px;
   }
 
   .intro-section-body {
@@ -551,13 +528,12 @@ ul {
 
   .intro-section-quote {
     font-size: 3.5rem;
-    top: -20px;
-    left: -10px;
+    margin-bottom: 16px;
   }
 
   .section-description {
     font-size: 1.125rem;
-    line-height: 1.75;
+    line-height: 1.7;
 
     p {
       margin-bottom: 16px;
@@ -601,6 +577,7 @@ ul {
 }
 
 .projects-grid {
+  // margin-top: 24px;
   margin-bottom: 40px;
 }
 
@@ -901,6 +878,7 @@ hr {
 
 .experiences-section-content .experiences-timeline{
     padding: 0 30px;
+    // margin-top: 24px
   }
 
 .experiences-timeline {

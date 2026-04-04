@@ -12,7 +12,13 @@
   </li>
 </div> -->
 
-<svg class="spinner" viewBox="0 0 50 50" *ngIf="isLoading" role="status" aria-label="Loading">
+<svg
+  class="spinner"
+  viewBox="0 0 50 50"
+  *ngIf="isLoading"
+  role="status"
+  aria-label="Loading"
+>
   <circle
     class="path"
     cx="25"
@@ -70,25 +76,13 @@
 
     <div class="introduction-container">
       <div class="intro-content">
-        <!-- <div class="intro-location">
-          <svg
-            class="intro-location-icon"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-            <circle cx="12" cy="10" r="3"></circle>
-          </svg>
-          <span>{{ user?.address }}</span>
-        </div> -->
-
         <h1 class="intro-name">{{ user?.name }}</h1>
-        <p class="intro-position">{{ user?.position }}</p>
+
+        <p class="intro-position">
+          <span>Software Engineer</span>
+          <span class="intro-position-sep" aria-hidden="true"></span>
+          <span>Fullstack</span>
+        </p>
 
         <div class="intro-actions">
           <button type="button" class="cv-button" (click)="viewCV()">
@@ -113,7 +107,11 @@
               class="social-link"
               aria-label="LinkedIn profile"
             >
-              <img src="assets/images/linkedin.png" alt="LinkedIn" loading="lazy" />
+              <img
+                src="assets/images/linkedin.png"
+                alt="LinkedIn"
+                loading="lazy"
+              />
             </a>
             <a
               href="https://github.com/edisonesc"
@@ -135,18 +133,10 @@
         </div>
       </div>
     </div>
-    <!-- <div class="scroll-down" (click)="scrollInto('introduction')">
-      <div class="scroll-arrow"></div>
-      <div class="scroll-arrow"></div>
-      <div class="scroll-arrow"></div>
-    </div> -->
   </div>
   <div class="section hidden intro-section">
     <div class="intro-section-content">
-      <div class="intro-section-eyebrow">
-        <span class="intro-section-label">Introduction</span>
-        <span class="intro-section-line"></span>
-      </div>
+      <h2 class="section-title">Introduction</h2>
 
       <div class="intro-section-body">
         <span class="intro-section-quote" aria-hidden="true">&ldquo;</span>
