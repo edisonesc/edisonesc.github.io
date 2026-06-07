@@ -4,8 +4,9 @@ import { Project } from '../models/project.model';
 import { Technology } from '../models/technology.model';
 import { User } from '../models/user.model';
 import { B64GHIMG, CV_CSS_STYLE } from './cv-style.provider';
+import { user } from './user.provider';
 
-export const getCVName = `CV${new Date().toISOString().slice(0, 10).replace(/-/g, '')}`;
+export const getCVName = `${user.name} - CV${new Date().toISOString().slice(0, 10).replace(/-/g, '')}`;
 
 // ─────────────────────────────────────────────
 //  V2 — Current default (modern, ATS-friendly)

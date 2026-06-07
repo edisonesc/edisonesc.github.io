@@ -79,9 +79,9 @@
         <h1 class="intro-name">{{ user?.name }}</h1>
 
         <p class="intro-position">
-          <span>Software Engineer</span>
-          <span class="intro-position-sep" aria-hidden="true"></span>
-          <span>Fullstack</span>
+          <span>{{ user.position }}</span>
+          <!-- <span class="intro-position-sep" aria-hidden="true"></span>
+          <span>Fullstack</span> -->
         </p>
 
         <div class="intro-actions">
@@ -137,6 +137,7 @@
   <div class="section hidden intro-section">
     <div class="intro-section-content">
       <h2 class="section-title">Introduction</h2>
+      <span class="intro-section-line" aria-hidden="true"></span>
 
       <div class="intro-section-body">
         <span class="intro-section-quote" aria-hidden="true">&ldquo;</span>

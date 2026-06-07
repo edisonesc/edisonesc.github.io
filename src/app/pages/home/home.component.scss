@@ -439,6 +439,13 @@ ul {
   margin: 0 0 32px 0;
 }
 
+.intro-section-line {
+  display: block;
+  height: 1px;
+  background: linear-gradient(to right, var(--color-border-medium), transparent);
+  margin-bottom: 40px;
+}
+
 .intro-section-body {
   position: relative;
   padding-left: 28px;

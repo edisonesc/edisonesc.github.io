@@ -60,6 +60,9 @@ export const experiences: Experience[] = [
         name: 'Bixby',
 
         cv_responsibilities: [
+          'Spearheading the re-architecture of a heavily customized Apache Superset-based analytics platform into a modern Next.js and NestJS/Node.js ecosystem, establishing a scalable foundation for future analytics and reporting capabilities.',
+          'Establishing a monorepo-based architecture with shared frontend, backend, and domain packages to maximize code reuse, consistency, and development efficiency across multiple applications.',
+
           'Spearheaded end-to-end frontend architectural redesign and migration of a legacy Vanilla JS system to Next.js, delivering a modern, configuration-driven platform for dynamic filters, tables, and forms; presented the solution to HQ and SRPH leadership.',
 
           'Designed modular, highly cohesive component systems across Angular and React/Next.js, reducing delivery time for repeat features by ~75–85% based on measured release metrics.',
@@ -72,6 +75,9 @@ export const experiences: Experience[] = [
         ],
 
         responsibilities: [
+          'Spearheading the re-architecture of a heavily customized Apache Superset-based analytics platform into a modern Next.js and NestJS/Node.js ecosystem, establishing a scalable foundation for future analytics and reporting capabilities.',
+          'Establishing a monorepo-based architecture with shared frontend, backend, and domain packages to maximize code reuse, consistency, and development efficiency across multiple applications.',
+
           'Re-architected frontend foundation from Vanilla JS to Next.js, establishing a scalable configuration-driven system for dynamic filters, tables, and management modules.',
 
           'Implemented scalable component abstractions across Angular and React ecosystems, improving maintainability and significantly reducing repetitive implementation effort.',
