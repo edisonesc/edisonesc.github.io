@@ -60,6 +60,9 @@ export const experiences: Experience[] = [
         name: 'Bixby',
 
         cv_responsibilities: [
+          'Led the development of Analytics Engine, an evolving self-hosted BI platform built with Next.js, NestJS, Node.js, and MySQL, driving feature delivery, component architecture, API design, and technical direction.',
+          'Oversaw AI-assisted engineering workflows by reviewing generated code, validating architectural tradeoffs, selecting implementation strategies, and converting tool output into maintainable production-ready changes.',
+
           'Spearheading the re-architecture of a heavily customized Apache Superset-based analytics platform into a modern Next.js and NestJS/Node.js ecosystem, establishing a scalable foundation for future analytics and reporting capabilities.',
           'Establishing a monorepo-based architecture with shared frontend, backend, and domain packages to maximize code reuse, consistency, and development efficiency across multiple applications.',
 
@@ -75,6 +78,9 @@ export const experiences: Experience[] = [
         ],
 
         responsibilities: [
+          'Led ongoing development of Analytics Engine using Next.js, NestJS, Node.js, and MySQL, driving feature delivery, component design, API design, and architectural decisions.',
+          'Reviewed AI-assisted code output, evaluated implementation options, selected maintainable approaches, and refined technical direction for iterative development.',
+
           'Spearheading the re-architecture of a heavily customized Apache Superset-based analytics platform into a modern Next.js and NestJS/Node.js ecosystem, establishing a scalable foundation for future analytics and reporting capabilities.',
           'Establishing a monorepo-based architecture with shared frontend, backend, and domain packages to maximize code reuse, consistency, and development efficiency across multiple applications.',
 
