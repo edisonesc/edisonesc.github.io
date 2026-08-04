@@ -82,7 +82,7 @@ export const experiences: Experience[] = [
           {
             title: 'Technical Leadership & Engineering Enablement',
             responsibilities: [
-              'Reviewed AI-assisted code output, evaluated implementation strategies, and refined maintainable architectural solutions.',
+              'Leveraged AI-assisted development to accelerate delivery, reviewing generated output and refining solutions to maintain architectural integrity.',
               'Directed frontend architecture of a critical Bixby service during a 2-month HQ engagement in Suwon, aligning technical strategy with evolving business goals.',
               'Presented architectural proposals and modernization strategy to HQ and SRPH leadership.',
               'Provided cross-functional technical leadership across planning, triage, solution validation, and delivery coordination.',
