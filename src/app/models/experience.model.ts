@@ -1,6 +1,6 @@
 import { WorkProject } from './work-projects.model';
+import { ResponsibilityCategory } from './responsibility-category.model';
 import { WORK_TYPE } from './../enums/work-type.enum';
-import { TimeRange } from './range.model';
 import { BaseModel } from './base.model';
 
 export class Experience extends BaseModel {
@@ -10,6 +10,7 @@ export class Experience extends BaseModel {
   description?: string;
   responsibilities?: string[];
   cv_responsibilities?: string[];
+  responsibility_categories?: ResponsibilityCategory[];
   projects?: WorkProject[];
   type?: WORK_TYPE;
 }

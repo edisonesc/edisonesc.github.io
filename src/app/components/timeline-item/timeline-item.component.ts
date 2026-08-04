@@ -1,5 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Experience } from 'src/app/models/experience.model';
+import { ResponsibilityCategory } from 'src/app/models/responsibility-category.model';
+
+type ResponsibilityContainer = {
+  responsibility_categories?: ResponsibilityCategory[];
+  responsibilities?: string[];
+};
 
 @Component({
   selector: 'app-timeline-item',
@@ -29,8 +35,20 @@ export class TimelineItemComponent implements OnInit {
     return this.expandedState.has(key);
   }
 
-  shouldShowToggle(responsibilities: string[]): boolean {
-    return responsibilities?.length > this.collapsedLimit;
+  getCategories(container: ResponsibilityContainer): Array<{ title: string; items: string[] }> {
+    return (container.responsibility_categories || [])
+      .filter((cat) => !cat.exclude_in_cv)
+      .map((cat) => ({ title: cat.title, items: cat.responsibilities || [] }))
+      .filter((cat) => cat.items.length > 0);
+  }
+
+  shouldShowToggle(container: ResponsibilityContainer): boolean {
+    const cats = this.getCategories(container);
+    const total =
+      cats.length > 0
+        ? cats.reduce((sum, cat) => sum + cat.items.length, 0)
+        : (container.responsibilities || []).length;
+    return total > this.collapsedLimit;
   }
 
   getTypeLabel(type: string): string {

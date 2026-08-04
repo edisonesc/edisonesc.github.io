@@ -1,12 +1,24 @@
 import { WORK_TYPE } from '../enums/work-type.enum';
 import { Experience } from '../models/experience.model';
 import { Project } from '../models/project.model';
+import { WorkProject } from '../models/work-projects.model';
 import { Technology } from '../models/technology.model';
 import { User } from '../models/user.model';
 import { B64GHIMG, CV_CSS_STYLE } from './cv-style.provider';
 import { user } from './user.provider';
 
 export const getCVName = `${user.name} - CV${new Date().toISOString().slice(0, 10).replace(/-/g, '')}`;
+
+export type CVVariant = 'expanded' | 'concise';
+
+export interface CVRenderOptions {
+  variant?: CVVariant;
+}
+
+type ResponsibilityContainer = Pick<
+  Experience | WorkProject,
+  'responsibility_categories' | 'cv_responsibilities' | 'responsibilities'
+>;
 
 // ─────────────────────────────────────────────
 //  V2 — Current default (modern, ATS-friendly)
@@ -16,12 +28,51 @@ export function getCVTemplate(
   experiences: Experience[],
   technologies: Technology[],
   projects: Project[],
+  options: CVRenderOptions = {},
 ): string {
+  const variant = options.variant ?? 'expanded';
   const getRange = (start: string, end: string) =>
     start === end ? start : `${start} – ${end}`;
 
   const listItems = (items: string[]) =>
     (items || []).map((r) => `<li>${r}</li>`).join('');
+
+  const visibleCategories = (container: ResponsibilityContainer) =>
+    (container.responsibility_categories || [])
+      .filter((category) => !category.exclude_in_cv)
+      .map((category) => ({
+        ...category,
+        items: category.cv_responsibilities || category.responsibilities || [],
+      }))
+      .filter((category) => category.items.length > 0);
+
+  const renderResponsibilities = (container: ResponsibilityContainer) => {
+    const categories = visibleCategories(container);
+    if (variant === 'expanded' && categories.length > 0) {
+      return categories
+        .map(
+          (category) => `
+                <div class="cv-responsibility-category">
+                  <p class="cv-category-name">${category.title}</p>
+                  <ul class="cv-list">${listItems(category.items)}</ul>
+                </div>`,
+        )
+        .join('');
+    }
+
+    const categoryItems = categories.reduce(
+      (items, category) => [...items, ...category.items],
+      [] as string[],
+    );
+    const items =
+      categoryItems.length > 0
+        ? categoryItems
+        : container.cv_responsibilities || container.responsibilities || [];
+
+    return items.length > 0
+      ? `<ul class="cv-list">${listItems(items)}</ul>`
+      : '';
+  };
 
   const getExperienceBlock = (_experiences: Experience[]) =>
     _experiences
@@ -32,7 +83,7 @@ export function getCVTemplate(
           case WORK_TYPE.INTERN:
           case WORK_TYPE.EDUCATION:
           case WORK_TYPE.TRAINING:
-            body = `<ul class="cv-list">${listItems(exp?.cv_responsibilities || exp?.responsibilities || [])}</ul>`;
+            body = renderResponsibilities(exp);
             break;
           case WORK_TYPE.OUTSOURCING:
           case WORK_TYPE.DIRECT_MULTI:
@@ -44,7 +95,7 @@ export function getCVTemplate(
                   <span class="cv-sub-name">${project.name}</span>
                   <span class="cv-date">${getRange(project.started_at, project.finished_at)}</span>
                 </div>
-                <ul class="cv-list">${listItems(project.cv_responsibilities || project.responsibilities || [])}</ul>
+                ${renderResponsibilities(project)}
               </div>`,
               )
               .join('');
@@ -152,6 +203,13 @@ export function getCVTemplate(
     /* Sub-project (outsourcing / direct-multi) */
     .cv-sub-project { margin: 5px 0 2px 6px; }
     .cv-sub-name { font-weight: 600; font-size: 9pt; color: #1a1a1a; }
+    .cv-responsibility-category { margin-top: 4px; }
+    .cv-category-name {
+      font-size: 8.7pt;
+      font-weight: 700;
+      color: #333;
+      margin: 3px 0 0;
+    }
 
     /* Skills */
     .cv-skill-row { display: flex; gap: 8px; margin-bottom: 3px; font-size: 9pt; }
@@ -280,7 +338,9 @@ export function getCVPdfDefinition(
   experiences: Experience[],
   technologies: Technology[],
   projects: Project[],
+  options: CVRenderOptions = {},
 ): any {
+  const variant = options.variant ?? 'expanded';
   const BLUE = '#1a4f9e';
   const DARK = '#0d0d0d';
   const GREY = '#555555';
@@ -370,6 +430,51 @@ export function getCVPdfDefinition(
     margin: [2, 1, 0, 0],
   });
 
+  const visibleCategories = (container: ResponsibilityContainer) =>
+    (container.responsibility_categories || [])
+      .filter((category) => !category.exclude_in_cv)
+      .map((category) => ({
+        ...category,
+        items: category.cv_responsibilities || category.responsibilities || [],
+      }))
+      .filter((category) => category.items.length > 0);
+
+  const renderResponsibilities = (
+    container: ResponsibilityContainer,
+    bulletMargin: [number, number, number, number] = [2, 1, 0, 0],
+    categoryTitleMargin: [number, number, number, number] = [0, 3, 0, 0],
+    categoryBulletMargin: [number, number, number, number] = [2, 0, 0, 0],
+  ): any[] => {
+    const categories = visibleCategories(container);
+    if (variant === 'expanded' && categories.length > 0) {
+      return categories.reduce(
+        (items, category) => [
+          ...items,
+          {
+            text: category.title,
+            style: 'responsibilityCategory',
+            margin: categoryTitleMargin,
+          },
+          { ...bulletList(category.items), margin: categoryBulletMargin },
+        ],
+        [] as any[],
+      );
+    }
+
+    const categoryItems = categories.reduce(
+      (items, category) => [...items, ...category.items],
+      [] as string[],
+    );
+    const items =
+      categoryItems.length > 0
+        ? categoryItems
+        : container.cv_responsibilities || container.responsibilities || [];
+
+    return items.length > 0
+      ? [{ ...bulletList(items), margin: bulletMargin }]
+      : [];
+  };
+
   const renderExperiences = (exps: Experience[]): any[] =>
     exps.map((exp, i) => {
       const body: any[] = [
@@ -388,15 +493,12 @@ export function getCVPdfDefinition(
         case WORK_TYPE.INTERN:
         case WORK_TYPE.EDUCATION:
         case WORK_TYPE.TRAINING: {
-          const items = exp.cv_responsibilities || exp.responsibilities || [];
-          if (items.length > 0) body.push(bulletList(items));
+          body.push(...renderResponsibilities(exp));
           break;
         }
         case WORK_TYPE.OUTSOURCING:
         case WORK_TYPE.DIRECT_MULTI:
           (exp.projects || []).forEach((proj) => {
-            const pItems =
-              proj.cv_responsibilities || proj.responsibilities || [];
             body.push({
               ...entryRow(
                 proj.name,
@@ -405,8 +507,14 @@ export function getCVPdfDefinition(
               ),
               margin: [4, 2, 0, 0],
             });
-            if (pItems.length > 0)
-              body.push({ ...bulletList(pItems), margin: [6, 0, 0, 0] });
+            body.push(
+              ...renderResponsibilities(
+                proj,
+                [6, 0, 0, 0],
+                [6, 3, 0, 0],
+                [8, 0, 0, 0],
+              ),
+            );
           });
           break;
       }
@@ -576,6 +684,7 @@ export function getCVPdfDefinition(
       },
       company: { fontSize: 9.5, bold: true, color: DARK },
       subProject: { fontSize: 9, bold: true, color: '#1a1a1a' },
+      responsibilityCategory: { fontSize: 8.7, bold: true, color: '#333333' },
       date: { fontSize: 8.5, color: GREY },
       role: {
         fontSize: 9,

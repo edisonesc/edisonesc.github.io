@@ -261,6 +261,27 @@
 }
 
 // ============================
+// Responsibility Categories
+// ============================
+
+.responsibility-category {
+  margin-top: 10px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.responsibility-category-title {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-subtle);
+  margin: 0 0 5px 0;
+}
+
+// ============================
 // Responsive
 // ============================
 

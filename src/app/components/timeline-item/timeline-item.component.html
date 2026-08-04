@@ -41,17 +41,27 @@
                       [ngClass]="{
                         collapsed:
                           !isExpanded(experience.title) &&
-                          shouldShowToggle(experience.responsibilities)
+                          shouldShowToggle(experience)
                       }"
                     >
-                      <ul class="responsibility-list">
-                        <li *ngFor="let responsibility of experience?.responsibilities">
-                          {{ responsibility }}
-                        </li>
-                      </ul>
+                      <ng-container *ngIf="getCategories(experience).length > 0; else expFlatList">
+                        <div *ngFor="let cat of getCategories(experience)" class="responsibility-category">
+                          <p class="responsibility-category-title">{{ cat.title }}</p>
+                          <ul class="responsibility-list">
+                            <li *ngFor="let item of cat.items">{{ item }}</li>
+                          </ul>
+                        </div>
+                      </ng-container>
+                      <ng-template #expFlatList>
+                        <ul class="responsibility-list">
+                          <li *ngFor="let responsibility of experience?.responsibilities">
+                            {{ responsibility }}
+                          </li>
+                        </ul>
+                      </ng-template>
                     </div>
                     <button
-                      *ngIf="shouldShowToggle(experience.responsibilities)"
+                      *ngIf="shouldShowToggle(experience)"
                       class="responsibilities-toggle"
                       [ngClass]="{ expanded: isExpanded(experience.title) }"
                       (click)="toggleExpanded(experience.title)"
@@ -83,17 +93,27 @@
                     [ngClass]="{
                       collapsed:
                         !isExpanded(project.name) &&
-                        shouldShowToggle(project.responsibilities)
+                        shouldShowToggle(project)
                     }"
                   >
-                    <ul class="responsibility-list">
-                      <li *ngFor="let responsibility of project?.responsibilities">
-                        {{ responsibility }}
-                      </li>
-                    </ul>
+                    <ng-container *ngIf="getCategories(project).length > 0; else projFlatList">
+                      <div *ngFor="let cat of getCategories(project)" class="responsibility-category">
+                        <p class="responsibility-category-title">{{ cat.title }}</p>
+                        <ul class="responsibility-list">
+                          <li *ngFor="let item of cat.items">{{ item }}</li>
+                        </ul>
+                      </div>
+                    </ng-container>
+                    <ng-template #projFlatList>
+                      <ul class="responsibility-list">
+                        <li *ngFor="let responsibility of project?.responsibilities">
+                          {{ responsibility }}
+                        </li>
+                      </ul>
+                    </ng-template>
                   </div>
                   <button
-                    *ngIf="shouldShowToggle(project.responsibilities)"
+                    *ngIf="shouldShowToggle(project)"
                     class="responsibilities-toggle"
                     [ngClass]="{ expanded: isExpanded(project.name) }"
                     (click)="toggleExpanded(project.name)"
