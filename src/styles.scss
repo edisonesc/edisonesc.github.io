@@ -19,9 +19,9 @@
   --color-text-primary: #222222;
   --color-text-secondary: #333333;
   --color-text-tertiary: #666666;
-  --color-text-muted: #888888;
-  --color-text-subtle: #999999;
-  --color-text-faint: #bbbbbb;
+  --color-text-muted: #767676;
+  --color-text-subtle: #767676;
+  --color-text-faint: #767676;
   --color-text-placeholder: #cccccc;
 
   // --- Borders ---
@@ -121,8 +121,8 @@
   --color-text-secondary: #e0e0e0;
   --color-text-tertiary: #a8a8a8;
   --color-text-muted: #808080;
-  --color-text-subtle: #606060;
-  --color-text-faint: #404040;
+  --color-text-subtle: #767676;
+  --color-text-faint: #767676;
   --color-text-placeholder: #383838;
 
   // --- Borders ---
@@ -217,6 +217,12 @@
 body {
   background-color: var(--color-bg-secondary);
   color: var(--color-text-secondary);
+}
+
+// Keyboard focus visibility — applies only to keyboard navigation (not mouse clicks)
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
 }
 
 // Smooth color transitions during theme switch

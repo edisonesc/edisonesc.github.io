@@ -64,6 +64,7 @@
                       *ngIf="shouldShowToggle(experience)"
                       class="responsibilities-toggle"
                       [ngClass]="{ expanded: isExpanded(experience.title) }"
+                      [attr.aria-expanded]="isExpanded(experience.title)"
                       (click)="toggleExpanded(experience.title)"
                     >
                       {{
@@ -116,6 +117,7 @@
                     *ngIf="shouldShowToggle(project)"
                     class="responsibilities-toggle"
                     [ngClass]="{ expanded: isExpanded(project.name) }"
+                    [attr.aria-expanded]="isExpanded(project.name)"
                     (click)="toggleExpanded(project.name)"
                   >
                     {{

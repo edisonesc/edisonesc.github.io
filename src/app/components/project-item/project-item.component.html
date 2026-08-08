@@ -33,7 +33,7 @@
 
   <div class="project-content">
     <h3 class="project-name">
-      <a [href]="project?.project_url" target="_blank">{{ project?.name }}</a>
+      <a [href]="project?.project_url" target="_blank" rel="noopener noreferrer">{{ project?.name }}</a>
     </h3>
     <p class="project-description">{{ project?.description }}</p>
   </div>
@@ -42,7 +42,7 @@
     <h4 class="project-tech-label">Technologies</h4>
     <div class="project-tech-list">
       <ng-container *ngFor="let technology of project?.technologies">
-        <a [href]="technology?.url" class="tech-link" target="_blank" [attr.data-tooltip]="technology?.name">
+        <a [href]="technology?.url" class="tech-link" target="_blank" rel="noopener noreferrer" [attr.aria-label]="technology?.name" [attr.data-tooltip]="technology?.name">
           <img
             *ngIf="technology?.icon_url"
             [src]="technology?.icon_url"

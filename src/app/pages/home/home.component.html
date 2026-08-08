@@ -29,7 +29,7 @@
   ></circle>
 </svg>
 
-<div class="scroller" [ngClass]="{ blur: isLoading }">
+<main class="scroller" [ngClass]="{ blur: isLoading }">
   <div class="card header introduction">
     <button
       class="theme-toggle"
@@ -104,6 +104,7 @@
             <a
               href="https://www.linkedin.com/in/edisonesc/"
               target="_blank"
+              rel="noopener noreferrer"
               class="social-link"
               aria-label="LinkedIn profile"
             >
@@ -116,6 +117,7 @@
             <a
               href="https://github.com/edisonesc"
               target="_blank"
+              rel="noopener noreferrer"
               class="social-link"
               aria-label="GitHub profile"
             >
@@ -124,6 +126,7 @@
             <a
               href="https://gitlab.com/escx"
               target="_blank"
+              rel="noopener noreferrer"
               class="social-link"
               aria-label="GitLab profile"
             >
@@ -217,24 +220,46 @@
         >
           <h3 class="tech-group-title">{{ groupKey }}</h3>
           <div class="tech-items">
-            <div
-              *ngFor="let item of groupTechnologies[groupKey]"
-              class="tech-item"
-              [attr.data-tooltip]="item?.description || null"
-              (click)="open(item?.url)"
-            >
-              <img
-                *ngIf="item?.icon_url"
-                [src]="item?.icon_url"
-                [alt]="item?.name"
-                class="tech-icon"
-                loading="lazy"
-              />
-              <div *ngIf="!item?.icon_url" class="tech-icon-alt">
-                <span>{{ getTechnologyAvatar(item) }}</span>
+            <ng-container *ngFor="let item of groupTechnologies[groupKey]">
+              <a
+                *ngIf="item?.url"
+                class="tech-item"
+                [href]="item?.url"
+                target="_blank"
+                rel="noopener noreferrer"
+                [attr.aria-label]="item?.name"
+                [attr.data-tooltip]="item?.description || null"
+              >
+                <img
+                  *ngIf="item?.icon_url"
+                  [src]="item?.icon_url"
+                  [alt]="item?.name"
+                  class="tech-icon"
+                  loading="lazy"
+                />
+                <div *ngIf="!item?.icon_url" class="tech-icon-alt">
+                  <span>{{ getTechnologyAvatar(item) }}</span>
+                </div>
+                <p class="tech-name">{{ item?.name }}</p>
+              </a>
+              <div
+                *ngIf="!item?.url"
+                class="tech-item"
+                [attr.data-tooltip]="item?.description || null"
+              >
+                <img
+                  *ngIf="item?.icon_url"
+                  [src]="item?.icon_url"
+                  [alt]="item?.name"
+                  class="tech-icon"
+                  loading="lazy"
+                />
+                <div *ngIf="!item?.icon_url" class="tech-icon-alt">
+                  <span>{{ getTechnologyAvatar(item) }}</span>
+                </div>
+                <p class="tech-name">{{ item?.name }}</p>
               </div>
-              <p class="tech-name">{{ item?.name }}</p>
-            </div>
+            </ng-container>
           </div>
         </div>
       </div>
@@ -294,6 +319,7 @@
         <a
           href="https://www.linkedin.com/in/edisonesc/"
           target="_blank"
+          rel="noopener noreferrer"
           class="footer-link"
           aria-label="LinkedIn profile"
         >
@@ -302,6 +328,7 @@
         <a
           href="https://github.com/edisonesc"
           target="_blank"
+          rel="noopener noreferrer"
           class="footer-link"
           aria-label="GitHub profile"
         >
@@ -310,6 +337,7 @@
         <a
           href="https://gitlab.com/escx"
           target="_blank"
+          rel="noopener noreferrer"
           class="footer-link"
           aria-label="GitLab profile"
         >
@@ -336,6 +364,6 @@
       </button>
     </div>
   </footer>
-</div>
+</main>
 
 <app-architecture-overlay></app-architecture-overlay>
