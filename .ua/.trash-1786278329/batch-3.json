@@ -1,0 +1,147 @@
+{
+  "nodes": [
+    {
+      "id": "file:src/app/app-routing.module.ts",
+      "type": "file",
+      "name": "AppRoutingModule",
+      "filePath": "src/app/app-routing.module.ts",
+      "summary": "Defines the root Angular router configuration with lazy-loaded route to the pages module.",
+      "tags": ["routing", "angular", "module"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/app.component.spec.ts",
+      "type": "file",
+      "name": "AppComponent spec",
+      "filePath": "src/app/app.component.spec.ts",
+      "summary": "Unit test for the root AppComponent, verifying the component creates successfully.",
+      "tags": ["test", "angular", "component"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/app.component.ts",
+      "type": "file",
+      "name": "AppComponent",
+      "filePath": "src/app/app.component.ts",
+      "summary": "Root Angular component serving as the application shell with router-outlet.",
+      "tags": ["angular", "component", "root"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/app/app.component.ts:AppComponent",
+      "type": "class",
+      "name": "AppComponent",
+      "filePath": "src/app/app.component.ts",
+      "summary": "Root application component that hosts the router outlet for page navigation.",
+      "tags": ["angular", "component", "root"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/app.module.ts",
+      "type": "file",
+      "name": "AppModule",
+      "filePath": "src/app/app.module.ts",
+      "summary": "Root Angular module that bootstraps the application, imports routing and declares the root component.",
+      "tags": ["angular", "module", "bootstrap"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/components/timeline-range/timeline-range.component.ts",
+      "type": "file",
+      "name": "TimelineRangeComponent",
+      "filePath": "src/app/components/timeline-range/timeline-range.component.ts",
+      "summary": "Angular component that renders a visual date range for timeline entries, displaying start and end periods.",
+      "tags": ["angular", "component", "timeline", "ui"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/app/components/timeline-range/timeline-range.component.ts:TimelineRangeComponent",
+      "type": "class",
+      "name": "TimelineRangeComponent",
+      "filePath": "src/app/components/timeline-range/timeline-range.component.ts",
+      "summary": "Displays a date range for timeline items, accepting start/end date inputs and formatting them for display.",
+      "tags": ["angular", "component", "timeline", "ui"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/environments/environment.ts",
+      "type": "file",
+      "name": "environment",
+      "filePath": "src/environments/environment.ts",
+      "summary": "Development environment configuration file containing environment-specific flags and API endpoints.",
+      "tags": ["config", "environment", "angular"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/main.ts",
+      "type": "file",
+      "name": "main",
+      "filePath": "src/main.ts",
+      "summary": "Application entry point that bootstraps the Angular application using AppModule.",
+      "tags": ["bootstrap", "entry-point", "angular"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:src/app/app.component.spec.ts",
+      "target": "file:src/app/app.component.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/app.component.spec.ts",
+      "target": "file:src/app/app.component.ts",
+      "type": "tested_by",
+      "weight": 0.5
+    },
+    {
+      "source": "file:src/app/app.module.ts",
+      "target": "file:src/app/app-routing.module.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/app.module.ts",
+      "target": "file:src/app/app.component.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/app.module.ts",
+      "target": "file:src/app/components/timeline-range/timeline-range.component.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main.ts",
+      "target": "file:src/app/app.module.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main.ts",
+      "target": "file:src/environments/environment.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/app.module.ts",
+      "target": "file:src/app/app.component.ts",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/app/components/timeline-range/timeline-range.component.ts",
+      "target": "class:src/app/components/timeline-range/timeline-range.component.ts:TimelineRangeComponent",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/app/app.component.ts",
+      "target": "class:src/app/app.component.ts:AppComponent",
+      "type": "contains",
+      "weight": 1.0
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "nodes": [
+    {
+      "id": "config:openspec/changes/comply-wcag2/.openspec.yaml",
+      "type": "config",
+      "name": ".openspec.yaml",
+      "filePath": "openspec/changes/comply-wcag2/.openspec.yaml",
+      "summary": "OpenSpec change configuration file marking the WCAG2 compliance change as archived.",
+      "tags": ["openspec", "configuration", "accessibility"],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:openspec/changes/comply-wcag2/design.md",
+      "type": "document",
+      "name": "design.md",
+      "filePath": "openspec/changes/comply-wcag2/design.md",
+      "summary": "OpenSpec design document for the WCAG2 compliance change, specifying the technical design for making the portfolio accessible including color contrast, ARIA attributes, keyboard navigation, and semantic HTML improvements.",
+      "tags": ["openspec", "accessibility", "wcag", "design"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:openspec/changes/comply-wcag2/proposal.md",
+      "type": "document",
+      "name": "proposal.md",
+      "filePath": "openspec/changes/comply-wcag2/proposal.md",
+      "summary": "OpenSpec proposal document describing the motivation and scope for WCAG2 compliance improvements across the portfolio website.",
+      "tags": ["openspec", "accessibility", "wcag", "proposal"],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:openspec/changes/comply-wcag2/tasks.md",
+      "type": "document",
+      "name": "tasks.md",
+      "filePath": "openspec/changes/comply-wcag2/tasks.md",
+      "summary": "OpenSpec task list for the WCAG2 compliance change, tracking implementation progress across color contrast, ARIA, keyboard navigation, and semantic markup tasks.",
+      "tags": ["openspec", "accessibility", "wcag", "tasks"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "document:openspec/changes/comply-wcag2/design.md",
+      "target": "document:openspec/changes/comply-wcag2/proposal.md",
+      "type": "related",
+      "weight": 0.5
+    },
+    {
+      "source": "document:openspec/changes/comply-wcag2/tasks.md",
+      "target": "document:openspec/changes/comply-wcag2/design.md",
+      "type": "related",
+      "weight": 0.5
+    },
+    {
+      "source": "config:openspec/changes/comply-wcag2/.openspec.yaml",
+      "target": "document:openspec/changes/comply-wcag2/proposal.md",
+      "type": "configures",
+      "weight": 0.5
+    }
+  ]
+}

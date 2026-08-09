@@ -1,0 +1,90 @@
+{
+  "nodes": [
+    {
+      "id": "file:src/app/services/analytics.service.ts",
+      "type": "file",
+      "name": "analytics.service.ts",
+      "filePath": "src/app/services/analytics.service.ts",
+      "summary": "Angular injectable service wrapping Plausible Analytics to track custom events across the portfolio, providing a typed track() method used by project and CV components.",
+      "tags": ["service", "analytics", "tracking"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/app/services/analytics.service.ts:AnalyticsService",
+      "type": "class",
+      "name": "AnalyticsService",
+      "filePath": "src/app/services/analytics.service.ts",
+      "summary": "Root-scoped Angular service providing a track() method that calls the Plausible analytics window function with event name and optional properties.",
+      "tags": ["service", "analytics"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/assets/scss/timeline.scss",
+      "type": "file",
+      "name": "timeline.scss",
+      "filePath": "src/assets/scss/timeline.scss",
+      "summary": "Global SCSS asset defining the timeline UI styles including vertical line, dot markers, card layout, responsive breakpoints, and dark mode overrides for the experience timeline component.",
+      "tags": ["scss", "styles", "timeline", "responsive", "dark-mode"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/environments/environment.prod.ts",
+      "type": "file",
+      "name": "environment.prod.ts",
+      "filePath": "src/environments/environment.prod.ts",
+      "summary": "Production environment configuration with production mode enabled, used by the Angular build system to apply production-specific settings.",
+      "tags": ["configuration", "environment", "production"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/polyfills.ts",
+      "type": "file",
+      "name": "polyfills.ts",
+      "filePath": "src/polyfills.ts",
+      "summary": "Angular polyfills entry point loading zone.js and any browser compatibility shims needed for the application.",
+      "tags": ["polyfills", "angular", "browser-compatibility"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/test.ts",
+      "type": "file",
+      "name": "test.ts",
+      "filePath": "src/test.ts",
+      "summary": "Karma test bootstrap file that initializes the Angular testing environment and loads all test spec files via webpack's require.context.",
+      "tags": ["testing", "karma", "bootstrap"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:src/app/services/analytics.service.ts",
+      "target": "class:src/app/services/analytics.service.ts:AnalyticsService",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/app/services/analytics.service.ts",
+      "target": "class:src/app/services/analytics.service.ts:AnalyticsService",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/app/components/project-item/project-item.component.ts",
+      "target": "file:src/app/services/analytics.service.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/pages/cv/cv.component.ts",
+      "target": "file:src/app/services/analytics.service.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/assets/scss/timeline.scss",
+      "target": "file:src/app/components/timeline-item/timeline-item.component.ts",
+      "type": "related",
+      "weight": 0.5
+    }
+  ]
+}

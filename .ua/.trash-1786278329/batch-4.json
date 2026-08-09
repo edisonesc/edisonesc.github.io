@@ -1,0 +1,180 @@
+{
+  "nodes": [
+    {
+      "id": "file:src/app/constants/constants.ts",
+      "type": "file",
+      "name": "constants.ts",
+      "filePath": "src/app/constants/constants.ts",
+      "summary": "Defines the TECHNOLOGY_SUBTYPE enum used to categorize technology entries into sub-groups such as State Management, Testing, and Database across the portfolio data layer.",
+      "tags": ["type-definition", "utility", "data-model", "configuration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/enums/project-type.enum.ts",
+      "type": "file",
+      "name": "project-type.enum.ts",
+      "filePath": "src/app/enums/project-type.enum.ts",
+      "summary": "Exports the PROJECT_TYPE enum classifying portfolio projects into Mobile, System, Web, and Others categories used throughout the project data model.",
+      "tags": ["type-definition", "data-model", "utility"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/models/project.model.ts",
+      "type": "file",
+      "name": "project.model.ts",
+      "filePath": "src/app/models/project.model.ts",
+      "summary": "Defines the Project data model class extending BaseModel, capturing portfolio project attributes including name, description, icon, URL, technologies list, and project type classification.",
+      "tags": ["data-model", "type-definition", "service"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/app/models/project.model.ts:Project",
+      "type": "class",
+      "name": "Project",
+      "filePath": "src/app/models/project.model.ts",
+      "summary": "Core domain model for a portfolio project, extending BaseModel with fields for name, description, URL, icon, associated technologies, and project type.",
+      "tags": ["data-model", "type-definition"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/models/technology.model.ts",
+      "type": "file",
+      "name": "technology.model.ts",
+      "filePath": "src/app/models/technology.model.ts",
+      "summary": "Defines the Technology data model class extending BaseModel, describing a skill or tool with its name, URL, icon, type (Framework/Language/Tool), group, sub-group, and CV visibility flags.",
+      "tags": ["data-model", "type-definition", "service"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/app/models/technology.model.ts:Technology",
+      "type": "class",
+      "name": "Technology",
+      "filePath": "src/app/models/technology.model.ts",
+      "summary": "Domain model for a technology or skill entry, with typed grouping fields and CV exclusion flags used to control rendering in both the portfolio and CV pages.",
+      "tags": ["data-model", "type-definition"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/providers/projects.provider.ts",
+      "type": "file",
+      "name": "projects.provider.ts",
+      "filePath": "src/app/providers/projects.provider.ts",
+      "summary": "Exports the static projects data array containing 15+ portfolio project entries with associated technologies, dates, descriptions, and type classifications used to drive the portfolio and CV pages.",
+      "tags": ["data-model", "service", "utility", "configuration"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/app/providers/technologies.provider.ts",
+      "type": "file",
+      "name": "technologies.provider.ts",
+      "filePath": "src/app/providers/technologies.provider.ts",
+      "summary": "Exports individually named Technology constants and grouped category arrays (FRONTEND, BACKEND, DEVOPS, ENGINEERING_APPROACH, EXPLORATORY) covering all technologies, frameworks, and engineering practices displayed across the portfolio.",
+      "tags": ["data-model", "service", "utility", "configuration"],
+      "complexity": "complex"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:src/app/models/project.model.ts",
+      "target": "file:src/app/enums/project-type.enum.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/models/project.model.ts",
+      "target": "file:src/app/models/base.model.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/models/project.model.ts",
+      "target": "file:src/app/models/range.model.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/models/project.model.ts",
+      "target": "file:src/app/models/technology.model.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/models/technology.model.ts",
+      "target": "file:src/app/constants/constants.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/models/technology.model.ts",
+      "target": "file:src/app/models/base.model.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/providers/projects.provider.ts",
+      "target": "file:src/app/enums/project-type.enum.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/providers/projects.provider.ts",
+      "target": "file:src/app/models/project.model.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/providers/projects.provider.ts",
+      "target": "file:src/app/providers/technologies.provider.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/providers/technologies.provider.ts",
+      "target": "file:src/app/constants/constants.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/providers/technologies.provider.ts",
+      "target": "file:src/app/models/technology.model.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/models/project.model.ts",
+      "target": "class:src/app/models/project.model.ts:Project",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/app/models/project.model.ts",
+      "target": "class:src/app/models/project.model.ts:Project",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/app/models/technology.model.ts",
+      "target": "class:src/app/models/technology.model.ts:Technology",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/app/models/technology.model.ts",
+      "target": "class:src/app/models/technology.model.ts:Technology",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "source": "class:src/app/models/project.model.ts:Project",
+      "target": "class:src/app/models/base.model.ts:BaseModel",
+      "type": "inherits",
+      "weight": 0.9
+    },
+    {
+      "source": "class:src/app/models/technology.model.ts:Technology",
+      "target": "class:src/app/models/base.model.ts:BaseModel",
+      "type": "inherits",
+      "weight": 0.9
+    }
+  ]
+}

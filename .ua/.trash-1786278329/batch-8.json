@@ -1,0 +1,32 @@
+{
+  "nodes": [
+    {
+      "id": "config:.ua/tmp/ua-import-map-input.json",
+      "type": "config",
+      "name": "ua-import-map-input.json",
+      "filePath": ".ua/tmp/ua-import-map-input.json",
+      "summary": "Temporary input file used by the Understand-Anything analysis toolchain to pass file paths for import map resolution.",
+      "tags": ["tooling", "analysis", "generated"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:.ua/tmp/ua-import-map-output.json",
+      "type": "config",
+      "name": "ua-import-map-output.json",
+      "filePath": ".ua/tmp/ua-import-map-output.json",
+      "summary": "Generated output file from the Understand-Anything toolchain containing resolved import relationships between project files.",
+      "tags": ["tooling", "analysis", "generated"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:.ua/tmp/ua-scan-files.json",
+      "type": "config",
+      "name": "ua-scan-files.json",
+      "filePath": ".ua/tmp/ua-scan-files.json",
+      "summary": "Generated file listing all scanned project files with their metadata, produced during the Understand-Anything analysis scan phase.",
+      "tags": ["tooling", "analysis", "generated"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": []
+}

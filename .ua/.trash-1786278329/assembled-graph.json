@@ -1,0 +1,2843 @@
+{
+  "version": "1.0.0",
+  "project": {
+    "name": "portfolio-v2",
+    "languages": [
+      "TypeScript",
+      "HTML",
+      "SCSS",
+      "JavaScript",
+      "YAML",
+      "Markdown"
+    ],
+    "frameworks": [
+      "Angular",
+      "Bootstrap",
+      "Docker",
+      "GitHub Actions"
+    ],
+    "description": "An Angular 19 portfolio website featuring CV/resume display, work experience timeline, and project showcase with technology filtering and PDF CV export.",
+    "analyzedAt": "2026-08-09T12:20:29.100483Z",
+    "gitCommitHash": "687d15d6c04198f3cf0452b6a3ff4228e4b20449"
+  },
+  "nodes": [
+    {
+      "id": "file:src/app/components/architecture-overlay/architecture-overlay.component.ts",
+      "type": "file",
+      "name": "ArchitectureOverlayComponent",
+      "filePath": "src/app/components/architecture-overlay/architecture-overlay.component.ts",
+      "summary": "Angular component that renders an interactive architecture overlay panel, tracking page section visibility via IntersectionObserver and displaying contextual metadata, source code, and pipeline diagrams for each portfolio section.",
+      "tags": [
+        "angular",
+        "component",
+        "ui",
+        "architecture-overlay"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:src/app/components/architecture-overlay/architecture-overlay.component.ts:ArchitectureOverlayComponent",
+      "type": "class",
+      "name": "ArchitectureOverlayComponent",
+      "filePath": "src/app/components/architecture-overlay/architecture-overlay.component.ts",
+      "summary": "Listens to scroll events and IntersectionObserver to detect active page sections, driving the overlay panel's source-code view, highlight, and metadata display via ArchitectureOverlayService.",
+      "tags": [
+        "angular",
+        "component",
+        "ui",
+        "intersection-observer"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/app/components/architecture-overlay/architecture-overlay.const.ts",
+      "type": "file",
+      "name": "architecture-overlay.const.ts",
+      "filePath": "src/app/components/architecture-overlay/architecture-overlay.const.ts",
+      "summary": "Contains all static AOEntry and AOEntryV2 configuration data for the architecture overlay, mapping each portfolio section to its description, technology stack, data sources, source code snippets, and pipeline steps.",
+      "tags": [
+        "configuration",
+        "data",
+        "architecture-overlay"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/app/components/architecture-overlay/architecture-overlay.service.ts",
+      "type": "file",
+      "name": "ArchitectureOverlayService",
+      "filePath": "src/app/components/architecture-overlay/architecture-overlay.service.ts",
+      "summary": "Angular injectable service managing the architecture overlay state \u2014 toggling visibility, tracking the active section, controlling source/pipeline views, and providing section metadata from AOEntries constants.",
+      "tags": [
+        "angular",
+        "service",
+        "state-management",
+        "architecture-overlay"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/app/components/architecture-overlay/architecture-overlay.service.ts:ArchitectureOverlayService",
+      "type": "class",
+      "name": "ArchitectureOverlayService",
+      "filePath": "src/app/components/architecture-overlay/architecture-overlay.service.ts",
+      "summary": "Singleton service managing the architecture overlay's reactive state via BehaviorSubjects for active/inactive, active section, and source-view mode, with methods to get section metadata.",
+      "tags": [
+        "service",
+        "rxjs",
+        "state-management"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/app/components/project-item/project-item.component.ts",
+      "type": "file",
+      "name": "ProjectItemComponent",
+      "filePath": "src/app/components/project-item/project-item.component.ts",
+      "summary": "Angular component rendering a single portfolio project card, checking the project URL liveness via fetch, generating avatar initials, and tracking project link clicks via analytics.",
+      "tags": [
+        "angular",
+        "component",
+        "ui",
+        "portfolio"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/app/components/project-item/project-item.component.ts:ProjectItemComponent",
+      "type": "class",
+      "name": "ProjectItemComponent",
+      "filePath": "src/app/components/project-item/project-item.component.ts",
+      "summary": "Accepts a Project input, pings the project URL to check liveness, generates name initials for avatars, and opens external links with analytics tracking.",
+      "tags": [
+        "angular",
+        "component",
+        "project-card"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/components/timeline-item/timeline-item.component.ts",
+      "type": "file",
+      "name": "TimelineItemComponent",
+      "filePath": "src/app/components/timeline-item/timeline-item.component.ts",
+      "summary": "Angular component rendering a timeline entry for work or education experiences, supporting collapsible responsibility lists with expand/collapse toggling.",
+      "tags": [
+        "angular",
+        "component",
+        "ui",
+        "timeline"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/app/components/timeline-item/timeline-item.component.ts:TimelineItemComponent",
+      "type": "class",
+      "name": "TimelineItemComponent",
+      "filePath": "src/app/components/timeline-item/timeline-item.component.ts",
+      "summary": "Accepts an array of Experience objects and provides expand/collapse toggling for responsibility lists with a configurable collapsed limit.",
+      "tags": [
+        "angular",
+        "component",
+        "timeline"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/app/pages/cv/cv.component.spec.ts",
+      "type": "file",
+      "name": "CvComponent spec",
+      "filePath": "src/app/pages/cv/cv.component.spec.ts",
+      "summary": "Unit test suite for the CvComponent, verifying the component creates successfully with its injected dependencies.",
+      "tags": [
+        "test",
+        "angular",
+        "component"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/pages/cv/cv.component.ts",
+      "type": "file",
+      "name": "CvComponent",
+      "filePath": "src/app/pages/cv/cv.component.ts",
+      "summary": "Standalone Angular component for the CV page that renders the CV HTML from getCVTemplate, and downloads a pdfmake-generated PDF on demand with lazy-loaded pdfmake chunks.",
+      "tags": [
+        "angular",
+        "component",
+        "cv",
+        "pdf-generation",
+        "tested"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/app/pages/cv/cv.component.ts:CvComponent",
+      "type": "class",
+      "name": "CvComponent",
+      "filePath": "src/app/pages/cv/cv.component.ts",
+      "summary": "Reads CV data from localStorage, renders the HTML CV on init, and provides a download() method that lazily loads pdfmake and generates a PDF.",
+      "tags": [
+        "angular",
+        "component",
+        "cv"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/app/pages/home/home.component.spec.ts",
+      "type": "file",
+      "name": "HomeComponent spec",
+      "filePath": "src/app/pages/home/home.component.spec.ts",
+      "summary": "Unit test suite for the HomeComponent, verifying the component creates successfully in a TestBed setup.",
+      "tags": [
+        "test",
+        "angular",
+        "component"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/pages/home/home.component.ts",
+      "type": "file",
+      "name": "HomeComponent",
+      "filePath": "src/app/pages/home/home.component.ts",
+      "summary": "Primary Angular page component rendering the full portfolio \u2014 user bio, technology skills grouped by category, filtered work/education experience timelines, and project cards \u2014 with dark mode toggle, CV download, and scroll-driven section detection.",
+      "tags": [
+        "angular",
+        "component",
+        "portfolio",
+        "page",
+        "tested"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:src/app/pages/home/home.component.ts:HomeComponent",
+      "type": "class",
+      "name": "HomeComponent",
+      "filePath": "src/app/pages/home/home.component.ts",
+      "summary": "Main portfolio page that assembles user, project, experience, and technology data into a multi-section layout with dark mode toggle, tech filtering, CV download via PageService, and architecture overlay integration.",
+      "tags": [
+        "angular",
+        "component",
+        "portfolio",
+        "page"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/app/pages/pages-routing.module.ts",
+      "type": "file",
+      "name": "PagesRoutingModule",
+      "filePath": "src/app/pages/pages-routing.module.ts",
+      "summary": "Defines the routes for the pages feature module: '/home' maps to HomeComponent, '/' redirects to '/home', and '/cv' maps to CvComponent.",
+      "tags": [
+        "angular",
+        "routing",
+        "module"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/pages/pages.module.ts",
+      "type": "file",
+      "name": "PagesModule",
+      "filePath": "src/app/pages/pages.module.ts",
+      "summary": "Feature NgModule declaring all portfolio page components and shared UI components, providing core services, and importing PagesRoutingModule to register page routes.",
+      "tags": [
+        "angular",
+        "module",
+        "feature"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/enums/work-type.enum.ts",
+      "type": "file",
+      "name": "work-type.enum.ts",
+      "filePath": "src/app/enums/work-type.enum.ts",
+      "summary": "Defines the WORK_TYPE enum classifying employment relationships (direct, outsourcing, intern, education, training) used across experience models and CV providers.",
+      "tags": [
+        "type-definition",
+        "enum",
+        "data-model"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/models/base.model.ts",
+      "type": "file",
+      "name": "base.model.ts",
+      "filePath": "src/app/models/base.model.ts",
+      "summary": "Base domain model extending TimeRange with an optional CV exclusion flag, serving as the common ancestor for Experience, ResponsibilityCategory, and WorkProject models.",
+      "tags": [
+        "data-model",
+        "type-definition",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/app/models/base.model.ts:BaseModel",
+      "type": "class",
+      "name": "BaseModel",
+      "filePath": "src/app/models/base.model.ts",
+      "summary": "Abstract-like base class extending TimeRange with an optional exclude_in_cv flag to suppress entries from CV output.",
+      "tags": [
+        "data-model",
+        "type-definition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/models/experience.model.ts",
+      "type": "file",
+      "name": "experience.model.ts",
+      "filePath": "src/app/models/experience.model.ts",
+      "summary": "Defines the Experience domain model representing a work, education, or training entry with position, responsibilities, categorized responsibilities, and nested projects.",
+      "tags": [
+        "data-model",
+        "type-definition",
+        "domain-model"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/app/models/experience.model.ts:Experience",
+      "type": "class",
+      "name": "Experience",
+      "filePath": "src/app/models/experience.model.ts",
+      "summary": "Core domain class for a professional experience entry, holding position metadata, flat and categorized responsibilities, nested projects, and WORK_TYPE classification.",
+      "tags": [
+        "data-model",
+        "type-definition",
+        "domain-model"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/models/range.model.ts",
+      "type": "file",
+      "name": "range.model.ts",
+      "filePath": "src/app/models/range.model.ts",
+      "summary": "Defines the TimeRange class with optional started_at and finished_at date strings, serving as the temporal foundation for all model classes.",
+      "tags": [
+        "data-model",
+        "type-definition",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/app/models/range.model.ts:TimeRange",
+      "type": "class",
+      "name": "TimeRange",
+      "filePath": "src/app/models/range.model.ts",
+      "summary": "Simple value class holding optional start and end date strings, extended by BaseModel to provide temporal context across all domain models.",
+      "tags": [
+        "data-model",
+        "type-definition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/models/responsibility-category.model.ts",
+      "type": "file",
+      "name": "responsibility-category.model.ts",
+      "filePath": "src/app/models/responsibility-category.model.ts",
+      "summary": "Defines the ResponsibilityCategory model grouping responsibilities under a named category title, used within Experience and WorkProject for structured CV rendering.",
+      "tags": [
+        "data-model",
+        "type-definition",
+        "domain-model"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/app/models/responsibility-category.model.ts:ResponsibilityCategory",
+      "type": "class",
+      "name": "ResponsibilityCategory",
+      "filePath": "src/app/models/responsibility-category.model.ts",
+      "summary": "Groups a list of responsibilities under a titled category, supporting both standard and CV-specific bullet lists for flexible CV rendering.",
+      "tags": [
+        "data-model",
+        "type-definition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/models/work-projects.model.ts",
+      "type": "file",
+      "name": "work-projects.model.ts",
+      "filePath": "src/app/models/work-projects.model.ts",
+      "summary": "Defines the WorkProject model representing a specific project within a work experience entry, including nested responsibility categories for detailed CV output.",
+      "tags": [
+        "data-model",
+        "type-definition",
+        "domain-model"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/app/models/work-projects.model.ts:WorkProject",
+      "type": "class",
+      "name": "WorkProject",
+      "filePath": "src/app/models/work-projects.model.ts",
+      "summary": "Represents a sub-project within an Experience, holding its name, flat responsibilities, CV responsibilities, and categorized responsibility breakdowns.",
+      "tags": [
+        "data-model",
+        "type-definition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/providers/cv.provider.spec.ts",
+      "type": "file",
+      "name": "cv.provider.spec.ts",
+      "filePath": "src/app/providers/cv.provider.spec.ts",
+      "summary": "Unit test suite for the CV provider verifying HTML and PDF output of getCVTemplate and getCVPdfDefinition across categorized, flat-fallback, concise, and direct experience scenarios.",
+      "tags": [
+        "test",
+        "validation",
+        "service"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/app/providers/experience.provider.ts",
+      "type": "file",
+      "name": "experience.provider.ts",
+      "filePath": "src/app/providers/experience.provider.ts",
+      "summary": "Static data provider exporting two Experience arrays \u2014 the full chronological work/education history and a separate training/certification list \u2014 consumed by CV and page services.",
+      "tags": [
+        "data-model",
+        "service",
+        "entry-point"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Uses spread operator to merge training_experiences into the main experiences array, keeping training data modular."
+    },
+    {
+      "id": "file:src/app/app-routing.module.ts",
+      "type": "file",
+      "name": "AppRoutingModule",
+      "filePath": "src/app/app-routing.module.ts",
+      "summary": "Defines the root Angular router configuration with lazy-loaded route to the pages module.",
+      "tags": [
+        "routing",
+        "angular",
+        "module"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/app.component.spec.ts",
+      "type": "file",
+      "name": "AppComponent spec",
+      "filePath": "src/app/app.component.spec.ts",
+      "summary": "Unit test for the root AppComponent, verifying the component creates successfully.",
+      "tags": [
+        "test",
+        "angular",
+        "component"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/app.component.ts",
+      "type": "file",
+      "name": "AppComponent",
+      "filePath": "src/app/app.component.ts",
+      "summary": "Root Angular component serving as the application shell with router-outlet.",
+      "tags": [
+        "angular",
+        "component",
+        "root",
+        "tested"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/app/app.component.ts:AppComponent",
+      "type": "class",
+      "name": "AppComponent",
+      "filePath": "src/app/app.component.ts",
+      "summary": "Root application component that hosts the router outlet for page navigation.",
+      "tags": [
+        "angular",
+        "component",
+        "root"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/app.module.ts",
+      "type": "file",
+      "name": "AppModule",
+      "filePath": "src/app/app.module.ts",
+      "summary": "Root Angular module that bootstraps the application, imports routing and declares the root component.",
+      "tags": [
+        "angular",
+        "module",
+        "bootstrap"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/components/timeline-range/timeline-range.component.ts",
+      "type": "file",
+      "name": "TimelineRangeComponent",
+      "filePath": "src/app/components/timeline-range/timeline-range.component.ts",
+      "summary": "Angular component that renders a visual date range for timeline entries, displaying start and end periods.",
+      "tags": [
+        "angular",
+        "component",
+        "timeline",
+        "ui"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/app/components/timeline-range/timeline-range.component.ts:TimelineRangeComponent",
+      "type": "class",
+      "name": "TimelineRangeComponent",
+      "filePath": "src/app/components/timeline-range/timeline-range.component.ts",
+      "summary": "Displays a date range for timeline items, accepting start/end date inputs and formatting them for display.",
+      "tags": [
+        "angular",
+        "component",
+        "timeline",
+        "ui"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/environments/environment.ts",
+      "type": "file",
+      "name": "environment",
+      "filePath": "src/environments/environment.ts",
+      "summary": "Development environment configuration file containing environment-specific flags and API endpoints.",
+      "tags": [
+        "config",
+        "environment",
+        "angular"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/main.ts",
+      "type": "file",
+      "name": "main",
+      "filePath": "src/main.ts",
+      "summary": "Application entry point that bootstraps the Angular application using AppModule.",
+      "tags": [
+        "bootstrap",
+        "entry-point",
+        "angular"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/constants/constants.ts",
+      "type": "file",
+      "name": "constants.ts",
+      "filePath": "src/app/constants/constants.ts",
+      "summary": "Defines the TECHNOLOGY_SUBTYPE enum used to categorize technology entries into sub-groups such as State Management, Testing, and Database across the portfolio data layer.",
+      "tags": [
+        "type-definition",
+        "utility",
+        "data-model",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/enums/project-type.enum.ts",
+      "type": "file",
+      "name": "project-type.enum.ts",
+      "filePath": "src/app/enums/project-type.enum.ts",
+      "summary": "Exports the PROJECT_TYPE enum classifying portfolio projects into Mobile, System, Web, and Others categories used throughout the project data model.",
+      "tags": [
+        "type-definition",
+        "data-model",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/models/project.model.ts",
+      "type": "file",
+      "name": "project.model.ts",
+      "filePath": "src/app/models/project.model.ts",
+      "summary": "Defines the Project data model class extending BaseModel, capturing portfolio project attributes including name, description, icon, URL, technologies list, and project type classification.",
+      "tags": [
+        "data-model",
+        "type-definition",
+        "service"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/app/models/project.model.ts:Project",
+      "type": "class",
+      "name": "Project",
+      "filePath": "src/app/models/project.model.ts",
+      "summary": "Core domain model for a portfolio project, extending BaseModel with fields for name, description, URL, icon, associated technologies, and project type.",
+      "tags": [
+        "data-model",
+        "type-definition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/models/technology.model.ts",
+      "type": "file",
+      "name": "technology.model.ts",
+      "filePath": "src/app/models/technology.model.ts",
+      "summary": "Defines the Technology data model class extending BaseModel, describing a skill or tool with its name, URL, icon, type (Framework/Language/Tool), group, sub-group, and CV visibility flags.",
+      "tags": [
+        "data-model",
+        "type-definition",
+        "service"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/app/models/technology.model.ts:Technology",
+      "type": "class",
+      "name": "Technology",
+      "filePath": "src/app/models/technology.model.ts",
+      "summary": "Domain model for a technology or skill entry, with typed grouping fields and CV exclusion flags used to control rendering in both the portfolio and CV pages.",
+      "tags": [
+        "data-model",
+        "type-definition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/providers/projects.provider.ts",
+      "type": "file",
+      "name": "projects.provider.ts",
+      "filePath": "src/app/providers/projects.provider.ts",
+      "summary": "Exports the static projects data array containing 15+ portfolio project entries with associated technologies, dates, descriptions, and type classifications used to drive the portfolio and CV pages.",
+      "tags": [
+        "data-model",
+        "service",
+        "utility",
+        "configuration"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/app/providers/technologies.provider.ts",
+      "type": "file",
+      "name": "technologies.provider.ts",
+      "filePath": "src/app/providers/technologies.provider.ts",
+      "summary": "Exports individually named Technology constants and grouped category arrays (FRONTEND, BACKEND, DEVOPS, ENGINEERING_APPROACH, EXPLORATORY) covering all technologies, frameworks, and engineering practices displayed across the portfolio.",
+      "tags": [
+        "data-model",
+        "service",
+        "utility",
+        "configuration"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/app/models/user.model.ts",
+      "type": "file",
+      "name": "user.model.ts",
+      "filePath": "src/app/models/user.model.ts",
+      "summary": "Defines the User data model class with personal contact and profile fields used throughout the CV generation pipeline.",
+      "tags": [
+        "data-model",
+        "type-definition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/app/models/user.model.ts:User",
+      "type": "class",
+      "name": "User",
+      "filePath": "src/app/models/user.model.ts",
+      "summary": "Exported class representing a user profile with fields for name, position, contact information, and social links.",
+      "tags": [
+        "data-model",
+        "entity"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/pages/file-service.service.ts",
+      "type": "file",
+      "name": "file-service.service.ts",
+      "filePath": "src/app/pages/file-service.service.ts",
+      "summary": "Angular injectable service providing file download utilities, including saving HTML content as a file and managing temporary blob URLs.",
+      "tags": [
+        "service",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/app/pages/file-service.service.ts:FileService",
+      "type": "class",
+      "name": "FileService",
+      "filePath": "src/app/pages/file-service.service.ts",
+      "summary": "Root-scoped Angular service with methods to save HTML blobs to disk via FileSaver and manage temporary object URLs.",
+      "tags": [
+        "service",
+        "file-handling",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/pages/page.service.ts",
+      "type": "file",
+      "name": "page.service.ts",
+      "filePath": "src/app/pages/page.service.ts",
+      "summary": "Angular injectable service that orchestrates CV generation and PDF export by combining user, experience, technology, and project data into a downloadable PDF via html2pdf.",
+      "tags": [
+        "service",
+        "pdf-generation",
+        "cv"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/app/pages/page.service.ts:PageService",
+      "type": "class",
+      "name": "PageService",
+      "filePath": "src/app/pages/page.service.ts",
+      "summary": "Root-scoped Angular service that converts CV HTML output into a PDF blob and triggers a browser file-save using FileSaver.",
+      "tags": [
+        "service",
+        "pdf-generation",
+        "orchestration"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/app/pages/page.service.ts:saveCV",
+      "type": "function",
+      "name": "saveCV",
+      "filePath": "src/app/pages/page.service.ts",
+      "summary": "Renders the CV HTML template, converts it to a PDF with html2pdf using configurable margins and image quality, then saves the output via FileSaver and triggers an optional success callback.",
+      "tags": [
+        "pdf-generation",
+        "cv",
+        "async"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/app/providers/cv-style.provider.ts",
+      "type": "file",
+      "name": "cv-style.provider.ts",
+      "filePath": "src/app/providers/cv-style.provider.ts",
+      "summary": "Provides the legacy CSS stylesheet string and a base64-encoded GitHub icon used by the V1 CV HTML template renderer.",
+      "tags": [
+        "utility",
+        "styling",
+        "data"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "All styles are embedded as a TypeScript string constant to be injected into the generated HTML document at runtime."
+    },
+    {
+      "id": "file:src/app/providers/cv.provider.ts",
+      "type": "file",
+      "name": "cv.provider.ts",
+      "filePath": "src/app/providers/cv.provider.ts",
+      "summary": "Core CV generation module exporting three rendering functions: the modern ATS-friendly HTML template (getCVTemplate), the pdfmake document definition (getCVPdfDefinition), and the preserved V1 legacy HTML template (getCVTemplateV1).",
+      "tags": [
+        "cv",
+        "pdf-generation",
+        "utility",
+        "service",
+        "tested"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/app/providers/cv.provider.ts:getCVTemplate",
+      "type": "function",
+      "name": "getCVTemplate",
+      "filePath": "src/app/providers/cv.provider.ts",
+      "summary": "Generates a modern, ATS-optimized HTML string for the CV by composing user header, summary, work experience, projects, skills, training, and education sections with embedded CSS.",
+      "tags": [
+        "cv",
+        "html-generation",
+        "template"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/app/providers/cv.provider.ts:getCVPdfDefinition",
+      "type": "function",
+      "name": "getCVPdfDefinition",
+      "filePath": "src/app/providers/cv.provider.ts",
+      "summary": "Builds a pdfmake document-definition object from user, experiences, technologies, and projects data \u2014 including styles, page margins, and nested content blocks \u2014 for native PDF rendering.",
+      "tags": [
+        "cv",
+        "pdf-generation",
+        "pdfmake"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/app/providers/cv.provider.ts:getCVTemplateV1",
+      "type": "function",
+      "name": "getCVTemplateV1",
+      "filePath": "src/app/providers/cv.provider.ts",
+      "summary": "Preserved V1 CV HTML template renderer using the legacy CSS stylesheet; produces a simpler single-column layout for backward compatibility.",
+      "tags": [
+        "cv",
+        "html-generation",
+        "legacy"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/app/providers/user.provider.ts",
+      "type": "file",
+      "name": "user.provider.ts",
+      "filePath": "src/app/providers/user.provider.ts",
+      "summary": "Provides the singleton User data object pre-populated with the portfolio owner's contact details, profile description, and social links for use across the CV rendering pipeline.",
+      "tags": [
+        "data",
+        "singleton",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "service:Dockerfile",
+      "type": "service",
+      "name": "Dockerfile",
+      "filePath": "Dockerfile",
+      "summary": "Multi-stage Dockerfile that builds the Angular portfolio app using Node.js, then serves the static build artifacts from an Nginx container.",
+      "tags": [
+        "docker",
+        "containerization",
+        "deployment",
+        "nginx"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "pipeline:.github/workflows/deploy-aws-ecs.yml",
+      "type": "pipeline",
+      "name": "deploy-aws-ecs",
+      "filePath": ".github/workflows/deploy-aws-ecs.yml",
+      "summary": "GitHub Actions workflow that builds the Angular app, packages it into a Docker image, pushes to ECR, and deploys to AWS ECS via a task definition update.",
+      "tags": [
+        "ci-cd",
+        "github-actions",
+        "aws",
+        "ecs",
+        "docker"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "pipeline:.github/workflows/deploy-aws-s3-cloudfront.yml",
+      "type": "pipeline",
+      "name": "deploy-aws-s3-cloudfront",
+      "filePath": ".github/workflows/deploy-aws-s3-cloudfront.yml",
+      "summary": "GitHub Actions workflow that builds the Angular app and deploys the static build artifacts to an S3 bucket, then invalidates the CloudFront distribution cache.",
+      "tags": [
+        "ci-cd",
+        "github-actions",
+        "aws",
+        "s3",
+        "cloudfront"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "pipeline:.github/workflows/deploy-gh-pages.yml",
+      "type": "pipeline",
+      "name": "deploy-gh-pages",
+      "filePath": ".github/workflows/deploy-gh-pages.yml",
+      "summary": "GitHub Actions workflow that builds the Angular app with the GitHub Pages base href and publishes the dist output to the gh-pages branch.",
+      "tags": [
+        "ci-cd",
+        "github-actions",
+        "github-pages",
+        "deployment"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "pipeline:.github/workflows/test-ci.yml",
+      "type": "pipeline",
+      "name": "test-ci",
+      "filePath": ".github/workflows/test-ci.yml",
+      "summary": "GitHub Actions CI workflow that runs the Angular unit tests with ChromeHeadless on every push or pull request to the main branch.",
+      "tags": [
+        "ci-cd",
+        "github-actions",
+        "testing",
+        "unit-tests"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:.ua/tmp/ua-import-map-input.json",
+      "type": "config",
+      "name": "ua-import-map-input.json",
+      "filePath": ".ua/tmp/ua-import-map-input.json",
+      "summary": "Temporary input file used by the Understand-Anything analysis toolchain to pass file paths for import map resolution.",
+      "tags": [
+        "tooling",
+        "analysis",
+        "generated"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:.ua/tmp/ua-import-map-output.json",
+      "type": "config",
+      "name": "ua-import-map-output.json",
+      "filePath": ".ua/tmp/ua-import-map-output.json",
+      "summary": "Generated output file from the Understand-Anything toolchain containing resolved import relationships between project files.",
+      "tags": [
+        "tooling",
+        "analysis",
+        "generated"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:.ua/tmp/ua-scan-files.json",
+      "type": "config",
+      "name": "ua-scan-files.json",
+      "filePath": ".ua/tmp/ua-scan-files.json",
+      "summary": "Generated file listing all scanned project files with their metadata, produced during the Understand-Anything analysis scan phase.",
+      "tags": [
+        "tooling",
+        "analysis",
+        "generated"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "README.md",
+      "summary": "Project README generated by Angular CLI providing standard development setup instructions for serving, building, and testing the portfolio application.",
+      "tags": [
+        "documentation",
+        "angular",
+        "setup"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:angular.json",
+      "type": "config",
+      "name": "angular.json",
+      "filePath": "angular.json",
+      "summary": "Angular CLI workspace configuration defining build targets, test configurations, serve options, budgets, and production optimization settings for the portfolio-v2 project.",
+      "tags": [
+        "angular",
+        "configuration",
+        "build"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "package.json",
+      "summary": "NPM package manifest declaring Angular 19 dependencies, PDF generation libraries (pdfmake, html2pdf.js), Bootstrap, and development tooling scripts for the portfolio.",
+      "tags": [
+        "npm",
+        "dependencies",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:tsconfig.app.json",
+      "type": "config",
+      "name": "tsconfig.app.json",
+      "filePath": "tsconfig.app.json",
+      "summary": "TypeScript compiler configuration for the application build, extending the root tsconfig with Angular-specific options and source file includes.",
+      "tags": [
+        "typescript",
+        "configuration",
+        "build"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "tsconfig.json",
+      "summary": "Root TypeScript compiler configuration setting strict mode, ES2022 target, Angular decorator metadata, and path resolution options for the project.",
+      "tags": [
+        "typescript",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:tsconfig.spec.json",
+      "type": "config",
+      "name": "tsconfig.spec.json",
+      "filePath": "tsconfig.spec.json",
+      "summary": "TypeScript configuration for the Karma/Jasmine test runner, extending the root tsconfig to include test spec and polyfill files.",
+      "tags": [
+        "typescript",
+        "configuration",
+        "testing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:tslint.json",
+      "type": "config",
+      "name": "tslint.json",
+      "filePath": "tslint.json",
+      "summary": "TSLint configuration defining Angular-recommended linting rules for code style, naming conventions, and best practices.",
+      "tags": [
+        "linting",
+        "configuration",
+        "code-quality"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:openspec/changes/comply-wcag2/.openspec.yaml",
+      "type": "config",
+      "name": ".openspec.yaml",
+      "filePath": "openspec/changes/comply-wcag2/.openspec.yaml",
+      "summary": "OpenSpec change configuration file marking the WCAG2 compliance change as archived.",
+      "tags": [
+        "openspec",
+        "configuration",
+        "accessibility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:openspec/changes/comply-wcag2/design.md",
+      "type": "document",
+      "name": "design.md",
+      "filePath": "openspec/changes/comply-wcag2/design.md",
+      "summary": "OpenSpec design document for the WCAG2 compliance change, specifying the technical design for making the portfolio accessible including color contrast, ARIA attributes, keyboard navigation, and semantic HTML improvements.",
+      "tags": [
+        "openspec",
+        "accessibility",
+        "wcag",
+        "design"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:openspec/changes/comply-wcag2/proposal.md",
+      "type": "document",
+      "name": "proposal.md",
+      "filePath": "openspec/changes/comply-wcag2/proposal.md",
+      "summary": "OpenSpec proposal document describing the motivation and scope for WCAG2 compliance improvements across the portfolio website.",
+      "tags": [
+        "openspec",
+        "accessibility",
+        "wcag",
+        "proposal"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:openspec/changes/comply-wcag2/tasks.md",
+      "type": "document",
+      "name": "tasks.md",
+      "filePath": "openspec/changes/comply-wcag2/tasks.md",
+      "summary": "OpenSpec task list for the WCAG2 compliance change, tracking implementation progress across color contrast, ARIA, keyboard navigation, and semantic markup tasks.",
+      "tags": [
+        "openspec",
+        "accessibility",
+        "wcag",
+        "tasks"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "src/index.html",
+      "summary": "Root HTML entry point for the Angular application, defining page metadata, SEO tags, Open Graph properties, Bootstrap CDN links, and the app-root mount point.",
+      "tags": [
+        "html",
+        "entry-point",
+        "seo",
+        "metadata"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:src/robots.txt",
+      "type": "document",
+      "name": "robots.txt",
+      "filePath": "src/robots.txt",
+      "summary": "Robots.txt file allowing all crawlers and pointing to the sitemap URL for the portfolio website.",
+      "tags": [
+        "seo",
+        "robots",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:src/sitemap.xml",
+      "type": "config",
+      "name": "sitemap.xml",
+      "filePath": "src/sitemap.xml",
+      "summary": "XML sitemap listing the portfolio website's pages (home, cv) for search engine indexing.",
+      "tags": [
+        "seo",
+        "sitemap",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/styles.scss",
+      "type": "file",
+      "name": "styles.scss",
+      "filePath": "src/styles.scss",
+      "summary": "Global application stylesheet defining CSS custom properties for light/dark theming, base layout styles, utility classes, and Bootstrap variable overrides.",
+      "tags": [
+        "css",
+        "scss",
+        "theming",
+        "global-styles"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:.ua/config.json",
+      "type": "config",
+      "name": "config.json",
+      "filePath": ".ua/config.json",
+      "summary": "Understand-Anything tool configuration specifying the output language preference for generated knowledge graph content.",
+      "tags": [
+        "tooling",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:browserslist",
+      "type": "config",
+      "name": "browserslist",
+      "filePath": "browserslist",
+      "summary": "Browserslist configuration specifying target browser compatibility for the Angular build pipeline's CSS and JavaScript transpilation.",
+      "tags": [
+        "configuration",
+        "browser-compatibility",
+        "build"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:e2e/tsconfig.json",
+      "type": "config",
+      "name": "e2e/tsconfig.json",
+      "filePath": "e2e/tsconfig.json",
+      "summary": "TypeScript configuration for the end-to-end Protractor test suite.",
+      "tags": [
+        "typescript",
+        "configuration",
+        "e2e",
+        "testing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:e2e/protractor.conf.js",
+      "type": "file",
+      "name": "protractor.conf.js",
+      "filePath": "e2e/protractor.conf.js",
+      "summary": "Protractor end-to-end test configuration defining ChromeDriver setup, base URL, and spec file patterns for the Angular e2e test suite.",
+      "tags": [
+        "testing",
+        "e2e",
+        "protractor",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:e2e/src/app.e2e-spec.ts",
+      "type": "file",
+      "name": "app.e2e-spec.ts",
+      "filePath": "e2e/src/app.e2e-spec.ts",
+      "summary": "Protractor end-to-end test spec verifying the portfolio application loads and displays the correct page title.",
+      "tags": [
+        "testing",
+        "e2e",
+        "spec"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:e2e/src/app.po.ts",
+      "type": "file",
+      "name": "app.po.ts",
+      "filePath": "e2e/src/app.po.ts",
+      "summary": "Page object model for the e2e tests, providing helper methods to navigate to the app and get the page title.",
+      "tags": [
+        "testing",
+        "e2e",
+        "page-object"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:karma.conf.js",
+      "type": "file",
+      "name": "karma.conf.js",
+      "filePath": "karma.conf.js",
+      "summary": "Karma test runner configuration setting up Chrome/ChromeHeadless, Jasmine framework, coverage reporting, and HTML reporter for the Angular unit test suite.",
+      "tags": [
+        "testing",
+        "karma",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:nginx.conf",
+      "type": "config",
+      "name": "nginx.conf",
+      "filePath": "nginx.conf",
+      "summary": "Nginx server configuration for serving the Angular SPA, including gzip compression and a catch-all fallback to index.html for client-side routing.",
+      "tags": [
+        "nginx",
+        "deployment",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:openspec/changes/comply-wcag2/specs/accessibility/wcag2/spec.md",
+      "type": "document",
+      "name": "spec.md",
+      "filePath": "openspec/changes/comply-wcag2/specs/accessibility/wcag2/spec.md",
+      "summary": "OpenSpec specification document defining the accessibility requirements and acceptance criteria for WCAG2 compliance on the portfolio website.",
+      "tags": [
+        "openspec",
+        "accessibility",
+        "wcag",
+        "specification"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:openspec/config.yaml",
+      "type": "config",
+      "name": "openspec/config.yaml",
+      "filePath": "openspec/config.yaml",
+      "summary": "OpenSpec tool configuration defining the project structure, spec directory layout, and change management workflow settings.",
+      "tags": [
+        "openspec",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/app.component.scss",
+      "type": "file",
+      "name": "app.component.scss",
+      "filePath": "src/app/app.component.scss",
+      "summary": "Empty SCSS stylesheet for the root AppComponent (no styles needed at the root level).",
+      "tags": [
+        "scss",
+        "styles"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/components/architecture-overlay/architecture-overlay.component.html",
+      "type": "file",
+      "name": "architecture-overlay.component.html",
+      "filePath": "src/app/components/architecture-overlay/architecture-overlay.component.html",
+      "summary": "Angular template for the architecture overlay panel, rendering section metadata, source code views, pipeline step diagrams, and data source info in an interactive side panel.",
+      "tags": [
+        "html",
+        "template",
+        "angular",
+        "architecture-overlay"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/app/components/architecture-overlay/architecture-overlay.component.scss",
+      "type": "file",
+      "name": "architecture-overlay.component.scss",
+      "filePath": "src/app/components/architecture-overlay/architecture-overlay.component.scss",
+      "summary": "SCSS stylesheet for the architecture overlay component, defining the overlay panel layout, slide-in animation, code block formatting, pipeline step styling, and responsive adjustments.",
+      "tags": [
+        "scss",
+        "styles",
+        "animation",
+        "architecture-overlay"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/app/components/project-item/project-item.component.html",
+      "type": "file",
+      "name": "project-item.component.html",
+      "filePath": "src/app/components/project-item/project-item.component.html",
+      "summary": "Angular template for a portfolio project card, displaying project avatar, name, description, date range, live status badge, and technology chip list.",
+      "tags": [
+        "html",
+        "template",
+        "angular",
+        "project-card"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/components/project-item/project-item.component.scss",
+      "type": "file",
+      "name": "project-item.component.scss",
+      "filePath": "src/app/components/project-item/project-item.component.scss",
+      "summary": "SCSS stylesheet for the project item card, defining card layout, avatar sizing, technology chip styles, live/offline status badges, and hover effects.",
+      "tags": [
+        "scss",
+        "styles",
+        "project-card"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/app/components/timeline-item/timeline-item.component.html",
+      "type": "file",
+      "name": "timeline-item.component.html",
+      "filePath": "src/app/components/timeline-item/timeline-item.component.html",
+      "summary": "Angular template for a timeline experience entry, rendering company name, role, date range, responsibilities with expand/collapse, and nested work projects.",
+      "tags": [
+        "html",
+        "template",
+        "angular",
+        "timeline"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/app/components/timeline-item/timeline-item.component.scss",
+      "type": "file",
+      "name": "timeline-item.component.scss",
+      "filePath": "src/app/components/timeline-item/timeline-item.component.scss",
+      "summary": "SCSS stylesheet for the timeline item component (minimal \u2014 styling deferred to the global timeline.scss asset).",
+      "tags": [
+        "scss",
+        "styles",
+        "timeline"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/components/timeline-range/timeline-range.component.html",
+      "type": "file",
+      "name": "timeline-range.component.html",
+      "filePath": "src/app/components/timeline-range/timeline-range.component.html",
+      "summary": "Angular template rendering a formatted date range label for timeline entries.",
+      "tags": [
+        "html",
+        "template",
+        "angular",
+        "timeline"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/components/timeline-range/timeline-range.component.scss",
+      "type": "file",
+      "name": "timeline-range.component.scss",
+      "filePath": "src/app/components/timeline-range/timeline-range.component.scss",
+      "summary": "Minimal SCSS stylesheet for the timeline range component.",
+      "tags": [
+        "scss",
+        "styles"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/pages/cv/cv.component.html",
+      "type": "file",
+      "name": "cv.component.html",
+      "filePath": "src/app/pages/cv/cv.component.html",
+      "summary": "Angular template for the CV page, rendering the generated HTML CV content in a container and providing a download PDF button with loading state indicator.",
+      "tags": [
+        "html",
+        "template",
+        "angular",
+        "cv"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/pages/cv/cv.component.scss",
+      "type": "file",
+      "name": "cv.component.scss",
+      "filePath": "src/app/pages/cv/cv.component.scss",
+      "summary": "SCSS stylesheet for the CV page component, styling the CV container, download button, and loading spinner.",
+      "tags": [
+        "scss",
+        "styles",
+        "cv"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/pages/home/home.component.html",
+      "type": "file",
+      "name": "home.component.html",
+      "filePath": "src/app/pages/home/home.component.html",
+      "summary": "Main portfolio page template rendering the full-page layout: header with avatar and bio, technology skill grid with category filters, work/education timelines, project cards grid, and architecture overlay panel.",
+      "tags": [
+        "html",
+        "template",
+        "angular",
+        "portfolio",
+        "page"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/app/pages/home/home.component.scss",
+      "type": "file",
+      "name": "home.component.scss",
+      "filePath": "src/app/pages/home/home.component.scss",
+      "summary": "Comprehensive SCSS stylesheet for the home page layout including hero section, technology category pills, skill chip grid, timeline sections, project grid, dark mode theming, and responsive breakpoints.",
+      "tags": [
+        "scss",
+        "styles",
+        "portfolio",
+        "responsive",
+        "dark-mode"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/app/services/analytics.service.ts",
+      "type": "file",
+      "name": "analytics.service.ts",
+      "filePath": "src/app/services/analytics.service.ts",
+      "summary": "Angular injectable service wrapping Plausible Analytics to track custom events across the portfolio, providing a typed track() method used by project and CV components.",
+      "tags": [
+        "service",
+        "analytics",
+        "tracking"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/app/services/analytics.service.ts:AnalyticsService",
+      "type": "class",
+      "name": "AnalyticsService",
+      "filePath": "src/app/services/analytics.service.ts",
+      "summary": "Root-scoped Angular service providing a track() method that calls the Plausible analytics window function with event name and optional properties.",
+      "tags": [
+        "service",
+        "analytics"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/assets/scss/timeline.scss",
+      "type": "file",
+      "name": "timeline.scss",
+      "filePath": "src/assets/scss/timeline.scss",
+      "summary": "Global SCSS asset defining the timeline UI styles including vertical line, dot markers, card layout, responsive breakpoints, and dark mode overrides for the experience timeline component.",
+      "tags": [
+        "scss",
+        "styles",
+        "timeline",
+        "responsive",
+        "dark-mode"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/environments/environment.prod.ts",
+      "type": "file",
+      "name": "environment.prod.ts",
+      "filePath": "src/environments/environment.prod.ts",
+      "summary": "Production environment configuration with production mode enabled, used by the Angular build system to apply production-specific settings.",
+      "tags": [
+        "configuration",
+        "environment",
+        "production"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/polyfills.ts",
+      "type": "file",
+      "name": "polyfills.ts",
+      "filePath": "src/polyfills.ts",
+      "summary": "Angular polyfills entry point loading zone.js and any browser compatibility shims needed for the application.",
+      "tags": [
+        "polyfills",
+        "angular",
+        "browser-compatibility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/test.ts",
+      "type": "file",
+      "name": "test.ts",
+      "filePath": "src/test.ts",
+      "summary": "Karma test bootstrap file that initializes the Angular testing environment and loads all test spec files via webpack's require.context.",
+      "tags": [
+        "testing",
+        "karma",
+        "bootstrap"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:src/app/components/architecture-overlay/architecture-overlay.component.ts",
+      "target": "class:src/app/components/architecture-overlay/architecture-overlay.component.ts:ArchitectureOverlayComponent",
+      "type": "contains",
+      "weight": 1.0,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/components/architecture-overlay/architecture-overlay.component.ts",
+      "target": "class:src/app/components/architecture-overlay/architecture-overlay.component.ts:ArchitectureOverlayComponent",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/components/architecture-overlay/architecture-overlay.service.ts",
+      "target": "class:src/app/components/architecture-overlay/architecture-overlay.service.ts:ArchitectureOverlayService",
+      "type": "contains",
+      "weight": 1.0,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/components/architecture-overlay/architecture-overlay.service.ts",
+      "target": "class:src/app/components/architecture-overlay/architecture-overlay.service.ts:ArchitectureOverlayService",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/components/architecture-overlay/architecture-overlay.service.ts",
+      "target": "file:src/app/components/architecture-overlay/architecture-overlay.const.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/components/project-item/project-item.component.ts",
+      "target": "class:src/app/components/project-item/project-item.component.ts:ProjectItemComponent",
+      "type": "contains",
+      "weight": 1.0,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/components/project-item/project-item.component.ts",
+      "target": "class:src/app/components/project-item/project-item.component.ts:ProjectItemComponent",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/components/timeline-item/timeline-item.component.ts",
+      "target": "class:src/app/components/timeline-item/timeline-item.component.ts:TimelineItemComponent",
+      "type": "contains",
+      "weight": 1.0,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/components/timeline-item/timeline-item.component.ts",
+      "target": "class:src/app/components/timeline-item/timeline-item.component.ts:TimelineItemComponent",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/cv/cv.component.spec.ts",
+      "target": "file:src/app/pages/cv/cv.component.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/cv/cv.component.ts",
+      "target": "file:src/app/pages/cv/cv.component.spec.ts",
+      "type": "tested_by",
+      "weight": 0.5,
+      "direction": "forward",
+      "description": "Direction corrected (was test \u2192 production)"
+    },
+    {
+      "source": "file:src/app/pages/cv/cv.component.ts",
+      "target": "class:src/app/pages/cv/cv.component.ts:CvComponent",
+      "type": "contains",
+      "weight": 1.0,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/cv/cv.component.ts",
+      "target": "class:src/app/pages/cv/cv.component.ts:CvComponent",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/cv/cv.component.ts",
+      "target": "file:src/app/providers/cv.provider.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/home/home.component.spec.ts",
+      "target": "file:src/app/pages/home/home.component.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/home/home.component.ts",
+      "target": "file:src/app/pages/home/home.component.spec.ts",
+      "type": "tested_by",
+      "weight": 0.5,
+      "direction": "forward",
+      "description": "Direction corrected (was test \u2192 production)"
+    },
+    {
+      "source": "file:src/app/pages/home/home.component.ts",
+      "target": "class:src/app/pages/home/home.component.ts:HomeComponent",
+      "type": "contains",
+      "weight": 1.0,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/home/home.component.ts",
+      "target": "class:src/app/pages/home/home.component.ts:HomeComponent",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/home/home.component.ts",
+      "target": "file:src/app/enums/work-type.enum.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/home/home.component.ts",
+      "target": "file:src/app/models/technology.model.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/home/home.component.ts",
+      "target": "file:src/app/pages/page.service.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/home/home.component.ts",
+      "target": "file:src/app/providers/projects.provider.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/home/home.component.ts",
+      "target": "file:src/app/providers/experience.provider.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/home/home.component.ts",
+      "target": "file:src/app/providers/user.provider.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/home/home.component.ts",
+      "target": "file:src/app/providers/technologies.provider.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/home/home.component.ts",
+      "target": "file:src/app/providers/cv.provider.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/pages-routing.module.ts",
+      "target": "file:src/app/pages/cv/cv.component.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/pages-routing.module.ts",
+      "target": "file:src/app/pages/home/home.component.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/pages.module.ts",
+      "target": "file:src/app/components/architecture-overlay/architecture-overlay.component.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/pages.module.ts",
+      "target": "file:src/app/components/architecture-overlay/architecture-overlay.service.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/pages.module.ts",
+      "target": "file:src/app/components/project-item/project-item.component.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/pages.module.ts",
+      "target": "file:src/app/components/timeline-item/timeline-item.component.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/pages.module.ts",
+      "target": "file:src/app/components/timeline-range/timeline-range.component.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/pages.module.ts",
+      "target": "file:src/app/pages/file-service.service.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/pages.module.ts",
+      "target": "file:src/app/pages/home/home.component.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/pages.module.ts",
+      "target": "file:src/app/pages/page.service.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/pages.module.ts",
+      "target": "file:src/app/pages/pages-routing.module.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/models/base.model.ts",
+      "target": "file:src/app/models/range.model.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/models/base.model.ts",
+      "target": "class:src/app/models/base.model.ts:BaseModel",
+      "type": "contains",
+      "weight": 1.0,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/models/base.model.ts",
+      "target": "class:src/app/models/base.model.ts:BaseModel",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "class:src/app/models/base.model.ts:BaseModel",
+      "target": "class:src/app/models/range.model.ts:TimeRange",
+      "type": "inherits",
+      "weight": 0.9,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/models/range.model.ts",
+      "target": "class:src/app/models/range.model.ts:TimeRange",
+      "type": "contains",
+      "weight": 1.0,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/models/range.model.ts",
+      "target": "class:src/app/models/range.model.ts:TimeRange",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/models/experience.model.ts",
+      "target": "file:src/app/enums/work-type.enum.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/models/experience.model.ts",
+      "target": "file:src/app/models/base.model.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/models/experience.model.ts",
+      "target": "file:src/app/models/responsibility-category.model.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/models/experience.model.ts",
+      "target": "file:src/app/models/work-projects.model.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/models/experience.model.ts",
+      "target": "class:src/app/models/experience.model.ts:Experience",
+      "type": "contains",
+      "weight": 1.0,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/models/experience.model.ts",
+      "target": "class:src/app/models/experience.model.ts:Experience",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "class:src/app/models/experience.model.ts:Experience",
+      "target": "class:src/app/models/base.model.ts:BaseModel",
+      "type": "inherits",
+      "weight": 0.9,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/models/responsibility-category.model.ts",
+      "target": "file:src/app/models/base.model.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/models/responsibility-category.model.ts",
+      "target": "class:src/app/models/responsibility-category.model.ts:ResponsibilityCategory",
+      "type": "contains",
+      "weight": 1.0,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/models/responsibility-category.model.ts",
+      "target": "class:src/app/models/responsibility-category.model.ts:ResponsibilityCategory",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "class:src/app/models/responsibility-category.model.ts:ResponsibilityCategory",
+      "target": "class:src/app/models/base.model.ts:BaseModel",
+      "type": "inherits",
+      "weight": 0.9,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/models/work-projects.model.ts",
+      "target": "file:src/app/models/base.model.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/models/work-projects.model.ts",
+      "target": "file:src/app/models/responsibility-category.model.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/models/work-projects.model.ts",
+      "target": "class:src/app/models/work-projects.model.ts:WorkProject",
+      "type": "contains",
+      "weight": 1.0,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/models/work-projects.model.ts",
+      "target": "class:src/app/models/work-projects.model.ts:WorkProject",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "class:src/app/models/work-projects.model.ts:WorkProject",
+      "target": "class:src/app/models/base.model.ts:BaseModel",
+      "type": "inherits",
+      "weight": 0.9,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.spec.ts",
+      "target": "file:src/app/enums/work-type.enum.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.spec.ts",
+      "target": "file:src/app/models/experience.model.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.spec.ts",
+      "target": "file:src/app/models/project.model.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.spec.ts",
+      "target": "file:src/app/models/technology.model.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.spec.ts",
+      "target": "file:src/app/models/user.model.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.spec.ts",
+      "target": "file:src/app/providers/cv.provider.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.ts",
+      "target": "file:src/app/providers/cv.provider.spec.ts",
+      "type": "tested_by",
+      "weight": 0.5,
+      "direction": "forward",
+      "description": "Direction corrected (was test \u2192 production)"
+    },
+    {
+      "source": "file:src/app/providers/experience.provider.ts",
+      "target": "file:src/app/enums/work-type.enum.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/providers/experience.provider.ts",
+      "target": "file:src/app/models/experience.model.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/app.component.spec.ts",
+      "target": "file:src/app/app.component.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/app.component.ts",
+      "target": "file:src/app/app.component.spec.ts",
+      "type": "tested_by",
+      "weight": 0.5,
+      "direction": "forward",
+      "description": "Direction corrected (was test \u2192 production)"
+    },
+    {
+      "source": "file:src/app/app.module.ts",
+      "target": "file:src/app/app-routing.module.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/app.module.ts",
+      "target": "file:src/app/app.component.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/app.module.ts",
+      "target": "file:src/app/components/timeline-range/timeline-range.component.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/main.ts",
+      "target": "file:src/app/app.module.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/main.ts",
+      "target": "file:src/environments/environment.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/app.module.ts",
+      "target": "file:src/app/app.component.ts",
+      "type": "contains",
+      "weight": 1.0,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/components/timeline-range/timeline-range.component.ts",
+      "target": "class:src/app/components/timeline-range/timeline-range.component.ts:TimelineRangeComponent",
+      "type": "contains",
+      "weight": 1.0,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/app.component.ts",
+      "target": "class:src/app/app.component.ts:AppComponent",
+      "type": "contains",
+      "weight": 1.0,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/models/project.model.ts",
+      "target": "file:src/app/enums/project-type.enum.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/models/project.model.ts",
+      "target": "file:src/app/models/base.model.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/models/project.model.ts",
+      "target": "file:src/app/models/range.model.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/models/project.model.ts",
+      "target": "file:src/app/models/technology.model.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/models/technology.model.ts",
+      "target": "file:src/app/constants/constants.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/models/technology.model.ts",
+      "target": "file:src/app/models/base.model.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/providers/projects.provider.ts",
+      "target": "file:src/app/enums/project-type.enum.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/providers/projects.provider.ts",
+      "target": "file:src/app/models/project.model.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/providers/projects.provider.ts",
+      "target": "file:src/app/providers/technologies.provider.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/providers/technologies.provider.ts",
+      "target": "file:src/app/constants/constants.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/providers/technologies.provider.ts",
+      "target": "file:src/app/models/technology.model.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/models/project.model.ts",
+      "target": "class:src/app/models/project.model.ts:Project",
+      "type": "contains",
+      "weight": 1.0,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/models/project.model.ts",
+      "target": "class:src/app/models/project.model.ts:Project",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/models/technology.model.ts",
+      "target": "class:src/app/models/technology.model.ts:Technology",
+      "type": "contains",
+      "weight": 1.0,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/models/technology.model.ts",
+      "target": "class:src/app/models/technology.model.ts:Technology",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "class:src/app/models/project.model.ts:Project",
+      "target": "class:src/app/models/base.model.ts:BaseModel",
+      "type": "inherits",
+      "weight": 0.9,
+      "direction": "forward"
+    },
+    {
+      "source": "class:src/app/models/technology.model.ts:Technology",
+      "target": "class:src/app/models/base.model.ts:BaseModel",
+      "type": "inherits",
+      "weight": 0.9,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/models/user.model.ts",
+      "target": "class:src/app/models/user.model.ts:User",
+      "type": "contains",
+      "weight": 1.0,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/models/user.model.ts",
+      "target": "class:src/app/models/user.model.ts:User",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/file-service.service.ts",
+      "target": "class:src/app/pages/file-service.service.ts:FileService",
+      "type": "contains",
+      "weight": 1.0,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/file-service.service.ts",
+      "target": "class:src/app/pages/file-service.service.ts:FileService",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/file-service.service.ts",
+      "target": "file:src/app/providers/cv.provider.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/page.service.ts",
+      "target": "class:src/app/pages/page.service.ts:PageService",
+      "type": "contains",
+      "weight": 1.0,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/page.service.ts",
+      "target": "class:src/app/pages/page.service.ts:PageService",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/page.service.ts",
+      "target": "function:src/app/pages/page.service.ts:saveCV",
+      "type": "contains",
+      "weight": 1.0,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/page.service.ts",
+      "target": "file:src/app/models/experience.model.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/page.service.ts",
+      "target": "file:src/app/models/project.model.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/page.service.ts",
+      "target": "file:src/app/models/technology.model.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/page.service.ts",
+      "target": "file:src/app/models/user.model.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/page.service.ts",
+      "target": "file:src/app/pages/file-service.service.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/page.service.ts",
+      "target": "file:src/app/providers/cv.provider.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "function:src/app/pages/page.service.ts:saveCV",
+      "target": "function:src/app/providers/cv.provider.ts:getCVTemplate",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.ts",
+      "target": "function:src/app/providers/cv.provider.ts:getCVTemplate",
+      "type": "contains",
+      "weight": 1.0,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.ts",
+      "target": "function:src/app/providers/cv.provider.ts:getCVTemplate",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.ts",
+      "target": "function:src/app/providers/cv.provider.ts:getCVPdfDefinition",
+      "type": "contains",
+      "weight": 1.0,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.ts",
+      "target": "function:src/app/providers/cv.provider.ts:getCVPdfDefinition",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.ts",
+      "target": "function:src/app/providers/cv.provider.ts:getCVTemplateV1",
+      "type": "contains",
+      "weight": 1.0,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.ts",
+      "target": "function:src/app/providers/cv.provider.ts:getCVTemplateV1",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.ts",
+      "target": "file:src/app/enums/work-type.enum.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.ts",
+      "target": "file:src/app/models/experience.model.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.ts",
+      "target": "file:src/app/models/project.model.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.ts",
+      "target": "file:src/app/models/technology.model.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.ts",
+      "target": "file:src/app/models/user.model.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.ts",
+      "target": "file:src/app/models/work-projects.model.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.ts",
+      "target": "file:src/app/providers/cv-style.provider.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.ts",
+      "target": "file:src/app/providers/user.provider.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/providers/user.provider.ts",
+      "target": "file:src/app/models/user.model.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "pipeline:.github/workflows/deploy-aws-ecs.yml",
+      "target": "service:Dockerfile",
+      "type": "deploys",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "pipeline:.github/workflows/deploy-aws-s3-cloudfront.yml",
+      "target": "config:angular.json",
+      "type": "configures",
+      "weight": 0.5,
+      "direction": "forward"
+    },
+    {
+      "source": "pipeline:.github/workflows/deploy-gh-pages.yml",
+      "target": "config:angular.json",
+      "type": "configures",
+      "weight": 0.5,
+      "direction": "forward"
+    },
+    {
+      "source": "config:tsconfig.app.json",
+      "target": "config:tsconfig.json",
+      "type": "depends_on",
+      "weight": 0.6,
+      "direction": "forward"
+    },
+    {
+      "source": "config:tsconfig.spec.json",
+      "target": "config:tsconfig.json",
+      "type": "depends_on",
+      "weight": 0.6,
+      "direction": "forward"
+    },
+    {
+      "source": "config:angular.json",
+      "target": "config:tsconfig.app.json",
+      "type": "configures",
+      "weight": 0.6,
+      "direction": "forward"
+    },
+    {
+      "source": "config:angular.json",
+      "target": "config:tsconfig.spec.json",
+      "type": "configures",
+      "weight": 0.6,
+      "direction": "forward"
+    },
+    {
+      "source": "document:openspec/changes/comply-wcag2/design.md",
+      "target": "document:openspec/changes/comply-wcag2/proposal.md",
+      "type": "related",
+      "weight": 0.5,
+      "direction": "forward"
+    },
+    {
+      "source": "document:openspec/changes/comply-wcag2/tasks.md",
+      "target": "document:openspec/changes/comply-wcag2/design.md",
+      "type": "related",
+      "weight": 0.5,
+      "direction": "forward"
+    },
+    {
+      "source": "config:openspec/changes/comply-wcag2/.openspec.yaml",
+      "target": "document:openspec/changes/comply-wcag2/proposal.md",
+      "type": "configures",
+      "weight": 0.5,
+      "direction": "forward"
+    },
+    {
+      "source": "file:e2e/src/app.e2e-spec.ts",
+      "target": "file:e2e/src/app.po.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/components/architecture-overlay/architecture-overlay.component.html",
+      "target": "file:src/app/components/architecture-overlay/architecture-overlay.component.ts",
+      "type": "related",
+      "weight": 0.5,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/components/project-item/project-item.component.html",
+      "target": "file:src/app/components/project-item/project-item.component.ts",
+      "type": "related",
+      "weight": 0.5,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/components/timeline-item/timeline-item.component.html",
+      "target": "file:src/app/components/timeline-item/timeline-item.component.ts",
+      "type": "related",
+      "weight": 0.5,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/home/home.component.html",
+      "target": "file:src/app/pages/home/home.component.ts",
+      "type": "related",
+      "weight": 0.5,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/cv/cv.component.html",
+      "target": "file:src/app/pages/cv/cv.component.ts",
+      "type": "related",
+      "weight": 0.5,
+      "direction": "forward"
+    },
+    {
+      "source": "config:nginx.conf",
+      "target": "service:Dockerfile",
+      "type": "configures",
+      "weight": 0.6,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/services/analytics.service.ts",
+      "target": "class:src/app/services/analytics.service.ts:AnalyticsService",
+      "type": "contains",
+      "weight": 1.0,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/services/analytics.service.ts",
+      "target": "class:src/app/services/analytics.service.ts:AnalyticsService",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/components/project-item/project-item.component.ts",
+      "target": "file:src/app/services/analytics.service.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/app/pages/cv/cv.component.ts",
+      "target": "file:src/app/services/analytics.service.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:src/assets/scss/timeline.scss",
+      "target": "file:src/app/components/timeline-item/timeline-item.component.ts",
+      "type": "related",
+      "weight": 0.5,
+      "direction": "forward"
+    }
+  ],
+  "layers": [
+    {
+      "id": "layer:application-shell",
+      "name": "Application Shell",
+      "description": "Bootstrap entry point, root module, root component, and environment configuration that initializes and launches the Angular application.",
+      "nodeIds": [
+        "file:src/main.ts",
+        "file:src/app/app.module.ts",
+        "file:src/app/app.component.ts",
+        "file:src/app/app-routing.module.ts",
+        "file:src/app/app.component.scss",
+        "file:src/index.html",
+        "file:src/polyfills.ts",
+        "file:src/environments/environment.ts",
+        "file:src/environments/environment.prod.ts"
+      ]
+    },
+    {
+      "id": "layer:pages",
+      "name": "Pages",
+      "description": "Feature pages module, page-level components (Home, CV), and the pages routing configuration.",
+      "nodeIds": [
+        "file:src/app/pages/pages.module.ts",
+        "file:src/app/pages/pages-routing.module.ts",
+        "file:src/app/pages/home/home.component.ts",
+        "file:src/app/pages/home/home.component.html",
+        "file:src/app/pages/home/home.component.scss",
+        "file:src/app/pages/home/home.component.spec.ts",
+        "file:src/app/pages/cv/cv.component.ts",
+        "file:src/app/pages/cv/cv.component.html",
+        "file:src/app/pages/cv/cv.component.scss",
+        "file:src/app/pages/cv/cv.component.spec.ts"
+      ]
+    },
+    {
+      "id": "layer:ui-components",
+      "name": "UI Components",
+      "description": "Reusable Angular UI components \u2014 architecture overlay panel, project cards, experience timeline items, and timeline range display.",
+      "nodeIds": [
+        "file:src/app/components/architecture-overlay/architecture-overlay.component.ts",
+        "file:src/app/components/architecture-overlay/architecture-overlay.component.html",
+        "file:src/app/components/architecture-overlay/architecture-overlay.component.scss",
+        "file:src/app/components/architecture-overlay/architecture-overlay.const.ts",
+        "file:src/app/components/project-item/project-item.component.ts",
+        "file:src/app/components/project-item/project-item.component.html",
+        "file:src/app/components/project-item/project-item.component.scss",
+        "file:src/app/components/timeline-item/timeline-item.component.ts",
+        "file:src/app/components/timeline-item/timeline-item.component.html",
+        "file:src/app/components/timeline-item/timeline-item.component.scss",
+        "file:src/app/components/timeline-range/timeline-range.component.ts",
+        "file:src/app/components/timeline-range/timeline-range.component.html",
+        "file:src/app/components/timeline-range/timeline-range.component.scss"
+      ]
+    },
+    {
+      "id": "layer:services",
+      "name": "Services",
+      "description": "Angular injectable services handling CV PDF orchestration, file download, architecture overlay state management, and analytics tracking.",
+      "nodeIds": [
+        "file:src/app/pages/page.service.ts",
+        "file:src/app/pages/file-service.service.ts",
+        "file:src/app/components/architecture-overlay/architecture-overlay.service.ts",
+        "file:src/app/services/analytics.service.ts"
+      ]
+    },
+    {
+      "id": "layer:domain-models",
+      "name": "Domain Models",
+      "description": "TypeScript interfaces and classes defining the portfolio's core data shapes \u2014 experiences, projects, technologies, users, and their sub-components.",
+      "nodeIds": [
+        "file:src/app/models/base.model.ts",
+        "file:src/app/models/range.model.ts",
+        "file:src/app/models/experience.model.ts",
+        "file:src/app/models/project.model.ts",
+        "file:src/app/models/technology.model.ts",
+        "file:src/app/models/user.model.ts",
+        "file:src/app/models/responsibility-category.model.ts",
+        "file:src/app/models/work-projects.model.ts",
+        "file:src/app/enums/work-type.enum.ts",
+        "file:src/app/enums/project-type.enum.ts",
+        "file:src/app/constants/constants.ts"
+      ]
+    },
+    {
+      "id": "layer:data-providers",
+      "name": "Data Providers & CV Generation",
+      "description": "Static data providers supplying portfolio content (experiences, projects, technologies, user info) and the CV generation pipeline producing HTML and PDF output.",
+      "nodeIds": [
+        "file:src/app/providers/experience.provider.ts",
+        "file:src/app/providers/projects.provider.ts",
+        "file:src/app/providers/technologies.provider.ts",
+        "file:src/app/providers/user.provider.ts",
+        "file:src/app/providers/cv.provider.ts",
+        "file:src/app/providers/cv-style.provider.ts",
+        "file:src/app/providers/cv.provider.spec.ts"
+      ]
+    },
+    {
+      "id": "layer:global-styles",
+      "name": "Global Styles",
+      "description": "Application-wide SCSS stylesheets defining theming tokens, global layout, dark mode variables, and the timeline UI asset.",
+      "nodeIds": [
+        "file:src/styles.scss",
+        "file:src/assets/scss/timeline.scss"
+      ]
+    },
+    {
+      "id": "layer:infrastructure",
+      "name": "Infrastructure & Deployment",
+      "description": "Docker containerization, Nginx server configuration, and GitHub Actions CI/CD pipelines for deploying to GitHub Pages, AWS S3/CloudFront, and AWS ECS.",
+      "nodeIds": [
+        "service:Dockerfile",
+        "config:nginx.conf",
+        "pipeline:.github/workflows/deploy-aws-ecs.yml",
+        "pipeline:.github/workflows/deploy-aws-s3-cloudfront.yml",
+        "pipeline:.github/workflows/deploy-gh-pages.yml",
+        "pipeline:.github/workflows/test-ci.yml"
+      ]
+    },
+    {
+      "id": "layer:build-config",
+      "name": "Build Configuration",
+      "description": "Angular CLI, TypeScript, NPM, linting, and browser compatibility configuration files governing how the project is compiled, bundled, and tested.",
+      "nodeIds": [
+        "config:angular.json",
+        "config:package.json",
+        "config:tsconfig.json",
+        "config:tsconfig.app.json",
+        "config:tsconfig.spec.json",
+        "config:tslint.json",
+        "config:browserslist",
+        "file:karma.conf.js",
+        "config:src/sitemap.xml",
+        "document:src/robots.txt"
+      ]
+    },
+    {
+      "id": "layer:tests",
+      "name": "Tests",
+      "description": "End-to-end Protractor tests and Karma test bootstrap for unit test execution.",
+      "nodeIds": [
+        "file:e2e/protractor.conf.js",
+        "file:e2e/src/app.e2e-spec.ts",
+        "file:e2e/src/app.po.ts",
+        "config:e2e/tsconfig.json",
+        "file:src/test.ts",
+        "file:src/app/app.component.spec.ts"
+      ]
+    },
+    {
+      "id": "layer:documentation",
+      "name": "Documentation & Planning",
+      "description": "Project documentation, OpenSpec change management artifacts (WCAG2 compliance proposal, design, tasks, and spec), and the root README.",
+      "nodeIds": [
+        "document:README.md",
+        "document:openspec/changes/comply-wcag2/proposal.md",
+        "document:openspec/changes/comply-wcag2/design.md",
+        "document:openspec/changes/comply-wcag2/tasks.md",
+        "document:openspec/changes/comply-wcag2/specs/accessibility/wcag2/spec.md",
+        "config:openspec/changes/comply-wcag2/.openspec.yaml",
+        "config:openspec/config.yaml"
+      ]
+    },
+    {
+      "id": "layer:tooling",
+      "name": "Tooling & Generated",
+      "description": "Development tooling configuration and generated analysis artifacts from the Understand-Anything knowledge graph pipeline.",
+      "nodeIds": [
+        "config:.ua/config.json",
+        "config:.ua/tmp/ua-import-map-input.json",
+        "config:.ua/tmp/ua-import-map-output.json",
+        "config:.ua/tmp/ua-scan-files.json"
+      ]
+    }
+  ],
+  "tour": [
+    {
+      "order": 1,
+      "title": "Application Entry Point",
+      "description": "Start at src/main.ts \u2014 the Angular bootstrap that loads AppModule and launches the app. Then look at app.module.ts to see the root module imports, and app-routing.module.ts for the lazy-loaded routing to the pages feature.",
+      "nodeIds": [
+        "file:src/main.ts",
+        "file:src/app/app.module.ts",
+        "file:src/app/app-routing.module.ts"
+      ]
+    },
+    {
+      "order": 2,
+      "title": "Domain Data Models",
+      "description": "Explore the model layer in src/app/models/. The BaseModel extends TimeRange (started_at/finished_at), and Experience, Project, Technology, and User all inherit from it. These types flow through every layer of the app.",
+      "nodeIds": [
+        "file:src/app/models/range.model.ts",
+        "file:src/app/models/base.model.ts",
+        "file:src/app/models/experience.model.ts",
+        "file:src/app/models/project.model.ts",
+        "file:src/app/models/technology.model.ts",
+        "file:src/app/models/user.model.ts"
+      ]
+    },
+    {
+      "order": 3,
+      "title": "Static Data Providers",
+      "description": "The src/app/providers/ directory is the content layer \u2014 all portfolio data is hardcoded here. technologies.provider.ts exports ~50 named Technology constants grouped into FRONTEND, BACKEND, DEVOPS, and more. projects.provider.ts builds the projects array from those technology references. experience.provider.ts stores the full work history.",
+      "nodeIds": [
+        "file:src/app/providers/technologies.provider.ts",
+        "file:src/app/providers/projects.provider.ts",
+        "file:src/app/providers/experience.provider.ts",
+        "file:src/app/providers/user.provider.ts"
+      ]
+    },
+    {
+      "order": 4,
+      "title": "CV Generation Pipeline",
+      "description": "cv.provider.ts is the heaviest file at 925 lines. It exports three renderers: getCVTemplate() (modern ATS HTML), getCVPdfDefinition() (pdfmake document), and getCVTemplateV1() (legacy layout). cv-style.provider.ts holds the legacy embedded CSS. The pipeline culminates in PageService.saveCV() which converts the HTML to a PDF blob via html2pdf.",
+      "nodeIds": [
+        "file:src/app/providers/cv.provider.ts",
+        "file:src/app/providers/cv-style.provider.ts",
+        "file:src/app/pages/page.service.ts",
+        "file:src/app/pages/file-service.service.ts"
+      ]
+    },
+    {
+      "order": 5,
+      "title": "Pages Feature Module",
+      "description": "PagesModule declares all page and shared UI components and provides the core services. PagesRoutingModule maps /home \u2192 HomeComponent and /cv \u2192 CvComponent. This is the feature boundary that Angular's lazy-loading targets from the root router.",
+      "nodeIds": [
+        "file:src/app/pages/pages.module.ts",
+        "file:src/app/pages/pages-routing.module.ts"
+      ]
+    },
+    {
+      "order": 6,
+      "title": "Home Page \u2014 Portfolio Hub",
+      "description": "home.component.ts is the main page, orchestrating everything: it imports data directly from all providers, filters experiences by WORK_TYPE, drives the technology category filter UI, and delegates CV download to PageService. Its template (home.component.html at 369 lines) renders the hero, skill grid, timelines, and project grid.",
+      "nodeIds": [
+        "file:src/app/pages/home/home.component.ts",
+        "file:src/app/pages/home/home.component.html",
+        "file:src/app/pages/home/home.component.scss"
+      ]
+    },
+    {
+      "order": 7,
+      "title": "Shared UI Components",
+      "description": "Three reusable components power the home page: ProjectItemComponent renders a single project card with live-status checking; TimelineItemComponent renders an experience entry with collapsible responsibilities; TimelineRangeComponent formats the date range label. Their SCSS files define the visual presentation.",
+      "nodeIds": [
+        "file:src/app/components/project-item/project-item.component.ts",
+        "file:src/app/components/project-item/project-item.component.html",
+        "file:src/app/components/timeline-item/timeline-item.component.ts",
+        "file:src/app/components/timeline-item/timeline-item.component.html",
+        "file:src/app/components/timeline-range/timeline-range.component.ts"
+      ]
+    },
+    {
+      "order": 8,
+      "title": "CV Page",
+      "description": "cv.component.ts reads CV data from localStorage (written by the home page's download flow), renders the HTML CV via getCVTemplate(), and provides a download button that lazily imports pdfmake at click time to generate a PDF with getCVPdfDefinition().",
+      "nodeIds": [
+        "file:src/app/pages/cv/cv.component.ts",
+        "file:src/app/pages/cv/cv.component.html"
+      ]
+    },
+    {
+      "order": 9,
+      "title": "Architecture Overlay Feature",
+      "description": "A unique feature of this portfolio: the architecture overlay panel. ArchitectureOverlayService manages visibility state via RxJS BehaviorSubjects. The component tracks scroll sections via IntersectionObserver, highlights the active section, and displays architecture metadata, source snippets, and pipeline diagrams from the const file.",
+      "nodeIds": [
+        "file:src/app/components/architecture-overlay/architecture-overlay.service.ts",
+        "file:src/app/components/architecture-overlay/architecture-overlay.component.ts",
+        "file:src/app/components/architecture-overlay/architecture-overlay.const.ts",
+        "file:src/app/components/architecture-overlay/architecture-overlay.component.html"
+      ]
+    },
+    {
+      "order": 10,
+      "title": "Global Styles & Theming",
+      "description": "styles.scss defines the global CSS custom properties for light/dark theming (--bg-color, --text-color, etc.) and imports Bootstrap overrides. The assets/scss/timeline.scss provides the vertical timeline layout used by TimelineItemComponent.",
+      "nodeIds": [
+        "file:src/styles.scss",
+        "file:src/assets/scss/timeline.scss"
+      ]
+    },
+    {
+      "order": 11,
+      "title": "Infrastructure & Deployment",
+      "description": "The Dockerfile builds the app in Node and serves it via Nginx (nginx.conf handles SPA routing with a catch-all to index.html). Four GitHub Actions workflows cover: CI testing, GitHub Pages deploy, AWS S3/CloudFront deploy, and AWS ECS deploy.",
+      "nodeIds": [
+        "service:Dockerfile",
+        "config:nginx.conf",
+        "pipeline:.github/workflows/deploy-gh-pages.yml",
+        "pipeline:.github/workflows/deploy-aws-s3-cloudfront.yml",
+        "pipeline:.github/workflows/deploy-aws-ecs.yml",
+        "pipeline:.github/workflows/test-ci.yml"
+      ]
+    }
+  ]
+}

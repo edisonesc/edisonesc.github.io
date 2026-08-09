@@ -1,0 +1,120 @@
+[
+  {
+    "order": 1,
+    "title": "Application Entry Point",
+    "description": "Start at src/main.ts — the Angular bootstrap that loads AppModule and launches the app. Then look at app.module.ts to see the root module imports, and app-routing.module.ts for the lazy-loaded routing to the pages feature.",
+    "nodeIds": [
+      "file:src/main.ts",
+      "file:src/app/app.module.ts",
+      "file:src/app/app-routing.module.ts"
+    ]
+  },
+  {
+    "order": 2,
+    "title": "Domain Data Models",
+    "description": "Explore the model layer in src/app/models/. The BaseModel extends TimeRange (started_at/finished_at), and Experience, Project, Technology, and User all inherit from it. These types flow through every layer of the app.",
+    "nodeIds": [
+      "file:src/app/models/range.model.ts",
+      "file:src/app/models/base.model.ts",
+      "file:src/app/models/experience.model.ts",
+      "file:src/app/models/project.model.ts",
+      "file:src/app/models/technology.model.ts",
+      "file:src/app/models/user.model.ts"
+    ]
+  },
+  {
+    "order": 3,
+    "title": "Static Data Providers",
+    "description": "The src/app/providers/ directory is the content layer — all portfolio data is hardcoded here. technologies.provider.ts exports ~50 named Technology constants grouped into FRONTEND, BACKEND, DEVOPS, and more. projects.provider.ts builds the projects array from those technology references. experience.provider.ts stores the full work history.",
+    "nodeIds": [
+      "file:src/app/providers/technologies.provider.ts",
+      "file:src/app/providers/projects.provider.ts",
+      "file:src/app/providers/experience.provider.ts",
+      "file:src/app/providers/user.provider.ts"
+    ]
+  },
+  {
+    "order": 4,
+    "title": "CV Generation Pipeline",
+    "description": "cv.provider.ts is the heaviest file at 925 lines. It exports three renderers: getCVTemplate() (modern ATS HTML), getCVPdfDefinition() (pdfmake document), and getCVTemplateV1() (legacy layout). cv-style.provider.ts holds the legacy embedded CSS. The pipeline culminates in PageService.saveCV() which converts the HTML to a PDF blob via html2pdf.",
+    "nodeIds": [
+      "file:src/app/providers/cv.provider.ts",
+      "file:src/app/providers/cv-style.provider.ts",
+      "file:src/app/pages/page.service.ts",
+      "file:src/app/pages/file-service.service.ts"
+    ]
+  },
+  {
+    "order": 5,
+    "title": "Pages Feature Module",
+    "description": "PagesModule declares all page and shared UI components and provides the core services. PagesRoutingModule maps /home → HomeComponent and /cv → CvComponent. This is the feature boundary that Angular's lazy-loading targets from the root router.",
+    "nodeIds": [
+      "file:src/app/pages/pages.module.ts",
+      "file:src/app/pages/pages-routing.module.ts"
+    ]
+  },
+  {
+    "order": 6,
+    "title": "Home Page — Portfolio Hub",
+    "description": "home.component.ts is the main page, orchestrating everything: it imports data directly from all providers, filters experiences by WORK_TYPE, drives the technology category filter UI, and delegates CV download to PageService. Its template (home.component.html at 369 lines) renders the hero, skill grid, timelines, and project grid.",
+    "nodeIds": [
+      "file:src/app/pages/home/home.component.ts",
+      "file:src/app/pages/home/home.component.html",
+      "file:src/app/pages/home/home.component.scss"
+    ]
+  },
+  {
+    "order": 7,
+    "title": "Shared UI Components",
+    "description": "Three reusable components power the home page: ProjectItemComponent renders a single project card with live-status checking; TimelineItemComponent renders an experience entry with collapsible responsibilities; TimelineRangeComponent formats the date range label. Their SCSS files define the visual presentation.",
+    "nodeIds": [
+      "file:src/app/components/project-item/project-item.component.ts",
+      "file:src/app/components/project-item/project-item.component.html",
+      "file:src/app/components/timeline-item/timeline-item.component.ts",
+      "file:src/app/components/timeline-item/timeline-item.component.html",
+      "file:src/app/components/timeline-range/timeline-range.component.ts"
+    ]
+  },
+  {
+    "order": 8,
+    "title": "CV Page",
+    "description": "cv.component.ts reads CV data from localStorage (written by the home page's download flow), renders the HTML CV via getCVTemplate(), and provides a download button that lazily imports pdfmake at click time to generate a PDF with getCVPdfDefinition().",
+    "nodeIds": [
+      "file:src/app/pages/cv/cv.component.ts",
+      "file:src/app/pages/cv/cv.component.html"
+    ]
+  },
+  {
+    "order": 9,
+    "title": "Architecture Overlay Feature",
+    "description": "A unique feature of this portfolio: the architecture overlay panel. ArchitectureOverlayService manages visibility state via RxJS BehaviorSubjects. The component tracks scroll sections via IntersectionObserver, highlights the active section, and displays architecture metadata, source snippets, and pipeline diagrams from the const file.",
+    "nodeIds": [
+      "file:src/app/components/architecture-overlay/architecture-overlay.service.ts",
+      "file:src/app/components/architecture-overlay/architecture-overlay.component.ts",
+      "file:src/app/components/architecture-overlay/architecture-overlay.const.ts",
+      "file:src/app/components/architecture-overlay/architecture-overlay.component.html"
+    ]
+  },
+  {
+    "order": 10,
+    "title": "Global Styles & Theming",
+    "description": "styles.scss defines the global CSS custom properties for light/dark theming (--bg-color, --text-color, etc.) and imports Bootstrap overrides. The assets/scss/timeline.scss provides the vertical timeline layout used by TimelineItemComponent.",
+    "nodeIds": [
+      "file:src/styles.scss",
+      "file:src/assets/scss/timeline.scss"
+    ]
+  },
+  {
+    "order": 11,
+    "title": "Infrastructure & Deployment",
+    "description": "The Dockerfile builds the app in Node and serves it via Nginx (nginx.conf handles SPA routing with a catch-all to index.html). Four GitHub Actions workflows cover: CI testing, GitHub Pages deploy, AWS S3/CloudFront deploy, and AWS ECS deploy.",
+    "nodeIds": [
+      "service:Dockerfile",
+      "config:nginx.conf",
+      "pipeline:.github/workflows/deploy-gh-pages.yml",
+      "pipeline:.github/workflows/deploy-aws-s3-cloudfront.yml",
+      "pipeline:.github/workflows/deploy-aws-ecs.yml",
+      "pipeline:.github/workflows/test-ci.yml"
+    ]
+  }
+]

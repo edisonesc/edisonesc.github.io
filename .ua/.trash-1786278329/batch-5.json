@@ -1,0 +1,304 @@
+{
+  "nodes": [
+    {
+      "id": "file:src/app/models/user.model.ts",
+      "type": "file",
+      "name": "user.model.ts",
+      "filePath": "src/app/models/user.model.ts",
+      "summary": "Defines the User data model class with personal contact and profile fields used throughout the CV generation pipeline.",
+      "tags": ["data-model", "type-definition"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/app/models/user.model.ts:User",
+      "type": "class",
+      "name": "User",
+      "filePath": "src/app/models/user.model.ts",
+      "summary": "Exported class representing a user profile with fields for name, position, contact information, and social links.",
+      "tags": ["data-model", "entity"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/pages/file-service.service.ts",
+      "type": "file",
+      "name": "file-service.service.ts",
+      "filePath": "src/app/pages/file-service.service.ts",
+      "summary": "Angular injectable service providing file download utilities, including saving HTML content as a file and managing temporary blob URLs.",
+      "tags": ["service", "utility"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/app/pages/file-service.service.ts:FileService",
+      "type": "class",
+      "name": "FileService",
+      "filePath": "src/app/pages/file-service.service.ts",
+      "summary": "Root-scoped Angular service with methods to save HTML blobs to disk via FileSaver and manage temporary object URLs.",
+      "tags": ["service", "file-handling", "utility"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/pages/page.service.ts",
+      "type": "file",
+      "name": "page.service.ts",
+      "filePath": "src/app/pages/page.service.ts",
+      "summary": "Angular injectable service that orchestrates CV generation and PDF export by combining user, experience, technology, and project data into a downloadable PDF via html2pdf.",
+      "tags": ["service", "pdf-generation", "cv"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/app/pages/page.service.ts:PageService",
+      "type": "class",
+      "name": "PageService",
+      "filePath": "src/app/pages/page.service.ts",
+      "summary": "Root-scoped Angular service that converts CV HTML output into a PDF blob and triggers a browser file-save using FileSaver.",
+      "tags": ["service", "pdf-generation", "orchestration"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/app/pages/page.service.ts:saveCV",
+      "type": "function",
+      "name": "saveCV",
+      "filePath": "src/app/pages/page.service.ts",
+      "summary": "Renders the CV HTML template, converts it to a PDF with html2pdf using configurable margins and image quality, then saves the output via FileSaver and triggers an optional success callback.",
+      "tags": ["pdf-generation", "cv", "async"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/app/providers/cv-style.provider.ts",
+      "type": "file",
+      "name": "cv-style.provider.ts",
+      "filePath": "src/app/providers/cv-style.provider.ts",
+      "summary": "Provides the legacy CSS stylesheet string and a base64-encoded GitHub icon used by the V1 CV HTML template renderer.",
+      "tags": ["utility", "styling", "data"],
+      "complexity": "moderate",
+      "languageNotes": "All styles are embedded as a TypeScript string constant to be injected into the generated HTML document at runtime."
+    },
+    {
+      "id": "file:src/app/providers/cv.provider.ts",
+      "type": "file",
+      "name": "cv.provider.ts",
+      "filePath": "src/app/providers/cv.provider.ts",
+      "summary": "Core CV generation module exporting three rendering functions: the modern ATS-friendly HTML template (getCVTemplate), the pdfmake document definition (getCVPdfDefinition), and the preserved V1 legacy HTML template (getCVTemplateV1).",
+      "tags": ["cv", "pdf-generation", "utility", "service"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/app/providers/cv.provider.ts:getCVTemplate",
+      "type": "function",
+      "name": "getCVTemplate",
+      "filePath": "src/app/providers/cv.provider.ts",
+      "summary": "Generates a modern, ATS-optimized HTML string for the CV by composing user header, summary, work experience, projects, skills, training, and education sections with embedded CSS.",
+      "tags": ["cv", "html-generation", "template"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/app/providers/cv.provider.ts:getCVPdfDefinition",
+      "type": "function",
+      "name": "getCVPdfDefinition",
+      "filePath": "src/app/providers/cv.provider.ts",
+      "summary": "Builds a pdfmake document-definition object from user, experiences, technologies, and projects data — including styles, page margins, and nested content blocks — for native PDF rendering.",
+      "tags": ["cv", "pdf-generation", "pdfmake"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/app/providers/cv.provider.ts:getCVTemplateV1",
+      "type": "function",
+      "name": "getCVTemplateV1",
+      "filePath": "src/app/providers/cv.provider.ts",
+      "summary": "Preserved V1 CV HTML template renderer using the legacy CSS stylesheet; produces a simpler single-column layout for backward compatibility.",
+      "tags": ["cv", "html-generation", "legacy"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/app/providers/user.provider.ts",
+      "type": "file",
+      "name": "user.provider.ts",
+      "filePath": "src/app/providers/user.provider.ts",
+      "summary": "Provides the singleton User data object pre-populated with the portfolio owner's contact details, profile description, and social links for use across the CV rendering pipeline.",
+      "tags": ["data", "singleton", "configuration"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:src/app/models/user.model.ts",
+      "target": "class:src/app/models/user.model.ts:User",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/app/models/user.model.ts",
+      "target": "class:src/app/models/user.model.ts:User",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/app/pages/file-service.service.ts",
+      "target": "class:src/app/pages/file-service.service.ts:FileService",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/app/pages/file-service.service.ts",
+      "target": "class:src/app/pages/file-service.service.ts:FileService",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/app/pages/file-service.service.ts",
+      "target": "file:src/app/providers/cv.provider.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/pages/page.service.ts",
+      "target": "class:src/app/pages/page.service.ts:PageService",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/app/pages/page.service.ts",
+      "target": "class:src/app/pages/page.service.ts:PageService",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/app/pages/page.service.ts",
+      "target": "function:src/app/pages/page.service.ts:saveCV",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/app/pages/page.service.ts",
+      "target": "file:src/app/models/experience.model.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/pages/page.service.ts",
+      "target": "file:src/app/models/project.model.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/pages/page.service.ts",
+      "target": "file:src/app/models/technology.model.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/pages/page.service.ts",
+      "target": "file:src/app/models/user.model.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/pages/page.service.ts",
+      "target": "file:src/app/pages/file-service.service.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/pages/page.service.ts",
+      "target": "file:src/app/providers/cv.provider.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "function:src/app/pages/page.service.ts:saveCV",
+      "target": "function:src/app/providers/cv.provider.ts:getCVTemplate",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.ts",
+      "target": "function:src/app/providers/cv.provider.ts:getCVTemplate",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.ts",
+      "target": "function:src/app/providers/cv.provider.ts:getCVTemplate",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.ts",
+      "target": "function:src/app/providers/cv.provider.ts:getCVPdfDefinition",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.ts",
+      "target": "function:src/app/providers/cv.provider.ts:getCVPdfDefinition",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.ts",
+      "target": "function:src/app/providers/cv.provider.ts:getCVTemplateV1",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.ts",
+      "target": "function:src/app/providers/cv.provider.ts:getCVTemplateV1",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.ts",
+      "target": "file:src/app/enums/work-type.enum.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.ts",
+      "target": "file:src/app/models/experience.model.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.ts",
+      "target": "file:src/app/models/project.model.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.ts",
+      "target": "file:src/app/models/technology.model.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.ts",
+      "target": "file:src/app/models/user.model.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.ts",
+      "target": "file:src/app/models/work-projects.model.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.ts",
+      "target": "file:src/app/providers/cv-style.provider.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/providers/cv.provider.ts",
+      "target": "file:src/app/providers/user.provider.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/providers/user.provider.ts",
+      "target": "file:src/app/models/user.model.ts",
+      "type": "imports",
+      "weight": 0.7
+    }
+  ]
+}

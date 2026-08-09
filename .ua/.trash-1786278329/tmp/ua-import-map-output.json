@@ -1,0 +1,194 @@
+{
+  "scriptCompleted": true,
+  "stats": {
+    "filesScanned": 92,
+    "filesWithImports": 24,
+    "totalEdges": 68
+  },
+  "importMap": {
+    ".github/workflows/deploy-aws-ecs.yml": [],
+    ".github/workflows/deploy-aws-s3-cloudfront.yml": [],
+    ".github/workflows/deploy-gh-pages.yml": [],
+    ".github/workflows/test-ci.yml": [],
+    ".ua/.understandignore": [],
+    ".ua/config.json": [],
+    ".ua/intermediate/scan-result.json": [],
+    ".ua/tmp/ua-import-map-input.json": [],
+    ".ua/tmp/ua-import-map-output.json": [],
+    ".ua/tmp/ua-scan-files.json": [],
+    "Dockerfile": [],
+    "README.md": [],
+    "angular.json": [],
+    "browserslist": [],
+    "e2e/protractor.conf.js": [],
+    "e2e/src/app.e2e-spec.ts": [
+      "e2e/src/app.po.ts"
+    ],
+    "e2e/src/app.po.ts": [],
+    "e2e/tsconfig.json": [],
+    "karma.conf.js": [],
+    "nginx.conf": [],
+    "openspec/changes/comply-wcag2/.openspec.yaml": [],
+    "openspec/changes/comply-wcag2/design.md": [],
+    "openspec/changes/comply-wcag2/proposal.md": [],
+    "openspec/changes/comply-wcag2/specs/accessibility/wcag2/spec.md": [],
+    "openspec/changes/comply-wcag2/tasks.md": [],
+    "openspec/config.yaml": [],
+    "package.json": [],
+    "src/app/app-routing.module.ts": [],
+    "src/app/app.component.scss": [],
+    "src/app/app.component.spec.ts": [
+      "src/app/app.component.ts"
+    ],
+    "src/app/app.component.ts": [],
+    "src/app/app.module.ts": [
+      "src/app/app-routing.module.ts",
+      "src/app/app.component.ts",
+      "src/app/components/timeline-range/timeline-range.component.ts"
+    ],
+    "src/app/components/architecture-overlay/architecture-overlay.component.html": [],
+    "src/app/components/architecture-overlay/architecture-overlay.component.scss": [],
+    "src/app/components/architecture-overlay/architecture-overlay.component.ts": [],
+    "src/app/components/architecture-overlay/architecture-overlay.const.ts": [],
+    "src/app/components/architecture-overlay/architecture-overlay.service.ts": [
+      "src/app/components/architecture-overlay/architecture-overlay.const.ts"
+    ],
+    "src/app/components/project-item/project-item.component.html": [],
+    "src/app/components/project-item/project-item.component.scss": [],
+    "src/app/components/project-item/project-item.component.ts": [],
+    "src/app/components/timeline-item/timeline-item.component.html": [],
+    "src/app/components/timeline-item/timeline-item.component.scss": [],
+    "src/app/components/timeline-item/timeline-item.component.ts": [],
+    "src/app/components/timeline-range/timeline-range.component.html": [],
+    "src/app/components/timeline-range/timeline-range.component.scss": [],
+    "src/app/components/timeline-range/timeline-range.component.ts": [],
+    "src/app/constants/constants.ts": [],
+    "src/app/enums/project-type.enum.ts": [],
+    "src/app/enums/work-type.enum.ts": [],
+    "src/app/models/base.model.ts": [
+      "src/app/models/range.model.ts"
+    ],
+    "src/app/models/experience.model.ts": [
+      "src/app/enums/work-type.enum.ts",
+      "src/app/models/base.model.ts",
+      "src/app/models/responsibility-category.model.ts",
+      "src/app/models/work-projects.model.ts"
+    ],
+    "src/app/models/project.model.ts": [
+      "src/app/enums/project-type.enum.ts",
+      "src/app/models/base.model.ts",
+      "src/app/models/range.model.ts",
+      "src/app/models/technology.model.ts"
+    ],
+    "src/app/models/range.model.ts": [],
+    "src/app/models/responsibility-category.model.ts": [
+      "src/app/models/base.model.ts"
+    ],
+    "src/app/models/technology.model.ts": [
+      "src/app/constants/constants.ts",
+      "src/app/models/base.model.ts"
+    ],
+    "src/app/models/user.model.ts": [],
+    "src/app/models/work-projects.model.ts": [
+      "src/app/models/base.model.ts",
+      "src/app/models/responsibility-category.model.ts"
+    ],
+    "src/app/pages/cv/cv.component.html": [],
+    "src/app/pages/cv/cv.component.scss": [],
+    "src/app/pages/cv/cv.component.spec.ts": [
+      "src/app/pages/cv/cv.component.ts"
+    ],
+    "src/app/pages/cv/cv.component.ts": [],
+    "src/app/pages/file-service.service.ts": [
+      "src/app/providers/cv.provider.ts"
+    ],
+    "src/app/pages/home/home.component.html": [],
+    "src/app/pages/home/home.component.scss": [],
+    "src/app/pages/home/home.component.spec.ts": [
+      "src/app/pages/home/home.component.ts"
+    ],
+    "src/app/pages/home/home.component.ts": [
+      "src/app/enums/work-type.enum.ts",
+      "src/app/models/technology.model.ts",
+      "src/app/pages/page.service.ts",
+      "src/app/providers/projects.provider.ts"
+    ],
+    "src/app/pages/page.service.ts": [
+      "src/app/models/experience.model.ts",
+      "src/app/models/project.model.ts",
+      "src/app/models/technology.model.ts",
+      "src/app/models/user.model.ts",
+      "src/app/pages/file-service.service.ts",
+      "src/app/providers/cv.provider.ts"
+    ],
+    "src/app/pages/pages-routing.module.ts": [
+      "src/app/pages/cv/cv.component.ts",
+      "src/app/pages/home/home.component.ts"
+    ],
+    "src/app/pages/pages.module.ts": [
+      "src/app/components/architecture-overlay/architecture-overlay.component.ts",
+      "src/app/components/architecture-overlay/architecture-overlay.service.ts",
+      "src/app/components/project-item/project-item.component.ts",
+      "src/app/components/timeline-item/timeline-item.component.ts",
+      "src/app/components/timeline-range/timeline-range.component.ts",
+      "src/app/pages/file-service.service.ts",
+      "src/app/pages/home/home.component.ts",
+      "src/app/pages/page.service.ts",
+      "src/app/pages/pages-routing.module.ts"
+    ],
+    "src/app/providers/cv-style.provider.ts": [],
+    "src/app/providers/cv.provider.spec.ts": [
+      "src/app/enums/work-type.enum.ts",
+      "src/app/models/experience.model.ts",
+      "src/app/models/project.model.ts",
+      "src/app/models/technology.model.ts",
+      "src/app/models/user.model.ts",
+      "src/app/providers/cv.provider.ts"
+    ],
+    "src/app/providers/cv.provider.ts": [
+      "src/app/enums/work-type.enum.ts",
+      "src/app/models/experience.model.ts",
+      "src/app/models/project.model.ts",
+      "src/app/models/technology.model.ts",
+      "src/app/models/user.model.ts",
+      "src/app/models/work-projects.model.ts",
+      "src/app/providers/cv-style.provider.ts",
+      "src/app/providers/user.provider.ts"
+    ],
+    "src/app/providers/experience.provider.ts": [
+      "src/app/enums/work-type.enum.ts",
+      "src/app/models/experience.model.ts"
+    ],
+    "src/app/providers/projects.provider.ts": [
+      "src/app/enums/project-type.enum.ts",
+      "src/app/models/project.model.ts",
+      "src/app/providers/technologies.provider.ts"
+    ],
+    "src/app/providers/technologies.provider.ts": [
+      "src/app/constants/constants.ts",
+      "src/app/models/technology.model.ts"
+    ],
+    "src/app/providers/user.provider.ts": [
+      "src/app/models/user.model.ts"
+    ],
+    "src/app/services/analytics.service.ts": [],
+    "src/assets/.gitkeep": [],
+    "src/assets/scss/timeline.scss": [],
+    "src/environments/environment.prod.ts": [],
+    "src/environments/environment.ts": [],
+    "src/index.html": [],
+    "src/main.ts": [
+      "src/app/app.module.ts",
+      "src/environments/environment.ts"
+    ],
+    "src/polyfills.ts": [],
+    "src/robots.txt": [],
+    "src/sitemap.xml": [],
+    "src/styles.scss": [],
+    "src/test.ts": [],
+    "tsconfig.app.json": [],
+    "tsconfig.json": [],
+    "tsconfig.spec.json": [],
+    "tslint.json": []
+  }
+}

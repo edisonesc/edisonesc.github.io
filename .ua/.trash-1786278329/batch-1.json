@@ -1,0 +1,381 @@
+{
+  "nodes": [
+    {
+      "id": "file:src/app/components/architecture-overlay/architecture-overlay.component.ts",
+      "type": "file",
+      "name": "ArchitectureOverlayComponent",
+      "filePath": "src/app/components/architecture-overlay/architecture-overlay.component.ts",
+      "summary": "Angular component that renders an interactive architecture overlay panel, tracking page section visibility via IntersectionObserver and displaying contextual metadata, source code, and pipeline diagrams for each portfolio section.",
+      "tags": ["angular", "component", "ui", "architecture-overlay"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:src/app/components/architecture-overlay/architecture-overlay.component.ts:ArchitectureOverlayComponent",
+      "type": "class",
+      "name": "ArchitectureOverlayComponent",
+      "filePath": "src/app/components/architecture-overlay/architecture-overlay.component.ts",
+      "summary": "Listens to scroll events and IntersectionObserver to detect active page sections, driving the overlay panel's source-code view, highlight, and metadata display via ArchitectureOverlayService.",
+      "tags": ["angular", "component", "ui", "intersection-observer"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/app/components/architecture-overlay/architecture-overlay.const.ts",
+      "type": "file",
+      "name": "architecture-overlay.const.ts",
+      "filePath": "src/app/components/architecture-overlay/architecture-overlay.const.ts",
+      "summary": "Contains all static AOEntry and AOEntryV2 configuration data for the architecture overlay, mapping each portfolio section to its description, technology stack, data sources, source code snippets, and pipeline steps.",
+      "tags": ["configuration", "data", "architecture-overlay"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/app/components/architecture-overlay/architecture-overlay.service.ts",
+      "type": "file",
+      "name": "ArchitectureOverlayService",
+      "filePath": "src/app/components/architecture-overlay/architecture-overlay.service.ts",
+      "summary": "Angular injectable service managing the architecture overlay state — toggling visibility, tracking the active section, controlling source/pipeline views, and providing section metadata from AOEntries constants.",
+      "tags": ["angular", "service", "state-management", "architecture-overlay"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/app/components/architecture-overlay/architecture-overlay.service.ts:ArchitectureOverlayService",
+      "type": "class",
+      "name": "ArchitectureOverlayService",
+      "filePath": "src/app/components/architecture-overlay/architecture-overlay.service.ts",
+      "summary": "Singleton service managing the architecture overlay's reactive state via BehaviorSubjects for active/inactive, active section, and source-view mode, with methods to get section metadata.",
+      "tags": ["service", "rxjs", "state-management"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/app/components/project-item/project-item.component.ts",
+      "type": "file",
+      "name": "ProjectItemComponent",
+      "filePath": "src/app/components/project-item/project-item.component.ts",
+      "summary": "Angular component rendering a single portfolio project card, checking the project URL liveness via fetch, generating avatar initials, and tracking project link clicks via analytics.",
+      "tags": ["angular", "component", "ui", "portfolio"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/app/components/project-item/project-item.component.ts:ProjectItemComponent",
+      "type": "class",
+      "name": "ProjectItemComponent",
+      "filePath": "src/app/components/project-item/project-item.component.ts",
+      "summary": "Accepts a Project input, pings the project URL to check liveness, generates name initials for avatars, and opens external links with analytics tracking.",
+      "tags": ["angular", "component", "project-card"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/components/timeline-item/timeline-item.component.ts",
+      "type": "file",
+      "name": "TimelineItemComponent",
+      "filePath": "src/app/components/timeline-item/timeline-item.component.ts",
+      "summary": "Angular component rendering a timeline entry for work or education experiences, supporting collapsible responsibility lists with expand/collapse toggling.",
+      "tags": ["angular", "component", "ui", "timeline"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/app/components/timeline-item/timeline-item.component.ts:TimelineItemComponent",
+      "type": "class",
+      "name": "TimelineItemComponent",
+      "filePath": "src/app/components/timeline-item/timeline-item.component.ts",
+      "summary": "Accepts an array of Experience objects and provides expand/collapse toggling for responsibility lists with a configurable collapsed limit.",
+      "tags": ["angular", "component", "timeline"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/app/pages/cv/cv.component.spec.ts",
+      "type": "file",
+      "name": "CvComponent spec",
+      "filePath": "src/app/pages/cv/cv.component.spec.ts",
+      "summary": "Unit test suite for the CvComponent, verifying the component creates successfully with its injected dependencies.",
+      "tags": ["test", "angular", "component"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/pages/cv/cv.component.ts",
+      "type": "file",
+      "name": "CvComponent",
+      "filePath": "src/app/pages/cv/cv.component.ts",
+      "summary": "Standalone Angular component for the CV page that renders the CV HTML from getCVTemplate, and downloads a pdfmake-generated PDF on demand with lazy-loaded pdfmake chunks.",
+      "tags": ["angular", "component", "cv", "pdf-generation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/app/pages/cv/cv.component.ts:CvComponent",
+      "type": "class",
+      "name": "CvComponent",
+      "filePath": "src/app/pages/cv/cv.component.ts",
+      "summary": "Reads CV data from localStorage, renders the HTML CV on init, and provides a download() method that lazily loads pdfmake and generates a PDF.",
+      "tags": ["angular", "component", "cv"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/app/pages/home/home.component.spec.ts",
+      "type": "file",
+      "name": "HomeComponent spec",
+      "filePath": "src/app/pages/home/home.component.spec.ts",
+      "summary": "Unit test suite for the HomeComponent, verifying the component creates successfully in a TestBed setup.",
+      "tags": ["test", "angular", "component"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/pages/home/home.component.ts",
+      "type": "file",
+      "name": "HomeComponent",
+      "filePath": "src/app/pages/home/home.component.ts",
+      "summary": "Primary Angular page component rendering the full portfolio — user bio, technology skills grouped by category, filtered work/education experience timelines, and project cards — with dark mode toggle, CV download, and scroll-driven section detection.",
+      "tags": ["angular", "component", "portfolio", "page"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:src/app/pages/home/home.component.ts:HomeComponent",
+      "type": "class",
+      "name": "HomeComponent",
+      "filePath": "src/app/pages/home/home.component.ts",
+      "summary": "Main portfolio page that assembles user, project, experience, and technology data into a multi-section layout with dark mode toggle, tech filtering, CV download via PageService, and architecture overlay integration.",
+      "tags": ["angular", "component", "portfolio", "page"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/app/pages/pages-routing.module.ts",
+      "type": "file",
+      "name": "PagesRoutingModule",
+      "filePath": "src/app/pages/pages-routing.module.ts",
+      "summary": "Defines the routes for the pages feature module: '/home' maps to HomeComponent, '/' redirects to '/home', and '/cv' maps to CvComponent.",
+      "tags": ["angular", "routing", "module"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/app/pages/pages.module.ts",
+      "type": "file",
+      "name": "PagesModule",
+      "filePath": "src/app/pages/pages.module.ts",
+      "summary": "Feature NgModule declaring all portfolio page components and shared UI components, providing core services, and importing PagesRoutingModule to register page routes.",
+      "tags": ["angular", "module", "feature"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:src/app/components/architecture-overlay/architecture-overlay.component.ts",
+      "target": "class:src/app/components/architecture-overlay/architecture-overlay.component.ts:ArchitectureOverlayComponent",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/app/components/architecture-overlay/architecture-overlay.component.ts",
+      "target": "class:src/app/components/architecture-overlay/architecture-overlay.component.ts:ArchitectureOverlayComponent",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/app/components/architecture-overlay/architecture-overlay.service.ts",
+      "target": "class:src/app/components/architecture-overlay/architecture-overlay.service.ts:ArchitectureOverlayService",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/app/components/architecture-overlay/architecture-overlay.service.ts",
+      "target": "class:src/app/components/architecture-overlay/architecture-overlay.service.ts:ArchitectureOverlayService",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/app/components/architecture-overlay/architecture-overlay.service.ts",
+      "target": "file:src/app/components/architecture-overlay/architecture-overlay.const.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/components/project-item/project-item.component.ts",
+      "target": "class:src/app/components/project-item/project-item.component.ts:ProjectItemComponent",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/app/components/project-item/project-item.component.ts",
+      "target": "class:src/app/components/project-item/project-item.component.ts:ProjectItemComponent",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/app/components/timeline-item/timeline-item.component.ts",
+      "target": "class:src/app/components/timeline-item/timeline-item.component.ts:TimelineItemComponent",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/app/components/timeline-item/timeline-item.component.ts",
+      "target": "class:src/app/components/timeline-item/timeline-item.component.ts:TimelineItemComponent",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/app/pages/cv/cv.component.spec.ts",
+      "target": "file:src/app/pages/cv/cv.component.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/pages/cv/cv.component.spec.ts",
+      "target": "file:src/app/pages/cv/cv.component.ts",
+      "type": "tested_by",
+      "weight": 0.5
+    },
+    {
+      "source": "file:src/app/pages/cv/cv.component.ts",
+      "target": "class:src/app/pages/cv/cv.component.ts:CvComponent",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/app/pages/cv/cv.component.ts",
+      "target": "class:src/app/pages/cv/cv.component.ts:CvComponent",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/app/pages/cv/cv.component.ts",
+      "target": "file:src/app/providers/cv.provider.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/pages/home/home.component.spec.ts",
+      "target": "file:src/app/pages/home/home.component.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/pages/home/home.component.spec.ts",
+      "target": "file:src/app/pages/home/home.component.ts",
+      "type": "tested_by",
+      "weight": 0.5
+    },
+    {
+      "source": "file:src/app/pages/home/home.component.ts",
+      "target": "class:src/app/pages/home/home.component.ts:HomeComponent",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/app/pages/home/home.component.ts",
+      "target": "class:src/app/pages/home/home.component.ts:HomeComponent",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/app/pages/home/home.component.ts",
+      "target": "file:src/app/enums/work-type.enum.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/pages/home/home.component.ts",
+      "target": "file:src/app/models/technology.model.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/pages/home/home.component.ts",
+      "target": "file:src/app/pages/page.service.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/pages/home/home.component.ts",
+      "target": "file:src/app/providers/projects.provider.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/pages/home/home.component.ts",
+      "target": "file:src/app/providers/experience.provider.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/pages/home/home.component.ts",
+      "target": "file:src/app/providers/user.provider.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/pages/home/home.component.ts",
+      "target": "file:src/app/providers/technologies.provider.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/pages/home/home.component.ts",
+      "target": "file:src/app/providers/cv.provider.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/pages/pages-routing.module.ts",
+      "target": "file:src/app/pages/cv/cv.component.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/pages/pages-routing.module.ts",
+      "target": "file:src/app/pages/home/home.component.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/pages/pages.module.ts",
+      "target": "file:src/app/components/architecture-overlay/architecture-overlay.component.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/pages/pages.module.ts",
+      "target": "file:src/app/components/architecture-overlay/architecture-overlay.service.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/pages/pages.module.ts",
+      "target": "file:src/app/components/project-item/project-item.component.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/pages/pages.module.ts",
+      "target": "file:src/app/components/timeline-item/timeline-item.component.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/pages/pages.module.ts",
+      "target": "file:src/app/components/timeline-range/timeline-range.component.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/pages/pages.module.ts",
+      "target": "file:src/app/pages/file-service.service.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/pages/pages.module.ts",
+      "target": "file:src/app/pages/home/home.component.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/pages/pages.module.ts",
+      "target": "file:src/app/pages/page.service.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/pages/pages.module.ts",
+      "target": "file:src/app/pages/pages-routing.module.ts",
+      "type": "imports",
+      "weight": 0.7
+    }
+  ]
+}
