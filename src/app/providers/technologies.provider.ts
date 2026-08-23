@@ -508,7 +508,7 @@ export const githubPages: Technology = {
 };
 
 export const aws: Technology = {
-  name: 'AWS (ECR, EC2, ECS, RDS, CloudWatch, S3, CloudFront)',
+  name: 'AWS (ECR, EC2/Fargate, ECS, RDS, CloudWatch, S3, CloudFront)',
   url: 'https://aws.amazon.com/',
   icon_url:
     'https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg',
