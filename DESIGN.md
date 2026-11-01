@@ -6,13 +6,13 @@ The full, reusable system lives in the `minimal-serif-design` skill at `~/.claud
 
 ## Chosen options
 
-| Decision       | Choice                                                                                      |
-| -------------- | ------------------------------------------------------------------------------------------- |
-| Palette        | **Stone** (`#f3f1ec` bg, `#18171a` ink), with **Ink** as dark mode                          |
-| Display font   | **Cormorant Garamond**: 300 italic for display, 400 for headings, 500 italic for h3         |
-| Body / UI font | **Inter** 400 and 500                                                                       |
-| Accent         | **Deep Ochre** `#c4862a`                                                                    |
-| Animation      | **Refined**: section fade-up, hairline rule extend, link underline slide, button arrow pull |
+| Decision       | Choice                                                                                       |
+| -------------- | -------------------------------------------------------------------------------------------- |
+| Palette        | **Stone** (`#f3f1ec` bg, `#18171a` ink), with **Ink** as opt-in dark mode (light by default) |
+| Display font   | **Cormorant Garamond**: 300 italic for display, 400 for headings, 500 italic for h3          |
+| Body / UI font | **Inter** 400 and 500                                                                        |
+| Accent         | **Deep Ochre** `#c4862a`                                                                     |
+| Animation      | **Refined**: section fade-up, hairline rule extend, link underline slide, button arrow pull  |
 
 Fonts load through Astro's fonts API (`astro.config.mjs`), not a Google Fonts `@import`.
 

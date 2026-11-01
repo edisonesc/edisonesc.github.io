@@ -53,18 +53,7 @@
 	color-scheme: light;
 }
 
-/* Palette — Ink (dark). Applied by OS preference unless the visitor picked a theme. */
-@media (prefers-color-scheme: dark) {
-	:root:not([data-theme="light"]) {
-		--bg: #0e0d0b;
-		--bg-offset: #161410;
-		--ink: #ede8e1;
-		--ink-mid: #a09890;
-		--ink-soft: #8a837d; /* lightened from #6a6360 for AA on --bg */
-		--rule: #2a2826;
-		color-scheme: dark;
-	}
-}
+/* Palette — Ink (dark). Light is the default; dark only when the visitor picks it. */
 :root[data-theme="dark"] {
 	--bg: #0e0d0b;
 	--bg-offset: #161410;

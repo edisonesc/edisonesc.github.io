@@ -17,9 +17,8 @@ import Icon from "./Icon.astro";
 
 <script>
 	const root = document.documentElement;
-	const media = matchMedia("(prefers-color-scheme: dark)");
 	const button = document.querySelector<HTMLButtonElement>("[data-theme-toggle]");
-	const isDark = () => (root.dataset.theme ? root.dataset.theme === "dark" : media.matches);
+	const isDark = () => root.dataset.theme === "dark";
 
 	function sync() {
 		root.toggleAttribute("data-dark", isDark());
@@ -33,6 +32,5 @@ import Icon from "./Icon.astro";
 		} catch {}
 		sync();
 	});
-	media.addEventListener("change", sync);
 	sync();
 </script>
