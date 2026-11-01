@@ -6,11 +6,11 @@ export const profile = {
 	headline: "Full-stack Engineering · Software Architecture",
 	/** CV summary. */
 	summary:
-		"Software Engineer with 6+ years of experience designing and delivering scalable, maintainable applications. Known for strong architectural ownership, reusable system design, and productivity-driven engineering practices, with measurable impact on enterprise-scale products at Samsung Research.",
+		"Software Engineer with 7+ years of experience designing and delivering scalable, maintainable applications. Known for strong architectural ownership, reusable system design, and productivity-driven engineering practices, with measurable impact on enterprise-scale products at Samsung Research.",
 	tagline:
 		"Software engineer with strong architectural ownership, building scalable, maintainable web and mobile applications.",
 	heroLine:
-		"I'm a software engineer based in Manila with 6+ years of experience across frontend, backend and full-stack work, most recently on enterprise-scale products at Samsung Research.",
+		"I'm a software engineer based in Manila with 7+ years of experience across frontend, backend and full-stack work, most recently on enterprise-scale products at Samsung Research.",
 	location: "Manila, Philippines",
 	email: "edi.escx@gmail.com",
 	/** Printed on /cv and cv.pdf. Remove to keep it off the public site. */
