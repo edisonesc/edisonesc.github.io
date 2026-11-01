@@ -1,0 +1,215 @@
+# Newest first. technologies = ids from technologies.yaml.
+# cvExclude: true keeps a project on the site but out of the CV.
+
+- id: laya-issue-triage
+  name: Laya Issue Triage — AI GitHub Issue Labelling Bot (POC)
+  start: Oct 2026
+  end: Nov 2026
+  description: Proof of concept for automated GitHub issue triage using a self-hosted Laya decision model instead of a generative LLM. A TypeScript GitHub Action on a self-hosted runner labels each issue by type, urgency and missing info, with confidence thresholds, a needs-triage fallback, and state tracking so maintainer labels are never overridden. Evaluated on 44 real issues plus a 25-issue holdout (type 95%, priority 60%).
+  type: others
+  technologies:
+    [laya, typescript, nodejs, githubactions, docker, python, promptengineering]
+
+- id: sesh-it
+  name: Sesh It — Online Multiplayer 3D Boxing Game
+  start: Oct 2026
+  end: Present
+  description: Browser-based 3D boxing game with online multiplayer, built as a TypeScript monorepo. A deterministic 60 Hz simulation shared by client and server powers rollback netcode, verified identical across Node, Chromium, Firefox and WebKit in CI. React Three Fiber/Rapier client, NestJS API with PostgreSQL and Redis sessions, and a Colyseus game server that scales through Redis and was load-tested to ~150 concurrent fights per process. Deployed with Docker, Caddy and Cloudflare Tunnel. Leveraged agents through spec-first workflows, retaining ownership of architecture, technical constraints, and automated validation.
+  type: web
+  technologies:
+    [
+      typescript,
+      react,
+      reactthreefiber,
+      threejs,
+      rapier,
+      vite,
+      zustand,
+      tanstackquery,
+      zod,
+      nestjs,
+      fastify,
+      nodejs,
+      colyseus,
+      websockets,
+      postgresql,
+      prisma,
+      redis,
+      docker,
+      caddy,
+      cloudflare,
+      turborepo,
+      vitest,
+      playwright,
+      githubactions,
+      laya,
+      rollbacknetcode,
+    ]
+
+- id: analytics-engine
+  name: Analytics Engine — Self-hosted Business Intelligence Platform
+  start: Mar 2026
+  end: Present
+  description: Architected and built a production-grade BI tool from the ground up using Next.js 19 App Router, NestJS, Node.js, React 19, TypeScript, and MySQL. Features include a multi-tab SQL editor with schema browsing, a NestJS/Node.js-backed API layer, a chart builder supporting 10 visualization types, drag-and-drop dashboard composition, real-time cross-chart filtering, role-based access control, and embeddable public dashboards. Leveraged AI tools (Claude, ChatGPT, Gemini, NotebookLM) as an acceleration layer for implementation and exploration, with all outputs critically evaluated, adapted, and integrated—retaining full ownership of design decisions, correctness, and debugging. Designed for teams who want Superset-level capability on their own infrastructure.
+  type: system
+  technologies:
+    [
+      aws,
+      docker,
+      redis,
+      drizzle,
+      nextjs,
+      nestjs,
+      nodejs,
+      mysql,
+      jwt,
+      tailwindcss,
+      zustand,
+      tanstackquery,
+      echarts,
+      githubactions,
+    ]
+
+- id: years-tracker-v2
+  name: Years Tracker V2
+  start: Feb 2026
+  end: Feb 2026
+  description: "Revamp Version of Years Tracker: Years/Life Tracker is a web-based life visualization tool that maps progress from birthdate to a target lifespan. It displays years completed and remaining, offering a clear timeline perspective to support long-term planning and intentional decision-making."
+  url: https://edisonesc.github.io/years-tracker-v2
+  type: web
+  technologies: [typescript, react, vite, githubpages, githubactions]
+  cvExclude: true
+
+- id: modular-service-architecture
+  name: Modular Service Architecture (Node.js + NestJS + TypeORM)
+  start: Feb 2026
+  end: Feb 2026
+  description: Designed a modular Node.js and NestJS backend reference architecture with role-based access control, JWT access/refresh token strategy, migration-driven schema management, and environment-aware configuration. Structured around domain modules to enforce clear service boundaries, reduce boilerplate setup time for new services, and standardize authentication and database migration patterns for scalable feature expansion.
+  type: system
+  technologies: [nestjs, nodejs, typeorm, mysql, jwt, docker]
+
+- id: expense-tracker
+  name: Expense Tracker Integration
+  start: Aug 2025
+  end: Aug 2025
+  description: Deployed an on-premise n8n automation server secured via Cloudflare tunnels and integrated Google Sheets with Telegram API for chat-based expense logging. Automated real-time data synchronization and eliminated manual spreadsheet updates, enabling immediate expense tracking through structured Telegram commands.
+  type: others
+  technologies: [n8n, typescript, cloudflare]
+
+- id: portfolio-platform
+  name: Content-Driven Portfolio Platform
+  start: Apr 2023
+  end: Present
+  description: Architected and built a configuration-driven frontend platform that dynamically generates portfolio and CV outputs from structured data, eliminating repetitive manual resume updates and enabling multi-format rendering from a single content source. Integrated GA4 analytics to track recruiter engagement metrics, including CV downloads and project interaction events, enabling data-driven iteration of portfolio content. Implemented CI for unit testing and automated deployment workflows to AWS/GitHub Pages for consistent release reliability.
+  url: https://edisonesc.github.io/
+  type: others
+  technologies: [astro, typescript, githubactions, githubpages, aws, ga4]
+
+- id: speech-downloader
+  name: Speech Command File Downloader
+  start: Apr 2021
+  end: Apr 2021
+  description: STT and TTS web application that takes audio inputs, scrapes data from a specific website using the translated audio information and download files via magnet link to a local transmission server.
+  type: web
+  technologies: [angular, typescript, nestjs, annyang, puppeteer, cheerio]
+  cvExclude: true
+
+- id: years-tracker
+  name: Years Tracker
+  start: Feb 2021
+  end: Feb 2021
+  description: A personal tracker that tracks my existence and reflects time/years left before target year is met (default is 90 years).
+  url: https://edisonesc.github.io/years-tracker/home/
+  type: web
+  technologies: [angular, typescript, momentjs, githubpages]
+  cvExclude: true
+
+- id: sammy-api
+  name: Sammy API
+  start: Jan 2021
+  end: Feb 2021
+  description: Designed and implemented a Node.js and NestJS REST API that transitioned Sammy from offline SQLite-based storage to a centralized TypeORM/MySQL-backed architecture. Replaced local persistence with structured server-side CRUD operations, enabling multi-device data consistency and scalable synchronization beyond single-device limitations.
+  type: system
+  technologies:
+    [nestjs, nodejs, redis, jwt, typeorm, mysql, typescript, momentjs]
+
+- id: sammy
+  name: Sammy
+  start: Oct 2020
+  end: Dec 2020
+  description: Mobile application developed using Ionic with Angular. It allows user to create, edit, delete workouts, exercises. The app can also handle Rep-based and Time-based exercise. They can also be able to share their workout to other users who's interested via QR Code.
+  type: mobile
+  technologies: [typescript, ionic, angular, html, scss, ngrx, sqlite]
+  cvExclude: true
+
+- id: icons-splash-generator
+  name: Icons and Splash Generator
+  start: Nov 2020
+  end: Nov 2020
+  description: Script that takes a file path and converts the image into various dimensions then uploads a download zip file and shares the download link.
+  type: others
+  technologies: [python, pyupload]
+  cvExclude: true
+
+- id: saves
+  name: Saves
+  start: Feb 2020
+  end: Mar 2020
+  description: Mobile application developed using Ionic with Angular. Implemented state management using NgRx along with NestJS as backend framework and MongoDB for the database. It allows user to save items, add logs, images and track their progress on the item they're saving for.
+  type: mobile
+  technologies:
+    [typescript, ionic, angular, html, scss, ngrx, sqlite, nestjs, mongodb]
+  cvExclude: true
+
+- id: pantera
+  name: Pantera
+  start: Feb 2018
+  end: April 2019
+  description: Developed a semi-autonomous book shelving robot integrating collision avoidance, QR matching, and line tracing. Trained a computer vision model for book spine detection and real-time gap estimation, enabling autonomous placement decisions and reducing manual shelf organization during prototype testing.
+  type: system
+  technologies: [python, c, rpi, arduino, tensorflow]
+
+- id: ojt-hours-tracker
+  name: OJT Hours Tracker App
+  start: Sep 2018
+  end: Oct 2019
+  description: Android mobile application built with Java and Firebase that logs time-in and time-out entries, automatically calculates total OJT hours, and stores records in real time. Designed to provide accurate attendance tracking, centralized cloud data storage, and easy monitoring of training hour compliance.
+  type: mobile
+  technologies: [java, android, firebase]
+  cvExclude: true
+
+- id: cvarst
+  name: CVARST Medical System
+  start: Aug 2018
+  end: Sep 2018
+  description: CVARST-Act-Project is a Java-based (netbeans) application developed as part of an undergraduate academic requirement, implementing a modular CRUD system with login, registration, and management modules (e.g., doctor information and maintenance for tests).
+  type: system
+  technologies: [java, derby, mysql]
+  cvExclude: true
+
+- id: mp4-to-mp3
+  name: MP4 to MP3 Converter
+  start: Aug 2018
+  end: Sep 2018
+  description: Python-based MP4 to MP3 converter with a simple PyQt5 GUI. Uses FFmpeg to batch-convert video files to MP3, supports source/destination selection, automatic file listing, and basic filename handling for special characters. Designed for quick local audio extraction from MP4 files.
+  type: others
+  technologies: [python, pyqt5, ffmpeg]
+  cvExclude: true
+
+- id: vehicle-renting
+  name: Vehicle Renting and Billing System
+  start: Jul 2017
+  end: Aug 2017
+  description: Project developed for a course using Java and embedded Derby database. It enables users to reserve, schedule and choose a vehicle for rent. It also enables admin to perform CRUD operations from the clients and vehicles.
+  type: system
+  technologies: [java, derby, mysql]
+  cvExclude: true
+
+- id: workout-nutrition
+  name: Workout Generator & Nutrition Calculator
+  start: Jun 2017
+  end: Jul 2017
+  description: Mobile application project developed for a course using Java. It calculates your BMR, BMI, water intake, and total calorie intake base on how often you exercise. It also generates workouts for beginners, intermediates, and advanced, macro intake, and meal distribution.
+  type: mobile
+  technologies: [java, android]
+  cvExclude: true

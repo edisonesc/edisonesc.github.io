@@ -1,0 +1,53 @@
+---
+import type { Experience } from "../lib/content";
+import { formatDuration, formatRange, isPresent } from "../lib/dates";
+import Highlights from "./Highlights.astro";
+
+interface Props {
+	items: Experience[];
+}
+const { items } = Astro.props;
+---
+
+<ol role="list">
+	{
+		items.map(({ id, data: e }) => (
+			<li id={id} class="role reveal">
+				<p class="label meta">
+					<span>{formatRange(e.start, e.end)}</span>
+					<span>{isPresent(e.end) ? "Current role" : formatDuration(e.start, e.end)}</span>
+				</p>
+				<div>
+					<h3 class="mt-2">{e.position}</h3>
+					<p class="org">
+						{e.organization}
+						{e.location && <span class="text-ink-soft">, {e.location}</span>}
+					</p>
+					<div class="body">
+						{e.engagements.map((g) => (
+							<div class="engagement">
+								<p class="label engagement-name">
+									<span class="text-ink">{g.name}</span>
+									<span>{formatRange(g.start, g.end)}</span>
+								</p>
+								{g.highlights.length > 0 && <Highlights items={g.highlights} visible={3} />}
+								{g.groups.length > 0 && <Highlights groups={g.groups} visible={2} />}
+							</div>
+						))}
+						{e.highlights.length > 0 && <Highlights items={e.highlights} visible={3} />}
+						{e.groups.length > 0 && <Highlights groups={e.groups} visible={2} />}
+					</div>
+				</div>
+			</li>
+		))
+	}
+</ol>
+
+<style>
+	.role { padding-block: var(--sp-3); border-top: 1px solid var(--rule); }
+	.role:first-child { border-top: 0; padding-top: 0.6rem; }
+	.meta { display: flex; flex-wrap: wrap; gap: 0 1.5rem; }
+	.org { margin-top: 0.25rem; color: var(--ink-mid); }
+	.body { margin-top: var(--sp-2); display: grid; gap: var(--sp-2); }
+	.engagement-name { display: flex; flex-wrap: wrap; gap: 0 1rem; margin-bottom: var(--sp-2); }
+</style>

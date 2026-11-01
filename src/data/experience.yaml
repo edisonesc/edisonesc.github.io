@@ -1,0 +1,165 @@
+# Newest first within each type. Types: direct, outsourcing, intern, education, training.
+# A role lists bullets as 'highlights', or as 'groups' (titled areas of work), or splits them
+# across client 'engagements' (each with its own highlights or groups).
+# cvHighlights (on a role, engagement or group) replaces the bullets on the CV only.
+# cvExclude: true keeps an entry on the site but out of the CV.
+
+- id: samsung-research-philippines-jun-2023
+  organization: Samsung Research Philippines
+  short: Samsung Research
+  position: Engineer
+  location: Manila, PH
+  start: Jun 2023
+  end: Present
+  type: direct
+  engagements:
+    - name: Bixby
+      start: Jun 2023
+      end: Present
+      groups:
+        - title: Platform Architecture & Modernization
+          highlights:
+            - Led ongoing development of Analytics Engine using Next.js, NestJS, Node.js, and MySQL, driving feature delivery, component design, API design, and architectural decisions.
+            - Re-architected a heavily customized Apache Superset analytics platform into a modern Next.js and NestJS ecosystem, establishing a scalable foundation for future analytics capabilities.
+            - Re-architected a legacy Vanilla JS frontend into a configuration-driven Next.js platform for dynamic filters, tables, and management modules.
+            - Implemented scalable component abstractions across Angular and React ecosystems, improving maintainability and significantly reducing repetitive implementation effort.
+        - title: Engineering Quality & Delivery
+          highlights:
+            - Established a monorepo architecture with shared frontend, backend, and domain packages to maximize reuse and development efficiency.
+            - Defined a frontend-backend integration strategy using mock services and structured contracts to minimize downstream rework.
+            - Owned frontend production releases through GitOps, coordinating artifact tagging, production branch promotion, and Argo CD synchronization.
+            - Maintained 85–90%+ unit test coverage by enforcing structured testing standards and reducing regression risk.
+            - Conducted deep root-cause analysis on architectural bottlenecks and recurring production issues to improve delivery stability.
+        - title: Technical Leadership & Engineering Enablement
+          highlights:
+            - Leveraged AI-assisted development to accelerate delivery, reviewing generated output and refining solutions to maintain architectural integrity.
+            - Directed frontend architecture of a critical Bixby service during a 2-month HQ engagement in Suwon, aligning technical strategy with evolving business goals.
+            - Presented architectural proposals and modernization strategy to HQ and SRPH leadership.
+            - Provided cross-functional technical leadership across planning, triage, solution validation, and delivery coordination.
+
+- id: accenture-inc-jul-2021
+  organization: Accenture Inc.
+  short: Accenture
+  position: Software Engineer
+  location: Manila, PH
+  start: Jul 2021
+  end: Jun 2023
+  type: direct
+  engagements:
+    - name: Nimbus (Google)
+      start: Aug 2021
+      end: Jun 2023
+      groups:
+        - title: Application Development
+          highlights:
+            - Executed high-level solution authoring using GoogleSQL and JavaScript for enterprise knowledge platforms serving global user bases.
+            - Built dynamic UI components supporting complex conditional business workflows.
+        - title: Engineering Quality & Delivery
+          highlights:
+            - Streamlined cross-project validation through automated reporting tools, reducing manual effort and improving verification accuracy.
+            - Authored API validation and regression workflows to formalize integration standards.
+            - Performed structured root-cause analysis to stabilize authoring pipelines and prevent recurring issues.
+        - title: Collaboration & Engineering Support
+          highlights:
+            - Guided QA reviews across multiple concurrent initiatives, identifying systemic quality gaps early.
+            - Collaborated with designers, architects, and program managers to refine requirements and prevent downstream blockers.
+            - Contributed to documentation and validation governance, improving long-term maintainability.
+
+- id: 8layer-technologies-inc-jul-2019
+  organization: 8Layer Technologies Inc.
+  short: 8Layer
+  position: Junior Mobile Application Developer
+  location: Manila, PH
+  start: Jul 2019
+  end: Jun 2021
+  type: direct
+  groups:
+    - title: Application Development
+      highlights:
+        - Built Angular dashboards for incident management and wallet platforms.
+        - Delivered cross-platform mobile applications using Ionic.
+        - Designed AR-based interaction modules using Unity and Vuforia.
+    - title: Engineering Quality & Delivery
+      highlights:
+        - Refactored legacy components to improve modularity and maintainability.
+        - Integrated REST APIs and backend services for end-to-end functionality.
+        - Managed Android and iOS application release lifecycle.
+
+- id: ihatecomputer-com-inc-july-2018
+  organization: ihatecomputer.com Inc.
+  short: ihatecomputer
+  position: Intern
+  location: Manila, PH
+  start: July 2018
+  end: Nov 2018
+  type: intern
+  highlights:
+    - Built internal web application modules supporting operational business tools.
+    - Implemented interactive reporting components for structured data visualization.
+  cvExclude: true
+- id: ama-computer-university-quezon-city-philippines-march-2015
+  organization: AMA Computer University - Quezon City Philippines
+  short: AMA Computer University
+  position: Student
+  start: March 2015
+  end: May 2019
+  type: education
+  highlights:
+    - Bachelor of Science in Computer Science
+    - Member, Microsoft Student Community
+
+- id: mrsci-caloocan-city-philippines-march-2011
+  organization: MRSCI - Caloocan City Philippines
+  short: MRSCI
+  position: Student
+  start: March 2011
+  end: March 2015
+  type: education
+  highlights:
+    - Secondary
+  cvExclude: true
+
+- id: modern-react-with-redux-2023-update-march-2023
+  organization: Modern React with Redux [2023 Update]
+  start: March 2023
+  end: March 2023
+  type: training
+  highlights:
+    - Udemy
+  cvExclude: true
+
+- id: angular-the-complete-guide-sep-2021
+  organization: Angular - The Complete Guide
+  start: Sep 2021
+  end: Sep 2021
+  type: training
+  highlights:
+    - Udemy
+  cvExclude: true
+
+- id: ccna-routing-and-switching-introduction-to-networks-apr-2018
+  organization: "CCNA Routing and Switching: Introduction to Networks"
+  start: Apr 2018
+  end: Apr 2018
+  type: training
+  highlights:
+    - Cisco Networking Academy
+  cvExclude: true
+
+- id: personality-development-seminar-mar-2017
+  organization: Personality Development Seminar
+  start: Mar 2017
+  end: Mar 2017
+  type: training
+  highlights:
+    - AMA Computer University
+  cvExclude: true
+
+- id: pre-employment-seminar-mar-2017
+  organization: Pre-employment Seminar
+  start: Mar 2017
+  end: Mar 2017
+  type: training
+  highlights:
+    - AMA Computer University
+  cvExclude: true

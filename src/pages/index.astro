@@ -1,0 +1,164 @@
+---
+import CareerTimeline from "../components/CareerTimeline.astro";
+import ContactForm from "../components/ContactForm.astro";
+import ExperienceList from "../components/ExperienceList.astro";
+import Icon from "../components/Icon.astro";
+import ProjectList from "../components/ProjectList.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import TechGrid from "../components/TechGrid.astro";
+import { Content as Intro } from "../data/intro.md";
+import { profile } from "../data/profile";
+import Base from "../layouts/Base.astro";
+import { getExperience, getProjects } from "../lib/content";
+import { formatRange, startYear } from "../lib/dates";
+
+const [{ work, education, training }, projects] = await Promise.all([getExperience(), getProjects()]);
+const careerStart = Math.min(...work.map((e) => startYear(e.data.start)));
+---
+
+<Base>
+	<a href="#main" class="skip">Skip to content</a>
+	<SiteHeader revealBrandOnScroll />
+
+	<main id="main">
+		<!-- Hero: the name is the design. -->
+		<section class="wrap hero" aria-labelledby="name">
+			<p class="label">{profile.headline}, {profile.location}</p>
+			<h1 id="name" class="t-display mt-4">
+				<span class="block">Justin</span>
+				<span class="block indent">Escabarte</span>
+			</h1>
+			<div class="grid-editorial mt-8">
+				<div class="hidden md:block"></div>
+				<div>
+					<p class="t-lede max-w-[32ch]">{profile.heroLine}</p>
+					<div class="mt-6 flex flex-wrap items-center gap-3">
+						<a class="btn btn-accent" href="/cv.pdf" download="Justin-Escabarte-CV.pdf" data-track="cv_download">
+							Download CV <Icon name="arrow-down" size={16} class="arrow" />
+						</a>
+						<a class="btn" href="/cv">View CV <Icon name="arrow-right" size={16} class="arrow" /></a>
+					</div>
+					<ul role="list" class="mt-5 flex flex-wrap gap-x-6 gap-y-1 t-small">
+						<li><a class="link-text" href={profile.links.github} rel="me noopener noreferrer" target="_blank">GitHub</a></li>
+						<li><a class="link-text" href={profile.links.linkedin} rel="me noopener noreferrer" target="_blank">LinkedIn</a></li>
+						<li><a class="link-text" href={profile.links.gitlab} rel="me noopener noreferrer" target="_blank">GitLab</a></li>
+						<li><a class="link-text" href={`mailto:${profile.email}`}>{profile.email}</a></li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<section id="timeline" class="wrap section" aria-labelledby="timeline-title">
+			<hr class="rule rule-extend" />
+			<h2 id="timeline-title" class="pt-8">Timeline</h2>
+			<div class="mt-8 reveal"><CareerTimeline work={work} education={education} projects={projects} /></div>
+		</section>
+
+		<section class="wrap section" aria-labelledby="about-title">
+			<hr class="rule rule-extend" />
+			<div class="grid-editorial pt-8">
+				<h2 id="about-title" class="sticky-heading">About</h2>
+				<div class="intro prose reveal"><Intro /></div>
+			</div>
+		</section>
+
+		<section id="experience" class="wrap section" aria-labelledby="experience-title">
+			<hr class="rule rule-extend" />
+			<div class="grid-editorial pt-8">
+				<div class="sticky-heading">
+					<h2 id="experience-title">Experience</h2>
+					<p class="label mt-3">Since {careerStart}</p>
+				</div>
+				<ExperienceList items={work} />
+			</div>
+		</section>
+
+		<section id="projects" class="wrap section" aria-labelledby="projects-title">
+			<hr class="rule rule-extend" />
+			<div class="grid-editorial pt-8">
+				<div class="sticky-heading">
+					<h2 id="projects-title">Projects</h2>
+					<p class="label mt-3">{projects.length} personal and course projects</p>
+				</div>
+				<div class="reveal -mt-px"><ProjectList projects={projects} /></div>
+			</div>
+		</section>
+
+		<section id="skills" class="wrap section" aria-labelledby="skills-title">
+			<hr class="rule rule-extend" />
+			<div class="grid-editorial pt-8">
+				<div class="sticky-heading">
+					<h2 id="skills-title">Skills</h2>
+					<p class="t-small mt-3 max-w-[30ch] text-ink-soft">
+						Bold marks the stack I use day to day. Hover a name for details.
+					</p>
+				</div>
+				<div class="reveal"><TechGrid /></div>
+			</div>
+		</section>
+
+		<section id="education" class="wrap section" aria-labelledby="education-title">
+			<hr class="rule rule-extend" />
+			<div class="grid-editorial pt-8">
+				<h2 id="education-title" class="sticky-heading">Education</h2>
+				<div class="reveal grid gap-12">
+					<ul role="list" class="grid gap-6">
+						{
+							education.map(({ data: e }) => (
+								<li>
+									<h3>{e.organization}</h3>
+									<p class="mt-1">{e.highlights.join(", ")}</p>
+									<p class="label mt-1">{formatRange(e.start, e.end)}</p>
+								</li>
+							))
+						}
+					</ul>
+					<div>
+						<p class="label text-ink!">Courses and certifications</p>
+						<ul role="list" class="mt-4">
+							{
+								training.map(({ data: t }) => (
+									<li class="flex flex-wrap items-baseline justify-between gap-x-6 border-t border-rule py-3">
+										<span class="text-ink">{t.organization}</span>
+										<span class="label">{t.highlights.join(", ")}, {formatRange(t.start, t.end)}</span>
+									</li>
+								))
+							}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="contact" class="wrap section" aria-labelledby="contact-title">
+			<hr class="rule rule-extend" />
+			<div class="grid-editorial pt-8">
+				<div>
+					<h2 id="contact-title">Contact</h2>
+					<p class="mt-4 max-w-[32ch]">
+						Send a message here, or email <a class="link-text" href={`mailto:${profile.email}`}>{profile.email}</a> directly.
+					</p>
+				</div>
+				<div class="reveal"><ContactForm /></div>
+			</div>
+		</section>
+	</main>
+
+	<SiteFooter />
+</Base>
+
+<style>
+	.skip { position: absolute; left: -9999px; }
+	.skip:focus { left: 1rem; top: 1rem; z-index: 200; background: var(--ink); color: var(--bg); padding: 0.5rem 1rem; }
+	.hero { padding-block: var(--sp-4) var(--sp-3); }
+	.indent { padding-left: 0.6em; }
+	@media (min-width: 769px) {
+		.sticky-heading { position: sticky; top: 5rem; }
+	}
+	.intro :global(p:first-child) {
+		font-family: var(--font-display); font-size: var(--t-lede); line-height: 1.35; color: var(--ink);
+	}
+	.intro :global(p + p) { margin-top: var(--sp-3); }
+	.intro :global(strong) { font-weight: 500; font-style: italic; }
+</style>

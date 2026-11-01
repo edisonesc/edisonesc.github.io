@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://edisonesc.github.io/sitemap.xml

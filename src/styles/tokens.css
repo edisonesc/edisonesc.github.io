@@ -1,0 +1,76 @@
+/*
+ * Design tokens — Minimal Serif system (skill: minimal-serif-design), Stone palette,
+ * Cormorant Garamond + Inter, Deep Ochre accent. See DESIGN.md for the rules that go with them.
+ * Every page (site, /cv, /og) reads from here; nothing outside this file hardcodes a color.
+ */
+
+:root {
+	/* Palette — Stone */
+	--bg: #f3f1ec;
+	--bg-offset: #e9e6df;
+	--ink: #18171a;
+	--ink-mid: #47454a;
+	--ink-soft: #6e6b67; /* darkened from the system's #8a8683 so small metadata passes WCAG AA */
+	--rule: #ccc8c0;
+	/* Deep Ochre: fills only (one CTA, the current role on the timeline). Never text on --bg. */
+	--accent: #c4862a;
+	--on-accent: #18171a;
+
+	/* Typography */
+	--font-display: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+	--font-ui: var(--font-inter), "Inter", system-ui, sans-serif;
+
+	--t-display: clamp(3.5rem, 8vw, 8rem);
+	--t-h1: clamp(2.5rem, 5vw, 5rem);
+	--t-h2: clamp(1.75rem, 3.5vw, 3rem);
+	--t-h3: clamp(1.25rem, 2vw, 1.75rem);
+	--t-lede: clamp(1.375rem, 2.4vw, 2rem);
+	--t-body: clamp(1rem, 1.1vw, 1.125rem);
+	--t-small: 0.8125rem;
+	--t-label: 0.6875rem;
+
+	/* Spacing — 0.5rem rhythm */
+	--sp-1: 0.5rem;
+	--sp-2: 1rem;
+	--sp-3: 1.5rem;
+	--sp-4: 2.5rem;
+	--sp-5: 4rem;
+	--sp-6: 6rem;
+	--sp-7: 10rem;
+
+	/* Layout */
+	--col-max: 1180px;
+	--col-text: 680px;
+	--col-narrow: 480px;
+	--gutter: clamp(1.5rem, 5vw, 4rem);
+
+	/* Motion — slow, ease-out, never springy */
+	--t-fast: 0.18s ease;
+	--t-mid: 0.35s ease;
+	--ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+	--t-slow: 0.6s var(--ease-out);
+
+	color-scheme: light;
+}
+
+/* Palette — Ink (dark). Applied by OS preference unless the visitor picked a theme. */
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) {
+		--bg: #0e0d0b;
+		--bg-offset: #161410;
+		--ink: #ede8e1;
+		--ink-mid: #a09890;
+		--ink-soft: #8a837d; /* lightened from #6a6360 for AA on --bg */
+		--rule: #2a2826;
+		color-scheme: dark;
+	}
+}
+:root[data-theme="dark"] {
+	--bg: #0e0d0b;
+	--bg-offset: #161410;
+	--ink: #ede8e1;
+	--ink-mid: #a09890;
+	--ink-soft: #8a837d;
+	--rule: #2a2826;
+	color-scheme: dark;
+}

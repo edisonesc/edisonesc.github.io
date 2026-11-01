@@ -1,0 +1,228 @@
+---
+/**
+ * Timeline: work, projects and education on one year axis, computed at build time.
+ * Minimal Serif treatment — hairline year ticks, thin ink rules for bars, labels above bars,
+ * accent reserved for the current role. Hover or focus a mark to dim the rest and read its details.
+ */
+import type { Experience, ProjectWithTech } from "../lib/content";
+import { formatDuration, formatRange, isPresent, toYear } from "../lib/dates";
+
+interface Props {
+	work: Experience[];
+	education: Experience[];
+	projects: ProjectWithTech[];
+}
+const { work, education, projects } = Astro.props;
+
+type Bar = {
+	href: string;
+	label: string;
+	title: string;
+	detail: string;
+	start: number;
+	end: number;
+	current: boolean;
+};
+type Lane = { name: string; kind: "work" | "project" | "edu"; labelled: boolean; bars: Bar[] };
+
+const bar = (href: string, label: string, title: string, start: string, end: string): Bar => ({
+	href,
+	label,
+	title,
+	detail: isPresent(end) ? `${formatRange(start, end)}` : `${formatRange(start, end)}, ${formatDuration(start, end)}`,
+	start: toYear(start),
+	end: toYear(end) + 1 / 12,
+	current: isPresent(end),
+});
+
+const workBars = work.map((e) =>
+	bar(
+		`#${e.id}`,
+		e.data.short ?? e.data.organization,
+		`${e.data.position}, ${e.data.organization}`,
+		e.data.start,
+		e.data.end,
+	),
+);
+const projectBars = projects.map((p) => bar(`#${p.id}`, p.data.name, p.data.name, p.data.start, p.data.end));
+
+/**
+ * The axis starts at the most recent school's start (college) or the first job/project, whichever is earlier.
+ * Earlier schooling stays in the Education section; leaving it off gives the busy years room to breathe.
+ */
+const latestSchoolStart = Math.max(...education.map((e) => toYear(e.data.start)));
+const min = Math.floor(
+	Math.min(latestSchoolStart, ...workBars.map((b) => b.start), ...projectBars.map((b) => b.start)),
+);
+const eduBars = education
+	.filter((e) => toYear(e.data.start) >= min)
+	.map((e) => bar("#education", e.data.short ?? e.data.organization, e.data.organization, e.data.start, e.data.end));
+
+const lanes: Lane[] = [
+	{ name: "Work", kind: "work", labelled: true, bars: workBars },
+	{ name: "Projects", kind: "project", labelled: false, bars: projectBars },
+	{ name: "Education", kind: "edu", labelled: true, bars: eduBars },
+];
+
+const now = toYear("Present");
+const max = Math.ceil(Math.max(now, ...lanes.flatMap((l) => l.bars.map((b) => b.end))));
+const span = max - min;
+const years = Array.from({ length: span }, (_, i) => min + i);
+const pct = (y: number) => ((Math.max(y, min) - min) / span) * 100;
+
+/** Chart is never narrower than this; label space is reserved against it so labels can't collide. */
+const CHART_MIN_PX = 720;
+const LABEL_PX_PER_CHAR = 7;
+const labelYears = (text: string) => ((text.length * LABEL_PX_PER_CHAR + 16) / CHART_MIN_PX) * span;
+
+/** Greedy packing: a bar (plus its label, when shown) goes on the first row where it fits. */
+function pack(lane: Lane) {
+	const rows: { bars: Bar[]; until: number }[] = [];
+	for (const b of [...lane.bars].sort((x, y) => x.start - y.start)) {
+		const extent = lane.labelled ? Math.max(b.end, b.start + labelYears(b.label)) : b.end;
+		const row = rows.find((r) => r.until <= b.start + 0.01);
+		if (row) {
+			row.bars.push(b);
+			row.until = extent;
+		} else rows.push({ bars: [b], until: extent });
+	}
+	return rows.map((r) => r.bars);
+}
+---
+
+<figure class="timeline" aria-labelledby="timeline-caption">
+	<figcaption id="timeline-caption" class="sr-only">
+		Timeline from {min} to today: {workBars.length} roles, {projectBars.length} projects and {eduBars.length} schools.
+		Each mark links to its details below.
+	</figcaption>
+	<div class="scroller" data-timeline-scroller>
+		<div class="chart" style={`min-width:${CHART_MIN_PX}px`}>
+			<div class="axis" aria-hidden="true">
+				{
+					years.map((y, i) => (
+						<span class:list={["tick", { odd: i % 2 === 1 }]} style={`left:${pct(y)}%`}>
+							<span class="label">{y}</span>
+						</span>
+					))
+				}
+				<span class="now" style={`left:${pct(now)}%`}><span class="label">Now</span></span>
+			</div>
+			{
+				lanes.map((lane) => (
+					<div class="lane" data-kind={lane.kind}>
+						<span class="lane-name label">{lane.name}</span>
+						<div class="rows">
+							{pack(lane).map((row) => (
+								<div class:list={["row", { labelled: lane.labelled }]}>
+									{row.map((b) => {
+										const left = pct(b.start);
+										return (
+											<a
+												class:list={["mark", { current: b.current, "tip-left": left > 62 }]}
+												href={b.href}
+												aria-label={`${b.title}, ${b.detail}`}
+												style={`left:${left}%;width:${Math.max(pct(b.end) - left, 0.45)}%;--delay:${Math.round(((b.start - min) / span) * 900)}ms`}
+											>
+												{lane.labelled && <span class="mark-label">{b.label}</span>}
+												<span class="mark-bar" />
+												<span class="tip" aria-hidden="true">
+													<span class="tip-title">{b.title}</span>
+													<span class="tip-detail">{b.detail}</span>
+												</span>
+											</a>
+										);
+									})}
+								</div>
+							))}
+						</div>
+					</div>
+				))
+			}
+		</div>
+	</div>
+	<ul class="legend" role="list" aria-hidden="true">
+		<li><span class="swatch" data-kind="current"></span><span class="label">Current role</span></li>
+		<li><span class="swatch" data-kind="work"></span><span class="label">Work</span></li>
+		<li><span class="swatch" data-kind="project"></span><span class="label">Projects</span></li>
+		<li><span class="swatch" data-kind="edu"></span><span class="label">Education</span></li>
+	</ul>
+</figure>
+
+<script>
+	// On narrow screens the chart scrolls sideways; open it at the recent end, where the activity is.
+	for (const el of document.querySelectorAll<HTMLElement>("[data-timeline-scroller]")) el.scrollLeft = el.scrollWidth;
+</script>
+
+<style>
+	.timeline { margin: 0; }
+	.scroller { overflow-x: auto; scrollbar-width: thin; scrollbar-color: var(--rule) transparent; }
+	/* Bottom padding leaves room for tooltips on the last row inside the scroll frame. */
+	.chart { position: relative; padding-top: 2rem; padding-bottom: 3.25rem; }
+
+	/* Axis: hairline ticks spanning all lanes, year labels on top, a dashed "Now" line. */
+	.axis { position: absolute; inset: 0 0 3.25rem 6.5rem; pointer-events: none; }
+	.tick { position: absolute; top: 0; bottom: 0; border-left: 1px solid var(--rule); }
+	.tick .label { position: absolute; top: 0; left: 0.4rem; letter-spacing: 0.08em; }
+	@media (max-width: 900px) { .tick.odd .label { visibility: hidden; } }
+	.now { position: absolute; top: 0; bottom: 0; border-left: 1px dashed var(--ink-soft); }
+	.now .label { position: absolute; bottom: -1.4rem; right: 0.4rem; color: var(--ink); }
+
+	.lane { position: relative; display: grid; grid-template-columns: 6.5rem 1fr; padding-block: 1rem; }
+	.lane + .lane { border-top: 1px solid var(--rule); }
+	.lane-name {
+		align-self: stretch; color: var(--ink);
+		/* Cover the lane's vertical padding too, so year lines don't show around the pinned label. */
+		margin-block: -1rem; padding-top: 1.25rem;
+		/* Pinned while the chart scrolls sideways on small screens. */
+		position: sticky; left: 0; z-index: 3; background: var(--bg); margin-right: 1px;
+	}
+	.rows { display: grid; gap: 0.4rem; }
+	.row { position: relative; height: 0.625rem; }
+	.row.labelled { height: 2.25rem; }
+
+	/* A mark is a link wrapping its label, its bar and a tooltip. */
+	.mark {
+		position: absolute; top: 0; bottom: 0;
+		display: flex; flex-direction: column; justify-content: flex-end; gap: 0.4rem;
+		text-decoration: none; transition: opacity var(--t-mid);
+	}
+	.mark-label { font-size: var(--t-small); line-height: 1; color: var(--ink); white-space: nowrap; }
+	.mark-bar { display: block; height: 0.625rem; background: var(--ink); transform-origin: left; }
+	[data-kind="project"] .mark-bar { background: var(--ink-mid); }
+	[data-kind="edu"] .mark-bar { background: transparent; box-shadow: inset 0 0 0 1px var(--ink-soft); }
+	.mark.current .mark-bar { background: var(--accent); }
+
+	/* Focus mode: hovering or focusing one mark dims everything else. */
+	.chart:has(.mark:hover, .mark:focus-visible) .mark:not(:hover, :focus-visible) { opacity: 0.25; }
+	.mark:focus-visible { outline: none; }
+	.mark:focus-visible .mark-bar { outline: 1px solid var(--ink); outline-offset: 3px; }
+
+	.tip {
+		position: absolute; top: calc(100% + 0.5rem); left: 0; z-index: 4;
+		display: grid; gap: 0.15rem; padding: 0.5rem 0.7rem; white-space: nowrap;
+		background: var(--ink); color: var(--bg); pointer-events: none;
+		opacity: 0; transform: translateY(-4px); transition: opacity var(--t-fast), transform var(--t-fast);
+	}
+	.tip-left .tip { left: auto; right: 0; }
+	.tip-title { font-family: var(--font-display); font-style: italic; font-size: 1.05rem; line-height: 1.2; }
+	.tip-detail { font-size: var(--t-label); letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.75; }
+	.mark:hover .tip, .mark:focus-visible .tip { opacity: 1; transform: none; }
+	/* Labelled lanes already show the name, so their tip only adds the dates. */
+	.row.labelled .tip-title { display: none; }
+
+	.legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; margin-top: var(--sp-1); padding-left: 6.5rem; }
+	@media (max-width: 640px) { .legend { padding-left: 0; } }
+	.legend li { display: flex; align-items: center; gap: 0.6rem; }
+	.swatch { width: 1.25rem; height: 0.625rem; background: var(--ink); }
+	.swatch[data-kind="current"] { background: var(--accent); }
+	.swatch[data-kind="project"] { background: var(--ink-mid); width: 0.625rem; }
+	.swatch[data-kind="edu"] { background: transparent; box-shadow: inset 0 0 0 1px var(--ink-soft); }
+
+	/* One orchestrated moment: bars extend left-to-right in chronological order. */
+	@media (prefers-reduced-motion: no-preference) {
+		.mark-bar { animation: extend 0.8s var(--ease-out) both; animation-delay: calc(250ms + var(--delay)); }
+		.mark-label { animation: fade 0.6s var(--ease-out) both; animation-delay: calc(450ms + var(--delay)); }
+		@keyframes extend { from { transform: scaleX(0); } }
+		@keyframes fade { from { opacity: 0; } }
+	}
+</style>

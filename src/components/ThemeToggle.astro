@@ -1,0 +1,38 @@
+---
+import Icon from "./Icon.astro";
+---
+
+<button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch to dark theme">
+	<span class="moon"><Icon name="moon" /></span>
+	<span class="sun"><Icon name="sun" /></span>
+</button>
+
+<style>
+	.theme-toggle { display: grid; place-items: center; width: 2rem; height: 2rem; color: var(--ink-soft); cursor: pointer; transition: color var(--t-fast); }
+	.theme-toggle:hover { color: var(--ink); }
+	.sun { display: none; }
+	:global([data-dark]) .sun { display: block; }
+	:global([data-dark]) .moon { display: none; }
+</style>
+
+<script>
+	const root = document.documentElement;
+	const media = matchMedia("(prefers-color-scheme: dark)");
+	const button = document.querySelector<HTMLButtonElement>("[data-theme-toggle]");
+	const isDark = () => (root.dataset.theme ? root.dataset.theme === "dark" : media.matches);
+
+	function sync() {
+		root.toggleAttribute("data-dark", isDark());
+		button?.setAttribute("aria-label", `Switch to ${isDark() ? "light" : "dark"} theme`);
+	}
+	button?.addEventListener("click", () => {
+		const next = isDark() ? "light" : "dark";
+		root.dataset.theme = next;
+		try {
+			localStorage.setItem("theme", next);
+		} catch {}
+		sync();
+	});
+	media.addEventListener("change", sync);
+	sync();
+</script>

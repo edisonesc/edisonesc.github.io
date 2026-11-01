@@ -1,0 +1,15 @@
+---
+import Icon from "../components/Icon.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import Base from "../layouts/Base.astro";
+---
+
+<Base title="Page not found">
+	<SiteHeader />
+	<main class="wrap section">
+		<p class="label">Error 404</p>
+		<h1 class="t-display mt-6">Page not found</h1>
+		<p class="prose mt-8">This address doesn't match a page on the site. The CV lives at <a class="link-text" href="/cv">/cv</a>.</p>
+		<p class="mt-10"><a class="btn" href="/">Go to the home page <Icon name="arrow-right" size={16} class="arrow" /></a></p>
+	</main>
+</Base>

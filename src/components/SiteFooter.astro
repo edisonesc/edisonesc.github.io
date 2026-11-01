@@ -1,0 +1,16 @@
+---
+import { profile } from "../data/profile";
+---
+
+<footer class="wrap">
+	<hr class="rule" />
+	<div class="flex flex-wrap items-baseline justify-between gap-x-10 gap-y-4 py-10">
+		<p class="label">© {new Date().getFullYear()} {profile.name}</p>
+		<ul role="list" class="flex flex-wrap gap-x-8 gap-y-2 t-small">
+			<li><a class="link-text" href={`mailto:${profile.email}`}>{profile.email}</a></li>
+			<li><a class="link-text" href={profile.links.github} rel="me noopener noreferrer" target="_blank">GitHub</a></li>
+			<li><a class="link-text" href={profile.links.linkedin} rel="me noopener noreferrer" target="_blank">LinkedIn</a></li>
+			<li><a class="link-text" href={profile.links.gitlab} rel="me noopener noreferrer" target="_blank">GitLab</a></li>
+		</ul>
+	</div>
+</footer>
