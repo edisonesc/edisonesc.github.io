@@ -1,0 +1,69 @@
+---
+import type { ProjectWithTech } from "../lib/content";
+import { formatRange, startYear } from "../lib/dates";
+import Icon from "./Icon.astro";
+
+interface Props {
+	project: ProjectWithTech;
+}
+const { project: p } = Astro.props;
+const typeLabel = { web: "Web app", mobile: "Mobile app", system: "System", others: "Tooling" } as const;
+---
+
+<li id={p.id} class="project">
+	<p class="year">{startYear(p.data.start)}</p>
+	<div>
+		<h3>
+			{
+				p.data.url ? (
+					<a
+						href={p.data.url}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="title-link"
+						data-track="project_link_click"
+						data-track-project-name={p.data.name}
+						data-track-project-url={p.data.url}
+					>
+						{p.data.name}
+						<Icon name="arrow-up-right" size={16} class="inline-block align-baseline text-ink-soft" />
+					</a>
+				) : (
+					p.data.name
+				)
+			}
+		</h3>
+		<p class="label mt-1 meta">
+			<span>{typeLabel[p.data.type]}, {formatRange(p.data.start, p.data.end)}</span>
+			{p.data.url && (
+				<span class="live" data-live-url={p.data.url} data-state="checking" title="Checking whether the project URL is reachable">
+					<span class="dot" aria-hidden="true"></span><span class="state">Checking</span>
+				</span>
+			)}
+		</p>
+		<p class="mt-2 prose">{p.data.description}</p>
+		<p class="t-small mt-1 text-ink-soft">{p.technologies.map((t) => t.data.name).join(", ")}</p>
+	</div>
+</li>
+
+<style>
+	.project {
+		display: grid; grid-template-columns: 4rem 1fr; gap: var(--sp-1) var(--sp-3);
+		padding-block: var(--sp-3); border-top: 1px solid var(--rule);
+	}
+	@media (max-width: 640px) { .project { grid-template-columns: 1fr; } }
+	.year {
+		font-family: var(--font-display); font-weight: 300; font-size: var(--t-lede);
+		line-height: 1; color: var(--ink); font-variant-numeric: oldstyle-nums;
+	}
+	.title-link { text-decoration: none; transition: opacity var(--t-fast); }
+	.title-link:hover { opacity: 0.7; }
+	.meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0 1rem; }
+	.live { display: inline-flex; align-items: center; gap: 0.4rem; }
+	.dot { width: 6px; height: 6px; border-radius: 50%; border: 1px solid var(--ink-soft); }
+	.live[data-state="checking"] .dot { animation: pulse 1.2s ease-in-out infinite; }
+	.live[data-state="live"] .dot { background: var(--accent); border-color: var(--accent); }
+	.live[data-state="down"] { text-decoration: line-through; }
+	@keyframes pulse { 50% { opacity: 0.3; } }
+	@media (prefers-reduced-motion: reduce) { .live[data-state="checking"] .dot { animation: none; } }
+</style>

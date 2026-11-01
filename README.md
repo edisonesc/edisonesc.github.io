@@ -1,27 +1,46 @@
-# PortfolioV2
+# edisonesc.github.io
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
+Personal site and CV for Justin Escabarte. Built with [Astro](https://astro.build) and Tailwind CSS, and deployed to GitHub Pages.
 
-## Development server
+The site ships as static HTML. The only client-side JavaScript is the theme toggle, the contact form's inline submit, and a one-line timeline scroll.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Design
 
-## Code scaffolding
+The site follows the Minimal Serif design system. See [`DESIGN.md`](DESIGN.md) for the chosen options and site rules, and `src/styles/tokens.css` for the tokens every page shares.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Editing content
 
-## Build
+All content lives in `src/data/`. The build validates it against the schemas in `src/content.config.ts`, so a typo in a date or a technology id fails the build instead of shipping.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+| File                | What it holds                                                                            |
+| ------------------- | ---------------------------------------------------------------------------------------- |
+| `profile.ts`        | Name, headline, email, social links, Formspree endpoint                                  |
+| `intro.md`          | The About section                                                                        |
+| `experience.yaml`   | Jobs, education and courses. Outsourcing roles nest client work under `engagements`.     |
+| `projects.yaml`     | Projects. `technologies` lists ids from `technologies.yaml`.                             |
+| `technologies.yaml` | Tech names, links and groups. `featured: <rank>` pins day-job tech to the top of Skills. |
 
-## Running unit tests
+Dates are `Mon YYYY` (for example `Jun 2023`) or `Present`. Add `cvExclude: true` to keep an entry on the site but off the CV.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## CV
 
-## Running end-to-end tests
+`/cv` renders the CV from the same data. After `astro build`, `scripts/build-cv.mjs` prints it to `dist/cv.pdf` with Playwright, producing a real-text PDF that ATS parsers can read, and saves the social preview image to `dist/og.png`.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+The phone number on the CV comes from `phone` in `profile.ts`. It is public on `/cv` and in the PDF.
 
-## Further help
+## Commands
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```sh
+npm install
+npx playwright install chromium   # once, for the CV/OG step
+npm run dev                       # http://localhost:4321
+npm run build                     # type-check, build, then cv.pdf + og.png
+npm run preview                   # serve dist/
+npm run lint                      # Biome
+```
+
+On a bare Linux or WSL machine, Chromium may also need system libraries: `sudo npx playwright install-deps chromium`.
+
+## Deploying
+
+`.github/workflows/deploy.yml` builds and deploys on every push to `main`, on manual dispatch, and on the 1st of each month (which keeps "Present" durations current). In the repo settings, set **Pages, then Source** to **GitHub Actions**.

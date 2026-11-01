@@ -1,0 +1,76 @@
+---
+/**
+ * Bullet list showing the first few items; the rest sit behind a native disclosure.
+ * Pass `items` for a flat list, or `groups` for bullets grouped by area of work
+ * (then `visible` counts groups, not bullets).
+ */
+import Icon from "./Icon.astro";
+
+interface Group {
+	title: string;
+	highlights: string[];
+}
+interface Props {
+	items?: string[];
+	groups?: Group[];
+	visible?: number;
+}
+const { items = [], groups = [], visible = 4 } = Astro.props;
+const grouped = groups.length > 0;
+const head = grouped ? groups.slice(0, visible) : items.slice(0, visible);
+const rest = grouped ? groups.slice(visible) : items.slice(visible);
+const noun = grouped ? (rest.length === 1 ? "area" : "areas") : "more";
+---
+
+{
+	grouped ? (
+		<div class="groups">
+			{(head as Group[]).map((g) => (
+				<div>
+					<p class="label group-title">{g.title}</p>
+					<ul class="highlights" role="list">{g.highlights.map((h) => <li>{h}</li>)}</ul>
+				</div>
+			))}
+		</div>
+	) : (
+		<ul class="highlights" role="list">
+			{(head as string[]).map((h) => <li>{h}</li>)}
+		</ul>
+	)
+}
+{
+	rest.length > 0 && (
+		<details class="more">
+			<summary class="toggle">
+				<Icon name="plus" size={14} />
+				<span class="when-closed">Show {rest.length} {noun}</span>
+				<span class="when-open">Show less</span>
+			</summary>
+			{grouped ? (
+				<div class="groups mt-group">
+					{(rest as Group[]).map((g) => (
+						<div>
+							<p class="label group-title">{g.title}</p>
+							<ul class="highlights" role="list">{g.highlights.map((h) => <li>{h}</li>)}</ul>
+						</div>
+					))}
+				</div>
+			) : (
+				<ul class="highlights" role="list">{(rest as string[]).map((h) => <li>{h}</li>)}</ul>
+			)}
+		</details>
+	)
+}
+
+<style>
+	.highlights { display: grid; gap: 0.5rem; max-width: var(--col-text); }
+	.highlights li { position: relative; padding-left: 1.5rem; }
+	.highlights li::before {
+		content: ""; position: absolute; left: 0; top: 0.875em;
+		width: 0.75rem; height: 1px; background: var(--ink-soft);
+	}
+	.groups { display: grid; gap: var(--sp-3); }
+	.group-title { color: var(--ink); margin-bottom: var(--sp-1); }
+	.more { margin-top: var(--sp-2); }
+	.more > .highlights, .more > .mt-group { margin-top: var(--sp-2); }
+</style>

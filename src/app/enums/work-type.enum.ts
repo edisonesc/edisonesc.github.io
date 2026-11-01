@@ -1,7 +1,0 @@
-export enum WORK_TYPE {
-    DIRECT = 'DIRECT', 
-    EDUCATION = 'EDUCATION',
-    INTERN = 'INTERN',
-    OUTSOURCING = 'OUTSOURCING',
-    TRAINING = 'TRAINING'
-}

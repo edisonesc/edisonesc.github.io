@@ -1,0 +1,122 @@
+---
+import { Font } from "astro:assets";
+import { profile } from "../data/profile";
+import "../styles/global.css";
+
+interface Props {
+	title?: string;
+	description?: string;
+	/** CV page: no theme switching, always light, print-first. */
+	printable?: boolean;
+}
+
+const {
+	title = `${profile.shortName} — ${profile.position}`,
+	description = profile.tagline,
+	printable = false,
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL("/og.png", Astro.site);
+
+const personLd = {
+	"@context": "https://schema.org",
+	"@type": "Person",
+	name: profile.name,
+	jobTitle: profile.position,
+	email: `mailto:${profile.email}`,
+	url: profile.siteUrl,
+	address: { "@type": "PostalAddress", addressLocality: "Manila", addressCountry: "PH" },
+	sameAs: Object.values(profile.links),
+};
+---
+
+<!doctype html>
+<html lang="en" data-theme={printable ? "light" : undefined}>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonical} />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+		<meta name="theme-color" content="#f3f1ec" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#0e0d0b" media="(prefers-color-scheme: dark)" />
+
+		<meta property="og:type" content="profile" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<script type="application/ld+json" set:html={JSON.stringify(personLd)} />
+
+		<slot name="head" />
+		{
+			import.meta.env.PROD && (
+				<script is:inline define:vars={{ id: profile.ga4 }}>
+					// GA4, skipped for headless builds (cv.pdf, og.png). Elements with data-track="event"
+					// send that event on click, with any data-track-* attributes as params.
+					if (!navigator.webdriver) {
+						window.dataLayer = window.dataLayer || [];
+						window.gtag = function () {
+							dataLayer.push(arguments);
+						};
+						gtag("js", new Date());
+						gtag("config", id);
+						const s = document.createElement("script");
+						s.async = true;
+						s.src = `https://www.googletagmanager.com/gtag/js?id=${id}`;
+						document.head.appendChild(s);
+						document.addEventListener("click", (e) => {
+							const el = e.target instanceof Element && e.target.closest("[data-track]");
+							if (!el) return;
+							const params = {};
+							for (const [k, v] of Object.entries(el.dataset)) {
+								if (k.startsWith("track") && k !== "track") params[k.slice(5).replace(/^[A-Z]/, (c) => c.toLowerCase()).replace(/[A-Z]/g, (c) => `_${c.toLowerCase()}`)] = v;
+							}
+							gtag("event", el.dataset.track, params);
+						});
+					}
+				</script>
+			)
+		}
+		<Font cssVariable="--font-cormorant" preload />
+		<Font cssVariable="--font-inter" preload />
+
+		{
+			!printable && (
+				<script is:inline>
+					document.documentElement.classList.add("js");
+					try {
+						const t = localStorage.getItem("theme");
+						if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+					} catch {}
+				</script>
+			)
+		}
+	</head>
+	<body class="min-h-dvh antialiased">
+		<slot />
+		{
+			!printable && (
+				<script>
+					// "Refined" motion: fade-up sections and extend hairline rules once, as they enter the viewport.
+					const io = new IntersectionObserver(
+						(entries) => {
+							for (const e of entries) {
+								if (!e.isIntersecting) continue;
+								e.target.classList.add("visible");
+								io.unobserve(e.target);
+							}
+						},
+						{ threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+					);
+					for (const el of document.querySelectorAll(".reveal, .rule-extend")) io.observe(el);
+				</script>
+			)
+		}
+	</body>
+</html>

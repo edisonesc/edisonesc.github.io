@@ -1,0 +1,588 @@
+# Keyed by id; projects.yaml references these ids. Order within a group is display order.
+# core = day-job stack. hidden = only used to tag projects, not listed under Skills.
+# cvExclude = listed on the site but left off the CV skills.
+
+# Frontend
+angular:
+  name: Angular
+  url: https://angular.dev/
+  kind: framework
+  group: frontend
+  core: true
+  description: A platform and framework by Google for building single-page web applications using TypeScript with a component-based architecture and powerful CLI.
+
+react:
+  name: React
+  url: https://react.dev/
+  kind: framework
+  group: frontend
+  core: true
+  description: A JavaScript library by Meta for building user interfaces through reusable, declarative components with a virtual DOM for efficient updates.
+
+nextjs:
+  name: Next.js
+  url: https://nextjs.org/
+  kind: framework
+  group: frontend
+  core: true
+  description: A React framework that enables server-side rendering, static site generation, and full-stack capabilities with file-based routing and API routes.
+
+ionic:
+  name: Ionic
+  url: https://ionicframework.com/
+  kind: framework
+  group: frontend
+  core: true
+  description: A cross-platform mobile UI toolkit for building native-quality iOS and Android apps using web technologies like Angular, React, or Vue.
+
+typescript:
+  name: TypeScript
+  url: https://www.typescriptlang.org/
+  kind: language
+  group: frontend
+  description: A strongly typed superset of JavaScript that adds static types, enabling better tooling, refactoring, and catching errors at compile time.
+
+html:
+  name: HTML
+  url: https://developer.mozilla.org/docs/Web/HTML
+  kind: language
+  group: frontend
+  description: The standard markup language for creating web pages, defining the structure and meaning of web content through semantic elements.
+
+scss:
+  name: SCSS
+  url: https://sass-lang.com/
+  kind: language
+  group: frontend
+  subgroup: Styling
+  description: A CSS preprocessor that extends CSS with variables, nesting, mixins, and more — making stylesheets more maintainable and expressive.
+
+vite:
+  name: Vite
+  url: https://vitejs.dev/
+  kind: tool
+  group: frontend
+  description: A next-generation frontend build tool that leverages native ES modules for instant server start and lightning-fast hot module replacement.
+
+tailwindcss:
+  name: Tailwind CSS
+  url: https://tailwindcss.com/
+  kind: framework
+  group: frontend
+  subgroup: Styling
+  description: A utility-first CSS framework that lets you build custom designs directly in HTML using composable, low-level utility classes.
+
+shadcn:
+  name: shadcn/ui
+  url: https://ui.shadcn.com/
+  kind: framework
+  group: frontend
+  subgroup: Styling
+  description: A collection of re-usable UI components built with Radix UI and Tailwind CSS that you copy into your project and own completely.
+
+ngrx:
+  name: NgRx
+  url: https://ngrx.io/
+  kind: framework
+  group: frontend
+  subgroup: State Management
+  description: Reactive state management for Angular applications inspired by Redux, using RxJS for managing global application state predictably.
+
+zustand:
+  name: Zustand
+  url: https://zustand-demo.pmnd.rs/
+  kind: tool
+  group: frontend
+  subgroup: State Management
+  description: A small, fast, and scalable state management solution for React using a simple hook-based API with minimal boilerplate.
+
+reacthookform:
+  name: React Hook Form
+  url: https://react-hook-form.com/
+  kind: tool
+  group: frontend
+  subgroup: Forms & Validation
+  description: Performant, flexible, and extensible forms with easy-to-use validation for React, minimizing re-renders and reducing boilerplate.
+
+zod:
+  name: Zod
+  url: https://zod.dev/
+  kind: tool
+  group: frontend
+  subgroup: Forms & Validation
+  description: A TypeScript-first schema declaration and validation library that infers static types from your schema definitions.
+
+tanstackquery:
+  name: TanStack Query
+  url: https://tanstack.com/query
+  kind: tool
+  group: frontend
+  description: A powerful asynchronous state management library for React that handles data fetching, caching, synchronization, and server state updates.
+
+echarts:
+  name: Apache ECharts
+  url: https://echarts.apache.org/
+  kind: tool
+  group: frontend
+  description: A powerful, interactive charting and data visualization library built on Canvas, supporting a wide range of chart types and large datasets.
+
+jasmine:
+  name: Jasmine
+  url: https://jasmine.github.io/
+  kind: framework
+  group: frontend
+  subgroup: Testing
+  description: A behavior-driven development framework for testing JavaScript code with a clean, readable syntax and no external dependencies.
+
+momentjs:
+  name: Moment.js
+  url: https://momentjs.com/
+  kind: tool
+  group: frontend
+  description: A JavaScript library for parsing, validating, manipulating, and formatting dates and times with a fluent API.
+
+unity:
+  name: Unity
+  url: https://unity.com/
+  kind: tool
+  group: frontend
+  description: A cross-platform game engine for creating 2D and 3D games, simulations, and interactive experiences, using C# as its scripting language.
+
+csharp:
+  name: C#
+  url: https://learn.microsoft.com/en-us/dotnet/csharp/
+  kind: language
+  group: frontend
+  description: A modern, object-oriented language by Microsoft, primary language for Unity game development and .NET applications.
+
+# Backend
+nodejs:
+  name: Node.js
+  url: https://nodejs.org/
+  kind: tool
+  group: backend
+  core: true
+  description: A JavaScript runtime built on Chrome's V8 engine that enables server-side JavaScript execution, powering scalable network applications.
+
+nestjs:
+  name: NestJS
+  url: https://nestjs.com/
+  kind: framework
+  group: backend
+  core: true
+  description: A progressive Node.js framework for building efficient, reliable, and scalable server-side applications using TypeScript.
+
+typeorm:
+  name: TypeORM
+  url: https://typeorm.io/
+  kind: framework
+  group: backend
+  core: true
+  subgroup: Database
+  description: An ORM for TypeScript and JavaScript that supports Active Record and Data Mapper patterns, making database interactions type-safe and expressive.
+
+mysql:
+  name: MySQL
+  url: https://www.mysql.com/
+  kind: tool
+  group: backend
+  core: true
+  subgroup: Database
+  description: The world's most popular open-source relational database management system, widely used for web applications and transactional workloads.
+
+mongodb:
+  name: MongoDB
+  url: https://www.mongodb.com/
+  kind: tool
+  group: backend
+  subgroup: Database
+  description: A document-oriented NoSQL database that stores data in flexible, JSON-like BSON documents, ideal for scalable and schema-less data models.
+
+redis:
+  name: Redis
+  url: https://redis.io/
+  kind: tool
+  group: backend
+  subgroup: Database
+  description: An in-memory data structure store used as a database, cache, and message broker, known for its blazing-fast performance.
+
+jwt:
+  name: JWT
+  url: https://jwt.io/
+  kind: tool
+  group: backend
+  subgroup: Forms & Validation
+  description: JSON Web Tokens — a compact, URL-safe standard for securely transmitting information between parties as a signed JSON object.
+
+sqlite:
+  name: SQLite
+  url: https://www.sqlite.org/
+  kind: tool
+  group: backend
+  subgroup: Database
+  description: A lightweight, serverless, self-contained SQL database engine that stores data in a single file — perfect for embedded and local-first applications.
+
+postgresql:
+  name: PostgreSQL
+  url: https://www.postgresql.org/
+  kind: tool
+  group: backend
+  subgroup: Database
+  description: A powerful open-source object-relational database known for reliability, standards compliance, and rich features like JSONB, transactions, and extensions.
+
+prisma:
+  name: Prisma
+  url: https://www.prisma.io/
+  kind: tool
+  group: backend
+  subgroup: Database
+  description: A next-generation TypeScript ORM with a declarative schema, auto-generated type-safe client, and migration tooling.
+
+drizzle:
+  name: Drizzle
+  url: https://orm.drizzle.team/
+  kind: tool
+  group: backend
+  description: A lightweight TypeScript ORM with a SQL-like query API, offering zero overhead, type safety, and excellent developer experience.
+
+websockets:
+  name: WebSockets
+  url: https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API
+  kind: tool
+  group: backend
+  description: A protocol providing full-duplex communication channels over a single TCP connection, enabling real-time, bidirectional data exchange between client and server.
+
+firebase:
+  name: Firebase
+  url: https://firebase.google.com/
+  kind: tool
+  group: backend
+  subgroup: Database
+  description: Google's Backend-as-a-Service platform providing real-time database, authentication, hosting, and cloud functions for rapid app development.
+
+# DevOps
+docker:
+  name: Docker
+  url: https://www.docker.com/
+  kind: tool
+  group: devops
+  description: A containerization platform that packages applications and their dependencies into portable containers, ensuring consistent environments from dev to production.
+
+aws:
+  name: AWS (ECR, EC2/Fargate, ECS, RDS, CloudWatch, S3, CloudFront)
+  url: https://aws.amazon.com/
+  kind: tool
+  group: devops
+  description: Amazon Web Services — a comprehensive cloud platform offering compute (EC2/ECS), storage (S3), databases (RDS), CDN (CloudFront), and observability (CloudWatch).
+
+githubactions:
+  name: GitHub Actions
+  url: https://github.com/features/actions
+  kind: tool
+  group: devops
+  description: A CI/CD platform built into GitHub that automates build, test, and deployment workflows triggered by repository events.
+
+githubpages:
+  name: GitHub Pages
+  url: https://pages.github.com/
+  kind: tool
+  group: devops
+  description: A free static site hosting service by GitHub that publishes HTML, CSS, and JavaScript files directly from a repository.
+
+turborepo:
+  name: Turborepo (pnpm workspaces)
+  url: https://turborepo.com/
+  kind: tool
+  group: devops
+  description: A high-performance build system for JavaScript/TypeScript monorepos that caches and parallelizes tasks across workspace packages.
+
+# Exploratory
+n8n:
+  name: n8n
+  url: https://n8n.io/
+  kind: tool
+  group: exploratory
+  description: A fair-code workflow automation platform that lets you connect anything to everything with a visual editor and 400+ integrations.
+
+cloudflare:
+  name: Cloudflare
+  url: https://www.cloudflare.com/
+  kind: tool
+  group: exploratory
+  description: A global cloud platform providing CDN, DNS, DDoS protection, security, and edge computing services to improve performance and security.
+
+arduino:
+  name: Arduino
+  url: https://www.arduino.cc/
+  kind: tool
+  group: exploratory
+  description: An open-source electronics platform with easy-to-use hardware and software, ideal for building interactive projects and learning embedded programming.
+
+rpi:
+  name: Raspberry Pi
+  url: https://www.raspberrypi.com/
+  kind: tool
+  group: exploratory
+  description: Raspberry Pi — a credit-card-sized single-board computer used for learning, prototyping, IoT projects, and embedded system development.
+
+tensorflow:
+  name: TensorFlow
+  url: https://www.tensorflow.org/
+  kind: tool
+  group: exploratory
+  description: An open-source machine learning framework by Google for building and training neural networks across a range of platforms.
+
+cheerio:
+  name: Cheerio
+  url: https://cheerio.js.org/
+  kind: tool
+  group: exploratory
+  description: A fast, flexible, and lean implementation of jQuery for server-side HTML parsing and manipulation in Node.js.
+
+puppeteer:
+  name: Puppeteer
+  url: https://pptr.dev/
+  kind: tool
+  group: exploratory
+  description: A Node.js library for controlling Chrome/Chromium via the DevTools Protocol — used for web scraping, automation, and headless browser testing.
+
+annyang:
+  name: annyang
+  url: https://www.talater.com/annyang/
+  kind: tool
+  group: exploratory
+  description: A tiny JavaScript library that enables speech recognition in the browser, allowing you to add voice commands to your web apps.
+
+java:
+  name: Java
+  url: https://www.java.com/
+  kind: language
+  group: exploratory
+  description: A class-based, object-oriented language designed for platform independence — write once, run anywhere via the JVM.
+
+android:
+  name: Android
+  url: https://www.android.com/
+  kind: tool
+  group: exploratory
+  description: Google's mobile operating system — the platform for building and deploying Android apps that run on billions of devices worldwide.
+
+python:
+  name: Python
+  url: https://www.python.org/
+  kind: language
+  group: exploratory
+  description: A versatile, beginner-friendly language known for its clean syntax, widely used in scripting, data science, and automation.
+
+pyupload:
+  name: PyUpload
+  url: https://pypi.org/project/PyUpload/
+  kind: tool
+  group: exploratory
+  cvExclude: true
+  description: A Python library for uploading files programmatically to various storage services and endpoints.
+
+pyqt5:
+  name: PyQt5
+  url: https://pypi.org/project/PyQt5/
+  kind: framework
+  group: exploratory
+  cvExclude: true
+  description: Python bindings for the Qt application framework, enabling the creation of cross-platform desktop GUI applications in Python.
+
+c:
+  name: C
+  url: https://en.cppreference.com/w/c
+  kind: language
+  group: exploratory
+  description: A low-level, general-purpose programming language that provides direct memory management and close-to-hardware control, foundational to modern computing.
+
+ffmpeg:
+  name: FFmpeg
+  url: https://www.ffmpeg.org/
+  kind: tool
+  group: exploratory
+  description: A powerful multimedia framework for decoding, encoding, transcoding, muxing, demuxing, streaming, filtering, and playing audio and video.
+
+mermaid:
+  name: Mermaid
+  url: https://mermaid.js.org/
+  kind: tool
+  group: exploratory
+  description: A JavaScript-based diagramming tool that renders Markdown-inspired text definitions into dynamic diagrams like flowcharts, sequence diagrams, and more.
+
+threejs:
+  name: Three.js
+  url: https://threejs.org/
+  kind: framework
+  group: exploratory
+  description: A JavaScript 3D library that makes WebGL accessible, providing scenes, cameras, lights, materials, and geometry for rendering 3D graphics in the browser.
+
+reactthreefiber:
+  name: React Three Fiber
+  url: https://r3f.docs.pmnd.rs/
+  kind: framework
+  group: exploratory
+  description: A React renderer for Three.js that lets you build 3D scenes declaratively with reusable, state-driven components.
+
+rapier:
+  name: Rapier
+  url: https://rapier.rs/
+  kind: tool
+  group: exploratory
+  description: A fast 2D/3D physics engine written in Rust and compiled to WebAssembly, used for rigid bodies, colliders, and joints in web games.
+
+vitest:
+  name: Vitest
+  url: https://vitest.dev/
+  kind: framework
+  group: exploratory
+  description: A Vite-native unit testing framework with a Jest-compatible API, fast watch mode, and first-class TypeScript support.
+
+playwright:
+  name: Playwright
+  url: https://playwright.dev/
+  kind: tool
+  group: exploratory
+  description: A browser automation and end-to-end testing framework by Microsoft that drives Chromium, Firefox, and WebKit with one API.
+
+fastify:
+  name: Fastify
+  url: https://fastify.dev/
+  kind: framework
+  group: exploratory
+  description: A low-overhead, high-performance Node.js web framework with a plugin architecture and schema-based validation.
+
+colyseus:
+  name: Colyseus
+  url: https://colyseus.io/
+  kind: framework
+  group: exploratory
+  description: An authoritative multiplayer game server framework for Node.js with rooms, matchmaking, and state synchronization over WebSockets.
+
+caddy:
+  name: Caddy
+  url: https://caddyserver.com/
+  kind: tool
+  group: exploratory
+  description: A modern web server and reverse proxy with automatic HTTPS, simple configuration, and built-in static file serving.
+
+laya:
+  name: Laya (decision model)
+  url: https://laya-ai.com/
+  kind: tool
+  group: exploratory
+  description: A self-hostable AI decision model that answers typed questions (choice, score, yes/no) in a single forward pass, without text generation.
+
+ollama:
+  name: Ollama
+  url: https://ollama.com/
+  kind: tool
+  group: exploratory
+  description: A tool for running open-source large language models locally, with a simple CLI and local API for experimenting with AI models on your own machine.
+
+rollbacknetcode:
+  name: Deterministic Simulation & Rollback Netcode
+  url: https://en.wikipedia.org/wiki/Netcode#Rollback
+  kind: practice
+  group: exploratory
+  description: Running a bit-identical simulation on every machine and exchanging only inputs, predicting ahead and re-simulating when late inputs arrive to hide network latency.
+
+# Approach
+componentdrivenarchitecture:
+  name: Component-Driven Architecture
+  url: https://www.mendix.com/blog/what-is-component-based-architecture/
+  kind: practice
+  group: approach
+  description: A development methodology where UIs are built from isolated, reusable components, enabling independent development, testing, and composition.
+
+configurationdrivensystems:
+  name: Configuration-Driven Systems
+  url: https://medium.com/@this.mithlesh/how-im-building-a-config-driven-ui-and-why-you-should-try-it-too-0cf3e680627e
+  kind: practice
+  group: approach
+  description: An architectural approach where UI behavior and layouts are controlled by data/config objects rather than hardcoded logic, enabling flexibility without code changes.
+
+statemanagement:
+  name: State Management
+  url: https://dev.to/chintanonweb/angular-state-management-a-comparison-of-the-different-options-available-100e
+  kind: practice
+  group: approach
+  description: A discipline for managing application data flow in a predictable, maintainable way — choosing the right store strategy for the complexity at hand.
+
+mockfirstdevelopment:
+  name: Mock-First / Contract Development
+  url: https://developers.redhat.com/blog/2020/04/28/contract-first-development-create-a-mock-back-end-for-realistic-data-interactions-with-react
+  kind: practice
+  group: approach
+  description: A development strategy where API contracts are defined and mocked first, allowing frontend and backend teams to work in parallel without blocking each other.
+
+mobilefirststrategy:
+  name: Mobile First Strategy
+  url: https://www.investopedia.com/terms/m/mobile-first-strategy.asp
+  kind: practice
+  group: approach
+  description: A design and development philosophy that prioritizes the mobile experience before scaling up to larger screens, ensuring core functionality and UX are optimized for smaller viewports first.
+
+ddd:
+  name: DDD (Domain Driven Design)
+  url: https://www.designgurus.io/answers/detail/how-to-understand-domain-driven-design-for-system-design-interviews
+  kind: practice
+  group: approach
+  description: An approach to software design that centers the codebase around the core business domain, using ubiquitous language and bounded contexts.
+
+promptengineering:
+  name: Prompt Engineering
+  url: https://zapier.com/blog/prompt-engineering
+  kind: practice
+  group: approach
+  description: The craft of designing and refining input prompts to guide AI language models toward producing accurate, relevant, and well-structured outputs.
+
+contextengineering:
+  name: Context Engineering
+  url: https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
+  kind: practice
+  group: approach
+  description: The practice of designing and structuring the context window for AI agents — crafting prompts, memory, and tool access to maximize model effectiveness.
+
+# Project tags only (not listed under Skills)
+derby:
+  name: Apache Derby
+  url: https://db.apache.org/derby/
+  kind: framework
+  group: backend
+  subgroup: Database
+  hidden: true
+  description: Apache Derby — a lightweight, pure-Java relational database that can be embedded directly into Java applications.
+
+obsidian:
+  name: Obsidian
+  url: https://obsidian.md/
+  kind: tool
+  group: exploratory
+  hidden: true
+  description: A powerful knowledge base and note-taking app that works on local Markdown files, supporting bidirectional linking and graph visualization.
+
+markdown:
+  name: Markdown
+  url: https://daringfireball.net/projects/markdown/
+  kind: language
+  group: exploratory
+  hidden: true
+  description: A lightweight markup language with plain text formatting syntax, widely used for documentation, README files, and content authoring.
+
+ga4:
+  name: Google Analytics 4
+  url: https://analytics.google.com/
+  kind: tool
+  group: exploratory
+  hidden: true
+  description: Google's event-based analytics platform for tracking user behavior, traffic, and conversions across websites and apps.
+
+astro:
+  name: Astro
+  url: https://astro.build/
+  kind: framework
+  group: frontend
+  hidden: true
+  description: A web framework for content-driven sites that ships zero JavaScript by default.

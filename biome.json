@@ -1,0 +1,18 @@
+{
+	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+	"files": { "includes": ["**", "!dist", "!.astro", "!node_modules", "!src/data/*.yaml"] },
+	"formatter": { "indentStyle": "tab", "lineWidth": 120 },
+	"css": { "parser": { "tailwindDirectives": true } },
+	"linter": { "enabled": true, "rules": { "preset": "recommended" } },
+	"overrides": [
+		{
+			"includes": ["**/*.astro"],
+			"linter": {
+				"rules": {
+					"correctness": { "noUnusedImports": "off", "noUnusedVariables": "off" },
+					"style": { "useConst": "off", "useImportType": "off" }
+				}
+			}
+		}
+	]
+}

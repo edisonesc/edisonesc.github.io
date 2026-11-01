@@ -1,0 +1,31 @@
+---
+/** 1200×630 social preview. scripts/build-cv.mjs screenshots this to dist/og.png. Not linked or indexed. */
+import { profile } from "../data/profile";
+import Base from "../layouts/Base.astro";
+---
+
+<Base title="Open Graph image" printable>
+	<meta name="robots" content="noindex" slot="head" />
+	<div class="card">
+		<p class="label">{profile.headline}, {profile.location}</p>
+		<p class="t-display name"><span>Justin</span><span>Escabarte</span></p>
+		<div class="foot">
+			<p class="t-lede">{profile.tagline}</p>
+			<p class="label">{profile.siteUrl.replace("https://", "")}</p>
+		</div>
+	</div>
+</Base>
+
+<style>
+	.card {
+		width: 1200px; height: 630px; padding: 64px 80px; box-sizing: border-box;
+		display: flex; flex-direction: column; justify-content: space-between;
+		background: var(--bg); border-top: 10px solid var(--accent);
+	}
+	.card .label { font-size: 15px; }
+	.name { font-size: 132px; }
+	.name span { display: block; }
+	.name span:last-child { padding-left: 0.6em; }
+	.foot { display: flex; justify-content: space-between; align-items: end; gap: 48px; border-top: 1px solid var(--rule); padding-top: 28px; }
+	.foot .t-lede { font-size: 32px; max-width: 34ch; }
+</style>

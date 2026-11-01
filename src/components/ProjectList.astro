@@ -1,0 +1,64 @@
+---
+import type { ProjectWithTech } from "../lib/content";
+import Icon from "./Icon.astro";
+import ProjectRow from "./ProjectRow.astro";
+
+interface Props {
+	projects: ProjectWithTech[];
+	/** Projects shown before the "older projects" disclosure. */
+	visible?: number;
+}
+const { projects, visible = 6 } = Astro.props;
+const recent = projects.slice(0, visible);
+const older = projects.slice(visible);
+---
+
+<ol role="list" class="border-b border-rule">
+	{recent.map((p) => <ProjectRow project={p} />)}
+</ol>
+{
+	older.length > 0 && (
+		<details class="mt-6" id="older-projects">
+			<summary class="toggle">
+				<Icon name="plus" size={14} />
+				<span class="when-closed">Show {older.length} older projects</span>
+				<span class="when-open">Hide older projects</span>
+			</summary>
+			<ol role="list" class="mt-6 border-b border-rule">
+				{older.map((p) => <ProjectRow project={p} />)}
+			</ol>
+		</details>
+	)
+}
+
+<script>
+	// Open the older-projects disclosure when a link targets a project hidden inside it.
+	const openFor = () => {
+		const id = decodeURIComponent(location.hash.slice(1));
+		const el = id && document.getElementById(id);
+		const details = document.getElementById("older-projects") as HTMLDetailsElement | null;
+		if (el && details?.contains(el) && !details.open) {
+			details.open = true;
+			el.scrollIntoView();
+		}
+	};
+	openFor();
+	window.addEventListener("hashchange", openFor);
+
+	// Live badge: a no-cors request resolves (opaque) when the host answers and rejects when it can't be reached.
+	const STATES = {
+		live: ["Live", "This project is live and publicly accessible"],
+		down: ["Down", "This project URL appears to be unreachable"],
+	} as const;
+	for (const badge of document.querySelectorAll<HTMLElement>("[data-live-url]")) {
+		const set = (state: keyof typeof STATES) => {
+			badge.dataset.state = state;
+			badge.title = STATES[state][1];
+			const label = badge.querySelector(".state");
+			if (label) label.textContent = STATES[state][0];
+		};
+		fetch(badge.dataset.liveUrl as string, { mode: "no-cors", cache: "no-store", signal: AbortSignal.timeout(8000) })
+			.then(() => set("live"))
+			.catch(() => set("down"));
+	}
+</script>

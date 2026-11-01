@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /og
+Sitemap: https://edisonesc.github.io/sitemap-index.xml

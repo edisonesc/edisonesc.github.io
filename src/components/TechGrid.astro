@@ -1,0 +1,59 @@
+---
+import { getTechGroups } from "../lib/content";
+
+const groups = await getTechGroups();
+const tip = (t: { usage: number; data: { core: boolean; description?: string } }) =>
+	[
+		t.data.core && "Core stack",
+		t.usage > 0 && `Used in ${t.usage} ${t.usage === 1 ? "project" : "projects"}`,
+		t.data.description,
+	]
+		.filter(Boolean)
+		.join(" · ");
+---
+
+<dl class="tech">
+	{
+		groups.map((g) => (
+			<div class="group">
+				<dt class="label text-ink!">{g.label}</dt>
+				<dd>
+					<ul role="list" class="items">
+						{g.items.map((t) =>
+							t.data.url ? (
+								<li>
+									<a href={t.data.url} target="_blank" rel="noopener noreferrer" class:list={["item", { core: t.data.core }]} title={tip(t)}>
+										{t.data.name}
+									</a>
+								</li>
+							) : (
+								<li>
+									<span class:list={["item", { core: t.data.core }]} title={tip(t)}>
+										{t.data.name}
+									</span>
+								</li>
+							),
+						)}
+					</ul>
+				</dd>
+			</div>
+		))
+	}
+</dl>
+
+<style>
+	.tech { display: grid; }
+	.group {
+		display: grid; grid-template-columns: 11rem 1fr; gap: var(--sp-1) var(--sp-3);
+		padding-block: var(--sp-2); border-top: 1px solid var(--rule);
+	}
+	.group:first-child { border-top: 0; padding-top: 0.4rem; }
+	@media (max-width: 640px) { .group { grid-template-columns: 1fr; } }
+	dt { font-family: var(--font-ui); font-style: normal; padding-top: 0.2rem; }
+	.items { display: flex; flex-wrap: wrap; gap: 0.25rem 0; font-size: var(--t-small); line-height: 1.6; }
+	/* Middle-dot separators between items. */
+	.items li:not(:last-child)::after { content: "·"; margin-inline: 0.55rem; color: var(--rule); }
+	.item { color: var(--ink-soft); text-decoration: none; transition: color var(--t-fast); }
+	.item.core { color: var(--ink); font-weight: 500; }
+	a.item:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+</style>
