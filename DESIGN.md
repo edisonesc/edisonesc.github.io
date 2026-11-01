@@ -6,19 +6,19 @@ The full, reusable system lives in the `minimal-serif-design` skill at `~/.claud
 
 ## Chosen options
 
-| Decision       | Choice                                                                                       |
-| -------------- | -------------------------------------------------------------------------------------------- |
-| Palette        | **Ivory** (`#faf8f4` bg, `#1a1a18` ink), with **Ink** as opt-in dark mode (light by default) |
-| Display font   | **Cormorant Garamond**: 300 italic for display, 400 for headings, 500 italic for h3          |
-| Body / UI font | **Inter** 400 and 500                                                                        |
-| Accent         | **Forest** `#2d5a3d` (lifted to `#7fae8c` on Ink so it stays visible in dark mode)            |
-| Animation      | **Refined**: section fade-up, hairline rule extend, link underline slide, button arrow pull  |
+| Decision       | Choice                                                                                                                            |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Palette        | **Ivory** (`#faf8f4` bg, `#1a1a18` ink), with **Ink** as opt-in dark mode (light by default)                                      |
+| Display font   | **Cormorant Garamond**: 300 italic for display, 400 for headings, 500 italic for h3                                               |
+| Body / UI font | **Inter** 400 and 500                                                                                                             |
+| Accent         | **Forest** `#2d5a3d` (lifted to `#7fae8c` on Ink so it stays visible in dark mode), with **Gold** `#c99a2e` as a secondary marker |
+| Animation      | **Refined**: section fade-up, hairline rule extend, link underline slide, button arrow pull                                       |
 
 Fonts load through Astro's fonts API (`astro.config.mjs`), not a Google Fonts `@import`.
 
 ## Tokens
 
-All values live in **`src/styles/tokens.css`**, and every page (site, `/cv`, `/og`) reads from it. Don't hardcode colors, sizes or durations anywhere else. `src/styles/global.css` maps the tokens to Tailwind utilities (`bg-bg`, `text-ink-soft`, `border-rule`, …) and defines the shared classes:
+All values live in **`src/styles/tokens.css`**, and every page (site, `/cv`, `/og`) reads from it. Don't hardcode colors, sizes or durations anywhere else. `src/styles/global.css` maps the tokens to Tailwind utilities (`bg-bg`, `text-ink-soft`, `border-rule`, …) and defines the shared classes. Timeline and hero additions: `--accent-soft` / `--accent-tint` (past-role fills), `--gold` / `--on-gold` ("Now", lede rule), `--surface` / `--shadow-card` (the timeline card), `--radius-sm` (the only radius, 2px) and `--ink-display` (the hero name).
 
 | Class                                            | Use                                                                                         |
 | ------------------------------------------------ | ------------------------------------------------------------------------------------------- |
@@ -33,17 +33,19 @@ All values live in **`src/styles/tokens.css`**, and every page (site, `/cv`, `/o
 
 ## Site-specific rules
 
-1. **The accent appears exactly twice:** the "Download CV" button (the page's single accent CTA) and the current role's bar on the timeline (its single highlight). Use the accent only as a fill, never as text.
+1. **Accent use:** Forest fills the "Download CV" button (the page's single accent CTA), the timeline's marks and active filter. The current role is the timeline's one deep-forest bar; past roles use `--accent-soft`. **Gold** (`--gold`) marks only the timeline's "Now" line and the hero lede's left rule. Use both only as fills or rules, never as text on `--bg`.
 2. **Deliberate contrast deviations from the system palette:** `--ink-soft` is `#6e6b67` (Ivory) and `#8a837d` (Ink), so small labels pass WCAG AA.
-3. **No brand logos.** The system allows thin-stroke icons only, so social profiles and technologies are text. UI icons come from `src/components/Icon.astro` (Lucide paths, 1.5 stroke). Add new ones there.
-4. **The hero is the name**, set as `.t-display` across two lines with the surname indented. Keep it left-aligned on the plain background.
+3. **Icons are thin-stroke only** (`src/components/Icon.astro`, Lucide paths, 1.5 stroke; add new ones there). The hero's social links (GitHub, LinkedIn, GitLab, email) are the only place brand marks appear, as stroke icons beside an underlined label. Technologies stay text. **The timeline has no icons.**
+4. **The hero is the name**, set as `.t-display` (in `--ink-display`) across two lines with the surname indented. Below it, left-aligned: the lede on a 2px gold left rule, the two buttons, then the social links. The hero sits on the plain background: no art, fill, border or shadow.
 5. **Sections follow one pattern:** `.rule.rule-extend`, then a `.grid-editorial` with the `h2` (and an optional `.label`) in the left column, sticky on desktop, and content on the right.
-6. **Lists are open rows:** a `border-top: 1px solid var(--rule)` row with whitespace. Never cards, shadows or rounded corners.
+6. **Lists are open rows:** a `border-top: 1px solid var(--rule)` row with whitespace. The timeline is the one framed card (`--surface`, `--shadow-card`). Corners are sharp or semi-sharp: `--radius-sm` (2px) at most, and buttons stay square.
 7. **The timeline** (`CareerTimeline.astro`):
-   - **Marks:** ink rules for work, `--ink-mid` ticks for projects, outlined bars for education, labels above bars. Row packing reserves label width so labels never collide.
-   - **Axis:** starts at college or the first job/project (earlier schooling stays in Education), with a dashed "Now" line.
+   - **Frame:** a card with the title (slotted from the page) and an All / Work / Projects / Education filter above it. The filter only appears with JS; without it every lane shows.
+   - **Lanes:** a pinned left column with the lane name and a subtitle (years since the first non-intern role, project count, degree).
+   - **Marks:** work and education bars show their name and year range inside the bar; a bar stretches to fit its text and row packing reserves that width, so text never collides. Work bars are a pale-forest gradient with a small forest dot, the current role is solid forest, education is an outlined bar. Projects are forest chips keeping their true length: named (truncated with an ellipsis) when at least ~70px long at the minimum chart width, otherwise a slim tick.
+   - **Axis:** starts at college or the first job/project (earlier schooling stays in Education). Dashed year gridlines with the year centred in its column, and a gold dashed "Now" line under a gold "Now" badge.
    - **Focus:** hovering or focusing a mark dims the rest to 25% and shows an inverse ink tooltip (title in Cormorant italic, dates as a label). Tooltips flip to right-anchored past 62% of the width.
-   - **Motion:** the bar draw-in is the page's one orchestrated moment.
+   - **Motion:** the bar draw-in (fill first, then its text) is the page's one orchestrated moment.
 8. **The CV** (`/cv`, printed to `cv.pdf`) uses the same tokens, forced to the light palette. It prints Cormorant headings, Inter text and tracked labels, and shows the accent rule only on screen.
 
 ## Checklist for changes

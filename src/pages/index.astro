@@ -15,6 +15,12 @@ import { formatRange, startYear } from "../lib/dates";
 
 const [{ work, education, training }, projects] = await Promise.all([getExperience(), getProjects()]);
 const careerStart = Math.min(...work.map((e) => startYear(e.data.start)));
+const socials = [
+	{ icon: "github", label: "GitHub", href: profile.links.github, external: true },
+	{ icon: "linkedin", label: "LinkedIn", href: profile.links.linkedin, external: true },
+	{ icon: "gitlab", label: "GitLab", href: profile.links.gitlab, external: true },
+	{ icon: "mail", label: profile.email, href: `mailto:${profile.email}`, external: false },
+] as const;
 ---
 
 <Base>
@@ -29,30 +35,41 @@ const careerStart = Math.min(...work.map((e) => startYear(e.data.start)));
 				<span class="block">Justin</span>
 				<span class="block indent">Escabarte</span>
 			</h1>
-			<div class="grid-editorial mt-8">
-				<div class="hidden md:block"></div>
-				<div>
-					<p class="t-lede max-w-[32ch]">{profile.heroLine}</p>
-					<div class="mt-6 flex flex-wrap items-center gap-3">
-						<a class="btn btn-accent" href="/cv.pdf" download="Justin-Escabarte-CV.pdf" data-track="cv_download">
-							Download CV <Icon name="arrow-down" size={16} class="arrow" />
-						</a>
-						<a class="btn" href="/cv">View CV <Icon name="arrow-right" size={16} class="arrow" /></a>
-					</div>
-					<ul role="list" class="mt-5 flex flex-wrap gap-x-6 gap-y-1 t-small">
-						<li><a class="link-text" href={profile.links.github} rel="me noopener noreferrer" target="_blank">GitHub</a></li>
-						<li><a class="link-text" href={profile.links.linkedin} rel="me noopener noreferrer" target="_blank">LinkedIn</a></li>
-						<li><a class="link-text" href={profile.links.gitlab} rel="me noopener noreferrer" target="_blank">GitLab</a></li>
-						<li><a class="link-text" href={`mailto:${profile.email}`}>{profile.email}</a></li>
-					</ul>
+			<div class="hero-body mt-8">
+				<p class="t-lede lede max-w-[50ch]">{profile.heroLine}</p>
+				<div class="mt-8 flex flex-wrap items-center gap-3">
+					<a class="btn btn-accent" href="/cv.pdf" download="Justin-Escabarte-CV.pdf" data-track="cv_download">
+						Download CV <Icon name="download" size={16} class="arrow" />
+					</a>
+					<a class="btn" href="/cv">View CV <Icon name="arrow-right" size={16} class="arrow" /></a>
 				</div>
+				<ul role="list" class="socials mt-6 flex flex-wrap gap-x-7 gap-y-2 t-small">
+					{
+						socials.map((s) => (
+							<li>
+								<a
+									class="social"
+									href={s.href}
+									rel={s.external ? "me noopener noreferrer" : undefined}
+									target={s.external ? "_blank" : undefined}
+								>
+									<Icon name={s.icon} size={18} />
+									<span class="link-text">{s.label}</span>
+								</a>
+							</li>
+						))
+					}
+				</ul>
 			</div>
 		</section>
 
 		<section id="timeline" class="wrap section" aria-labelledby="timeline-title">
 			<hr class="rule rule-extend" />
-			<h2 id="timeline-title" class="pt-8">Timeline</h2>
-			<div class="mt-8 reveal"><CareerTimeline work={work} education={education} projects={projects} /></div>
+			<div class="mt-8 reveal">
+				<CareerTimeline work={work} education={education} projects={projects}>
+					<h2 id="timeline-title" slot="title">Timeline</h2>
+				</CareerTimeline>
+			</div>
 		</section>
 
 		<section class="wrap section" aria-labelledby="about-title">
@@ -153,6 +170,13 @@ const careerStart = Math.min(...work.map((e) => startYear(e.data.start)));
 	.skip:focus { left: 1rem; top: 1rem; z-index: 200; background: var(--ink); color: var(--bg); padding: 0.5rem 1rem; }
 	.hero { padding-block: var(--sp-4) var(--sp-3); }
 	.indent { padding-left: 0.6em; }
+	.hero h1 { color: var(--ink-display); }
+	/* The lede hangs off a thin gold rule, as in the reference. */
+	.lede { border-left: 2px solid var(--gold); padding-left: var(--sp-3); }
+	/* Icons sit outside the underline; only the label is underlined. */
+	.social { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--ink); text-decoration: none; }
+	.social svg { flex: none; }
+	.social:hover .link-text { text-decoration-color: var(--ink); }
 	@media (min-width: 769px) {
 		.sticky-heading { position: sticky; top: 5rem; }
 	}

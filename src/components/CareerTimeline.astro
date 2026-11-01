@@ -1,11 +1,13 @@
 ---
 /**
  * Timeline: work, projects and education on one year axis, computed at build time.
- * Minimal Serif treatment — hairline year ticks, thin ink rules for bars, labels above bars,
- * accent reserved for the current role. Hover or focus a mark to dim the rest and read its details.
+ * A framed card with semi-sharp corners. Work and education bars carry their name and dates inside;
+ * the current role is the one deep-forest bar. Projects are forest chips, named (truncated to fit) when
+ * long enough, plain ticks otherwise. No icons anywhere in the timeline. Hover or focus a mark to dim the rest
+ * and read its details; the filter (JS only) narrows the chart to one lane.
  */
 import type { Experience, ProjectWithTech } from "../lib/content";
-import { formatDuration, formatRange, isPresent, toYear } from "../lib/dates";
+import { formatDuration, formatRange, isPresent, toMonthIndex, toYear } from "../lib/dates";
 
 interface Props {
 	work: Experience[];
@@ -14,26 +16,37 @@ interface Props {
 }
 const { work, education, projects } = Astro.props;
 
+type Kind = "work" | "project" | "edu";
 type Bar = {
 	href: string;
 	label: string;
 	title: string;
+	range: string;
 	detail: string;
 	start: number;
 	end: number;
 	current: boolean;
+	/** Show the label (and, for work/education, the dates) inside the bar. */
+	inline: boolean;
 };
-type Lane = { name: string; kind: "work" | "project" | "edu"; labelled: boolean; bars: Bar[] };
+type Lane = { name: string; sub: string; kind: Kind; bars: Bar[] };
 
 const bar = (href: string, label: string, title: string, start: string, end: string): Bar => ({
 	href,
 	label,
 	title,
+	range: formatRange(start, end)
+		.replace(/[A-Z][a-z]{2} (\d{4})/g, "$1")
+		.replace(/^(\d{4}) – \1$/, "$1"),
 	detail: isPresent(end) ? `${formatRange(start, end)}` : `${formatRange(start, end)}, ${formatDuration(start, end)}`,
 	start: toYear(start),
 	end: toYear(end) + 1 / 12,
 	current: isPresent(end),
+	inline: true,
 });
+
+/** Project names carry a subtitle ("Analytics Engine — Self-hosted …"); the chip shows only the name. */
+const shortName = (name: string) => name.split(/ — | \(/)[0].trim();
 
 const workBars = work.map((e) =>
 	bar(
@@ -44,7 +57,7 @@ const workBars = work.map((e) =>
 		e.data.end,
 	),
 );
-const projectBars = projects.map((p) => bar(`#${p.id}`, p.data.name, p.data.name, p.data.start, p.data.end));
+const projectBars = projects.map((p) => bar(`#${p.id}`, shortName(p.data.name), p.data.name, p.data.start, p.data.end));
 
 /**
  * The axis starts at the most recent school's start (college) or the first job/project, whichever is earlier.
@@ -54,77 +67,134 @@ const latestSchoolStart = Math.max(...education.map((e) => toYear(e.data.start))
 const min = Math.floor(
 	Math.min(latestSchoolStart, ...workBars.map((b) => b.start), ...projectBars.map((b) => b.start)),
 );
-const eduBars = education
-	.filter((e) => toYear(e.data.start) >= min)
-	.map((e) => bar("#education", e.data.short ?? e.data.organization, e.data.organization, e.data.start, e.data.end));
+const schools = education.filter((e) => toYear(e.data.start) >= min);
+const eduBars = schools.map((e) =>
+	bar("#education", e.data.short ?? e.data.organization, e.data.organization, e.data.start, e.data.end),
+);
 
-const lanes: Lane[] = [
-	{ name: "Work", kind: "work", labelled: true, bars: workBars },
-	{ name: "Projects", kind: "project", labelled: false, bars: projectBars },
-	{ name: "Education", kind: "edu", labelled: true, bars: eduBars },
-];
+/** Lane subtitles: years since the first non-intern role, project count, and the degree. */
+const firstRole = work.filter((e) => e.data.type !== "intern").map((e) => e.data.start);
+const careerMonths =
+	toMonthIndex("Present") -
+	Math.min(...(firstRole.length ? firstRole : work.map((e) => e.data.start)).map((s) => toMonthIndex(s)));
+const degree = (schools.at(-1) ?? education.at(-1))?.data.highlights[0] ?? "";
 
 const now = toYear("Present");
-const max = Math.ceil(Math.max(now, ...lanes.flatMap((l) => l.bars.map((b) => b.end))));
+const max = Math.ceil(Math.max(now, ...[...workBars, ...projectBars, ...eduBars].map((b) => b.end)));
 const span = max - min;
 const years = Array.from({ length: span }, (_, i) => min + i);
 const pct = (y: number) => ((Math.max(y, min) - min) / span) * 100;
 
-/** Chart is never narrower than this; label space is reserved against it so labels can't collide. */
-const CHART_MIN_PX = 720;
-const LABEL_PX_PER_CHAR = 7;
-const labelYears = (text: string) => ((text.length * LABEL_PX_PER_CHAR + 16) / CHART_MIN_PX) * span;
+/**
+ * The plot (chart minus the lane-name column) is never narrower than this. Label space is reserved
+ * against it at build time, so inline labels can't collide at any width.
+ */
+const PLOT_MIN_PX = 720;
+const pxToYears = (px: number) => (px / PLOT_MIN_PX) * span;
+/** Rough text widths: 13px/500 Inter titles, 11px dates, 12px chip names, plus padding and the dot. */
+const titlePx = (t: string) => t.length * 7.4 + 34;
+const datesPx = (t: string) => t.length * 6.2 + 34;
+/** Narrowest project chip (at PLOT_MIN_PX) that still gets a name; its name truncates with an ellipsis. */
+const CHIP_MIN_PX = 70;
 
-/** Greedy packing: a bar (plus its label, when shown) goes on the first row where it fits. */
+/** A project chip is named when it's long enough to read a few characters; otherwise it's a tick. */
+for (const b of projectBars) b.inline = b.end - b.start >= pxToYears(CHIP_MIN_PX);
+
+const lanes: Lane[] = [
+	{ name: "Work", sub: `${Math.floor(careerMonths / 12)}+ years`, kind: "work", bars: workBars },
+	{ name: "Projects", sub: `${projectBars.length}`, kind: "project", bars: projectBars },
+	{ name: "Education", sub: degree.replace(/^Bachelor of Science in /, "BS "), kind: "edu", bars: eduBars },
+];
+
+/** How far a bar reaches once its inline text is accounted for (the bar stretches to fit its text). */
+function extent(lane: Lane, b: Bar) {
+	if (lane.kind === "project") return b.end;
+	return Math.max(b.end, b.start + pxToYears(Math.max(titlePx(b.label), datesPx(b.range))));
+}
+
+/** Greedy packing: a bar (plus its text) goes on the first row where it fits. */
 function pack(lane: Lane) {
 	const rows: { bars: Bar[]; until: number }[] = [];
 	for (const b of [...lane.bars].sort((x, y) => x.start - y.start)) {
-		const extent = lane.labelled ? Math.max(b.end, b.start + labelYears(b.label)) : b.end;
+		const reach = extent(lane, b);
 		const row = rows.find((r) => r.until <= b.start + 0.01);
 		if (row) {
 			row.bars.push(b);
-			row.until = extent;
-		} else rows.push({ bars: [b], until: extent });
+			row.until = reach;
+		} else rows.push({ bars: [b], until: reach });
 	}
 	return rows.map((r) => r.bars);
 }
+
+const filters: { value: "all" | Kind; label: string }[] = [
+	{ value: "all", label: "All" },
+	{ value: "work", label: "Work" },
+	{ value: "project", label: "Projects" },
+	{ value: "edu", label: "Education" },
+];
 ---
 
-<figure class="timeline" aria-labelledby="timeline-caption">
+<div class="timeline-head">
+	<slot name="title" />
+	<div class="filters" role="group" aria-label="Filter the timeline" data-timeline-filters>
+		{
+			filters.map((f, i) => (
+				<button type="button" class="filter" data-filter={f.value} aria-pressed={i === 0 ? "true" : "false"}>
+					{f.label}
+				</button>
+			))
+		}
+	</div>
+</div>
+
+<figure class="timeline" aria-labelledby="timeline-caption" data-timeline data-filter="all">
 	<figcaption id="timeline-caption" class="sr-only">
 		Timeline from {min} to today: {workBars.length} roles, {projectBars.length} projects and {eduBars.length} schools.
 		Each mark links to its details below.
 	</figcaption>
 	<div class="scroller" data-timeline-scroller>
-		<div class="chart" style={`min-width:${CHART_MIN_PX}px`}>
+		<div class="chart" style={`min-width:calc(${PLOT_MIN_PX}px + var(--head) + 2 * var(--pad))`}>
+			<div class="corner" aria-hidden="true"></div>
 			<div class="axis" aria-hidden="true">
+				{years.map((y) => <span class="grid-line" style={`left:${pct(y)}%`} />)}
 				{
 					years.map((y, i) => (
-						<span class:list={["tick", { odd: i % 2 === 1 }]} style={`left:${pct(y)}%`}>
-							<span class="label">{y}</span>
+						<span class:list={["year", { odd: i % 2 === 1 }]} style={`left:${pct(y + 0.5)}%`}>
+							{y}
 						</span>
 					))
 				}
-				<span class="now" style={`left:${pct(now)}%`}><span class="label">Now</span></span>
+				<span class="now" style={`left:${pct(now)}%`}><span class="now-badge">Now</span></span>
 			</div>
 			{
 				lanes.map((lane) => (
 					<div class="lane" data-kind={lane.kind}>
-						<span class="lane-name label">{lane.name}</span>
+						<div class="lane-head">
+							<span class="lane-name">{lane.name}</span>
+							{lane.sub && <span class="lane-sub">{lane.sub}</span>}
+						</div>
 						<div class="rows">
 							{pack(lane).map((row) => (
-								<div class:list={["row", { labelled: lane.labelled }]}>
+								<div class:list={["row", { tall: lane.kind !== "project" }]}>
 									{row.map((b) => {
 										const left = pct(b.start);
 										return (
 											<a
-												class:list={["mark", { current: b.current, "tip-left": left > 62 }]}
+												class:list={[
+													"mark",
+													{ current: b.current && lane.kind === "work", inline: b.inline, tick: !b.inline, "tip-left": left > 62 },
+												]}
 												href={b.href}
 												aria-label={`${b.title}, ${b.detail}`}
 												style={`left:${left}%;width:${Math.max(pct(b.end) - left, 0.45)}%;--delay:${Math.round(((b.start - min) / span) * 900)}ms`}
 											>
-												{lane.labelled && <span class="mark-label">{b.label}</span>}
 												<span class="mark-bar" />
+												{b.inline && (
+													<span class="mark-text">
+														<span class="mark-title">{b.label}</span>
+														{lane.kind !== "project" && <span class="mark-dates">{b.range}</span>}
+													</span>
+												)}
 												<span class="tip" aria-hidden="true">
 													<span class="tip-title">{b.title}</span>
 													<span class="tip-detail">{b.detail}</span>
@@ -141,56 +211,129 @@ function pack(lane: Lane) {
 		</div>
 	</div>
 	<ul class="legend" role="list" aria-hidden="true">
-		<li><span class="swatch" data-kind="current"></span><span class="label">Current role</span></li>
-		<li><span class="swatch" data-kind="work"></span><span class="label">Work</span></li>
-		<li><span class="swatch" data-kind="project"></span><span class="label">Projects</span></li>
-		<li><span class="swatch" data-kind="edu"></span><span class="label">Education</span></li>
+		<li data-lane="work"><span class="swatch" data-kind="current"></span>Current role</li>
+		<li data-lane="work"><span class="swatch" data-kind="work"></span>Work</li>
+		<li data-lane="project"><span class="swatch" data-kind="project"></span>Project</li>
+		<li data-lane="edu"><span class="swatch" data-kind="edu"></span>Education</li>
 	</ul>
 </figure>
 
 <script>
 	// On narrow screens the chart scrolls sideways; open it at the recent end, where the activity is.
 	for (const el of document.querySelectorAll<HTMLElement>("[data-timeline-scroller]")) el.scrollLeft = el.scrollWidth;
+
+	// Filter: narrows the chart to one lane. Without JS the buttons stay hidden and every lane shows.
+	const figure = document.querySelector<HTMLElement>("[data-timeline]");
+	const group = document.querySelector<HTMLElement>("[data-timeline-filters]");
+	group?.addEventListener("click", (event) => {
+		const button = (event.target as HTMLElement).closest<HTMLButtonElement>("button[data-filter]");
+		if (!button || !figure) return;
+		for (const b of group.querySelectorAll("button")) b.setAttribute("aria-pressed", String(b === button));
+		figure.dataset.filter = button.dataset.filter;
+	});
 </script>
 
 <style>
-	.timeline { margin: 0; }
-	.scroller { overflow-x: auto; scrollbar-width: thin; scrollbar-color: var(--rule) transparent; }
-	/* Bottom padding leaves room for tooltips on the last row inside the scroll frame. */
-	.chart { position: relative; padding-top: 2rem; padding-bottom: 3.25rem; }
-
-	/* Axis: hairline ticks spanning all lanes, year labels on top, a dashed "Now" line. */
-	.axis { position: absolute; inset: 0 0 3.25rem 6.5rem; pointer-events: none; }
-	.tick { position: absolute; top: 0; bottom: 0; border-left: 1px solid var(--rule); }
-	.tick .label { position: absolute; top: 0; left: 0.4rem; letter-spacing: 0.08em; }
-	@media (max-width: 900px) { .tick.odd .label { visibility: hidden; } }
-	.now { position: absolute; top: 0; bottom: 0; border-left: 1px dashed var(--ink-soft); }
-	.now .label { position: absolute; bottom: -1.4rem; right: 0.4rem; color: var(--ink); }
-
-	.lane { position: relative; display: grid; grid-template-columns: 6.5rem 1fr; padding-block: 1rem; }
-	.lane + .lane { border-top: 1px solid var(--rule); }
-	.lane-name {
-		align-self: stretch; color: var(--ink);
-		/* Cover the lane's vertical padding too, so year lines don't show around the pinned label. */
-		margin-block: -1rem; padding-top: 1.25rem;
-		/* Pinned while the chart scrolls sideways on small screens. */
-		position: sticky; left: 0; z-index: 3; background: var(--bg); margin-right: 1px;
+	/* Header row: the section title (slotted) beside the filter. */
+	.timeline-head {
+		display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+		gap: var(--sp-2) var(--sp-3); margin-bottom: var(--sp-3);
 	}
-	.rows { display: grid; gap: 0.4rem; }
-	.row { position: relative; height: 0.625rem; }
-	.row.labelled { height: 2.25rem; }
+	.filters { display: inline-flex; padding: 3px; gap: 2px; background: var(--bg-offset); border-radius: var(--radius-sm); }
+	:global(html:not(.js)) .filters { display: none; }
+	.filter {
+		font: 400 var(--t-small) / 1 var(--font-ui); color: var(--ink-mid);
+		padding: 0.6rem 1.15rem; border: 0; border-radius: var(--radius-sm); background: transparent; cursor: pointer;
+		transition: background var(--t-fast), color var(--t-fast);
+	}
+	.filter:hover { color: var(--ink); }
+	.filter[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); font-weight: 500; }
+	.filter:focus-visible { outline: 1px solid var(--ink); outline-offset: 2px; }
 
-	/* A mark is a link wrapping its label, its bar and a tooltip. */
+	/* The card. --head is the lane-name column, --pad the card's inner side padding. */
+	.timeline {
+		--head: 10.5rem; --pad: 1.5rem;
+		margin: 0; padding-bottom: var(--sp-3);
+		background: var(--surface); border-radius: var(--radius-sm); box-shadow: var(--shadow-card);
+	}
+	@media (max-width: 640px) { .timeline { --head: 7rem; --pad: 1rem; } }
+	.scroller { overflow-x: auto; scrollbar-width: thin; scrollbar-color: var(--rule) transparent; }
+	/* Top padding holds the year labels and the "Now" badge; bottom padding leaves room for tooltips. */
+	.chart { position: relative; padding: 4rem var(--pad) 3.25rem; }
+
+	/* Axis: dashed gridlines at year boundaries, year labels centred in their year, a gold "Now" line. */
+	.axis { position: absolute; top: 1.25rem; bottom: 3.25rem; left: calc(var(--pad) + var(--head)); right: var(--pad); pointer-events: none; }
+	.grid-line { position: absolute; top: 1.4rem; bottom: 0; border-left: 1px dashed var(--rule); }
+	.year {
+		position: absolute; top: 0; transform: translateX(-50%);
+		font-size: var(--t-label); letter-spacing: 0.08em; color: var(--ink-soft); font-variant-numeric: tabular-nums;
+	}
+	@media (max-width: 900px) { .year.odd { visibility: hidden; } }
+	.now { position: absolute; top: 1.6rem; bottom: 0; border-left: 1.5px dashed var(--gold); z-index: 2; }
+	.now-badge {
+		position: absolute; top: 0; left: 0; transform: translateX(-50%);
+		font-size: var(--t-label); font-weight: 500; letter-spacing: 0.04em; line-height: 1;
+		padding: 0.3rem 0.55rem; border-radius: var(--radius-sm); background: var(--gold); color: var(--on-gold);
+	}
+
+	/* Covers the year row above the pinned lane names while the chart scrolls sideways. */
+	.corner {
+		position: sticky; left: 0; z-index: 3; height: 4rem; margin: -4rem 0 0 calc(-1 * var(--pad));
+		width: calc(var(--head) + var(--pad)); background: var(--surface);
+	}
+	.lane { position: relative; display: grid; grid-template-columns: var(--head) 1fr; padding-block: 1.1rem; }
+	.lane + .lane { border-top: 1px solid var(--rule); }
+	.lane-head {
+		display: flex; flex-direction: column; gap: 0.15rem; align-self: stretch;
+		/* Cover the lane's vertical padding too, so gridlines don't show around the pinned name. */
+		margin-block: -1.1rem; padding-block: 1.1rem; padding-right: var(--sp-2);
+		/* Pinned while the chart scrolls sideways on small screens. */
+		position: sticky; left: 0; z-index: 3; background: var(--surface);
+		margin-left: calc(-1 * var(--pad)); padding-left: var(--pad);
+	}
+	.lane-name { font-size: 1rem; font-weight: 500; line-height: 1.2; color: var(--ink); }
+	.lane-sub { font-size: var(--t-small); line-height: 1.3; color: var(--ink-soft); }
+
+	.rows { display: grid; gap: 0.45rem; align-content: center; }
+	.row { position: relative; height: 1.5rem; }
+	.row.tall { height: 2.6rem; }
+
+	/* A mark is a link wrapping its fill, its inline text and a tooltip. */
 	.mark {
 		position: absolute; top: 0; bottom: 0;
-		display: flex; flex-direction: column; justify-content: flex-end; gap: 0.4rem;
-		text-decoration: none; transition: opacity var(--t-mid);
+		display: flex; align-items: center; min-width: max-content;
+		text-decoration: none; color: var(--ink); transition: opacity var(--t-mid);
 	}
-	.mark-label { font-size: var(--t-small); line-height: 1; color: var(--ink); white-space: nowrap; }
-	.mark-bar { display: block; height: 0.625rem; background: var(--ink); transform-origin: left; }
-	[data-kind="project"] .mark-bar { background: var(--ink-mid); }
-	[data-kind="edu"] .mark-bar { background: transparent; box-shadow: inset 0 0 0 1px var(--ink-soft); }
+	.mark.tick { min-width: 0; }
+	.mark-bar {
+		position: absolute; inset: 0; border-radius: var(--radius-sm); transform-origin: left;
+		background: linear-gradient(90deg, var(--accent-soft), var(--accent-tint));
+	}
+	.mark-text { position: relative; display: grid; gap: 0.1rem; padding: 0 0.85rem 0 1.6rem; white-space: nowrap; line-height: 1.15; }
+	.mark-title { font-size: var(--t-small); font-weight: 500; }
+	.mark-dates { font-size: var(--t-label); color: color-mix(in srgb, currentColor 80%, transparent); font-variant-numeric: tabular-nums; }
+	/* Work bars lead with a small forest dot (a mark, not an icon). */
+	[data-kind="work"] .mark-text::before {
+		content: ""; position: absolute; left: 0.75rem; top: 0.38rem;
+		width: 0.4rem; height: 0.4rem; border-radius: 50%; background: var(--accent);
+	}
+	.mark.current { color: var(--on-accent); }
 	.mark.current .mark-bar { background: var(--accent); }
+	.mark.current .mark-text::before { background: var(--on-accent); }
+
+	/* Projects: forest chips with the name inside, or slim ticks centred in the row. */
+	/* Chips keep their true length: the name truncates instead of stretching the bar. */
+	[data-kind="project"] .mark { color: var(--on-accent); min-width: 0; }
+	[data-kind="project"] .mark-text { min-width: 0; overflow: hidden; }
+	[data-kind="project"] .mark-title { overflow: hidden; text-overflow: ellipsis; }
+	[data-kind="project"] .mark-bar { background: color-mix(in srgb, var(--accent) 85%, var(--bg)); }
+	[data-kind="project"] .mark-text { padding-inline: 0.6rem; }
+	[data-kind="project"] .mark-title { font-size: 0.75rem; }
+	[data-kind="project"] .tick .mark-bar { inset: 0.4rem 0; background: color-mix(in srgb, var(--accent) 55%, var(--bg)); }
+
+	/* Education: an outlined bar on the card surface. */
+	[data-kind="edu"] .mark-bar { background: var(--surface); box-shadow: inset 0 0 0 1px var(--ink-soft); }
+	[data-kind="edu"] .mark-text { padding-left: 0.85rem; }
 
 	/* Focus mode: hovering or focusing one mark dims everything else. */
 	.chart:has(.mark:hover, .mark:focus-visible) .mark:not(:hover, :focus-visible) { opacity: 0.25; }
@@ -207,21 +350,29 @@ function pack(lane: Lane) {
 	.tip-title { font-family: var(--font-display); font-style: italic; font-size: 1.05rem; line-height: 1.2; }
 	.tip-detail { font-size: var(--t-label); letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.75; }
 	.mark:hover .tip, .mark:focus-visible .tip { opacity: 1; transform: none; }
-	/* Labelled lanes already show the name, so their tip only adds the dates. */
-	.row.labelled .tip-title { display: none; }
+	/* Work and education bars already show their name, so their tip only adds the dates. */
+	.row.tall .tip-title { display: none; }
 
-	.legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; margin-top: var(--sp-1); padding-left: 6.5rem; }
-	@media (max-width: 640px) { .legend { padding-left: 0; } }
+	/* Filter: hide the other lanes and their legend entries. */
+	.timeline:not([data-filter="all"]) .lane { border-top: 0; }
+	.timeline[data-filter="work"] :is(.lane, .legend li):not([data-kind="work"], [data-lane="work"]),
+	.timeline[data-filter="project"] :is(.lane, .legend li):not([data-kind="project"], [data-lane="project"]),
+	.timeline[data-filter="edu"] :is(.lane, .legend li):not([data-kind="edu"], [data-lane="edu"]) { display: none; }
+
+	.legend {
+		display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; padding-inline: var(--pad);
+		font-size: var(--t-small); color: var(--ink-mid);
+	}
 	.legend li { display: flex; align-items: center; gap: 0.6rem; }
-	.swatch { width: 1.25rem; height: 0.625rem; background: var(--ink); }
+	.swatch { width: 1.4rem; height: 0.8rem; border-radius: var(--radius-sm); background: var(--accent-soft); }
 	.swatch[data-kind="current"] { background: var(--accent); }
-	.swatch[data-kind="project"] { background: var(--ink-mid); width: 0.625rem; }
-	.swatch[data-kind="edu"] { background: transparent; box-shadow: inset 0 0 0 1px var(--ink-soft); }
+	.swatch[data-kind="project"] { background: color-mix(in srgb, var(--accent) 85%, var(--bg)); }
+	.swatch[data-kind="edu"] { background: var(--surface); box-shadow: inset 0 0 0 1px var(--ink-soft); }
 
-	/* One orchestrated moment: bars extend left-to-right in chronological order. */
+	/* One orchestrated moment: bars extend left-to-right in chronological order, then their text fades in. */
 	@media (prefers-reduced-motion: no-preference) {
 		.mark-bar { animation: extend 0.8s var(--ease-out) both; animation-delay: calc(250ms + var(--delay)); }
-		.mark-label { animation: fade 0.6s var(--ease-out) both; animation-delay: calc(450ms + var(--delay)); }
+		.mark-text { animation: fade 0.6s var(--ease-out) both; animation-delay: calc(550ms + var(--delay)); }
 		@keyframes extend { from { transform: scaleX(0); } }
 		@keyframes fade { from { opacity: 0; } }
 	}
