@@ -15,7 +15,7 @@ const { items } = Astro.props;
 			<li id={id} class="role reveal">
 				<p class="label meta">
 					<span>{formatRange(e.start, e.end)}</span>
-					<span>{isPresent(e.end) ? "Current role" : formatDuration(e.start, e.end)}</span>
+					<span>{isPresent(e.end) ? `Current role, ${formatDuration(e.start, e.end)}` : formatDuration(e.start, e.end)}</span>
 				</p>
 				<div>
 					<h3 class="mt-2">{e.position}</h3>

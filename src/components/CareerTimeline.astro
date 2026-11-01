@@ -38,7 +38,7 @@ const bar = (href: string, label: string, title: string, start: string, end: str
 	range: formatRange(start, end)
 		.replace(/[A-Z][a-z]{2} (\d{4})/g, "$1")
 		.replace(/^(\d{4}) – \1$/, "$1"),
-	detail: isPresent(end) ? `${formatRange(start, end)}` : `${formatRange(start, end)}, ${formatDuration(start, end)}`,
+	detail: `${formatRange(start, end)}, ${formatDuration(start, end)}`,
 	start: toYear(start),
 	end: toYear(end) + 1 / 12,
 	current: isPresent(end),
