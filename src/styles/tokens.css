@@ -1,20 +1,20 @@
 /*
- * Design tokens — Minimal Serif system (skill: minimal-serif-design), Stone palette,
- * Cormorant Garamond + Inter, Deep Ochre accent. See DESIGN.md for the rules that go with them.
+ * Design tokens — Minimal Serif system (skill: minimal-serif-design), Ivory palette (Ink for dark),
+ * Cormorant Garamond + Inter, Forest accent. See DESIGN.md for the rules that go with them.
  * Every page (site, /cv, /og) reads from here; nothing outside this file hardcodes a color.
  */
 
 :root {
-	/* Palette — Stone */
-	--bg: #f3f1ec;
-	--bg-offset: #e9e6df;
-	--ink: #18171a;
-	--ink-mid: #47454a;
+	/* Palette — Ivory */
+	--bg: #faf8f4;
+	--bg-offset: #f2ede5;
+	--ink: #1a1a18;
+	--ink-mid: #4a4845;
 	--ink-soft: #6e6b67; /* darkened from the system's #8a8683 so small metadata passes WCAG AA */
-	--rule: #ccc8c0;
-	/* Deep Ochre: fills only (one CTA, the current role on the timeline). Never text on --bg. */
-	--accent: #c4862a;
-	--on-accent: #18171a;
+	--rule: #d8d3cc;
+	/* Forest: fills only (one CTA, the current role on the timeline). Never text on --bg. */
+	--accent: #2d5a3d;
+	--on-accent: #faf8f4;
 
 	/* Typography */
 	--font-display: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
@@ -61,5 +61,8 @@
 	--ink-mid: #a09890;
 	--ink-soft: #8a837d;
 	--rule: #2a2826;
+	/* Forest, lifted so the fills stay visible on Ink. Dark text on it: 7.7:1. */
+	--accent: #7fae8c;
+	--on-accent: #0e0d0b;
 	color-scheme: dark;
 }
