@@ -9,6 +9,7 @@ import "@fontsource/cormorant-garamond/latin-300-italic.css";
 import "@fontsource/cormorant-garamond/latin-400.css";
 import "@fontsource/cormorant-garamond/latin-500.css";
 import "@fontsource/cormorant-garamond/latin-500-italic.css";
+import "@fontsource/cormorant-garamond/latin-700.css";
 import "@fontsource/inter/latin-400.css";
 import "@fontsource/inter/latin-500.css";
 import "@fontsource/inter/latin-600.css";
@@ -57,7 +58,7 @@ const contacts = [
 			{work.map(({ data: e }) => (
 				<div class="entry">
 					<div class="entry-head">
-						<h3>{e.position}, {e.organization}</h3>
+						<h3 class="job">{e.position}, {e.organization}</h3>
 						<span class="dates">{formatRange(e.start, e.end)}</span>
 					</div>
 					{e.engagements.map((g) => (
@@ -165,6 +166,7 @@ const contacts = [
 		padding-bottom: 5pt; margin-bottom: 8pt; border-bottom: 0.75pt solid var(--rule);
 	}
 	h3 { font: 500 12pt/1.25 var(--font-display); color: var(--ink); }
+	h3.job { font-weight: 700; }
 	.entry { margin-bottom: 10pt; }
 	/* Let long roles flow across pages, but never strand a heading or split a bullet. */
 	h2, h3, .entry-head, .sub { break-after: avoid; }

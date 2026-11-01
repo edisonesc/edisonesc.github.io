@@ -12,9 +12,21 @@
 	--ink-mid: #4a4845;
 	--ink-soft: #6e6b67; /* darkened from the system's #8a8683 so small metadata passes WCAG AA */
 	--rule: #d8d3cc;
-	/* Forest: fills only (one CTA, the current role on the timeline). Never text on --bg. */
+	/* Forest: fills only (the CTA, timeline marks, the timeline filter). Never text on --bg. */
 	--accent: #2d5a3d;
 	--on-accent: #faf8f4;
+	/* Timeline fills: pale forest for past roles (ink text 12.7:1), its lighter gradient end. */
+	--accent-soft: #cfe0d3;
+	--accent-tint: #e6efe8;
+	/* Gold: the timeline's "Now" marker and the hero lede rule. Ink on it: 6.8:1. */
+	--gold: #c99a2e;
+	--on-gold: #1a1a18;
+	/* The timeline card: a raised surface, a soft shadow and the site's one radius (semi-sharp). */
+	--surface: #fdfcf9;
+	--shadow-card: 0 1px 2px rgb(26 26 24 / 0.04), 0 8px 28px rgb(26 26 24 / 0.06);
+	--radius-sm: 2px;
+	/* The hero name: a deep forest ink (13.4:1 on --bg). */
+	--ink-display: #16301f;
 
 	/* Typography */
 	--font-display: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
@@ -64,5 +76,12 @@
 	/* Forest, lifted so the fills stay visible on Ink. Dark text on it: 7.7:1. */
 	--accent: #7fae8c;
 	--on-accent: #0e0d0b;
+	--accent-soft: #2c3f32;
+	--accent-tint: #1e2a22;
+	--gold: #d9ae4f;
+	--on-gold: #0e0d0b;
+	--surface: #141310;
+	--shadow-card: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 28px rgb(0 0 0 / 0.35);
+	--ink-display: #ede8e1;
 	color-scheme: dark;
 }
