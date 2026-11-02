@@ -98,8 +98,8 @@
     - Implemented interactive reporting components for structured data visualization.
   cvExclude: true
 - id: ama-computer-university-quezon-city-philippines-march-2015
-  organization: AMA Computer University - Quezon City Philippines
-  short: AMA Computer University
+  organization: AMA University - Quezon City Philippines
+  short: AMA University
   position: Student
   start: March 2015
   end: May 2019
@@ -152,7 +152,7 @@
   end: Mar 2017
   type: training
   highlights:
-    - AMA Computer University
+    - AMA University
   cvExclude: true
 
 - id: pre-employment-seminar-mar-2017
@@ -161,5 +161,5 @@
   end: Mar 2017
   type: training
   highlights:
-    - AMA Computer University
+    - AMA University
   cvExclude: true
