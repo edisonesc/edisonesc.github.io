@@ -11,6 +11,8 @@ const newestFirst = <T extends { data: { start: string; end: string } }>(a: T, b
 
 export async function getProjects({ forCv = false } = {}) {
 	const all = await getCollection("projects", (p) => !forCv || !p.data.cvExclude);
+	// The file loader only logs a YAML parse error, so without this a broken file deploys an empty site.
+	if (all.length === 0) throw new Error("No projects loaded: check src/data/projects.yaml for a YAML error.");
 	return Promise.all(
 		all.sort(newestFirst).map(async (p) => ({ ...p, technologies: await getEntries(p.data.technologies) })),
 	);
