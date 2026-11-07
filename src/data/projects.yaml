@@ -15,10 +15,10 @@
   name: Laya Issue Triage — AI GitHub Issue Labelling Bot (POC)
   start: Oct 2026
   end: Nov 2026
-  description: Proof of concept for automated GitHub issue triage using a self-hosted Laya decision model instead of a generative LLM. A TypeScript GitHub Action on a self-hosted runner labels each issue by type, urgency and missing info, with confidence thresholds, a needs-triage fallback, and state tracking so maintainer labels are never overridden. Evaluated on 44 real issues plus a 25-issue holdout (type 95%, priority 60%).
+  description: Proof of concept for automated GitHub issue triage. A TypeScript GitHub Action on a self-hosted runner labels each issue by type, urgency and missing info, with confidence thresholds, a needs-triage fallback, and state tracking so maintainer labels are never overridden. The labelling backend is swappable: a self-hosted Laya decision model (structured probabilities in one forward pass, no parsing), or a local Ollama model (D3:2b or D3:4b) behind a Laya-compatible shim, which trades that structure for a more flexible generative model. Laya was evaluated on 44 real issues plus a 25-issue holdout (type 95%, priority 60%).
   type: others
   technologies:
-    [laya, typescript, nodejs, githubactions, docker, python, promptengineering]
+    [laya, ollama, typescript, nodejs, githubactions, docker, python, promptengineering]
 
 - id: sesh-it
   name: Sesh It — Online Multiplayer 3D Boxing Game
