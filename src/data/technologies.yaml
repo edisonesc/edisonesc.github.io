@@ -481,6 +481,20 @@ ollama:
   group: exploratory
   description: A tool for running open-source large language models locally, with a simple CLI and local API for experimenting with AI models on your own machine.
 
+deepseek:
+  name: DeepSeek API
+  url: https://api-docs.deepseek.com/
+  kind: tool
+  group: exploratory
+  description: A hosted large language model API from DeepSeek with chat and tool-calling endpoints that follow the OpenAI request format.
+
+openai:
+  name: OpenAI-compatible API
+  url: https://platform.openai.com/docs/api-reference/chat
+  kind: tool
+  group: exploratory
+  description: The chat completions request format and tool-calling schema popularised by OpenAI, now supported by many hosted providers and local servers such as Ollama, so one adapter can work across them.
+
 rollbacknetcode:
   name: Deterministic Simulation & Rollback Netcode
   url: https://en.wikipedia.org/wiki/Netcode#Rollback

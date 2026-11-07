@@ -1,6 +1,16 @@
 # Newest first. technologies = ids from technologies.yaml.
 # cvExclude: true keeps a project on the site but out of the CV.
 
+- id: issue-agent
+  name: Issue Agent — GitHub Issue to Pull Request Bot (POC)
+  start: Nov 2026
+  end: Nov 2026
+  description: Proof of concept for an agent loop that turns a GitHub issue into a pull request, with a human gate and no auto-merge. Applying the agent-ready label starts a run. The agent works through a fixed tool set (read_file, list_dir, grep, write_file, run_check) inside a path jail, and only on agent/issue-N branches. The runner runs lint, check and build itself, feeds failures back for up to three repair rounds, and opens a PR only when the checks pass. Turn, time, token and diff-size budgets stop runaway runs, and issue text is treated as untrusted input. Model access sits behind one provider-agnostic interface, with the first adapter targeting DeepSeek through the OpenAI-compatible API. Implemented as a GitHub Actions workflow on edisonesc.github.io, with 85 unit tests covering the path jail, budgets, verify gate and tool-call normalisation.
+  url: https://github.com/edisonesc/issue-agent
+  type: others
+  technologies:
+    [typescript, nodejs, githubactions, promptengineering, contextengineering, deepseek, openai]
+
 - id: laya-issue-triage
   name: Laya Issue Triage — AI GitHub Issue Labelling Bot (POC)
   start: Oct 2026
