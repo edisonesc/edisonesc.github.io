@@ -88,7 +88,6 @@
   url: https://edisonesc.github.io/years-tracker-v2
   type: web
   technologies: [typescript, react, vite, githubpages, githubactions]
-  cvExclude: true
 
 - id: modular-service-architecture
   name: Modular Service Architecture (Node.js + NestJS + TypeORM)
