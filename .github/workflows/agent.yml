@@ -1,0 +1,54 @@
+name: issue-agent
+
+# Runs when a maintainer applies the agent-ready label. Opens a PR; a human reviews and merges.
+on:
+  issues:
+    types: [labeled]
+
+# One run per issue at a time.
+concurrency:
+  group: agent-issue-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  agent:
+    if: github.event.label.name == 'agent-ready'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out this repo
+        uses: actions/checkout@v5
+
+      - name: Check out the agent
+        uses: actions/checkout@v5
+        with:
+          repository: edisonesc/issue-agent
+          token: ${{ secrets.ISSUE_AGENT_READ_TOKEN }}
+          path: issue-agent
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Install agent dependencies
+        working-directory: issue-agent
+        run: npm ci
+
+      - name: Install site dependencies for the verify gate
+        run: npm ci
+
+      - name: Run the agent
+        working-directory: issue-agent
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          TARGET_REPO_PATH: ${{ github.workspace }}
+          LLM_PROVIDER: ${{ vars.LLM_PROVIDER }}
+          LLM_BASE_URL: ${{ vars.LLM_BASE_URL }}
+          LLM_MODEL: ${{ vars.LLM_MODEL }}
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+        run: npm run agent
