@@ -145,21 +145,3 @@
   highlights:
     - Cisco Networking Academy
   cvExclude: true
-
-- id: personality-development-seminar-mar-2017
-  organization: Personality Development Seminar
-  start: Mar 2017
-  end: Mar 2017
-  type: training
-  highlights:
-    - AMA University
-  cvExclude: true
-
-- id: pre-employment-seminar-mar-2017
-  organization: Pre-employment Seminar
-  start: Mar 2017
-  end: Mar 2017
-  type: training
-  highlights:
-    - AMA University
-  cvExclude: true
