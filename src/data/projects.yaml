@@ -1,6 +1,15 @@
 # Newest first. technologies = ids from technologies.yaml.
 # cvExclude: true keeps a project on the site but out of the CV.
 
+- id: laya-pr-review
+  name: Laya PR Review — AI GitHub Pull Request Reviewer (POC)
+  start: Nov 2026
+  end: Nov 2026
+  description: "Proof of concept for automated pull request review. A TypeScript tool that runs on your own machine, scores each PR with a self-hosted decision model, and posts one review: approve, request changes, or comment, with inline notes on risky lines. The decision model can be swapped for another backend behind the same API. A local language model writes the review wording only and never decides the verdict."
+  url: https://github.com/edisonesc/laya-pr-review
+  type: others
+  technologies: [laya, typescript, nodejs, githubactions, promptengineering]
+
 - id: issue-agent
   name: Issue Agent — GitHub Issue to Pull Request Bot (POC)
   start: Nov 2026
