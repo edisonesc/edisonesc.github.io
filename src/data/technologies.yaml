@@ -559,6 +559,12 @@ contextengineering:
   group: approach
   description: The practice of designing and structuring the context window for AI agents — crafting prompts, memory, and tool access to maximize model effectiveness.
 
+loopengineering:
+  name: Loop Engineering
+  kind: practice
+  group: approach
+  description: Designing an AI agent's loop with the guardrails around the model rather than inside it, such as human approval gates, limits on time and cost, a small set of allowed actions, and checks run outside the model.
+
 # Project tags only (not listed under Skills)
 derby:
   name: Apache Derby
