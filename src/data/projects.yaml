@@ -1,6 +1,14 @@
 # Newest first. technologies = ids from technologies.yaml.
 # cvExclude: true keeps a project on the site but out of the CV.
 
+- id: workout-intelligence
+  name: Workout Intelligence — Personal Training Dashboard
+  start: Nov 2026
+  end: Present
+  description: "Personal health and training dashboard built on a private Google Sheet, which stays the source of truth for lifts, recovery, Garmin figures and meal prep. A Python job fits a linear trend per exercise and checks it against a naive baseline, then writes a forecast back to the sheet only when it beats that baseline. An Angular 20 app signs in with Google and reads the sheet in the browser with the owner's own token, so no copy of the data is stored on a server. Includes a 2D and 3D muscle map. Deployed as a static site on Cloudflare Workers."
+  type: web
+  technologies: [python, gspread, googlesheets, angular, typescript, tailwindcss, chartjs, primeng, githubactions, cloudflare]
+
 - id: laya-pr-review
   name: PR Review — AI GitHub Pull Request Reviewer (POC)
   start: Nov 2026

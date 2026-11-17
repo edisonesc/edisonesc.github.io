@@ -126,6 +126,20 @@ echarts:
   group: frontend
   description: A powerful, interactive charting and data visualization library built on Canvas, supporting a wide range of chart types and large datasets.
 
+chartjs:
+  name: Chart.js
+  url: https://www.chartjs.org/
+  kind: tool
+  group: frontend
+  description: An open-source JavaScript charting library that draws responsive, interactive charts on HTML canvas.
+
+primeng:
+  name: PrimeNG
+  url: https://primeng.org/
+  kind: framework
+  group: frontend
+  description: A UI component library for Angular with a large set of ready-made widgets and theming support.
+
 jasmine:
   name: Jasmine
   url: https://jasmine.github.io/
@@ -501,6 +515,20 @@ rollbacknetcode:
   kind: practice
   group: exploratory
   description: Running a bit-identical simulation on every machine and exchanging only inputs, predicting ahead and re-simulating when late inputs arrive to hide network latency.
+
+googlesheets:
+  name: Google Sheets
+  url: https://www.google.com/sheets/about/
+  kind: tool
+  group: exploratory
+  description: Google's cloud spreadsheet app. Its API lets programs read and write sheet data, so a spreadsheet can act as a lightweight database.
+
+gspread:
+  name: gspread
+  url: https://docs.gspread.org/
+  kind: tool
+  group: exploratory
+  description: A Python client library for the Google Sheets API that reads and writes spreadsheet cells, ranges and tabs.
 
 # Approach
 componentdrivenarchitecture:
