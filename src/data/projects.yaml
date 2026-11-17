@@ -1,13 +1,25 @@
 # Newest first. technologies = ids from technologies.yaml.
 # cvExclude: true keeps a project on the site but out of the CV.
 
-- id: workout-intelligence
-  name: Workout Intelligence — Personal Training Dashboard
+- id: training-intelligence
+  name: Training Intelligence — Personal Training Dashboard
   start: Nov 2026
   end: Present
   description: "Personal health and training dashboard built on a private Google Sheet, which stays the source of truth for lifts, recovery, Garmin figures and meal prep. A Python job fits a linear trend per exercise and checks it against a naive baseline, then writes a forecast back to the sheet only when it beats that baseline. An Angular 20 app signs in with Google and reads the sheet in the browser with the owner's own token, so no copy of the data is stored on a server. Includes a 2D and 3D muscle map. Deployed as a static site on Cloudflare Workers."
   type: web
-  technologies: [python, gspread, googlesheets, angular, typescript, tailwindcss, chartjs, primeng, githubactions, cloudflare]
+  technologies:
+    [
+      python,
+      gspread,
+      googlesheets,
+      angular,
+      typescript,
+      tailwindcss,
+      chartjs,
+      primeng,
+      githubactions,
+      cloudflare,
+    ]
 
 - id: laya-pr-review
   name: PR Review — AI GitHub Pull Request Reviewer (POC)
@@ -27,7 +39,16 @@
   url: https://github.com/edisonesc/issue-agent
   type: others
   technologies:
-    [typescript, nodejs, githubactions, promptengineering, contextengineering, loopengineering, deepseek, openai]
+    [
+      typescript,
+      nodejs,
+      githubactions,
+      promptengineering,
+      contextengineering,
+      loopengineering,
+      deepseek,
+      openai,
+    ]
 
 - id: laya-issue-triage
   name: Laya Issue Triage — AI GitHub Issue Labelling Bot (POC)
@@ -37,7 +58,16 @@
   description: "Proof of concept for automated GitHub issue triage. A TypeScript GitHub Action on a self-hosted runner labels each issue by type, urgency and missing info, with confidence thresholds, a needs-triage fallback, and state tracking so maintainer labels are never overridden. The labelling backend is swappable: a self-hosted Laya decision model (structured probabilities in one forward pass, no parsing), or a local Ollama model (D3:2b or D3:4b) behind a Laya-compatible shim, which trades that structure for a more flexible generative model. Laya was evaluated on 44 real issues plus a 25-issue holdout (type 95%, priority 60%)."
   type: others
   technologies:
-    [laya, ollama, typescript, nodejs, githubactions, docker, python, promptengineering]
+    [
+      laya,
+      ollama,
+      typescript,
+      nodejs,
+      githubactions,
+      docker,
+      python,
+      promptengineering,
+    ]
 
 - id: sesh-it
   name: Sesh It — Online Multiplayer 3D Boxing Game
