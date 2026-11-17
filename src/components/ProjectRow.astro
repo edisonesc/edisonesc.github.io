@@ -35,7 +35,7 @@ const typeLabel = { web: "Web app", mobile: "Mobile app", system: "System", othe
 		</h3>
 		<p class="label mt-1 meta">
 			<span>{typeLabel[p.data.type]}, {formatRange(p.data.start, p.data.end)}</span>
-			{p.data.url && (
+			{p.data.url && p.data.liveBadge && (
 				<span class="live" data-live-url={p.data.url} data-state="checking" title="Checking whether the project URL is reachable">
 					<span class="dot" aria-hidden="true"></span><span class="state">Checking</span>
 				</span>

@@ -37,6 +37,8 @@ const projects = defineCollection({
 		...range,
 		description: z.string(),
 		url: z.url().optional(),
+		/** false hides the "Live" reachability badge for this project. */
+		liveBadge: z.boolean().default(true),
 		type: z.enum(["web", "mobile", "system", "others"]),
 		technologies: z.array(reference("technologies")).min(1),
 		cvExclude: z.boolean().default(false),
